@@ -1,308 +1,320 @@
 /* style.css */
 
-/* --- Global Styles --- */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font stack */
-    line-height: 1.6;
+/* --- Global Reset & Base --- */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f8; /* Light grey background for the page */
-    color: #333; /* Default text color */
-    font-size: 16px;
 }
 
-.container {
-    width: 80%;
-    max-width: 960px; /* Max width for larger screens */
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7;
+    background-color: #F4F6F8; /* Light grey background for the page */
+    color: #333333;
+    font-size: 16px; /* Base font size */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cv-container {
+    display: flex;
+    max-width: 1200px; /* Max width of CV */
+    min-height: 100vh; /* Ensure it takes at least full viewport height */
     margin: 30px auto;
-    padding: 30px;
-    background-color: #fff; /* White background for the CV content */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    overflow: hidden; /* To contain rounded corners with sidebar */
 }
 
 a {
-    color: #0077b5; /* LinkedIn blue for links */
     text-decoration: none;
+    color: #1ABC9C; /* Main accent color for links */
 }
-
 a:hover {
     text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    color: #2c3e50; /* Darker, professional heading color */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 ul {
+    list-style-position: outside;
     padding-left: 20px;
-    list-style-type: disc; /* Standard disc bullets */
 }
-
 li {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-/* --- Header --- */
-header {
+/* --- Sidebar (Left Column) --- */
+.sidebar {
+    width: 35%; /* Adjust width as needed */
+    min-width: 300px; /* Minimum width for sidebar */
+    background-color: #2C3E50; /* Dark blue/charcoal */
+    color: #ECF0F1; /* Light text color for sidebar */
+    padding: 30px 25px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between sections in sidebar */
+}
+
+.sidebar h1 {
+    font-size: 1.8em;
+    color: #FFFFFF;
     text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e0e0e0; /* Separator line */
-}
-
-header h1 {
     margin-bottom: 5px;
-    font-size: 2.8em;
-    color: #005a87; /* Slightly darker blue for main name */
 }
 
-header p {
-    margin: 5px 0 15px 0;
-    font-size: 1.3em;
+.sidebar .tagline {
+    font-size: 0.95em;
+    color: #BDC3C7; /* Lighter grey for tagline */
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.sidebar section {
+    margin-bottom: 20px;
+}
+
+.sidebar h2 {
+    font-size: 1.2em;
+    color: #1ABC9C; /* Accent color for sidebar headings */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #34495E; /* Darker separator */
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sidebar h2 .fas, .sidebar h2 .fab {
+    margin-right: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+.contact-info p .fas, .contact-info p .fab {
+    width: 20px; /* Align icons */
+    margin-right: 8px;
+    color: #1ABC9C;
+}
+.contact-info a {
+    color: #ECF0F1;
+}
+.contact-info a:hover {
+    color: #1ABC9C;
+}
+
+.skills .skill-category {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+.skills .skill-category strong {
+    color: #BDC3C7; /* Lighter grey for skill type */
+    display: block;
+    margin-bottom: 3px;
+}
+
+.soft-skills-sidebar .tags span,
+.languages-spoken p {
+    font-size: 0.9em;
+    margin-bottom: 6px;
+}
+.soft-skills-sidebar .tags span {
+    display: inline-block;
+    background-color: #34495E; /* Darker background for tags */
+    color: #ECF0F1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.hobbies-sidebar p {
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* --- Main Content (Right Column) --- */
+.main-content {
+    width: 65%; /* Adjust width as needed */
+    padding: 40px 30px;
+    background-color: #FFFFFF;
+}
+
+.main-section {
+    margin-bottom: 30px;
+}
+.main-section:last-child {
+    margin-bottom: 0;
+}
+
+.main-section > h2 { /* Target direct h2 children of .main-section */
+    font-size: 1.6em;
+    color: #2C3E50; /* Dark blue for main headings */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1ABC9C; /* Accent color border */
+    display: flex;
+    align-items: center;
+}
+.main-section > h2 .fas, .main-section > h2 .fab  {
+    margin-right: 12px;
+    color: #1ABC9C; /* Accent color for icons */
+    font-size: 0.9em; /* Slightly smaller icons */
+}
+
+
+#profile-main p {
+    font-size: 1.05em;
     color: #555;
 }
 
-.contact-info span,
-.contact-info a {
-    margin: 0 8px;
-    font-size: 0.95em;
-    color: #444;
-}
-
-.contact-info a:hover {
-    color: #0077b5;
-}
-
-/* --- Sections --- */
-.section {
-    margin-bottom: 30px;
-}
-
-.section h2 {
-    font-size: 1.8em;
-    color: #0077b5; /* Section title color */
-    border-bottom: 2px solid #0077b5;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-}
-
-/* --- Experience, Education, Projects --- */
 .job, .education-entry, .project {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 1px dashed #eee; /* Light separator for entries */
+    /* border-bottom: 1px dashed #E0E0E0; */ /* Optional subtle separator */
 }
 .job:last-child, .education-entry:last-child, .project:last-child {
-    border-bottom: none; /* No border for the last item in a section */
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
-
 
 .job h3, .education-entry h3, .project h3 {
-    font-size: 1.3em;
-    margin-bottom: 3px;
-    color: #34495e; /* Slightly different color for job/education titles */
-}
-
-.job .company-location, .education-entry .date, .project p strong {
-    font-weight: bold;
-    color: #555;
-}
-.job .company-location {
-    font-style: italic;
+    font-size: 1.25em;
+    color: #34495E; /* Slightly muted dark color for sub-headings */
     margin-bottom: 5px;
-    display: block;
 }
 
-
-.job .date, .education-entry .date, .project .date {
-    font-style: italic;
+.company-location-date {
+    font-size: 0.95em;
     color: #777;
-    font-size: 0.9em;
-    margin-bottom: 8px;
-    display: block;
+    margin-bottom: 10px;
+    font-style: italic;
 }
 
-.job ul, .education-entry ul, .project ul {
-    margin-top: 8px;
+.job ul {
+    padding-left: 20px;
+}
+.job ul li {
+    color: #444;
+    font-size: 0.95em;
 }
 
-.project p {
+.education-entry p, .project p {
+    color: #444;
+    font-size: 0.95em;
     margin-bottom: 5px;
 }
-
-/* --- Skills Section --- */
-.skills-list p {
-    margin-bottom: 10px;
-}
-
-.skills-list strong { /* For labels like "Languages:", "Frameworks/Libraries:" */
-    color: #333;
-    margin-right: 5px;
-}
-
-/* For individual skills if you want to style them like tags later */
-/* Example:
-.skills-list span.skill-tag {
-    display: inline-block;
-    background-color: #e9ecef;
-    color: #495057;
-    padding: 5px 10px;
-    margin: 3px 3px;
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-*/
-
-/* --- Soft Skills & Other --- */
-.soft-skills span {
-    display: inline-block;
-    background-color: #f0f0f0; /* Light background for tags */
-    color: #333;
-    padding: 6px 12px;
-    margin: 5px;
-    border-radius: 20px; /* Pill-shaped tags */
-    font-size: 0.9em;
-    border: 1px solid #dcdcdc;
-}
-
-/* --- Languages Spoken --- */
-.languages span {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-/* --- Hobbies --- */
-#hobbies p {
-    margin-bottom: 10px;
-}
-#hobbies strong {
+.education-entry p strong, .project p strong {
     color: #333;
 }
+
 
 /* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 20px;
+@media (max-width: 992px) { /* Tablet and smaller */
+    .cv-container {
+        flex-direction: column;
+        margin: 0 auto; /* Remove side margins for full width */
+        border-radius: 0; /* Remove border radius for full width */
+        min-height: auto;
     }
-
-    header h1 {
-        font-size: 2.2em;
+    .sidebar, .main-content {
+        width: 100%;
+        border-radius: 0; /* Remove individual border radius */
     }
-    header p {
-        font-size: 1.1em;
+    .sidebar {
+        min-width: auto; /* Allow sidebar to shrink */
+        padding: 25px;
+        border-bottom: 3px solid #1ABC9C; /* Separator when stacked */
     }
-    .section h2 {
-        font-size: 1.5em;
+    .main-content {
+        padding: 25px;
     }
-    .job h3, .education-entry h3, .project h3 {
-        font-size: 1.15em;
-    }
-    .contact-info span,
-    .contact-info a {
-        display: block; /* Stack contact info on small screens */
-        margin: 5px 0;
-    }
-    .contact-info span:first-child {
-        margin-top: 0;
-    }
+    .sidebar h1 { font-size: 1.6em; }
+    .main-section > h2 { font-size: 1.4em; }
+    .job h3, .education-entry h3, .project h3 { font-size: 1.15em; }
 }
 
-@media (max-width: 480px) {
-    body {
-        font-size: 15px; /* Slightly smaller font for very small screens */
-    }
-    .container {
-        width: 95%;
-        padding: 15px;
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-    header h1 {
-        font-size: 1.8em;
-    }
-    header p {
-        font-size: 1em;
-    }
-    .section h2 {
-        font-size: 1.3em;
-    }
-    .job h3, .education-entry h3, .project h3 {
-        font-size: 1.1em;
-    }
-    .soft-skills span, .languages span {
-        padding: 5px 10px;
-        font-size: 0.85em;
-    }
+@media (max-width: 576px) { /* Mobile */
+    body { font-size: 15px; }
+    .sidebar { padding: 20px 15px; }
+    .main-content { padding: 20px 15px; }
+
+    .sidebar h1 { font-size: 1.4em; }
+    .sidebar .tagline { font-size: 0.9em; }
+    .sidebar h2 { font-size: 1.1em; }
+
+    .main-section > h2 { font-size: 1.3em; }
+    .job h3, .education-entry h3, .project h3 { font-size: 1.1em; }
+
+    .contact-info p { font-size: 0.85em; }
+    .skills .skill-category, .soft-skills-sidebar .tags span, .languages-spoken p { font-size: 0.85em; }
+    .job ul li, .education-entry p, .project p { font-size: 0.9em; }
 }
 
 /* --- Print Styles --- */
 @media print {
     body {
-        background-color: #fff;
-        font-size: 10pt; /* Standard print font size */
-        color: #000;
-        margin: 0;
-        padding: 0;
+        background-color: #FFFFFF;
+        font-size: 10pt;
+        color: #000000;
     }
-
-    .container {
-        width: 100%;
-        margin: 0;
-        padding: 0;
+    .cv-container {
+        display: block; /* Revert flex for simpler print layout */
         box-shadow: none;
+        margin: 0;
         border-radius: 0;
+        max-width: 100%;
     }
-
-    header {
-        border-bottom: 1px solid #000;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
+    .sidebar {
+        display: none; /* Optionally hide sidebar for a more traditional print CV if it's too much */
+        /* OR, if you want to keep it, style it appropriately for print: */
+        /*
+        width: 30% !important;
+        float: left;
+        background-color: #f0f0f0 !important;
+        color: #000000 !important;
+        padding: 15px;
+        border-right: 1px solid #ccc;
+        */
     }
-    header h1, header p, .section h2, .job h3, .education-entry h3, .project h3 {
-        color: #000 !important; /* Ensure all heading text is black for print */
+    .main-content {
+        width: 100% !important; /* Take full width if sidebar is hidden */
+        /* width: 70% !important; float: right; if sidebar is shown */
+        padding: 1cm; /* Standard print margins */
     }
-
-    .contact-info a {
-        color: #000 !important;
-        text-decoration: none; /* Remove underlines for cleaner print, URL is often implied or not needed */
+    .main-section > h2 {
+        color: #000000 !important;
+        border-bottom: 1px solid #000000 !important;
     }
-
-    .section {
-        margin-bottom: 20px;
+    .main-section > h2 .fas, .main-section > h2 .fab {
+        color: #000000 !important;
     }
-
-    .section h2 {
-        border-bottom: 1px solid #000;
-        padding-bottom: 5px;
-        margin-bottom: 15px;
+    a {
+        color: #000000 !important;
+        text-decoration: none; /* Usually better for print */
     }
-
+    a[href^="http"]:after, a[href^="mailto"]:after {
+        /* content: " (" attr(href) ")"; */ /* Optional: Show URL in print */
+        /* font-size: 0.8em; */
+    }
     .job, .education-entry, .project {
-        border-bottom: 1px solid #ccc;
-        page-break-inside: avoid; /* Try to keep entries from breaking across pages */
+        page-break-inside: avoid;
+        border-bottom: none; /* Remove visual borders for cleaner print */
     }
-
-    ul {
-        padding-left: 15px;
-    }
-
-    .skills-list li, .soft-skills span, .languages span {
-        background-color: #f0f0f0 !important; /* Light grey background for skills */
-        border: 1px solid #ddd !important;
-        color: #000 !important;
-    }
-
-    a[href^="http"]:after {
-        /* content: " (" attr(href) ")"; */ /* Optionally show URLs in print - can be verbose */
-        /* display: none; */ /* Or explicitly hide them if not desired */
-    }
-    /* Hide elements not essential for print if any */
-    /* .some-interactive-element { display: none; } */
+    /* Hide any purely visual elements not needed for print */
+    .profile-photo { display: none; }
 }
