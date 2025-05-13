@@ -1,0 +1,308 @@
+/* style.css */
+
+/* --- Global Styles --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font stack */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f8; /* Light grey background for the page */
+    color: #333; /* Default text color */
+    font-size: 16px;
+}
+
+.container {
+    width: 80%;
+    max-width: 960px; /* Max width for larger screens */
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff; /* White background for the CV content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 8px;
+}
+
+a {
+    color: #0077b5; /* LinkedIn blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: #2c3e50; /* Darker, professional heading color */
+}
+
+ul {
+    padding-left: 20px;
+    list-style-type: disc; /* Standard disc bullets */
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* --- Header --- */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0; /* Separator line */
+}
+
+header h1 {
+    margin-bottom: 5px;
+    font-size: 2.8em;
+    color: #005a87; /* Slightly darker blue for main name */
+}
+
+header p {
+    margin: 5px 0 15px 0;
+    font-size: 1.3em;
+    color: #555;
+}
+
+.contact-info span,
+.contact-info a {
+    margin: 0 8px;
+    font-size: 0.95em;
+    color: #444;
+}
+
+.contact-info a:hover {
+    color: #0077b5;
+}
+
+/* --- Sections --- */
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 1.8em;
+    color: #0077b5; /* Section title color */
+    border-bottom: 2px solid #0077b5;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+/* --- Experience, Education, Projects --- */
+.job, .education-entry, .project {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee; /* Light separator for entries */
+}
+.job:last-child, .education-entry:last-child, .project:last-child {
+    border-bottom: none; /* No border for the last item in a section */
+}
+
+
+.job h3, .education-entry h3, .project h3 {
+    font-size: 1.3em;
+    margin-bottom: 3px;
+    color: #34495e; /* Slightly different color for job/education titles */
+}
+
+.job .company-location, .education-entry .date, .project p strong {
+    font-weight: bold;
+    color: #555;
+}
+.job .company-location {
+    font-style: italic;
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+.job .date, .education-entry .date, .project .date {
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.job ul, .education-entry ul, .project ul {
+    margin-top: 8px;
+}
+
+.project p {
+    margin-bottom: 5px;
+}
+
+/* --- Skills Section --- */
+.skills-list p {
+    margin-bottom: 10px;
+}
+
+.skills-list strong { /* For labels like "Languages:", "Frameworks/Libraries:" */
+    color: #333;
+    margin-right: 5px;
+}
+
+/* For individual skills if you want to style them like tags later */
+/* Example:
+.skills-list span.skill-tag {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 5px 10px;
+    margin: 3px 3px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+*/
+
+/* --- Soft Skills & Other --- */
+.soft-skills span {
+    display: inline-block;
+    background-color: #f0f0f0; /* Light background for tags */
+    color: #333;
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 20px; /* Pill-shaped tags */
+    font-size: 0.9em;
+    border: 1px solid #dcdcdc;
+}
+
+/* --- Languages Spoken --- */
+.languages span {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+/* --- Hobbies --- */
+#hobbies p {
+    margin-bottom: 10px;
+}
+#hobbies strong {
+    color: #333;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+    header p {
+        font-size: 1.1em;
+    }
+    .section h2 {
+        font-size: 1.5em;
+    }
+    .job h3, .education-entry h3, .project h3 {
+        font-size: 1.15em;
+    }
+    .contact-info span,
+    .contact-info a {
+        display: block; /* Stack contact info on small screens */
+        margin: 5px 0;
+    }
+    .contact-info span:first-child {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px; /* Slightly smaller font for very small screens */
+    }
+    .container {
+        width: 95%;
+        padding: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    header p {
+        font-size: 1em;
+    }
+    .section h2 {
+        font-size: 1.3em;
+    }
+    .job h3, .education-entry h3, .project h3 {
+        font-size: 1.1em;
+    }
+    .soft-skills span, .languages span {
+        padding: 5px 10px;
+        font-size: 0.85em;
+    }
+}
+
+/* --- Print Styles --- */
+@media print {
+    body {
+        background-color: #fff;
+        font-size: 10pt; /* Standard print font size */
+        color: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    header {
+        border-bottom: 1px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    header h1, header p, .section h2, .job h3, .education-entry h3, .project h3 {
+        color: #000 !important; /* Ensure all heading text is black for print */
+    }
+
+    .contact-info a {
+        color: #000 !important;
+        text-decoration: none; /* Remove underlines for cleaner print, URL is often implied or not needed */
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .section h2 {
+        border-bottom: 1px solid #000;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .job, .education-entry, .project {
+        border-bottom: 1px solid #ccc;
+        page-break-inside: avoid; /* Try to keep entries from breaking across pages */
+    }
+
+    ul {
+        padding-left: 15px;
+    }
+
+    .skills-list li, .soft-skills span, .languages span {
+        background-color: #f0f0f0 !important; /* Light grey background for skills */
+        border: 1px solid #ddd !important;
+        color: #000 !important;
+    }
+
+    a[href^="http"]:after {
+        /* content: " (" attr(href) ")"; */ /* Optionally show URLs in print - can be verbose */
+        /* display: none; */ /* Or explicitly hide them if not desired */
+    }
+    /* Hide elements not essential for print if any */
+    /* .some-interactive-element { display: none; } */
+}
