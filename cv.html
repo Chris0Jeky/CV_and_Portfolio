@@ -3,243 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cristian Tcaci - Computer Science Student</title>
+    <title>Cristian Tcaci - Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Basic styling for demonstration - you'll want to expand this in a separate style.css */
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; }
-        .container { width: 80%; margin: 20px auto; padding: 20px; background-color: #f9f9f9; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        header { text-align: center; margin-bottom: 20px; }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { margin: 5px 0; font-size: 1.1em; }
-        .contact-info a { text-decoration: none; color: #0077b5; margin: 0 10px; }
-        .section { margin-bottom: 25px; }
-        .section h2 { border-bottom: 2px solid #0077b5; padding-bottom: 5px; margin-bottom: 15px; color: #0077b5; }
-        .job, .education-entry, .project { margin-bottom: 15px; }
-        .job h3, .education-entry h3, .project h3 { margin: 0 0 5px 0; font-size: 1.2em; }
-        .job .date, .education-entry .date { font-style: italic; color: #555; font-size: 0.9em; }
-        ul { padding-left: 20px; }
-        .skills-list ul { list-style: none; padding: 0; }
-        .skills-list li { display: inline-block; background-color: #e0e0e0; color: #333; padding: 5px 10px; margin: 5px 5px 5px 0; border-radius: 5px; font-size: 0.9em; }
-        .languages span, .soft-skills span { display: inline-block; padding: 3px 8px; margin: 3px; border: 1px solid #ccc; border-radius: 4px; }
-
-        @media print {
-            body { box-shadow: none; margin: 0; font-size: 10pt; }
-            .container { width: 100%; box-shadow: none; }
-            .section h2 { color: #000; border-bottom: 1px solid #000; }
-            .contact-info a { color: #000; }
-            .skills-list li { background-color: #f0f0f0; border: 1px solid #ddd; }
-        }
-    </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>Cristian Tcaci</h1>
-        <p>Computer Science Student</p>
-        <div class="contact-info">
-            <span>London, W9</span> |
-            <a href="tel:+447588221922">+44 7588221922</a> |
-            <a href="mailto:Jeky.tck@gmail.com">Jeky.tck@gmail.com</a> |
-            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/Chris0Jeky" target="_blank">GitHub (Chris0Jeky)</a>
-        </div>
-    </header>
+<div class="cv-container">
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <div class="profile-header">
+                <!-- You can add a professional photo here if you wish -->
+                <!-- <img src="your-photo.jpg" alt="Cristian Tcaci" class="profile-photo"> -->
+                <h1>Cristian Tcaci</h1>
+                <p class="tagline">Aspiring Software Engineer | Innovator | Problem Solver</p>
+            </div>
 
-    <section id="profile" class="section">
-        <h2>Profile</h2>
-        <p>
-            A highly motivated Computer Science student with a strong passion for software development and a keen interest in technological advancements. Eager to apply a robust technical skillset to a challenging software engineering role, focusing on innovative problem-solving and positive impact. Experienced in IT, cloud-based systems, CRMs, and data analysis, with proven communication and leadership abilities. Committed to ethical practices, continuous growth, and professional development.
-        </p>
-    </section>
+            <section class="contact-info">
+                <h2><i class="fas fa-user-circle"></i> Contact</h2>
+                <p><i class="fas fa-map-marker-alt"></i> London, W9</p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+447588221922">+44 7588221922</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:Jeky.tck@gmail.com">Jeky.tck@gmail.com</a></p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank">linkedin.com/in/cristian-tcaci</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/Chris0Jeky" target="_blank">github.com/Chris0Jeky</a></p>
+            </section>
 
-    <section id="experience" class="section">
-        <h2>Experience</h2>
-        <div class="job">
-            <h3>GE Digital / Software Engineer Intern</h3>
-            <p class="company-location">Cambridge</p>
-            <p class="date">Jun 2023 - Sep 2024 (Expected)</p>
-            <ul>
-                <li><strong>Magik-Based Product Development:</strong> Maintained and expanded features in a legacy Magik codebase, implemented user improvements, refined database interactions, and enhanced stability. Devised MUnit test cases. Participated in code reviews, daily stand-ups, and backlog grooming.</li>
-                <li><strong>New Feature Implementation:</strong> Collaborated with cross-functional teams to design and integrate new functionalities into existing Magik modules. Leveraged agile methodologies for feature breakdown, progress tracking, and iterative delivery.</li>
-                <li><strong>DevOps & Security Automation:</strong> Integrated Nmap scanning into ~72 AWS CI/CD pipelines using Bash/Groovy for ephemeral port checks. Optimized Jenkins pipelines and introduced logging enhancements. Led "security by design" knowledge-sharing sessions.</li>
-                <li><strong>Collaboration & Impact:</strong> Liaised with DevOps engineers, security architects, and product owners. Honoured with a #Spotlight Award for "Deliver with Focus".</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Middlesex University / SVL (Student Voice Leader)</h3>
-            <p class="company-location">London</p>
-            <p class="date">Oct 2022 - Present</p>
-            <ul>
-                <li>Appointed Student Voice Leader for second and third-year BSc Computer Science courses.</li>
-                <li>Collect, analyze, and present student feedback to stakeholders, including course leaders and university staff through board meetings.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>MP Moran / Stock Controller</h3>
-            <p class="company-location">London</p>
-            <p class="date">Feb 2022 - Present</p>
-            <ul>
-                <li>Maintain accurate stock holding, ensure company profitability, develop/implement policies for waste/damage reduction, and improve inter-departmental communication.</li>
-                <li>Coordinated daily physical cycle counts, managed stock labeling, and resolved delivery issues.</li>
-                <li>Utilised inventory management software for stock tracking, data analysis, and reordering recommendations.</li>
-                <li>Collaborated with purchasing/sales teams on stock discrepancies. Provided inventory status reports.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Starbuck / Shift Supervisor</h3>
-            <p class="company-location">London</p>
-            <p class="date">March 2020 - Jan 2022</p>
-            <ul>
-                <li>Supervised shifts and teams, ensuring high customer service standards.</li>
-                <li>Managed cash balancing, banking, payroll, labour scheduling, and inventory adjustments.</li>
-                <li>Assumed management responsibilities in manager's absence, contributing to "best branch of the district 2020" title. Served over 200 customers daily.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Coco Di Mama / Store Supervisor</h3>
-            <p class="company-location">London</p>
-            <p class="date">July 2019 - March 2020</p>
-            <ul>
-                <li>Supervised and managed a team of 12 employees in Waterloo.</li>
-                <li>Managed store operations on weekends, exceeding targets, supervising stock, enforcing food rules, controlling wastage (reduced from 17.5% to below 5%), and training new employees.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Mamma Africa Italia / Volunteer</h3>
-            <p class="company-location">Rome</p>
-            <p class="date">April 2014 - Sept 2014</p>
-            <ul>
-                <li>Participated in an inclusivity and diversity training program.</li>
-                <li>Volunteered at mobile food banks, assisting with food distribution and community engagement.</li>
-            </ul>
-        </div>
-    </section>
+            <section class="skills">
+                <h2><i class="fas fa-cogs"></i> Technical Skills</h2>
+                <p class="skill-category"><strong>Languages:</strong> Java, C++, Python, Magik, SQL, JavaScript, Racket, JSON, Bash, Groovy</p>
+                <p class="skill-category"><strong>Frameworks/Libraries:</strong> Vue.js, Node.js</p>
+                <p class="skill-category"><strong>Tools & Tech:</strong> Git, MS Office, BisTrack, Linux, Windows, OOP, Backend Dev, Data Analysis, ML Tools, AWS, Jenkins, Docker, GitHub Actions, Terraform, Nmap, Cybersecurity, Secure Coding, MongoDB, UML, Jira, Agile/Scrum</p>
+            </section>
 
-    <section id="skills" class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills-list">
-            <p><strong>Languages:</strong> Java, C++, Python, Magik, SQL, JavaScript, Racket, JSON, Bash, Groovy</p>
-            <p><strong>Frameworks/Libraries:</strong> Vue.js, Node.js</p>
-            <p><strong>Tools & Technologies:</strong> Git, MS Office, BisTrack, Linux OS, Windows OS, OOP, Backend Development, Data Analysis, ML Tools, Test Frameworks, AWS, Jenkins, Docker, GitHub Actions, Terraform, Nmap, Cybersecurity (Concepts), Secure Coding, Pen Testing (Basics), MongoDB, UML, Microservices (Concepts), Robotics (Fundamentals), Jira, Azure DevOps, Agile/Scrum, Confluence/Wiki</p>
-        </div>
-    </section>
+            <section class="soft-skills-sidebar">
+                <h2><i class="fas fa-users-cog"></i> Soft Skills</h2>
+                <div class="tags">
+                    <span>Leadership</span><span>Communication</span><span>Problem-Solving</span><span>Teamwork</span><span>Adaptability</span><span>Coaching</span><span>Time Management</span><span>Critical Thinking</span><span>Emotional Intuition</span><span>Work Ethic</span>
+                </div>
+            </section>
 
-    <section id="soft-skills" class="section">
-        <h2>Soft Skills & Other</h2>
-        <div class="soft-skills">
-            <span>Coaching</span>
-            <span>Feedback</span>
-            <span>Sales</span>
-            <span>Technical Language</span>
-            <span>Policy review & implementation</span>
-            <span>Team management & training</span>
-            <span>Marketing strategies</span>
-            <span>Communication</span>
-            <span>Leadership</span>
-            <span>Flexibility & Adaptability</span>
-            <span>Emotional intuition</span>
-            <span>Work ethics & culture values</span>
-            <span>Transparency & accountability</span>
-        </div>
-    </section>
+            <section class="languages-spoken">
+                <h2><i class="fas fa-language"></i> Languages</h2>
+                <p>English (Fluent)</p>
+                <p>Italian (Fluent)</p>
+                <p>Romanian (Native)</p>
+                <p>Moldovan (Native)</p>
+            </section>
 
-    <section id="education" class="section">
-        <h2>Education</h2>
-        <div class="education-entry">
-            <h3>Middlesex University / Bachelor of Science - Major in Computer Science</h3>
-            <p class="date">Oct 2018 - June 2020 & Oct 2022 - June 2025 (Expected), London</p>
-            <p><strong>Final Year Project:</strong> Agent-Based Simulation in Soar Cognitive Architecture—exploring AI decision-making at scale.</p>
-            <p><strong>Key Modules/Areas:</strong></p>
-            <ul>
-                <li><strong>Third Year:</strong> Data Science & ML (sci-kit-learn, Python, model evaluation, data ethics), AI (search algorithms, heuristic-based planning), Advanced Full-Stack (Vue.js, Express, MongoDB, security, deployment).</li>
-                <li><strong>Second Year:</strong> Software Engineering Management & Development (C++, Time Complexity, Algorithms, Data Structures, Multi-Threading, GIT, UML, Testing), Web Applications & Databases (JavaScript, PHP, MySQL, HTML, CSS, JSON, MongoDB, AJAX, NodeJS & Express), Object Oriented Programming (Java, OOP theory, Interfaces, Collections, Design & Architecture), Operating Systems & Computer Networks (Linux, OS Theory, Multithreading, Memory Management, Security, Networking Protocols, Bash, Cisco Packet Tracer).</li>
-                <li><strong>First Year:</strong> Introduction to Computer Science, Programming (Racket), Set Theory, Algorithms & Data Types, Robotics (Autonomous robot car, embedded systems), Electronics (Circuit Analysis, Digital/Analog Electronics, Control Systems).</li>
-            </ul>
+            <section class="hobbies-sidebar">
+                <h2><i class="fas fa-heart"></i> Interests</h2>
+                <p>Tech Innovation, Fitness & Diet, Photography, Philosophy, Science Discussions, Continuous Learning</p>
+            </section>
         </div>
-        <div class="education-entry">
-            <h3>ITC Vincenzo Arangio Ruiz / Information and Telecommunication (IT Diploma)</h3>
-            <p class="date">Sept 2011 - July 2016, Rome</p>
-            <ul>
-                <li>Key Subjects: Italian Literature, Mathematics, Electronics, Project Management, Computer Systems & Networks, Technology Landscape, Foreign Language (English), Computer Science (Base Language: JavaScript).</li>
-            </ul>
-        </div>
-    </section>
+    </aside>
 
-    <section id="projects" class="section">
-        <h2>University Coursework - Projects</h2>
-        <!-- You can list your projects here, similar to the experience section -->
-        <div class="project">
-            <h3>Dice Game Simulation (OOP Java)</h3>
-            <p><strong>Technologies:</strong> Java, OOP, NetBeans, Console, Game logic, Tabular format, Testing.</p>
-        </div>
-        <div class="project">
-            <h3>OOP Coursework 3 Scenario Contexts (Java)</h3>
-            <p><strong>Features:</strong> Console-based menu, Sports personality awards, Golf lesson booking system, JavaFX GUI, Cycling application touchscreen, file handling.</p>
-        </div>
-        <div class="project">
-            <h3>Database and Client/Server Software Implementation (Software Engineering)</h3>
-            <p><strong>Technologies:</strong> Java, JavaFX GUI, Database design, Normalisation, ER diagram, SQL, Client-server, Multi-client.</p>
-        </div>
-        <div class="project">
-            <h3>Playlist Management and Search Functionality (Software Engineering)</h3>
-            <p><strong>Technologies:</strong> JavaFX GUI, Data structures, Time complexity, OOP, Playlist management.</p>
-        </div>
-        <div class="project">
-            <h3>Vehicle Tracking System Development (Software Engineering)</h3>
-            <p><strong>Technologies:</strong> UML, Git, BitBucket, Vehicle class, Derived classes, Catch2 test code, Makefile, User input validation.</p>
-        </div>
-        <div class="project">
-            <h3>Implementation of an Audio Track Library System (Software Engineering)</h3>
-            <p><strong>Technologies:</strong> C++, Data structure, Time complexity, Song library, Search, Add, Save, Remove tracks, Git, Makefile, User interface.</p>
-        </div>
-        <div class="project">
-            <h3>Command Line Shell Implementation (Operating Systems & Networks)</h3>
-            <p><strong>Features:</strong> UNIX, I/O redirection, Program environment, Background program execution. Technologies: Source code, Makefile, Readme manual.</p>
-        </div>
-        <div class="project">
-            <h3>Designing and Implementing a VLSM Addressing Scheme Topology (Operating Systems & Networks)</h3>
-            <p><strong>Technologies:</strong> VLSM, Network address, Packet Tracer Simulator, Routers, IP addresses, Subnet masks, Pinging.</p>
-        </div>
-        <div class="project">
-            <h3>Website with game (Web Applications & Databases)</h3>
-            <p><strong>Technologies:</strong> HTML, CSS, JavaScript, PHP, JSON, HTML local storage, Game website, Register/login, Top scores.</p>
-        </div>
-        <div class="project">
-            <h3>E-commerce website - Group Project (Web Applications & Databases)</h3>
-            <p><strong>Technologies:</strong> HTML, CSS, JavaScript, PHP, MongoDB, AJAX, Local/session storage, CMS, jQuery, Bootstrap. Includes: Project proposal, Progress report, Final report.</p>
-        </div>
-        <div class="project">
-            <h3>Single Page Web App (Web Applications & Databases)</h3>
-            <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Node.js, AJAX, JSON, SQL database, MySQL. Includes: Project proposal.</p>
-        </div>
-    </section>
+    <main class="main-content">
+        <section id="profile-main" class="main-section">
+            <h2><i class="fas fa-id-card"></i> Profile</h2>
+            <p>
+                A highly motivated Computer Science student with a fervent passion for software development and technological advancements. Eager to leverage a robust technical skillset in a challenging software engineering role, focusing on innovative problem-solving and creating impactful solutions. Experienced in IT, cloud-based systems, and data analysis, with proven communication and leadership abilities. Committed to ethical practices, continuous growth, and professional development.
+            </p>
+        </section>
 
-    <section id="robotics-activity" class="section">
-        <h2>Robotics / Optional Activity</h2>
-        <div class="project">
-            <h3>ITC Vincenzo Arangio Ruiz - Vehicle Robot Design & Development for Rome Cup Robotics Competition</h3>
-            <p class="date">Nov 2015 - April 2016, Rome</p>
-            <p>Designed and developed a mini-car robot using Arduino and C language as part of a 6-person team. Utilised skills in robot design, construction, programming, and demonstrated autonomous navigation and task performance with sensors and control systems.</p>
-        </div>
-    </section>
+        <section id="experience" class="main-section">
+            <h2><i class="fas fa-briefcase"></i> Experience</h2>
+            <div class="job">
+                <h3>GE Digital / Software Engineer Intern</h3>
+                <p class="company-location-date">Cambridge | Jun 2023 - Sep 2024 (Expected)</p>
+                <ul>
+                    <li>Developed and enhanced features within a legacy Magik codebase, focusing on user-requested improvements and stability.</li>
+                    <li>Designed MUnit test cases to improve code coverage and ensure forward compatibility for new features.</li>
+                    <li>Actively participated in code reviews, daily stand-ups, and backlog grooming, contributing to best practices.</li>
+                    <li>Collaborated with cross-functional teams to design and integrate new functionalities into Magik modules.</li>
+                    <li>Utilized agile methodologies for sprint planning, progress tracking, and iterative delivery.</li>
+                    <li>Integrated Nmap scanning into AWS CI/CD pipelines; scripted ephemeral port checks with Bash/Groovy.</li>
+                    <li>Optimized Jenkins pipelines, introduced logging enhancements for faster troubleshooting.</li>
+                    <li>Led knowledge-sharing sessions on "security by design," recognized with a #Spotlight Award for "Deliver with Focus."</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Middlesex University / SVL (Student Voice Leader)</h3>
+                <p class="company-location-date">London | Oct 2022 - Present</p>
+                <ul>
+                    <li>Appointed Student Voice Leader for 2nd & 3rd-year BSc Computer Science, gathering and presenting student feedback.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>MP Moran / Stock Controller</h3>
+                <p class="company-location-date">London | Feb 2022 - Present</p>
+                <ul>
+                    <li>Maintain stock accuracy, implement waste reduction policies, and enhance inter-departmental communication.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Starbuck / Shift Supervisor</h3>
+                <p class="company-location-date">London | Mar 2020 - Jan 2022</p>
+                <ul>
+                    <li>Supervised shifts and teams, managed operations, and ensured high customer service standards.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Coco Di Mama / Store Supervisor</h3>
+                <p class="company-location-date">London | Jul 2019 - Mar 2020</p>
+                <ul>
+                    <li>Managed a team of 12, improved store efficiency by reducing waste from 17.5% to <5%.</li>
+                </ul>
+            </div>
+            <!-- Add other experiences similarly -->
+        </section>
 
-    <section id="languages-spoken" class="section">
-        <h2>Languages</h2>
-        <div class="languages">
-            <span>English (Fluent)</span>
-            <span>Italian (Fluent)</span>
-            <span>Romanian (Native)</span>
-            <span>Moldovan (Native)</span>
-        </div>
-    </section>
+        <section id="education" class="main-section">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="education-entry">
+                <h3>Middlesex University / Bachelor of Science - Computer Science</h3>
+                <p class="company-location-date">London | Oct 2018 - Jun 2020 & Oct 2022 - Jun 2025 (Expected)</p>
+                <p><strong>Final Year Project:</strong> Agent-Based Simulation in Soar Cognitive Architecture.</p>
+                <p><strong>Key Modules:</strong> Data Science & ML, AI Algorithms, Advanced Full-Stack Development, Software Engineering, Web Applications, OOP, Operating Systems & Networks.</p>
+            </div>
+            <div class="education-entry">
+                <h3>ITC Vincenzo Arangio Ruiz / IT Diploma</h3>
+                <p class="company-location-date">Rome | Sept 2011 - July 2016</p>
+                <p><strong>Key Subjects:</strong> Computer Science (JavaScript), Electronics, Project Management, Computer Systems & Networks.</p>
+            </div>
+        </section>
 
-    <section id="hobbies" class="section">
-        <h2>Hobbies, Interests & Extras</h2>
-        <p>Reading, writing, fitness & diet, computers & technology, photography & editing, cooking, films, listening to and engaging in conversations about science, psychology, philosophy and politics.</p>
-        <p><strong>Courses & Training:</strong> Customer Service - YATD | Public Speaking Level 1 - SPEAKup Challenge | Digital Marketing - Google Digital Garage | Track Traffic Analytics - Google Digital Garage</p>
-    </section>
-
+        <section id="projects" class="main-section">
+            <h2><i class="fas fa-project-diagram"></i> Key Projects</h2>
+            <div class="project">
+                <h3>Audio Track Library System (C++)</h3>
+                <p>Developed a C++ application for managing an audio track library with functionalities for search, add, save, and remove tracks using efficient data structures.</p>
+            </div>
+            <div class="project">
+                <h3>E-commerce Website (Group Project)</h3>
+                <p>Collaborated on a full-stack e-commerce website using HTML, CSS, JavaScript, PHP, MongoDB, and AJAX, featuring user registration, product listings, and a CMS.</p>
+            </div>
+            <div class="project">
+                <h3>Vehicle Robot Design (Rome Cup Robotics Competition)</h3>
+                <p>Co-designed and programmed an autonomous mini-car robot using Arduino and C for a robotics competition, focusing on navigation and task performance.</p>
+            </div>
+            <!-- Add other key projects similarly, focusing on the most impressive/relevant -->
+        </section>
+        <section id="robotics-activity" class="main-section">
+            <h2><i class="fas fa-robot"></i> Robotics Activity</h2>
+            <div class="project">
+                <h3>ITC Vincenzo Arangio Ruiz - Rome Cup Robotics Competition</h3>
+                <p class="company-location-date">Rome | Nov 2015 - April 2016</p>
+                <p>Designed and developed an autonomous mini-car robot using Arduino and C language as part of a 6-person team. Gained hands-on experience in robot design, construction, programming, sensor integration, and teamwork in a competitive environment.</p>
+            </div>
+        </section>
+    </main>
 </div>
 </body>
 </html>
