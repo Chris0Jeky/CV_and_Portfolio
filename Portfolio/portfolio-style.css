@@ -109,6 +109,28 @@ a:hover{color:var(--primary-hover);}
 .hero-content{position:relative;z-index:2;max-width:800px;}
 .hero-content h1{font-size:4.5rem;font-weight:700;margin-bottom:.3em;text-shadow:2px 2px 8px rgba(0,0,0,0.5);}
 .hero-tagline{font-size:1.65rem;margin-bottom:1.5em;color:rgba(255,255,255,0.9);font-weight:300;}
+.hero-content h1,
+.hero-tagline { color: var(--text-light); }
+
+.hero-content h1{
+    text-shadow: 0 4px 12px rgba(0,0,0,.6);     /* crisper against dark bg */
+}
+
+/* make overlay a hair darker so text pops */
+.hero-overlay{ background: rgba(0,0,0,.65); }
+
+/* make sure project overlay text doesn’t clip */
+.project-card-overlay{align-items:flex-start;} /* text stays inside padding */
+
+/* optional: show a faint title even before hover */
+.project-card h3{position:absolute;top:20px;left:20px;z-index:1;color:#fff;opacity:.85;pointer-events:none;}
+
+/* glowing skill boxes when JS toggles .skill-glow */
+.skill-area.skill-glow{
+    box-shadow: 0 0 12px var(--accent-color1),
+    0 0 24px var(--primary-color);
+    transform: translateY(-5px) scale(1.02);
+}
 
 /* =============================================================
    Timeline – icons & dots still use primary crimson
