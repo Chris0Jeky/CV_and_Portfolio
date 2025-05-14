@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css - Refined Version */
 
 /* --- Global Reset & Base --- */
 *, *::before, *::after {
@@ -8,313 +8,383 @@
 }
 
 body {
-    font-family: 'Lato', sans-serif;
-    line-height: 1.7;
-    background-color: #F4F6F8; /* Light grey background for the page */
-    color: #333333;
-    font-size: 16px; /* Base font size */
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.75; /* Slightly more generous line height for readability */
+    background-color: #F8F9FA; /* Very light grey, almost white */
+    color: #212529; /* Darker, more standard text color */
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .cv-container {
     display: flex;
-    max-width: 1200px; /* Max width of CV */
-    min-height: 100vh; /* Ensure it takes at least full viewport height */
-    margin: 30px auto;
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 40px auto; /* More margin for a "premium" feel */
     background-color: #FFFFFF;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden; /* To contain rounded corners with sidebar */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12); /* Softer, more diffused shadow */
+    border-radius: 10px; /* Slightly more pronounced radius */
+    overflow: hidden;
 }
 
 a {
     text-decoration: none;
-    color: #1ABC9C; /* Main accent color for links */
+    color: #007BFF; /* A standard, vibrant blue for primary actions/links */
+    transition: color 0.2s ease-in-out;
 }
 a:hover {
+    color: #0056b3; /* Darker shade on hover */
     text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700; /* Bolder headings */
+    letter-spacing: -0.5px; /* Slightly tighter letter spacing for modern feel */
 }
 
 ul {
     list-style-position: outside;
-    padding-left: 20px;
+    padding-left: 22px;
 }
 li {
-    margin-bottom: 8px;
+    margin-bottom: 10px; /* Slightly more space between list items */
 }
 
 /* --- Sidebar (Left Column) --- */
 .sidebar {
-    width: 35%; /* Adjust width as needed */
-    min-width: 300px; /* Minimum width for sidebar */
-    background-color: #2C3E50; /* Dark blue/charcoal */
-    color: #ECF0F1; /* Light text color for sidebar */
-    padding: 30px 25px;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    width: 36%;
+    min-width: 320px;
+    background-color: #1A2F4B; /* Rich, deep navy */
+    color: #EAEAEA; /* Off-white for better contrast than pure white */
+    padding: 35px 30px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-content {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Space between sections in sidebar */
+    gap: 30px;
 }
 
-.sidebar h1 {
-    font-size: 1.8em;
-    color: #FFFFFF;
+.profile-header {
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+}
+/*
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    border: 3px solid #00A3BF; / Accent border for photo /
+    object-fit: cover;
+}
+*/
+.sidebar .profile-header h1 {
+    font-size: 2em; /* Prominent name */
+    color: #FFFFFF;
+    margin-bottom: 8px;
 }
 
 .sidebar .tagline {
-    font-size: 0.95em;
-    color: #BDC3C7; /* Lighter grey for tagline */
-    text-align: center;
-    margin-bottom: 20px;
-    font-style: italic;
+    font-size: 1em;
+    color: #92A5B8; /* Muted blue-grey */
+    margin-bottom: 25px;
+    font-style: normal;
+    font-weight: 300; /* Lighter weight for tagline */
 }
 
 .sidebar section {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Consistent bottom margin */
 }
 
 .sidebar h2 {
-    font-size: 1.2em;
-    color: #1ABC9C; /* Accent color for sidebar headings */
-    margin-bottom: 15px;
-    border-bottom: 1px solid #34495E; /* Darker separator */
-    padding-bottom: 8px;
+    font-size: 1.15em; /* Slightly smaller, more refined */
+    color: #00A3BF; /* Vivid teal/cyan accent */
+    margin-bottom: 18px;
+    border-bottom: 1px solid #34495E;
+    padding-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px; /* Wider spacing for uppercase titles */
+    font-weight: 600;
 }
 .sidebar h2 .fas, .sidebar h2 .fab {
-    margin-right: 10px;
+    margin-right: 12px;
+    font-size: 0.9em; /* Icons slightly smaller than text */
 }
 
 .contact-info p {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 0.9em;
     display: flex;
     align-items: center;
+    font-weight: 300;
 }
 .contact-info p .fas, .contact-info p .fab {
-    width: 20px; /* Align icons */
-    margin-right: 8px;
-    color: #1ABC9C;
+    width: 22px;
+    margin-right: 10px;
+    color: #00A3BF;
+    text-align: center;
 }
 .contact-info a {
-    color: #ECF0F1;
+    color: #C8D6E5; /* Lighter text for links in sidebar */
+    word-break: break-all; /* Prevent overflow for long links */
 }
 .contact-info a:hover {
-    color: #1ABC9C;
+    color: #FFFFFF;
 }
 
 .skills .skill-category {
-    margin-bottom: 10px;
-    font-size: 0.9em;
+    margin-bottom: 12px;
+    font-size: 0.88em;
+    line-height: 1.6;
 }
 .skills .skill-category strong {
-    color: #BDC3C7; /* Lighter grey for skill type */
+    color: #A8B7C7; /* Slightly lighter for category titles */
     display: block;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
+    font-weight: 400; /* Normal weight for these labels */
 }
 
-.soft-skills-sidebar .tags span,
+.soft-skills-sidebar .tags span {
+    display: inline-block;
+    background-color: rgba(0, 163, 191, 0.15); /* Transparent accent */
+    color: #C8D6E5;
+    padding: 6px 12px;
+    border-radius: 15px; /* More rounded "pill" shape */
+    margin-right: 6px;
+    margin-bottom: 8px;
+    font-size: 0.85em;
+    border: 1px solid rgba(0, 163, 191, 0.3);
+    transition: all 0.2s ease;
+}
+.soft-skills-sidebar .tags span:hover {
+    background-color: rgba(0, 163, 191, 0.3);
+    color: #FFFFFF;
+}
+
 .languages-spoken p {
     font-size: 0.9em;
     margin-bottom: 6px;
-}
-.soft-skills-sidebar .tags span {
-    display: inline-block;
-    background-color: #34495E; /* Darker background for tags */
-    color: #ECF0F1;
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    font-weight: 300;
 }
 
 .hobbies-sidebar p {
     font-size: 0.9em;
-    line-height: 1.5;
+    line-height: 1.6;
+    color: #A8B7C7;
+    font-weight: 300;
 }
 
 /* --- Main Content (Right Column) --- */
 .main-content {
-    width: 65%; /* Adjust width as needed */
-    padding: 40px 30px;
+    width: 64%;
+    padding: 40px 35px; /* Slightly more horizontal padding */
     background-color: #FFFFFF;
 }
+.main-header { /* For Name and Title if you want to separate them */
+    text-align: left;
+    margin-bottom: 30px;
+}
+.main-header h1 {
+    font-size: 2.8em;
+    color: #1A2F4B; /* Match sidebar dark color for main name */
+    margin-bottom: 5px;
+}
+.main-header .main-tagline {
+    font-size: 1.3em;
+    color: #007BFF; /* Use primary link color for tagline */
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
 
 .main-section {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 .main-section:last-child {
     margin-bottom: 0;
 }
 
-.main-section > h2 { /* Target direct h2 children of .main-section */
-    font-size: 1.6em;
-    color: #2C3E50; /* Dark blue for main headings */
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #1ABC9C; /* Accent color border */
+.main-section > h2 {
+    font-size: 1.7em; /* Larger main section titles */
+    color: #1A2F4B; /* Match sidebar dark color */
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #007BFF; /* Primary accent border */
     display: flex;
     align-items: center;
+    font-weight: 700;
 }
-.main-section > h2 .fas, .main-section > h2 .fab  {
-    margin-right: 12px;
-    color: #1ABC9C; /* Accent color for icons */
-    font-size: 0.9em; /* Slightly smaller icons */
+.main-section > h2 .fas, .main-section > h2 .fab {
+    margin-right: 15px;
+    color: #007BFF;
+    font-size: 0.85em;
 }
-
 
 #profile-main p {
-    font-size: 1.05em;
-    color: #555;
+    font-size: 1em; /* Slightly smaller for denser text */
+    color: #495057; /* Softer black */
+    line-height: 1.8;
 }
 
 .job, .education-entry, .project {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    /* border-bottom: 1px dashed #E0E0E0; */ /* Optional subtle separator */
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    position: relative; /* For potential timeline effects later */
 }
-.job:last-child, .education-entry:last-child, .project:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
+.job:not(:last-child), .education-entry:not(:last-child), .project:not(:last-child) {
+    border-bottom: 1px solid #E9ECEF; /* Lighter, subtle separator */
+}
+
+
+.entry-header { /* If you use the suggested HTML structure */
+    margin-bottom: 10px;
 }
 
 .job h3, .education-entry h3, .project h3 {
-    font-size: 1.25em;
-    color: #34495E; /* Slightly muted dark color for sub-headings */
-    margin-bottom: 5px;
+    font-size: 1.3em;
+    color: #343A40; /* Darker grey for titles */
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+.job h3 a, .education-entry h3 a, .project h3 a { /* If titles become links */
+    color: #343A40;
+}
+.job h3 a:hover, .education-entry h3 a:hover, .project h3 a:hover {
+    color: #007BFF;
 }
 
+
 .company-location-date {
-    font-size: 0.95em;
-    color: #777;
-    margin-bottom: 10px;
-    font-style: italic;
+    font-size: 0.9em;
+    color: #6C757D; /* Grey for meta info */
+    margin-bottom: 12px;
+    font-style: normal;
+    font-weight: 400;
 }
 
 .job ul {
-    padding-left: 20px;
+    padding-left: 20px; /* Standard indent */
 }
 .job ul li {
-    color: #444;
+    color: #495057;
     font-size: 0.95em;
+    line-height: 1.7;
+    margin-bottom: 8px; /* Slightly less space for denser bullets */
+}
+.job ul li::marker {
+    color: #007BFF; /* Accent color for bullets */
 }
 
 .education-entry p, .project p {
-    color: #444;
+    color: #495057;
     font-size: 0.95em;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    line-height: 1.7;
 }
 .education-entry p strong, .project p strong {
-    color: #333;
+    color: #212529;
+    font-weight: 600;
 }
 
 
-/* --- Responsive Design --- */
-@media (max-width: 992px) { /* Tablet and smaller */
+/* --- Responsive Design (Largely similar, minor tweaks if needed) --- */
+@media (max-width: 1024px) { /* More aggressive stacking for wider tablets */
     .cv-container {
         flex-direction: column;
-        margin: 0 auto; /* Remove side margins for full width */
-        border-radius: 0; /* Remove border radius for full width */
+        margin: 0 auto;
+        border-radius: 0;
+        box-shadow: none; /* Remove shadow when full-width */
         min-height: auto;
     }
     .sidebar, .main-content {
         width: 100%;
-        border-radius: 0; /* Remove individual border radius */
+        border-radius: 0;
     }
     .sidebar {
-        min-width: auto; /* Allow sidebar to shrink */
-        padding: 25px;
-        border-bottom: 3px solid #1ABC9C; /* Separator when stacked */
+        min-width: auto;
+        padding: 25px 20px; /* Adjust padding */
+        border-bottom: 3px solid #007BFF;
     }
     .main-content {
-        padding: 25px;
+        padding: 25px 20px; /* Adjust padding */
     }
-    .sidebar h1 { font-size: 1.6em; }
-    .main-section > h2 { font-size: 1.4em; }
-    .job h3, .education-entry h3, .project h3 { font-size: 1.15em; }
 }
 
 @media (max-width: 576px) { /* Mobile */
     body { font-size: 15px; }
     .sidebar { padding: 20px 15px; }
-    .main-content { padding: 20px 15px; }
+    .main-content { padding: 25px 15px; } /* More padding for main content on mobile */
 
-    .sidebar h1 { font-size: 1.4em; }
-    .sidebar .tagline { font-size: 0.9em; }
-    .sidebar h2 { font-size: 1.1em; }
-
-    .main-section > h2 { font-size: 1.3em; }
-    .job h3, .education-entry h3, .project h3 { font-size: 1.1em; }
-
-    .contact-info p { font-size: 0.85em; }
-    .skills .skill-category, .soft-skills-sidebar .tags span, .languages-spoken p { font-size: 0.85em; }
-    .job ul li, .education-entry p, .project p { font-size: 0.9em; }
+    .sidebar .profile-header h1 { font-size: 1.6em; }
+    .main-section > h2 { font-size: 1.4em; }
+    .job h3, .education-entry h3, .project h3 { font-size: 1.2em; }
 }
 
-/* --- Print Styles --- */
+/* --- Print Styles (Crucial for "Best CV" when submitted as PDF) --- */
 @media print {
     body {
         background-color: #FFFFFF;
         font-size: 10pt;
         color: #000000;
+        font-family: 'Times New Roman', Times, serif; /* Classic print font */
+        line-height: 1.4;
     }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Georgia', Times, serif; }
+
     .cv-container {
-        display: block; /* Revert flex for simpler print layout */
+        display: block;
         box-shadow: none;
         margin: 0;
         border-radius: 0;
         max-width: 100%;
     }
     .sidebar {
-        display: none; /* Optionally hide sidebar for a more traditional print CV if it's too much */
-        /* OR, if you want to keep it, style it appropriately for print: */
-        /*
-        width: 30% !important;
-        float: left;
-        background-color: #f0f0f0 !important;
-        color: #000000 !important;
-        padding: 15px;
-        border-right: 1px solid #ccc;
-        */
+        display: none; /* Typically, sidebars are removed for traditional print CVs for conciseness */
+        /* If absolutely desired, major restyling for print would be needed for sidebar */
     }
     .main-content {
-        width: 100% !important; /* Take full width if sidebar is hidden */
-        /* width: 70% !important; float: right; if sidebar is shown */
-        padding: 1cm; /* Standard print margins */
+        width: 100% !important;
+        padding: 0.5cm 1cm; /* Adjust print margins */
     }
+
+    .main-header h1 { font-size: 20pt; color: #000 !important; }
+    .main-header .main-tagline { font-size: 12pt; color: #333 !important; }
+
     .main-section > h2 {
+        font-size: 14pt;
         color: #000000 !important;
         border-bottom: 1px solid #000000 !important;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
     }
     .main-section > h2 .fas, .main-section > h2 .fab {
-        color: #000000 !important;
+        display: none; /* Hide icons in print for cleaner look */
     }
     a {
         color: #000000 !important;
-        text-decoration: none; /* Usually better for print */
+        text-decoration: none;
     }
-    a[href^="http"]:after, a[href^="mailto"]:after {
-        /* content: " (" attr(href) ")"; */ /* Optional: Show URL in print */
-        /* font-size: 0.8em; */
+    a[href^="http"]:after { /* Show full URLs in print for web links */
+        /* content: " (" attr(href) ")"; */ /* Uncomment to show links */
+        /* font-size: 9pt; */
+        /* color: #555; */
     }
+    .job h3, .education-entry h3, .project h3 { font-size: 12pt; }
+    .company-location-date { font-size: 9pt; color: #333 !important; }
+    .job ul li, .education-entry p, .project p { font-size: 10pt; line-height: 1.5; }
+    .job ul li::marker { color: #333 !important; }
+
     .job, .education-entry, .project {
         page-break-inside: avoid;
-        border-bottom: none; /* Remove visual borders for cleaner print */
+        border-bottom: none;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
     }
-    /* Hide any purely visual elements not needed for print */
-    .profile-photo { display: none; }
 }
