@@ -388,3 +388,90 @@ li {
         padding-bottom: 5px;
     }
 }
+
+.skills-deep-dive .skill-category-group {
+    margin-bottom: 18px; /* Space between main categories */
+}
+
+.skills-deep-dive .skill-main-category strong {
+    color: #A8B7C7; /* From previous version, ensure consistency */
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600; /* Make main category slightly bolder */
+    font-size: 0.9em;
+    text-transform: uppercase; /* Optional: if you want uppercase main categories */
+    letter-spacing: 0.5px;
+}
+
+.skills-deep-dive .skill-items {
+    font-size: 0.85em; /* Slightly smaller for the list of items */
+    color: #C8D6E5;   /* Lighter text for items */
+    line-height: 1.6;
+    padding-left: 10px; /* Optional indent for items under category */
+}
+
+
+/* --- Key Certifications Section in Sidebar --- */
+.key-certifications p {
+    font-size: 0.88em;
+    margin-bottom: 6px;
+    font-weight: 300;
+    color: #C8D6E5;
+}
+
+/* --- Main Content - Education Section Refinements --- */
+.education-entry .degree-title {
+    font-weight: 600; /* Make degree title stand out a bit more */
+    color: #343A40;   /* Match job titles */
+    font-size: 1.1em; /* Slightly larger if needed */
+    margin-bottom: 3px;
+}
+.education-entry p { /* General paragraphs within education entry */
+    margin-bottom: 6px;
+}
+
+
+/* --- Awards Section --- */
+.award-entry {
+    margin-bottom: 15px;
+}
+.award-entry p strong {
+    color: #343A40; /* Match job titles */
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.award-entry .award-detail {
+    font-size: 0.9em;
+    color: #6C757D;
+    display: block;
+    margin-top: 2px;
+}
+
+/* --- Responsive adjustments for detailed skills --- */
+@media (max-width: 576px) {
+    .skills-deep-dive .skill-main-category strong {
+        font-size: 0.85em;
+    }
+    .skills-deep-dive .skill-items {
+        font-size: 0.82em;
+        padding-left: 5px;
+    }
+}
+
+/* Ensure print styles from previous version are maintained and test thoroughly */
+@media print {
+    /* ... (existing print styles) ... */
+
+    .skills-deep-dive { /* How skills should print if sidebar is visible */
+        /* Simple text flow for print if sidebar is shown */
+    }
+    .key-certifications {
+        /* Simple text flow for print */
+    }
+    .award-entry p strong {
+        font-size: 11pt; color: #000 !important;
+    }
+    .award-entry .award-detail {
+        font-size: 9pt; color: #333 !important;
+    }
+}
