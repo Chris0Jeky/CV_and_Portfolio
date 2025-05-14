@@ -32,7 +32,7 @@ a {
     text-decoration: none;
     color: #007BFF; /* A standard, vibrant blue for primary actions/links */
     transition: color 0.2s ease-in-out;
-}
+}company-location
 a:hover {
     color: #0056b3; /* Darker shade on hover */
     text-decoration: underline;
@@ -86,7 +86,7 @@ li {
 }
 */
 .sidebar .profile-header h1 {
-    font-size: 2em; /* Prominent name */
+    font-size: 2.2em; /* SLIGHTLY LARGER NAME
     color: #FFFFFF;
     margin-bottom: 8px;
 }
@@ -187,6 +187,10 @@ li {
     padding: 40px 35px; /* Slightly more horizontal padding */
     background-color: #FFFFFF;
 }
+.main-content a {
+    /* color: #007BFF; */ /* Existing primary link color */
+    font-weight: 600; /* Optional: Make links in main content slightly bolder */
+}
 .main-header { /* For Name and Title if you want to separate them */
     text-align: left;
     margin-bottom: 30px;
@@ -265,6 +269,7 @@ li {
     font-size: 0.9em;
     color: #6C757D; /* Grey for meta info */
     margin-bottom: 12px;
+    line-height: 1.5;
     font-style: normal;
     font-weight: 400;
 }
@@ -275,11 +280,17 @@ li {
 .job ul li {
     color: #495057;
     font-size: 0.95em;
-    line-height: 1.7;
-    margin-bottom: 8px; /* Slightly less space for denser bullets */
+    line-height: 1.75;
+    margin-bottom: 9px; /* Slightly less space for denser bullets */
 }
 .job ul li::marker {
     color: #007BFF; /* Accent color for bullets */
+}
+
+.job h3 a:hover, .education-entry h3 a:hover, .project h3 a:hover,
+.job h3:hover, .education-entry h3:hover, .project h3:hover { /* If not links */
+    color: #0056b3; /* Darker blue on hover, or your main accent */
+    transition: color 0.2s ease-in-out;
 }
 
 .education-entry p, .project p {
@@ -396,7 +407,7 @@ li {
 .skills-deep-dive .skill-main-category strong {
     color: #A8B7C7; /* From previous version, ensure consistency */
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-weight: 600; /* Make main category slightly bolder */
     font-size: 0.9em;
     text-transform: uppercase; /* Optional: if you want uppercase main categories */
@@ -404,9 +415,9 @@ li {
 }
 
 .skills-deep-dive .skill-items {
-    font-size: 0.85em; /* Slightly smaller for the list of items */
-    color: #C8D6E5;   /* Lighter text for items */
-    line-height: 1.6;
+    font-size: 0.88em; /* Slightly smaller for the list of items */
+    color: #D0D9E2;   /* Lighter text for items */
+    line-height: 1.7;
     padding-left: 10px; /* Optional indent for items under category */
 }
 
