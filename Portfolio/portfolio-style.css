@@ -409,3 +409,190 @@ a:hover { color: var(--primary-hover); }
     .hero-tagline { font-size: 1.2rem; }
     .nav-menu { display: none; }
 }
+
+/* portfolio-style.css – “Flashy, Convoluted, Adventure, Red‑Themed” version */
+
+/* =============================================================
+   Base palette & design tokens
+   ============================================================= */
+:root {
+    /* Main palette */
+    --primary-color: #B71C1C;               /* deep crimson */
+    --primary-hover: #8E1212;               /* darker crimson */
+
+    --accent-color1: #FF8F00;               /* adventurous amber */
+    --accent-color1-hover: #E67E00;         /* darker amber */
+
+    /* alias the old secondary tokens so legacy selectors still work */
+    --secondary-color: var(--accent-color1);
+    --secondary-hover: var(--accent-color1-hover);
+
+    --accent-color2: #4A3B31;               /* earthy brown */
+
+    --dark-bg: #1E1B18;                     /* near‑black brown */
+    --light-bg: #F5F0E8;                    /* aged‑paper */
+
+    --text-dark: #2C2520;                   /* charcoal brown */
+    --text-light: #EFEBE4;                  /* warm off‑white */
+    --text-muted: #7D6E62;                  /* muted brown */
+
+    /* shared design tokens */
+    --heading-font: 'Poppins', sans-serif;
+    --body-font: 'Lato', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+    --transition-speed: 0.3s ease;
+}
+
+/* =============================================================
+   Global resets & helpers (unchanged except for colours)
+   ============================================================= */
+body {
+    font-family: var(--body-font);
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin: 0;
+    padding-top: 70px;           /* account for fixed nav */
+    background: var(--light-bg);
+    overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: var(--dark-bg);
+    margin-bottom: .8em;
+}
+h2{font-size:2.5rem;text-align:center;margin-bottom:1.5em;}
+h3{font-size:1.75rem;}
+
+a{color:var(--primary-color);text-decoration:none;transition:color var(--transition-speed);}
+a:hover{color:var(--primary-hover);}
+
+.container{width:90%;max-width:1140px;margin:0 auto;padding:0 15px;}
+.content-section{padding:80px 0;}
+.alt-bg{background:var(--light-bg);}  /* already light */
+
+/* =============================================================
+   Buttons – primary uses deep red, secondary uses amber
+   ============================================================= */
+.btn{
+    display:inline-block;font-family:var(--heading-font);font-weight:600;
+    border-radius:var(--border-radius);border:2px solid transparent;
+    cursor:pointer;text-decoration:none;font-size:1rem;padding:12px 28px;
+    transition:all var(--transition-speed);
+}
+.btn-primary{background:var(--primary-color);color:#fff;border-color:var(--primary-color);}
+.btn-primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);transform:translateY(-3px);box-shadow:0 4px 15px rgba(183,28,28,0.3);}
+
+.btn-secondary{background:transparent;color:var(--accent-color1);border-color:var(--accent-color1);}
+.btn-secondary:hover{background:var(--accent-color1-hover);color:#fff;transform:translateY(-3px);box-shadow:0 4px 15px rgba(255,143,0,0.3);}
+
+.btn-lg{padding:15px 35px;font-size:1.1rem;}
+
+/* =============================================================
+   Navigation Bar – "Compass"
+   ============================================================= */
+.navbar{
+    background:rgba(30,27,24,0.95); /* uses dark‑bg tone */
+    backdrop-filter:blur(10px);
+    padding:15px 0;position:fixed;width:100%;top:0;left:0;z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.nav-container{display:flex;justify-content:space-between;align-items:center;width:90%;max-width:1200px;margin:0 auto;}
+.nav-logo{font-size:1.8rem;font-weight:700;color:#fff;font-family:var(--heading-font);}
+.nav-menu{list-style:none;display:flex;gap:25px;margin:0;padding:0;}
+.nav-menu li a{color:var(--text-light);font-weight:400;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;padding:5px 0;position:relative;}
+.nav-menu li a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent-color1);transition:width var(--transition-speed);}
+.nav-menu li a:hover::after,.nav-menu li a.active::after{width:100%;}
+.nav-socials a{color:var(--text-light);margin-left:15px;font-size:1.2rem;transition:color var(--transition-speed);}
+.nav-socials a:hover{color:var(--accent-color1);}
+
+/* =============================================================
+   Hero Section – "Grand Opening" with crimson‑to‑earth gradient
+   (placeholder: add #tsparticles canvas for dynamic embers later)
+   ============================================================= */
+.hero-section{
+    height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;color:#fff;
+    background-image:linear-gradient(135deg,var(--primary-color) 0%,var(--accent-color2) 100%);
+}
+#tsparticles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:1;}
+.hero-content{position:relative;z-index:2;max-width:800px;}
+.hero-content h1{font-size:4.5rem;font-weight:700;margin-bottom:.3em;text-shadow:2px 2px 8px rgba(0,0,0,0.5);}
+.hero-tagline{font-size:1.65rem;margin-bottom:1.5em;color:rgba(255,255,255,0.9);font-weight:300;}
+
+/* =============================================================
+   Timeline – icons & dots still use primary crimson
+   ============================================================= */
+.timeline{position:relative;padding:20px 0;}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:4px;background:var(--accent-color2);transform:translateX(-50%);z-index:0;}
+.timeline-item{position:relative;width:50%;padding:20px 40px;margin-bottom:30px;box-sizing:border-box;}
+.timeline-item:nth-child(odd){left:0;padding-right:30px;text-align:right;}
+.timeline-item:nth-child(even){left:50%;padding-left:30px;text-align:left;}
+.timeline-item::before{content:'';position:absolute;top:32px;width:16px;height:16px;border-radius:50%;background:var(--primary-color);z-index:1;}
+.timeline-item:nth-child(odd)::before{right:-8px;}
+.timeline-item:nth-child(even)::before{left:-8px;}
+.timeline-icon{position:absolute;top:25px;width:50px;height:50px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid var(--primary-color);font-size:1.5rem;color:var(--primary-color);z-index:2;}
+.timeline-item:nth-child(odd) .timeline-icon{right:-25px;transform:translateX(50%);}
+.timeline-item:nth-child(even) .timeline-icon{left:-25px;transform:translateX(-50%);}
+.timeline-content{background:#fff;padding:25px;border-radius:var(--border-radius);box-shadow:var(--box-shadow);}
+.timeline-content h3{font-size:1.4rem;margin-bottom:.3em;color:var(--primary-color);}
+.timeline-content .company{font-weight:600;color:var(--text-dark);margin-right:10px;}
+.timeline-content .date{font-size:.9em;color:var(--text-muted);}
+.timeline-content p{margin-top:10px;font-size:.95rem;color:var(--text-muted);}
+
+/* =============================================================
+   Project Cards – 3D tilt & crimson shadows
+   ============================================================= */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
+.project-card{position:relative;overflow:hidden;border-radius:var(--border-radius);box-shadow:var(--box-shadow);height:300px;background:#444;background-size:cover;background-position:center;transition:transform 0.4s cubic-bezier(0.25,0.8,0.25,1),box-shadow 0.4s cubic-bezier(0.25,0.8,0.25,1);}
+.project-card:hover{transform:perspective(1000px) rotateY(5deg) rotateX(2deg) scale(1.03);box-shadow:0 20px 50px rgba(0,0,0,0.25);}
+.project-card-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(rgba(183,28,28,0.35) 0%,rgba(26,18,18,0.9) 100%);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:25px;opacity:0;transform:translateY(30px);transition:opacity var(--transition-speed),transform .4s ease-out;}
+.project-card:hover .project-card-overlay{opacity:1;transform:translateY(0);}
+.project-card-overlay h3{font-size:1.5rem;margin-bottom:.5em;}
+.project-card-overlay p{font-size:.9rem;margin-bottom:1em;color:rgba(255,255,255,0.9);}
+.project-card-overlay .btn-secondary{color:#fff;border-color:#fff;background:transparent;}
+.project-card-overlay .btn-secondary:hover{background:#fff;color:var(--dark-bg);}
+
+/* =============================================================
+   Skill Tags – amber pills
+   ============================================================= */
+.skill-tag-container{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.skill-tag{background:var(--accent-color1);color:#fff;padding:4px 10px;border-radius:var(--border-radius);font-size:.9rem;}
+
+/* =============================================================
+   Footer etc. inherited colours – only update backgrounds
+   ============================================================= */
+.footer{background:var(--dark-bg);color:var(--text-muted);padding:40px 0;font-size:.9rem;}
+.footer p:last-child{color:#988572;}
+
+/* =============================================================
+   Responsive tweaks (same break‑points)
+   ============================================================= */
+@media(max-width:992px){
+    .timeline::before{left:30px;}
+    .timeline-item,.timeline-item:nth-child(even){width:100%;left:0;padding-left:70px;padding-right:15px;text-align:left!important;}
+    .timeline-item::before{left:22px!important;right:auto!important;}
+    .timeline-icon{left:5px!important;transform:translateX(0)!important;}
+    .about-grid{grid-template-columns:1fr;text-align:center;}
+    .about-image{margin-top:30px;max-width:300px;margin-inline:auto;}
+}
+@media(max-width:768px){
+    body{padding-top:60px;}
+    h2{font-size:2rem;}
+    .hero-content h1{font-size:3rem;}
+    .hero-tagline{font-size:1.2rem;}
+    .nav-menu{display:none;}
+}
+
+/* =============================================================
+   Placeholder snippets for future "convoluted" effects
+   ============================================================= */
+/*
+# Example: section divider
+.section-divider svg{display:block;width:100%;height:auto;fill:var(--light-bg);}
+
+# Example: parallax utility – apply .parallax-bg to any element
+.parallax-bg{background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}
+*/
