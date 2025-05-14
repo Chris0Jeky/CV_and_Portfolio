@@ -401,7 +401,7 @@ li {
 }
 
 .skills-deep-dive .skill-category-group {
-    margin-bottom: 18px; /* Space between main categories */
+    margin-bottom: 18px;
 }
 
 .skills-deep-dive .skill-main-category strong {
@@ -415,10 +415,10 @@ li {
 }
 
 .skills-deep-dive .skill-items {
-    font-size: 0.88em; /* Slightly smaller for the list of items */
+    font-size: 0.88em;
     color: #D0D9E2;   /* Lighter text for items */
     line-height: 1.7;
-    padding-left: 10px; /* Optional indent for items under category */
+    padding-left: 10px;
 }
 
 
@@ -484,5 +484,39 @@ li {
     }
     .award-entry .award-detail {
         font-size: 9pt; color: #333 !important;
+    }
+}
+
+.skill-tag-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows tags to wrap to the next line */
+    gap: 8px;        /* Space between tags */
+    padding-left: 0; /* If you don't want an overall indent for the tag container */
+    margin-top: 5px;  /* Space below the category title */
+}
+
+.skill-tag {
+    display: inline-block;
+    background-color: rgba(0, 163, 191, 0.18); /* Slightly more opaque than soft skill tags or different base */
+    color: #D0D9E2;
+    padding: 5px 10px;
+    border-radius: 4px; /* Less rounded than soft skill tags for differentiation */
+    font-size: 0.82em; /* Adjust for readability */
+    border: 1px solid rgba(0, 163, 191, 0.35);
+    transition: all 0.2s ease;
+    line-height: 1.4; /* Adjust for single line tags */
+}
+
+.skill-tag:hover {
+    background-color: rgba(0, 163, 191, 0.4);
+    color: #FFFFFF;
+    border-color: rgba(0, 163, 191, 0.6);
+}
+
+/* Adjust responsive font size for skill tags if needed */
+@media (max-width: 576px) {
+    .skill-tag {
+        font-size: 0.78em;
+        padding: 4px 8px;
     }
 }
