@@ -160,7 +160,8 @@ a:hover { color: var(--primary-hover); }
     color: #fff;
     position: relative;
     /* Add a background image/video here */
-    background: url('your-hero-background.jpg') no-repeat center center/cover;
+    /* REPLACE background: url(...) with a gradient for now: */
+    background-image: linear-gradient(135deg, #3a3a3a 0%, #1e1e1e 100%); /* Dark Grey Gradient example */
     /* For a gradient instead: background-image: linear-gradient(135deg, #1A2F4B 0%, #005A87 100%); */
 }
 .hero-overlay {
@@ -174,14 +175,14 @@ a:hover { color: var(--primary-hover); }
     max-width: 800px;
 }
 .hero-content h1 {
-    font-size: 4rem; /* Or more! */
+    font-size: 4.5rem; /* Or more! */
     font-weight: 700;
     color: #fff;
     margin-bottom: 0.3em;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
 }
 .hero-tagline {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
     margin-bottom: 1.5em;
     color: rgba(255,255,255,0.9);
     font-weight: 300;
@@ -202,17 +203,27 @@ a:hover { color: var(--primary-hover); }
     position: absolute;
     left: 50%; top: 0; bottom: 0;
     width: 4px;
-    background-color: #e0e0e0; /* Light grey line */
+    background-color: #d0d0d0; /* Light grey line */
     transform: translateX(-50%);
+    z-index: 0;
 }
 .timeline-item {
     position: relative;
     width: 50%;
     padding: 20px 40px;
     margin-bottom: 30px;
+    box-sizing: border-box;
 }
-.timeline-item:nth-child(odd) { left: 0; }
-.timeline-item:nth-child(even) { left: 50%; }
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 30px; /* Space from the center line */
+    text-align: right; /* Align text towards the center line */
+}
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 30px; /* Space from the center line */
+    text-align: left; /* Align text towards the center line */
+}
 .timeline-item:nth-child(odd)::before { /* Connector to central line */
     content: ''; position: absolute; right: -8px; top: 32px;
     width: 16px; height: 16px; border-radius: 50%; background-color: var(--primary-color); z-index: 1;
@@ -253,7 +264,10 @@ a:hover { color: var(--primary-hover); }
     box-shadow: var(--box-shadow);
     height: 300px; /* Or use aspect-ratio */
     /* Add background image for each card here or via inline style */
-    background: url('project-placeholder.jpg') no-repeat center center/cover;
+    /* REPLACE background: url(...) with a placeholder color: */
+    background-color: #444; /* Dark placeholder for cards */
+    background-size: cover; /* Keep these if you add images later */
+    background-position: center;
 }
 .project-card-overlay {
     position: absolute;
@@ -266,12 +280,25 @@ a:hover { color: var(--primary-hover); }
     padding: 25px;
     opacity: 0; /* Hidden by default */
     transition: opacity var(--transition-speed), transform 0.4s ease-out;
-    transform: translateY(20px);
+    transform: translateY(30px);
 }
 .project-card:hover .project-card-overlay {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Ensure button inside project card overlay is styled */
+.project-card-overlay .btn-secondary { /* Or whatever button class you use inside */
+    /* Make sure its color and border are visible against the overlay */
+    color: #fff; /* Example */
+    border-color: #fff; /* Example */
+    background-color: transparent; /* Ensure it's not inheriting a solid bg that clashes */
+}
+.project-card-overlay .btn-secondary:hover {
+    background-color: #fff;
+    color: var(--dark-bg); /* Example */
+}
+
 .project-card-overlay h3 { font-size: 1.5rem; color: #fff; margin-bottom: 0.5em; }
 .project-card-overlay p { font-size: 0.9rem; margin-bottom: 1em; color: rgba(255,255,255,0.9); }
 
