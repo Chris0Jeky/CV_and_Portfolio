@@ -526,15 +526,62 @@ a:hover { color: var(--primary-hover); }
 }
 
 /* --- Philosophy Section --- */
+
+.philosophy-section {
+    /* background-color: var(--accent-color2); /* Earthy brown background */
+    /* color: var(--text-light); */ /* Light text if dark background */
+    /* Or a subtle texture: */
+    /* background-image: url('images/old-paper-texture.png'); */
+    padding-bottom: 100px; /* More space at bottom */
+}
+
+.philosophy-section h2 {
+    /* color: var(--text-light); /* If dark background */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.3); */
+}
+
 .philosophy-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     gap: 30px; text-align: center;
 }
-.philosophy-item { padding: 20px; }
-.philosophy-item i { color: var(--secondary-color); margin-bottom: 15px; }
-.philosophy-item h3 { font-size: 1.4rem; margin-bottom: .5em; }
-.philosophy-item p { font-size: .95rem; color: var(--text-muted); }
+.philosophy-item {
+    padding: 30px 25px;
+    /* background-color: rgba(255, 255, 255, 0.05); /* Subtle inset on dark bg */
+    /* border: 1px solid rgba(239, 235, 228, 0.2); /* var(--text-light) with alpha */
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed);
+    /* box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
+}
+
+.philosophy-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(44, 37, 32, 0.2); /* var(--text-dark) with alpha */
+}
+
+.philosophy-item i {
+    /* color: var(--accent-color1); Amber icons */
+    margin-bottom: 20px;
+    transition: transform 0.4s ease-in-out;
+    font-size: 3.5rem; /* Larger icons */
+}
+
+.philosophy-item:hover i {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+.philosophy-item h3 {
+    font-size: 1.5rem; /* Slightly larger */
+    margin-bottom: 0.7em;
+    /* color: var(--text-light); /* If dark background */
+    font-weight: 600;
+}
+
+.philosophy-item p {
+    font-size: 0.9rem; /* Slightly smaller for denser look */
+    /* color: rgba(239, 235, 228, 0.85); /* var(--text-light) with alpha */
+    line-height: 1.6;
+}
 
 /* --- Contact Section --- */
 .contact-section .btn-lg { margin-top: 20px; }
