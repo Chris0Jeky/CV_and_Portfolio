@@ -360,17 +360,20 @@ li {
     }
 
     .sidebar {
-        display: flex !important; /* Make it visible and use flex */
+        display: flex !important;
         flex-direction: column !important;
-        width: 33% !important; /* Adjust width - e.g., 1/3 of the page */
-        min-width: 0 !important; /* Allow it to shrink */
-        padding: 0.5cm !important; /* Print padding */
-        background-color: #e8e8e8 !important; /* Light grey for print, ensure good contrast */
+        width: 30% !important; /* Try reducing width slightly more */
+        min-width: 0 !important;
+        padding: 0.3cm !important; /* Drastically reduce padding */
+        margin: 0 !important; /* Ensure no margins */
+        background-color: #ededed !important; /* Lightest grey for background */
         color: #000000 !important;
-        border-right: 1px solid #ccc !important; /* Separator line */
+        border-right: 0.5pt solid #b0b0b0 !important; /* Thinner border */
         box-sizing: border-box !important;
-        font-size: 8pt; /* Sidebar text might need to be smaller */
-        page-break-inside: avoid !important; /* Try to keep sidebar on one page if possible */
+        font-size: 7.5pt !important; /* Go even smaller if absolutely necessary for fit test */
+        line-height: 1.2 !important; /* Tighter line height */
+        page-break-inside: avoid !important;
+        word-break: break-word; /* Helps break long words if they are the issue */
     }
 
     .sidebar .profile-header h1 {
@@ -392,15 +395,43 @@ li {
         padding: 2px 4px !important;
         margin: 2px !important;
     }
+
+    .sidebar .contact-info p,
+    .sidebar .skills-deep-dive .skill-items, /* If you used this class for CV */
+    .sidebar .skill-tag-container .skill-tag { /* For the tag structure */
+        word-break: break-all;  /* More aggressive break, use if necessary */
+        overflow-wrap: break-word; /* Standard way to break words */
+        font-size: 6pt !important; /* Example: TINY font for skill tags if they are the issue */
+    }
+
+    .sidebar .soft-skills-sidebar .tags span, /* For soft skills tags */
+    .sidebar .skill-tag-container .skill-tag { /* For technical skill tags if using new structure */
+        background-color: #cccccc !important; /* A solid, medium-light grey */
+        color: #000000 !important;          /* Black text */
+        border: 0.5pt solid #aaaaaa !important; /* A darker border */
+        padding: 1pt 3pt !important;          /* Minimal padding for print */
+        font-size: 6pt !important;            /* Very small font for tags */
+        margin: 1pt !important;               /* Minimal margin */
+        display: inline-block;                /* Ensure they behave well with wrapping */
+        line-height: 1.1 !important;
+    }
+    .sidebar .soft-skills-sidebar .tags span,
+    .sidebar .skill-tag-container .skill-tag {
+        background-color: transparent !important; /* No background */
+        color: #000000 !important;               /* Black text */
+        border: 0.5pt solid #333333 !important;   /* Solid dark border */
+        /* ... other print styles for padding, font-size, margin ... */
+    }
     /* Add any other necessary overrides for sidebar elements for print */
 
 
     .main-content {
-        display: block !important; /* Or flex if you need internal flex */
-        width: 67% !important; /* Remaining width */
-        padding: 0.5cm 0.5cm 0.5cm 1cm !important; /* Print padding, more left margin */
+        display: block !important;
+        width: 70% !important; /* Adjust to match sidebar */
+        padding: 0.3cm 0.3cm 0.3cm 0.5cm !important; /* Reduce padding */
         box-sizing: border-box !important;
-        font-size: 9pt; /* Base for main content */
+        font-size: 7.5pt !important; /* Adjust main content font if needed */
+        line-height: 1.3 !important;
     }
 
     .main-header h1 { font-size: 20pt; color: #000 !important; }
