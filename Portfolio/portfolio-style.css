@@ -299,10 +299,25 @@ a:hover { color: var(--primary-hover); }
     font-size: 1.05rem;
 }
 .about-image .profile-picture {
-    width: 100%; height: 300px;
-    background-color: #e0e0e0; display:flex;
-    align-items:center; justify-content:center;
+    width: 100%;
+    /* max-width: 350px; /* Optional: Set a max-width for the image container on larger screens */
+    /* height: 300px; /* REMOVE fixed height or change to max-height if needed */
+    max-height: 400px; /* Suggestion: Control max height */
+    /* background-color: #e0e0e0; /* Can remove if image always present */
+    display: flex; /* Keep if you want to center image, but not strictly needed if img is 100% width */
+    align-items: center;
+    justify-content: center;
     border-radius: var(--border-radius);
+    overflow: hidden; /* This is KEY to contain the image */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Add a subtle shadow to the image container */
+}
+.about-image .profile-picture img { /* Style the image itself */
+    width: 100%;       /* Make image take full width of its container */
+    height: 100%;      /* Make image take full height of its container */
+    object-fit: cover; /* This is CRUCIAL: scales image to maintain aspect ratio while filling container, cropping if necessary */
+    /* object-position: center top; /* Optional: if you want to prioritize top of image if cropped */
+    display: block;    /* Removes any extra space below inline images */
+    border-radius: var(--border-radius); /* If you want the image itself rounded */
 }
 
 /* --- Experience Timeline --- */
