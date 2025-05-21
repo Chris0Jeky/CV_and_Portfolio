@@ -113,6 +113,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }).catch(error => {
         console.error("Error loading tsParticles:", error);
     });
+
+    const projectCards = document.querySelectorAll(".project-card");
+    if (projectCards.length > 0) {
+        VanillaTilt.init(projectCards, {
+            max: 15,        // Max tilt rotation (degrees)
+            speed: 400,     // Speed of the enter/exit transition
+            glare: true,    // If you want a glare effect
+            "max-glare": 0.3 // Glare intensity (0.1 to 1)
+        });
+    } else {
+        console.warn("No elements with class .project-card found for Vanilla Tilt.");
+    }
 });
 
 // AOS Initialization (already in HTML, but good to keep JS logic separate)
