@@ -426,7 +426,21 @@ a:hover { color: var(--primary-hover); }
     box-sizing: border-box;
 }
 .project-card:hover .project-card-overlay {
-    opacity: 1; transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
+}
+.project-card-overlay h3 {
+    font-size: 1.4rem; /* Slightly adjusted */
+    margin-bottom: 0.4em;
+    color: var(--text-light); /* Explicitly set light color */
+    font-weight: 600;
+}
+
+.project-card-overlay p {
+    font-size: 0.85rem; /* Slightly smaller for more text */
+    margin-bottom: 1em;
+    color: rgba(239, 235, 228, 0.85); /* var(--text-light) with alpha */
+    line-height: 1.5;
 }
 .project-card-overlay .btn-secondary {
     color: #fff; border-color: #fff;
