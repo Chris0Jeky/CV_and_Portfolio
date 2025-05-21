@@ -182,6 +182,10 @@ a:hover { color: var(--primary-hover); }
     background-color: var(--text-light);
     color: var(--dark-bg);
 }
+.hero-content h1, .hero-content .hero-tagline, .hero-content .btn {
+    opacity: 0; /* Start hidden, GSAP will reveal */
+    /* transform: translateY(20px); /* Optional starting position */
+}
 
 /* --- About Section --- */
 .about-grid {
