@@ -342,7 +342,7 @@ li {
 @media print {
     body {
         background-color: #FFFFFF;
-        font-size: 10pt;
+        font-size: 9pt;
         color: #000000;
         font-family: 'Times New Roman', Times, serif; /* Classic print font */
         line-height: 1.4;
@@ -350,19 +350,57 @@ li {
     h1,h2,h3,h4,h5,h6 { font-family: 'Georgia', Times, serif; }
 
     .cv-container {
-        display: block;
-        box-shadow: none;
-        margin: 0;
-        border-radius: 0;
-        max-width: 100%;
-    }
-    .sidebar {
-        display: none; /* Typically, sidebars are removed for traditional print CVs for conciseness */
-        /* If absolutely desired, major restyling for print would be needed for sidebar */
-    }
-    .main-content {
+        display: flex !important; /* IMPORTANT: Override any block display */
         width: 100% !important;
-        padding: 0.5cm 1cm; /* Adjust print margins */
+        max-width: 100% !important; /* Ensure it uses full page width */
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+
+    .sidebar {
+        display: flex !important; /* Make it visible and use flex */
+        flex-direction: column !important;
+        width: 33% !important; /* Adjust width - e.g., 1/3 of the page */
+        min-width: 0 !important; /* Allow it to shrink */
+        padding: 0.5cm !important; /* Print padding */
+        background-color: #e8e8e8 !important; /* Light grey for print, ensure good contrast */
+        color: #000000 !important;
+        border-right: 1px solid #ccc !important; /* Separator line */
+        box-sizing: border-box !important;
+        font-size: 8pt; /* Sidebar text might need to be smaller */
+        page-break-inside: avoid !important; /* Try to keep sidebar on one page if possible */
+    }
+
+    .sidebar .profile-header h1 {
+        font-size: 14pt !important; color: #000 !important;
+    }
+    .sidebar .tagline { font-size: 8pt !important; color: #333 !important;}
+    .sidebar h2 { font-size: 10pt !important; color: #000 !important; border-bottom: 1px solid #666 !important;}
+    .sidebar h2 .fas, .sidebar h2 .fab { display: none !important; } /* Hide icons in sidebar print */
+    .contact-info p, .skills-deep-dive .skill-main-category strong, .skills-deep-dive .skill-items,
+    .soft-skills-sidebar .tags span, .languages-spoken p, .key-certifications p {
+        font-size: 7.5pt !important; /* Smaller text in sidebar items */
+        color: #000 !important;
+        line-height: 1.3 !important;
+    }
+    .contact-info a { color: #000 !important; text-decoration: none !important; }
+    .soft-skills-sidebar .tags span {
+        background-color: #f0f0f0 !important;
+        border: 1px solid #ddd !important;
+        padding: 2px 4px !important;
+        margin: 2px !important;
+    }
+    /* Add any other necessary overrides for sidebar elements for print */
+
+
+    .main-content {
+        display: block !important; /* Or flex if you need internal flex */
+        width: 67% !important; /* Remaining width */
+        padding: 0.5cm 0.5cm 0.5cm 1cm !important; /* Print padding, more left margin */
+        box-sizing: border-box !important;
+        font-size: 9pt; /* Base for main content */
     }
 
     .main-header h1 { font-size: 20pt; color: #000 !important; }
