@@ -437,3 +437,15 @@ a:hover { color: var(--primary-hover); }
     .hero-tagline { font-size: 1.2rem; }
     .nav-menu { display: none; }
 }
+
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind hero-overlay and hero-content */
+}
+/* Ensure hero-overlay and hero-content have higher z-index */
+.hero-overlay { z-index: 1; }
+.hero-content { z-index: 2; }
