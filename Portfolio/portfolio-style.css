@@ -171,6 +171,49 @@ a:hover { color: var(--primary-hover); }
 .nav-open .hamburger::before { transform: rotate(45deg) translate(5px, 6px); }
 .nav-open .hamburger::after { transform: rotate(-45deg) translate(5px, -6px); }
 
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block; /* Show burger on mobile */
+    }
+
+    .nav-menu {
+        /* ... existing display: none; ... */
+        position: absolute;
+        top: 70px; /* Below navbar */
+        left: 0;
+        right: 0;
+        background-color: rgba(30, 27, 24, 0.98); /* var(--dark-bg) with alpha */
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 0;
+        transform: translateY(-150%); /* Start off-screen */
+        transition: transform 0.4s ease-in-out;
+        z-index: 999; /* Below navbar but above content */
+    }
+
+    .nav-menu.active { /* Mobile menu open state */
+        transform: translateY(0);
+        display: flex; /* Re-enable display flex when active */
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-menu li a {
+        padding: 15px 0;
+        display: block; /* Make links full width */
+        width: 100%;
+        font-size: 1.1rem;
+    }
+    .nav-menu li a::after { display: none; } /* Remove underline effect on mobile dropdown */
+
+    .nav-socials { /* Optionally hide socials on small mobile nav or reposition */
+        /* display: none; */
+    }
+}
+
 /* --- Hero Section --- */
 .hero-section {
     height: 100vh; min-height: 600px;
