@@ -126,6 +126,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.warn("No elements with class .project-card found for Vanilla Tilt.");
     }
 
+    const skillAreaCards = document.querySelectorAll(".skill-area");
+    if (skillAreaCards.length > 0) {
+        VanillaTilt.init(skillAreaCards, {
+            max: 10,        // Slightly less tilt for these cards
+            speed: 600,
+            glare: true,
+            "max-glare": 0.1, // More subtle glare
+            scale: 1.03     // Slight scale up on hover
+        });
+    } else {
+        console.warn("No elements with class .project-card found for Vanilla Tilt.");
+    }
+
     // --- GSAP Hero Animation ---
     if (typeof gsap !== 'undefined') { // Check if GSAP is loaded
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });

@@ -486,11 +486,8 @@ a:hover { color: var(--primary-hover); }
     background-color: #fff; padding: 30px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    transform-style: preserve-3d;
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-}
-.skill-area:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 .skill-area h4 {
     font-size: 1.3rem; color: var(--primary-color);
