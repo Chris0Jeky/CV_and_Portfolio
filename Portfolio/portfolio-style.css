@@ -450,12 +450,30 @@ a:hover { color: var(--primary-hover); }
     background-color: #fff;
     color: var(--dark-bg);
 }
-.project-card-overlay h3 {
-    font-size: 1.5rem; margin-bottom: .5em;
+
+/* IF NO BACKGROUND IMAGE ON CARD, show overlay info more prominently */
+.project-card.no-image { /* Add this class to card if no bg image */
+    background-color: var(--accent-color2); /* Earthy brown */
+    align-items: center; /* Center content */
+    justify-content: center;
+    text-align: center;
 }
-.project-card-overlay p {
-    font-size: .9rem; margin-bottom: 1em;
-    color: rgba(255,255,255,0.9);
+.project-card.no-image .project-card-overlay {
+    position: static; /* Not absolute, take full space */
+    opacity: 1;
+    transform: translateY(0);
+    background: transparent; /* No gradient needed if it's primary content */
+    height: auto; /* Adjust to content */
+    color: var(--text-light);
+}
+.project-card.no-image .project-card-overlay h3 {
+    color: var(--text-light);
+}
+.project-card.no-image .project-card-overlay p {
+    color: rgba(239, 235, 228, 0.85);
+}
+.project-card.no-image .project-card-overlay .btn-secondary {
+    align-self: center;
 }
 
 /* --- Skills Showcase --- */
