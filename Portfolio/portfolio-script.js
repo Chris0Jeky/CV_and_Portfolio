@@ -34,6 +34,87 @@ window.addEventListener("scroll", () => {
     });
 });
 
+// --- tsParticles Initialization ---
+// Wait for the DOM to be fully loaded before initializing particles
+document.addEventListener('DOMContentLoaded', (event) => {
+    tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        interactivity: {
+            events: {
+                onHover: {
+                    enable: true,
+                    mode: "repulse", // Or "grab", "bubble"
+                },
+                onClick: {
+                    enable: true,
+                    mode: "push", // Or "remove", "trail"
+                },
+                resize: true,
+            },
+            modes: {
+                repulse: {
+                    distance: 100, // How far particles are repulsed
+                    duration: 0.4,
+                },
+                push: {
+                    quantity: 4, // Number of particles pushed on click
+                },
+                // You can define other modes like grab, bubble here
+            },
+        },
+        particles: {
+            color: {
+                value: "#FF8F00", // var(--accent-color1) - Amber/Gold particles
+            },
+            links: {
+                color: "#4A3B31", // var(--accent-color2) - Earthy brown links
+                distance: 150,
+                enable: true,
+                opacity: 0.3, // Subtle links
+                width: 1,
+            },
+            collisions: {
+                enable: false, // Keep false for performance unless needed
+            },
+            move: {
+                direction: "none",
+                enable: true,
+                outModes: { // How particles behave when they reach the edge
+                    default: "bounce", // Or "out"
+                },
+                random: false,
+                speed: 1, // Slower, more ambient speed
+                straight: false,
+            },
+            number: {
+                density: {
+                    enable: true,
+                    area: 800, // Adjust for desired particle density
+                },
+                value: 60, // Number of particles
+            },
+            opacity: {
+                value: 0.4, // Subtle particles
+            },
+            shape: {
+                type: "circle", // Or "star", "edge", "polygon"
+            },
+            size: {
+                value: { min: 1, max: 3 }, // Small, varied particle sizes
+            },
+        },
+        detectRetina: true, // Better rendering on high-DPI screens
+        background: { // This will be the background of the #tsparticles div itself
+            // color: "transparent", // Make it transparent so hero-section bg shows
+            // Or you can set a color here if hero-section has no bg image
+        }
+    }).then(container => {
+        console.log("tsParticles loaded successfully.");
+    }).catch(error => {
+        console.error("Error loading tsParticles:", error);
+    });
+});
+
 // AOS Initialization (already in HTML, but good to keep JS logic separate)
 // AOS.init({
 //     duration: 1000,
