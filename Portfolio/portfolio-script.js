@@ -125,6 +125,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
     } else {
         console.warn("No elements with class .project-card found for Vanilla Tilt.");
     }
+
+    // --- GSAP Hero Animation ---
+    if (typeof gsap !== 'undefined') { // Check if GSAP is loaded
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+        tl.to(".hero-content h1", { opacity: 1, y: 0, duration: 1, delay: 0.5 })
+            .to(".hero-content .hero-tagline", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6") // Overlap animation
+            .to(".hero-content .btn", { opacity: 1, y: 0, duration: 0.6, stagger: 0.2 }, "-=0.4"); // Stagger buttons
+    } else {
+        console.warn("GSAP not loaded. Hero animations will not run.");
+        // Fallback: If GSAP fails, make elements visible directly
+        document.querySelectorAll(".hero-content h1, .hero-content .hero-tagline, .hero-content .btn").forEach(el => {
+            el.style.opacity = 1;
+            // el.style.transform = 'translateY(0)';
+        });
+    }
 });
 
 // AOS Initialization (already in HTML, but good to keep JS logic separate)
