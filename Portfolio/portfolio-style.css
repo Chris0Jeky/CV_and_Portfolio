@@ -1,25 +1,28 @@
-/* portfolio-style.css */
+/* portfolio-style.css - REVIEWED & REFINED */
 
 /* --- Base & Variables --- */
 :root {
     /* Red-Themed "Adventure" Palette */
-    --primary-color: #B71C1C;         /* Deep Crimson/Ruby - Main Red */
-    --primary-hover: #8E1212;        /* Darker Main Red */
-    --accent-color1: #FF8F00;        /* Warm Amber/Gold - For CTAs, Highlights */
-    --accent-color1-hover: #E67E00;   /* Darker Amber/Gold */
-    --accent-color2: #4A3B31;        /* Dark Earthy Brown - Backgrounds or Secondary Text */
-    --dark-bg: #1E1B18;              /* Very Dark Brown/Black */
-    --light-bg: #F5F0E8;             /* Warm Off-White (Aged Paper) */
-    --text-dark: #2C2520;            /* Dark Brown/Charcoal for text on light */
-    --text-light: #EFEBE4;           /* Warm Off-White for text on dark */
-    --text-muted: #7D6E62;           /* Muted Brown for less important text */
+    --primary-color: #B71C1C;
+    --primary-hover: #8E1212;
+    --accent-color1: #FF8F00;
+    --accent-color1-hover: #E67E00;
+    --accent-color2: #4A3B31; /* Earthy Brown */
+    --dark-bg: #1E1B18;
+    --light-bg: #F5F0E8;
+    --text-dark: #2C2520;
+    --text-light: #EFEBE4;
+    --text-muted: #7D6E62;
 
-    --heading-font: 'Montserrat', sans-serif; /* Keeping these for now */
-    --body-font: 'Poppins', sans-serif; /* Changed to Poppins from HTML */
-    --story-font: 'Merriweather', serif; /* For narrative sections */
+    --primary-shadow-color: rgba(183, 28, 28, 0.3); /* New variable for red shadow */
+    --accent1-shadow-color: rgba(255, 143, 0, 0.3); /* New variable for amber shadow */
+
+    --heading-font: 'Montserrat', sans-serif;
+    --body-font: 'Poppins', sans-serif;
+    --story-font: 'Merriweather', serif;
 
     --border-radius: 8px;
-    --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --box-shadow: 0 10px 20px rgba(44, 37, 32, 0.08); /* Softer shadow with text-dark base */
     --transition-speed: 0.3s ease;
 }
 
@@ -29,39 +32,65 @@ body {
     font-family: var(--body-font);
     line-height: 1.7;
     margin: 0;
-    padding-top: 70px;
+    padding-top: 70px; /* Assuming fixed navbar height */
     background-color: var(--light-bg);
     overflow-x: hidden;
 }
+/* Global HTML5 Boilerplate box-sizing */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+
 h1,h2,h3,h4,h5,h6 {
     font-family: var(--heading-font);
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--text-dark); /* Default for sections on light-bg */
+    margin-top: 0; /* Add this reset */
     margin-bottom: .8em;
+    line-height: 1.3; /* Add for tighter heading lines */
 }
 h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1.5em; }
 h3 { font-size: 1.75rem; }
+
 a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Red links */
     transition: color var(--transition-speed);
 }
 a:hover { color: var(--primary-hover); }
+
 .container {
     width: 90%; max-width: 1140px;
     margin: 0 auto; padding: 0 15px;
 }
 .content-section {
     padding: 80px 0;
-    position: relative; /* Good practice for z-index stacking if ever needed */
-    z-index: 1; /* Ensure sections are above anything global from hero if overflow:hidden isn't enough */
-    /* background-color: var(--light-bg); /* Ensure this is set */
+    position: relative;
+    z-index: 1; /* Ensure sections stack above elements from previous sections if any absolute positioning issues */
 }
 .alt-bg {
-    background-color: #FFFFFF; /* Ensure this is set */
+    background-color: #FFFFFF; /* White background for contrast */
     position: relative;
     z-index: 1;
 }
+.dark-theme-section { /* New utility for sections with dark bg */
+    background-color: var(--accent-color2); /* Earthy brown */
+    color: var(--text-light);
+}
+.dark-theme-section h2, .dark-theme-section h3, .dark-theme-section h4 {
+    color: var(--text-light);
+}
+.dark-theme-section .section-intro, .dark-theme-section p, .dark-theme-section li {
+    color: rgba(239, 235, 228, 0.85); /* var(--text-light) with alpha */
+}
+.dark-theme-section a {
+    color: var(--accent-color1); /* Amber links on dark brown */
+}
+.dark-theme-section a:hover {
+    color: var(--accent-color1-hover);
+}
+
+
 .text-center { text-align: center; }
 .section-intro {
     font-size: 1.1rem; color: var(--text-muted);
@@ -76,583 +105,519 @@ a:hover { color: var(--primary-hover); }
     text-decoration: none; transition: all var(--transition-speed);
     cursor: pointer; border: 2px solid transparent;
     font-size: 1rem; padding: 12px 28px;
+    letter-spacing: 0.5px; /* Added for style */
 }
 .btn-primary {
-    background-color: var(--primary-color);
-    color: #fff; border-color: var(--primary-color);
+    background-color: var(--primary-color); /* Red */
+    color: #fff;
+    border-color: var(--primary-color);
 }
 .btn-primary:hover {
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 18px var(--primary-shadow-color); /* Updated shadow */
 }
-.btn-secondary {
+.btn-secondary { /* This will be our Amber button */
     background-color: transparent;
     color: var(--accent-color1);
     border-color: var(--accent-color1);
 }
 .btn-secondary:hover {
-    background-color: var(--accent-color1-hover);
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(26,188,156,0.3);
+    background-color: var(--accent-color1);
+    color: var(--dark-bg); /* Dark text on Amber */
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 18px var(--accent1-shadow-color); /* Updated shadow */
 }
+.btn-outline-light { /* For use on dark backgrounds */
+    background-color: transparent;
+    color: var(--text-light);
+    border-color: var(--text-light);
+}
+.btn-outline-light:hover {
+    background-color: var(--text-light);
+    color: var(--dark-bg);
+    transform: translateY(-3px) scale(1.02);
+}
+
 .btn-lg { padding: 15px 35px; font-size: 1.1rem; }
 
 /* --- Navigation Bar --- */
 .navbar {
-    background-color: rgba(30, 27, 24, 0.95);
-    backdrop-filter: blur(10px); padding: 15px 0;
+    background-color: rgba(30, 27, 24, 0.92); /* var(--dark-bg) with alpha */
+    backdrop-filter: blur(12px); padding: 15px 0;
     position: fixed; width: 100%; top: 0; left: 0; z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15); /* Slightly stronger shadow */
 }
 .nav-container {
     display: flex; justify-content: space-between;
-    align-items: center; width: 90%; max-width: 1200px;
+    align-items: center; width: 90%; max-width: 1200px; /* Increased max-width slightly */
     margin: 0 auto;
 }
 .nav-logo {
     font-size: 1.8rem; font-weight: 700;
-    color: #fff; font-family: var(--heading-font);
+    color: var(--text-light); /* Was #fff */
+    font-family: var(--heading-font);
 }
-.nav-logo, .nav-menu li a, .nav-socials a {
-    color: var(--text-light); /* Ensure text is light on dark nav */
-}
+/* .nav-logo, .nav-menu li a, .nav-socials a - color set below */
+
 .nav-menu {
-    list-style: none; display: flex; gap: 25px;
+    list-style: none; display: flex; gap: 28px; /* Increased gap */
     margin: 0; padding: 0;
 }
 .nav-menu li a {
     color: var(--text-light);
-    font-weight: 400; font-size: .95rem;
+    font-weight: 400; font-size: .9rem; /* Slightly smaller for more uppercase room */
     padding: 5px 0; position: relative;
-    text-transform: uppercase; letter-spacing: .5px;
+    text-transform: uppercase; letter-spacing: .8px; /* More spacing */
 }
 .nav-menu li a::after {
     content: ''; position: absolute;
-    bottom: 0; left: 0; width: 0; height: 2px;
-    background-color: var(--accent-color1);
+    bottom: -2px; /* Slightly below text */
+    left: 0; width: 0; height: 2px;
+    background-color: var(--accent-color1); /* Amber underline */
     transition: width var(--transition-speed);
 }
 .nav-menu li a:hover::after,
 .nav-menu li a.active::after { width: 100%; }
+
 .nav-socials a {
-    color: var(--text-light); margin-left: 15px;
+    color: var(--text-light); margin-left: 18px; /* Increased margin */
     font-size: 1.2rem;
+    transition: color var(--transition-speed), transform var(--transition-speed);
 }
-.nav-socials a:hover { color: var(--accent-color1); }
-
-.nav-toggle { /* Burger button */
-    display: none; /* Hidden on desktop */
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001; /* Above nav content */
+.nav-socials a:hover {
+    color: var(--accent-color1); /* Amber hover */
+    transform: scale(1.1);
 }
 
+.nav-toggle {
+    display: none; background: transparent;
+    border: 0; cursor: pointer; padding: 10px;
+    z-index: 1001;
+}
 .hamburger {
-    display: block;
-    position: relative;
-    width: 25px;
-    height: 3px;
+    display: block; position: relative;
+    width: 25px; height: 3px;
     background: var(--text-light);
     transition: all 0.3s ease-in-out;
 }
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 3px;
+.hamburger::before, .hamburger::after {
+    content: ''; position: absolute; left: 0;
+    width: 100%; height: 3px;
     background: var(--text-light);
     transition: all 0.3s ease-in-out;
 }
-
 .hamburger::before { top: -8px; }
 .hamburger::after { bottom: -8px; }
-
-/* Active state for burger (X shape) */
 .nav-open .hamburger { background: transparent; }
 .nav-open .hamburger::before { transform: rotate(45deg) translate(5px, 6px); }
 .nav-open .hamburger::after { transform: rotate(-45deg) translate(5px, -6px); }
 
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block; /* Show burger on mobile */
-    }
-
-    .nav-menu {
-        /* ... existing display: none; ... */
-        position: absolute;
-        top: 70px; /* Below navbar */
-        left: 0;
-        right: 0;
-        background-color: rgba(30, 27, 24, 0.98); /* var(--dark-bg) with alpha */
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        gap: 0;
-        transform: translateY(-150%); /* Start off-screen */
-        transition: transform 0.4s ease-in-out;
-        z-index: 999; /* Below navbar but above content */
-    }
-
-    .nav-menu.active { /* Mobile menu open state */
-        transform: translateY(0);
-        display: flex; /* Re-enable display flex when active */
-    }
-
-    .nav-menu li {
-        width: 100%;
-        text-align: center;
-    }
-    .nav-menu li a {
-        padding: 15px 0;
-        display: block; /* Make links full width */
-        width: 100%;
-        font-size: 1.1rem;
-    }
-    .nav-menu li a::after { display: none; } /* Remove underline effect on mobile dropdown */
-
-    .nav-socials { /* Optionally hide socials on small mobile nav or reposition */
-        /* display: none; */
-    }
-}
-
 /* --- Hero Section --- */
 .hero-section {
-    height: 100vh; min-height: 600px;
+    height: 100vh; min-height: 650px; /* Slightly taller min-height */
     display: flex; align-items: center;
     justify-content: center; text-align: center;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
     color: var(--text-light);
     background-image: linear-gradient(135deg, var(--dark-bg) 0%, var(--accent-color2) 100%);
 }
-
 #tsparticles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Behind hero-overlay and hero-content */
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 0;
 }
-
 .hero-overlay {
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(30, 27, 24, 0.5); /* var(--dark-bg) with alpha, slightly less opaque */
+    z-index: 1;
 }
 .hero-content {
-    position: relative; z-index: 1;
-    max-width: 800px;
+    position: relative; z-index: 2;
+    max-width: 850px; /* Slightly wider */
 }
 .hero-content h1 {
-    font-size: 4.5rem; font-weight: 700;
+    font-size: 4.8rem; /* Slightly larger */
+    font-weight: 700;
     margin-bottom: .3em;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.6); /* Stronger text shadow */
     color: var(--text-light);
+    opacity: 0; /* For GSAP */
 }
 .hero-tagline {
-    font-size: 1.65rem; margin-bottom: 1.5em;
-    color: rgba(239, 235, 228, 0.9); /* var(--text-light) with alpha */
+    font-size: 1.7rem; margin-bottom: 1.8em; /* More margin */
+    color: rgba(239, 235, 228, 0.9);
     font-weight: 300;
+    opacity: 0; /* For GSAP */
 }
-.hero-content .btn { margin: 10px; }
-
-.hero-content .btn-primary {
-    background-color: var(--accent-color1);
-    border-color: var(--accent-color1);
-    color: var(--dark-bg); /* Dark text on bright amber */
+.hero-content .btn {
+    margin: 10px 12px; /* More horizontal margin */
+    opacity: 0; /* For GSAP */
+    padding: 14px 32px; /* Slightly larger buttons */
+}
+.hero-content .btn-primary { /* This is now our Red button */
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
 }
 .hero-content .btn-primary:hover {
-    background-color: var(--accent-color1-hover);
-    border-color: var(--accent-color1-hover);
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: 0 6px 18px var(--primary-shadow-color);
 }
-.hero-content .btn-secondary {
-    color: var(--text-light);
-    border-color: var(--text-light);
-}
-.hero-content .btn-secondary:hover {
-    background-color: var(--text-light);
+.hero-content .btn-secondary { /* This is now our Amber button */
+    background-color: var(--accent-color1);
+    border-color: var(--accent-color1);
     color: var(--dark-bg);
 }
-.hero-content h1, .hero-content .hero-tagline, .hero-content .btn {
-    opacity: 0; /* Start hidden, GSAP will reveal */
-    /* transform: translateY(20px); /* Optional starting position */
+.hero-content .btn-secondary:hover {
+    background-color: var(--accent-color1-hover);
+    border-color: var(--accent-color1-hover);
+    box-shadow: 0 6px 18px var(--accent1-shadow-color);
 }
 
+
 /* --- About Section --- */
+.about-section {
+    background-color: var(--light-bg); /* Ensure correct background */
+}
 .about-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px; align-items: center;
+    grid-template-columns: 2fr 1.2fr; /* Give image a bit more relative space */
+    gap: 50px; align-items: center;
 }
 .about-text p {
-    margin-bottom: 1.2em;
+    margin-bottom: 1.3em; /* More spacing */
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1.05rem; /* Keeping this size */
+    font-family: var(--story-font); /* Using Merriweather for story */
+    line-height: 1.8; /* Good for serif */
 }
 .about-image .profile-picture {
     width: 100%;
-    /* max-width: 350px; /* Optional: Set a max-width for the image container on larger screens */
-    /* height: 300px; /* REMOVE fixed height or change to max-height if needed */
-    max-height: 400px; /* Suggestion: Control max height */
-    /* background-color: #e0e0e0; /* Can remove if image always present */
-    display: flex; /* Keep if you want to center image, but not strictly needed if img is 100% width */
-    align-items: center;
-    justify-content: center;
+    max-height: 450px; /* Increased max-height */
     border-radius: var(--border-radius);
-    overflow: hidden; /* This is KEY to contain the image */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Add a subtle shadow to the image container */
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(44, 37, 32, 0.12); /* var(--text-dark) based shadow */
+    /* background-color: #e0e0e0; /* Remove if image always loads */
 }
-.about-image .profile-picture img { /* Style the image itself */
-    width: 100%;       /* Make image take full width of its container */
-    height: 100%;      /* Make image take full height of its container */
-    object-fit: cover; /* This is CRUCIAL: scales image to maintain aspect ratio while filling container, cropping if necessary */
-    /* object-position: center top; /* Optional: if you want to prioritize top of image if cropped */
-    display: block;    /* Removes any extra space below inline images */
-    border-radius: var(--border-radius); /* If you want the image itself rounded */
+.about-image .profile-picture img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top; /* Prioritize top of your headshot */
+    display: block;
+    /* border-radius: var(--border-radius); /* Redundant if container is rounded & overflow:hidden */
 }
 
+
 /* --- Experience Timeline --- */
-.timeline {
-    position: relative; padding: 20px 0;
+.experience-section { /* This is .alt-bg so background-color: #FFFFFF; */
+    padding-bottom: 60px; /* Ensure enough space below last item */
 }
+.timeline { position: relative; padding: 20px 0; }
 .timeline::before {
-    content: '';
-    position: absolute;
+    content: ''; position: absolute;
     left: 50%; top: 0; bottom: 0;
-    width: 4px;
-    background-color: #d0d0d0;
-    transform: translateX(-50%);
-    z-index: 0;
+    width: 3px; /* Slightly thinner line */
+    background-color: #E0D8CC; /* Lighter, warmer line color from light-bg context */
+    transform: translateX(-50%); z-index: 0;
 }
 .timeline-item {
-    position: relative;
-    width: 50%;
-    padding: 20px 40px;
-    margin-bottom: 30px;
+    position: relative; width: 50%;
+    padding: 20px 40px; margin-bottom: 40px; /* Increased margin */
     box-sizing: border-box;
 }
-.timeline-item:nth-child(odd) {
-    left: 0; padding-right: 30px;
-    text-align: right;
-}
-.timeline-item:nth-child(even) {
-    left: 50%; padding-left: 30px;
-    text-align: left;
-}
-.timeline-item::before {
-    content: ''; position: absolute;
-    top: 32px;
-    width: 16px; height: 16px;
+.timeline-item:nth-child(odd) { left: 0; padding-right: 30px; text-align: right; }
+.timeline-item:nth-child(even) { left: 50%; padding-left: 30px; text-align: left; }
+
+.timeline-item::before { /* Connector dot */
+    content: ''; position: absolute; top: 32px;
+    width: 18px; height: 18px; /* Slightly larger dot */
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background-color: var(--accent-color1); /* Amber dot */
+    border: 3px solid var(--light-bg); /* Border matching page background */
     z-index: 1;
 }
-.timeline-item:nth-child(odd)::before { right: -8px; }
-.timeline-item:nth-child(even)::before { left: -8px; }
+.timeline-item:nth-child(odd)::before { right: -9px; } /* Adjust for dot size */
+.timeline-item:nth-child(even)::before { left: -9px; }
+
 .timeline-icon {
     position: absolute; top: 25px;
     width: 50px; height: 50px;
-    background: #fff; border-radius: 50%;
+    background: var(--light-bg); /* Match page background */
+    border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    border: 3px solid var(--primary-color);
-    font-size: 1.5rem; color: var(--primary-color);
+    border: 2px solid var(--accent-color1); /* Amber border */
+    font-size: 1.5rem; color: var(--primary-color); /* Red icon */
     z-index: 2;
+    box-shadow: 0 0 15px rgba(255, 143, 0, 0.3); /* var(--accent1-shadow-color) */
 }
-.timeline-item:nth-child(odd) .timeline-icon {
-    right: -25px; transform: translateX(50%);
-}
-.timeline-item:nth-child(even) .timeline-icon {
-    left: -25px; transform: translateX(-50%);
-}
+.timeline-item:nth-child(odd) .timeline-icon { right: -25px; transform: translateX(50%); }
+.timeline-item:nth-child(even) .timeline-icon { left: -25px; transform: translateX(-50%);}
+
 .timeline-content {
-    background-color: #fff;
-    padding: 25px;
+    background-color: #fff; /* Keep cards white on .alt-bg */
+    padding: 25px 30px; /* More padding */
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    position: relative; /* For read-more link if needed */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(44, 37, 32, 0.12);
 }
 .timeline-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: .3em;
-    color: var(--primary-color);
+    font-size: 1.4rem; margin-bottom: .4em; /* Increased margin */
+    color: var(--primary-color); /* Red title */
 }
 .timeline-content .company {
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-right: 10px;
+    font-weight: 600; color: var(--text-dark);
+    margin-right: 10px; font-size: 0.95rem; /* Slightly larger */
 }
-.timeline-content .date {
-    font-size: .9em;
-    color: var(--text-muted);
-}
+.timeline-content .date { font-size: .85em; color: var(--text-muted); }
 .timeline-content p {
-    margin-top: 10px;
-    font-size: .95rem;
-    color: var(--text-muted);
+    margin-top: 12px; font-size: .95rem;
+    color: var(--text-muted); line-height: 1.6;
 }
+.read-more-link {
+    display: inline-block; margin-top: 12px; font-size: 0.9em;
+    font-weight: 600; color: var(--accent-color1); /* Amber link */
+}
+.read-more-link i { margin-left: 5px; transition: transform 0.2s ease; }
+.read-more-link:hover i { transform: translateX(4px); }
+
 
 /* --- Projects Grid --- */
+.projects-section { background-color: var(--light-bg); } /* Default bg */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); /* Slightly larger min card width */
+    gap: 35px; /* Increased gap */
 }
 .project-card {
     position: relative; overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    height: 350px; /* INCREASED HEIGHT to accommodate more text */
-    background-color: #444; /* Placeholder if no image */
-    /* --- YOU WILL ADD BACKGROUND IMAGES HERE PER CARD --- */
-    /* Example for ONE card: */
-    /* &#project-nipd { background-image: url('path/to/nipd-project-image.jpg'); } */
-    background-size: cover;
-    background-position: center;
-    transform-style: preserve-3d; /* Important for 3D effects */
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex; /* To help center content if overlay is not full height */
-    align-items: flex-end; /* Align overlay to bottom if not full height */
+    height: 350px;
+    background-color: var(--accent-color2); /* Earthy brown default if no image */
+    background-size: cover; background-position: center;
+    transform-style: preserve-3d;
+    /* transition for Vanilla Tilt will be handled by JS, but add fallback */
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex; align-items: flex-end;
 }
+.project-card.no-image { /* Applied these styles directly to .project-card if no image */
+    align-items: center; justify-content: center; text-align: center;
+}
+/* You will add specific background images to cards using IDs or classes: */
+/* #project-nipd { background-image: url('images/project-nipd.jpg'); } */
+
 .project-card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(transparent 0%,
-    rgba(30, 27, 24, 0.7) 30%,
-    rgba(30, 27, 24, 0.95) 100%); /* var(--dark-bg) with alpha for adventure */
-    color: var(--text-light); /* Light text for dark overlay */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Align text content to bottom of overlay */
-    padding: 20px; /* Adjusted padding */
-    opacity: 0; /* Start hidden */
-    transform: translateY(40px); /* Start further down */
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    position: absolute; bottom: 0; left: 0;
+    width: 100%;
+    background: linear-gradient(transparent 0%, rgba(30, 27, 24, 0.75) 40%, rgba(30, 27, 24, 0.98) 100%); /* var(--dark-bg) gradient */
+    color: var(--text-light);
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 25px; /* Increased padding */
+    opacity: 0; transform: translateY(50px); /* Start further down */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     box-sizing: border-box;
+    min-height: 50%; /* Ensure overlay has some minimum height */
 }
 .project-card:hover .project-card-overlay {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; transform: translateY(0);
 }
-.project-card-overlay h3 {
-    font-size: 1.4rem; /* Slightly adjusted */
-    margin-bottom: 0.4em;
-    color: var(--text-light); /* Explicitly set light color */
-    font-weight: 600;
+.project-card.no-image .project-card-overlay { /* If card has .no-image class */
+    position: static; opacity: 1; transform: translateY(0);
+    background: transparent; height: auto;
+    padding: 30px; /* More padding for text-only cards */
 }
 
-.project-card-overlay p {
-    font-size: 0.85rem; /* Slightly smaller for more text */
-    margin-bottom: 1em;
-    color: rgba(239, 235, 228, 0.85); /* var(--text-light) with alpha */
-    line-height: 1.5;
+.project-card-overlay h3 {
+    font-size: 1.5rem; margin-bottom: 0.5em; /* Increased h3 size */
+    color: var(--text-light); font-weight: 600;
 }
-.project-card-overlay .btn-secondary {
-    color: #fff; border-color: #fff;
-    background-color: transparent;
+.project-card-overlay p {
+    font-size: 0.9rem; margin-bottom: 1.2em; /* More margin */
+    color: rgba(239, 235, 228, 0.9);
+    line-height: 1.6;
+}
+.project-card-overlay .btn-secondary { /* Will be Amber button */
+    color: var(--dark-bg); /* Dark text on Amber */
+    border-color: var(--accent-color1);
+    background-color: var(--accent-color1);
+    padding: 8px 18px; font-size: 0.9rem;
+    align-self: flex-start;
 }
 .project-card-overlay .btn-secondary:hover {
-    background-color: #fff;
+    background-color: var(--accent-color1-hover);
+    border-color: var(--accent-color1-hover);
     color: var(--dark-bg);
 }
+.project-card.no-image .project-card-overlay .btn-secondary { align-self: center; }
 
-/* IF NO BACKGROUND IMAGE ON CARD, show overlay info more prominently */
-.project-card.no-image { /* Add this class to card if no bg image */
-    background-color: var(--accent-color2); /* Earthy brown */
-    align-items: center; /* Center content */
-    justify-content: center;
-    text-align: center;
-}
-.project-card.no-image .project-card-overlay {
-    position: static; /* Not absolute, take full space */
-    opacity: 1;
-    transform: translateY(0);
-    background: transparent; /* No gradient needed if it's primary content */
-    height: auto; /* Adjust to content */
-    color: var(--text-light);
-}
-.project-card.no-image .project-card-overlay h3 {
-    color: var(--text-light);
-}
-.project-card.no-image .project-card-overlay p {
-    color: rgba(239, 235, 228, 0.85);
-}
-.project-card.no-image .project-card-overlay .btn-secondary {
-    align-self: center;
-}
 
 /* --- Skills Showcase --- */
+.skills-showcase-section { /* This is .alt-bg so background-color: #FFFFFF; */ }
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
     gap: 30px;
 }
 .skill-area {
-    background-color: #fff; padding: 30px;
+    background-color: #fff; padding: 30px 25px; /* Adjusted padding */
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    transform-style: preserve-3d;
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    transform-style: preserve-3d; /* For Vanilla Tilt */
+    /* transition: transform var(--transition-speed), box-shadow var(--transition-speed); No need if Tilt handles it */
+    border-left: 4px solid transparent; /* For hover accent */
+    transition: border-left-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.skill-area:hover {
+    /* transform: translateY(-5px); /* Tilt will handle this */
+    box-shadow: 0 15px 35px rgba(44, 37, 32, 0.15);
+    border-left-color: var(--primary-color); /* Red accent on hover */
 }
 .skill-area h4 {
-    font-size: 1.3rem; color: var(--primary-color);
+    font-size: 1.3rem; color: var(--primary-color); /* Red title */
     margin-bottom: 1em; display: flex; align-items: center;
+    font-weight: 600;
 }
-.skill-area h4 .fas { margin-right: 10px; font-size: 1.2em; }
+.skill-area h4 .fas { margin-right: 12px; font-size: 1.2em; } /* Increased icon margin */
 .skill-area ul { list-style: none; padding: 0; }
 .skill-area ul li {
-    margin-bottom: .6em;
+    margin-bottom: .7em; /* Increased spacing */
     font-size: .95rem;
     color: var(--text-muted);
     position: relative;
-    padding-left: 20px;
+    padding-left: 25px; /* More space for icon */
 }
 .skill-area ul li::before {
-    content: '\f00c';
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: var(--accent-color1);
-    position: absolute; left: 0;
+    content: '\f00c'; /* Checkmark */
+    font-family: "Font Awesome 6 Free"; font-weight: 900;
+    color: var(--accent-color1); /* Amber checkmark */
+    position: absolute; left: 0; top: 1px; /* Align better */
+    font-size: 0.9em; /* Slightly smaller checkmark */
 }
 
-/* --- Skill Tags (new) --- */
-.skill-tag-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-}
-.skill-tag {
-    background-color: var(--accent-color1);
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: var(--border-radius);
-    font-size: .9rem;
-}
+/* --- Skill Tags (used in CV, not portfolio by default, but style if ever needed) --- */
+/* .skill-tag-container { ... } */
+/* .skill-tag { ... } */
 
 /* --- Philosophy Section --- */
-
-.philosophy-section {
-    /* background-color: var(--accent-color2); /* Earthy brown background */
-    /* color: var(--text-light); */ /* Light text if dark background */
-    /* Or a subtle texture: */
-    /* background-image: url('images/old-paper-texture.png'); */
-    padding-bottom: 100px; /* More space at bottom */
-}
-
-.philosophy-section h2 {
-    /* color: var(--text-light); /* If dark background */
-    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.3); */
-}
-
+.philosophy-section { background-color: var(--light-bg); }
 .philosophy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 30px; text-align: center;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); /* Slightly wider min */
+    gap: 35px; text-align: center;
 }
 .philosophy-item {
-    padding: 30px 25px;
-    /* background-color: rgba(255, 255, 255, 0.05); /* Subtle inset on dark bg */
-    /* border: 1px solid rgba(239, 235, 228, 0.2); /* var(--text-light) with alpha */
+    padding: 35px 25px; /* More padding */
     border-radius: var(--border-radius);
     transition: all var(--transition-speed);
-    /* box-shadow: 0 5px 15px rgba(0,0,0,0.1); */
+    /* background-color: #fff; */ /* Optional card background if needed */
+    /* box-shadow: var(--box-shadow); */ /* Optional shadow */
 }
-
 .philosophy-item:hover {
     transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 15px 30px rgba(44, 37, 32, 0.2); /* var(--text-dark) with alpha */
+    background-color: #fff; /* White background on hover for pop */
+    box-shadow: 0 18px 38px rgba(44, 37, 32, 0.15);
 }
-
 .philosophy-item i {
-    /* color: var(--accent-color1); Amber icons */
+    color: var(--accent-color1); /* Amber icons */
     margin-bottom: 20px;
-    transition: transform 0.4s ease-in-out;
-    font-size: 3.5rem; /* Larger icons */
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy effect */
+    font-size: 3.5rem;
 }
-
 .philosophy-item:hover i {
-    transform: rotateY(360deg) scale(1.1);
+    transform: scale(1.2) rotate(15deg);
 }
-
 .philosophy-item h3 {
-    font-size: 1.5rem; /* Slightly larger */
-    margin-bottom: 0.7em;
-    /* color: var(--text-light); /* If dark background */
+    font-size: 1.5rem; margin-bottom: 0.7em;
+    color: var(--primary-color); /* Red titles */
     font-weight: 600;
 }
+.philosophy-item p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-.philosophy-item p {
-    font-size: 0.9rem; /* Slightly smaller for denser look */
-    /* color: rgba(239, 235, 228, 0.85); /* var(--text-light) with alpha */
-    line-height: 1.6;
-}
 
 /* --- Contact Section --- */
-.contact-section .btn-lg { margin-top: 20px; }
-.contact-socials { margin-top: 30px; }
+.contact-section { /* This is .alt-bg so background-color: #FFFFFF; */ }
+.contact-section .btn-primary.btn-lg { /* Target the red button specifically */
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+.contact-section .btn-primary.btn-lg:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: 0 6px 18px var(--primary-shadow-color);
+}
+
+.contact-socials { margin-top: 35px; }
 .contact-socials a {
-    color: var(--dark-bg); margin: 0 15px;
-    transition: color var(--transition-speed);
+    color: var(--accent-color2); /* Earthy brown icons */
+    margin: 0 18px; /* Increased spacing */
+    font-size: 1.6rem; /* Larger social icons */
+    transition: color var(--transition-speed), transform var(--transition-speed);
 }
 .contact-socials a:hover {
-    color: var(--primary-color); transform: scale(1.1);
+    color: var(--primary-color); /* Red hover */
+    transform: translateY(-3px) scale(1.1);
 }
 
 /* --- Footer --- */
 .footer {
     background-color: var(--dark-bg);
     color: var(--text-muted);
-    padding: 40px 0;
+    padding: 50px 0; /* More padding */
     font-size: .9rem;
-}
-.footer p {
-    margin-bottom: 5px;
-    position: relative;
+    position: relative; /* For potential z-index issues if any */
     z-index: 1;
 }
+.footer p {
+    margin-bottom: 8px; /* More spacing */
+    /* position: relative; z-index: 1; Removed, not strictly necessary here */
+}
 .footer p:last-child {
-    font-style: italic; color: #788998;
+    font-style: italic; color: #8A796A; /* Lighter muted brown */
+    margin-top: 10px; /* Space before last line */
 }
 
 /* --- Responsive Breakpoints --- */
-@media (max-width: 992px) {
+@media (max-width: 992px) { /* Tablet */
     .about-grid { grid-template-columns: 1fr; text-align: center; }
     .about-image {
-        margin-top: 30px;
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-top: 30px; max-width: 300px;
+        margin-left: auto; margin-right: auto;
     }
     .timeline::before { left: 30px; }
-    .timeline-item,
-    .timeline-item:nth-child(even) {
+    .timeline-item, .timeline-item:nth-child(even) {
         width: 100%; left: 0;
-        padding-left: 70px; padding-right: 15px;
+        padding-left: 80px; padding-right: 20px; /* Adjusted padding for mobile */
         text-align: left !important;
     }
-    .timeline-item::before { left: 22px !important; right: auto !important; }
-    .timeline-icon { left: 5px !important; transform: translateX(0) !important; }
+    .timeline-item:nth-child(odd) { text-align: left !important; } /* Ensure odd also left on mobile */
+    .timeline-item::before { left: 22px !important; right: auto !important; } /* Dot position */
+    .timeline-icon { left: 5px !important; transform: translateX(0) !important; } /* Icon position */
 }
 
-@media (max-width: 768px) {
-    body { padding-top: 60px; }
+@media (max-width: 768px) { /* Mobile */
+    body { padding-top: 60px; /* Adjust for smaller nav if nav height changes */ }
     h2 { font-size: 2rem; }
-    .hero-content h1 { font-size: 3rem; }
-    .hero-tagline { font-size: 1.2rem; }
-    .nav-menu { display: none; }
-}
+    .hero-content h1 { font-size: 3.2rem; /* Adjusted for mobile */ }
+    .hero-tagline { font-size: 1.3rem; /* Adjusted for mobile */ }
+    .nav-menu {
+        /* ... existing styles for transform and transition ... */
+        top: 60px; /* Match potential new body padding-top */
+        background-color: rgba(30, 27, 24, 0.98); /* var(--dark-bg) with more alpha */
+    }
+    .nav-menu.active { display: flex; } /* Ensure it shows */
+    .nav-menu:not(.active) { display: none; } /* Hide if not active */
 
-/* Ensure hero-overlay and hero-content have higher z-index */
-.hero-overlay { z-index: 1; }
-.hero-content { z-index: 2; }
+    .projects-grid { grid-template-columns: 1fr; /* Stack project cards */ }
+    .skills-grid { grid-template-columns: 1fr; /* Stack skill areas */ }
+    .philosophy-grid { grid-template-columns: 1fr; /* Stack philosophy items */ }
+}
