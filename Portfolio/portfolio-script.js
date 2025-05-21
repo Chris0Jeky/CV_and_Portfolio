@@ -141,6 +141,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // el.style.transform = 'translateY(0)';
         });
     }
+
+    // --- Mobile Navigation Toggle ---
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const body = document.body; // To add class for open state if needed
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            body.classList.toggle('nav-open'); // For burger animation & potentially overflow hidden
+        });
+
+        // Close mobile menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    body.classList.remove('nav-open');
+                }
+            });
+        });
+    }
 });
 
 // AOS Initialization (already in HTML, but good to keep JS logic separate)
