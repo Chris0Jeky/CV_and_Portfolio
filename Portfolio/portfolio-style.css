@@ -294,6 +294,9 @@ a:hover { color: var(--primary-hover); }
     background-color: #444;
     background-size: cover;
     background-position: center;
+    transform-style: preserve-3d; /* Important for 3D effects */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .project-card-overlay {
     position: absolute; top: 0; left: 0;
