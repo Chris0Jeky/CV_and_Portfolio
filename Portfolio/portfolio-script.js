@@ -164,11 +164,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
-
-// AOS Initialization (already in HTML, but good to keep JS logic separate)
-// AOS.init({
-//     duration: 1000,
-//     once: true,
-// });
-
-// TODO: Add mobile navigation toggle functionality
