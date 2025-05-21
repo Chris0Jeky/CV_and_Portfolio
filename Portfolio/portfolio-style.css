@@ -107,6 +107,9 @@ a:hover { color: var(--primary-hover); }
     font-size: 1.8rem; font-weight: 700;
     color: #fff; font-family: var(--heading-font);
 }
+.nav-logo, .nav-menu li a, .nav-socials a {
+    color: var(--text-light); /* Ensure text is light on dark nav */
+}
 .nav-menu {
     list-style: none; display: flex; gap: 25px;
     margin: 0; padding: 0;
@@ -120,7 +123,7 @@ a:hover { color: var(--primary-hover); }
 .nav-menu li a::after {
     content: ''; position: absolute;
     bottom: 0; left: 0; width: 0; height: 2px;
-    background-color: var(--secondary-color);
+    background-color: var(--accent-color1);
     transition: width var(--transition-speed);
 }
 .nav-menu li a:hover::after,
@@ -129,15 +132,16 @@ a:hover { color: var(--primary-hover); }
     color: var(--text-light); margin-left: 15px;
     font-size: 1.2rem;
 }
-.nav-socials a:hover { color: var(--secondary-color); }
+.nav-socials a:hover { color: var(--accent-color1); }
 
 /* --- Hero Section --- */
 .hero-section {
     height: 100vh; min-height: 600px;
     display: flex; align-items: center;
     justify-content: center; text-align: center;
-    position: relative; color: #fff;
-    background-image: linear-gradient(135deg,#3a3a3a 0%,#1e1e1e 100%);
+    position: relative;
+    color: var(--text-light);
+    background-image: linear-gradient(135deg, var(--dark-bg) 0%, var(--accent-color2) 100%);
 }
 .hero-overlay {
     position: absolute; top: 0; left: 0;
@@ -152,13 +156,32 @@ a:hover { color: var(--primary-hover); }
     font-size: 4.5rem; font-weight: 700;
     margin-bottom: .3em;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    color: var(--text-light);
 }
 .hero-tagline {
     font-size: 1.65rem; margin-bottom: 1.5em;
-    color: rgba(255,255,255,0.9);
+    color: rgba(239, 235, 228, 0.9); /* var(--text-light) with alpha */
     font-weight: 300;
 }
 .hero-content .btn { margin: 10px; }
+
+.hero-content .btn-primary {
+    background-color: var(--accent-color1);
+    border-color: var(--accent-color1);
+    color: var(--dark-bg); /* Dark text on bright amber */
+}
+.hero-content .btn-primary:hover {
+    background-color: var(--accent-color1-hover);
+    border-color: var(--accent-color1-hover);
+}
+.hero-content .btn-secondary {
+    color: var(--text-light);
+    border-color: var(--text-light);
+}
+.hero-content .btn-secondary:hover {
+    background-color: var(--text-light);
+    color: var(--dark-bg);
+}
 
 /* --- About Section --- */
 .about-grid {
