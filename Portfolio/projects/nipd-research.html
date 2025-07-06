@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Person Iterated Prisoner's Dilemma Research - Cristian Tcaci</title>
+    <meta name="description" content="Multi-Agent Reinforcement Learning research on cooperation emergence in N-Person Iterated Prisoner's Dilemma scenarios">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../portfolio-style.css">
+    <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="../portfolio.html" class="nav-logo">Cristian Tcaci</a>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="../portfolio.html#about">About</a></li>
+            <li><a href="../portfolio.html#experience">Experience</a></li>
+            <li><a href="../portfolio.html#projects">Projects</a></li>
+            <li><a href="../portfolio.html#skills">Skills</a></li>
+            <li><a href="../portfolio.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="project-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="../portfolio.html">Portfolio</a> / <a href="../portfolio.html#projects">Projects</a> / Research
+            </div>
+            <h1>N-Person Iterated Prisoner's Dilemma</h1>
+            <p class="subtitle">Investigating Cooperation Emergence through Multi-Agent Reinforcement Learning</p>
+            <div class="project-meta">
+                <span><i class="fas fa-university"></i> Middlesex University</span>
+                <span><i class="fas fa-graduation-cap"></i> Undergraduate Thesis</span>
+                <span><i class="fas fa-calendar"></i> 2023-2024</span>
+                <span><i class="fas fa-file-alt"></i> Preparing for Publication</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="project-content">
+    <div class="container">
+        
+        <!-- Executive Summary -->
+        <section class="content-section">
+            <h2>Research Overview</h2>
+            <div class="highlight-box">
+                <p>This research explores the emergence of cooperation in N-Person Iterated Prisoner's Dilemma (NIPD) scenarios using Multi-Agent Reinforcement Learning (MARL). Moving beyond traditional two-player game theory, this work investigates how cooperation can evolve in complex multi-agent environments where self-interest typically leads to mutual defection. The research combines theoretical game theory with practical AI implementation, offering insights into cooperation dynamics that have applications in autonomous systems, economics, and social policy.</p>
+            </div>
+        </section>
+
+        <!-- Research Context -->
+        <section class="content-section">
+            <h2>Research Context & Motivation</h2>
+            <div class="research-context">
+                <div class="context-grid">
+                    <div class="context-item">
+                        <h3>The Classical Dilemma</h3>
+                        <p>The Prisoner's Dilemma demonstrates how rational individuals might not cooperate even when it's in their mutual interest. In the iterated version, players interact repeatedly, allowing for strategy evolution.</p>
+                    </div>
+                    <div class="context-item">
+                        <h3>The N-Person Challenge</h3>
+                        <p>Extending to N players dramatically increases complexity. With multiple agents, cooperation becomes harder to achieve as the temptation to defect while others cooperate grows stronger.</p>
+                    </div>
+                    <div class="context-item">
+                        <h3>Real-World Relevance</h3>
+                        <p>From climate negotiations to resource management, many real-world scenarios involve multiple parties needing to cooperate despite individual incentives to defect.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Questions -->
+        <section class="content-section">
+            <h2>Research Questions</h2>
+            <div class="research-questions">
+                <div class="question-card">
+                    <div class="question-number">1</div>
+                    <div class="question-content">
+                        <h3>Primary Question</h3>
+                        <p>Under what conditions can cooperation emerge and sustain itself in N-Person Iterated Prisoner's Dilemma scenarios when agents use reinforcement learning?</p>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-number">2</div>
+                    <div class="question-content">
+                        <h3>Secondary Questions</h3>
+                        <ul>
+                            <li>How does the number of players (N) affect cooperation dynamics?</li>
+                            <li>What role do network structures play in cooperation emergence?</li>
+                            <li>Can evolved reward structures promote cooperation more effectively?</li>
+                            <li>How do different learning algorithms impact cooperation rates?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Implementation -->
+        <section class="content-section">
+            <h2>Technical Implementation</h2>
+            
+            <div class="tech-stack">
+                <h3>Technology Stack</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Multi-Agent RL</span>
+                    <span class="tech-tag">Game Theory</span>
+                    <span class="tech-tag">Matplotlib</span>
+                    <span class="tech-tag">NetworkX</span>
+                    <span class="tech-tag">Pandas</span>
+                </div>
+            </div>
+
+            <div class="implementation-details">
+                <h3>System Architecture</h3>
+                
+                <div class="architecture-components">
+                    <div class="component-card">
+                        <i class="fas fa-robot"></i>
+                        <h4>Agent Design</h4>
+                        <p>Each agent uses Q-learning to adapt strategies based on game history. Agents maintain Q-tables for state-action pairs and update policies based on rewards received.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <i class="fas fa-globe-americas"></i>
+                        <h4>Environment</h4>
+                        <p>N-player game environment where agents simultaneously choose to cooperate or defect. Payoffs calculated based on the number of cooperators and defectors.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <i class="fas fa-brain"></i>
+                        <h4>Learning Mechanisms</h4>
+                        <p>Implemented various RL algorithms including standard Q-learning, with extensions for multi-agent scenarios. Exploration-exploitation balance using ε-greedy strategy.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h4>Network Dynamics</h4>
+                        <p>Agents can form and break connections, creating dynamic interaction networks. This allows studying how network topology affects cooperation emergence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology -->
+        <section class="content-section">
+            <h2>Research Methodology</h2>
+            <div class="methodology-timeline">
+                <div class="method-step">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>Literature Review</h3>
+                    <p>Comprehensive analysis of existing work in game theory, multi-agent systems, and cooperation emergence mechanisms.</p>
+                </div>
+                <div class="method-step">
+                    <div class="step-icon"><i class="fas fa-code"></i></div>
+                    <h3>Implementation</h3>
+                    <p>Developed flexible simulation framework supporting various agent strategies, network structures, and reward mechanisms.</p>
+                </div>
+                <div class="method-step">
+                    <div class="step-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Experimentation</h3>
+                    <p>Systematic experiments varying key parameters: number of agents, network density, learning rates, and reward structures.</p>
+                </div>
+                <div class="method-step">
+                    <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Analysis</h3>
+                    <p>Statistical analysis of cooperation rates, strategy evolution, and emergent patterns across different experimental conditions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Findings -->
+        <section class="content-section">
+            <h2>Key Findings & Contributions</h2>
+            
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Cooperation Emergence</h3>
+                    <p>Demonstrated that cooperation can emerge even in large groups when agents use appropriate learning mechanisms and reward structures.</p>
+                </div>
+                
+                <div class="finding-card">
+                    <i class="fas fa-chart-area"></i>
+                    <h3>Critical Mass Effect</h3>
+                    <p>Identified a "critical mass" phenomenon where cooperation becomes stable once a threshold percentage of agents adopt cooperative strategies.</p>
+                </div>
+                
+                <div class="finding-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Network Influence</h3>
+                    <p>Network topology significantly affects cooperation dynamics. Small-world networks promote cooperation more effectively than random networks.</p>
+                </div>
+                
+                <div class="finding-card">
+                    <i class="fas fa-dna"></i>
+                    <h3>Evolved Strategies</h3>
+                    <p>Agents developed sophisticated strategies beyond simple tit-for-tat, including reputation-based cooperation and conditional reciprocity.</p>
+                </div>
+            </div>
+
+            <div class="contributions">
+                <h3>Academic Contributions</h3>
+                <ul>
+                    <li><strong>Novel Framework:</strong> Created extensible simulation framework for studying N-person game dynamics with reinforcement learning</li>
+                    <li><strong>Empirical Evidence:</strong> Provided comprehensive empirical analysis of cooperation emergence in multi-agent scenarios</li>
+                    <li><strong>Theoretical Insights:</strong> Identified key factors that promote cooperation in N-person games</li>
+                    <li><strong>Practical Applications:</strong> Framework applicable to real-world multi-agent coordination problems</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Thesis vs Paper -->
+        <section class="content-section">
+            <h2>Thesis Work & Publication</h2>
+            <div class="thesis-paper-comparison">
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h3>Undergraduate Thesis</h3>
+                        <ul>
+                            <li>Comprehensive literature review and theoretical framework</li>
+                            <li>Detailed implementation documentation</li>
+                            <li>Extensive experimental results and analysis</li>
+                            <li>Full methodology and validation approach</li>
+                            <li>Successfully defended in VIVA presentation</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h3>Research Paper (In Progress)</h3>
+                        <ul>
+                            <li>Condensed findings for academic publication</li>
+                            <li>Focus on novel contributions and key results</li>
+                            <li>Refined methodology section</li>
+                            <li>Enhanced statistical analysis</li>
+                            <li>Targeting peer-reviewed journal publication</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="note"><i class="fas fa-info-circle"></i> Currently collaborating with academic supervisors to prepare the research for publication in a peer-reviewed journal.</p>
+            </div>
+        </section>
+
+        <!-- Future Directions -->
+        <section class="content-section">
+            <h2>Impact & Future Directions</h2>
+            <div class="impact-section">
+                <h3>Potential Applications</h3>
+                <div class="application-cards">
+                    <div class="app-card">
+                        <i class="fas fa-car"></i>
+                        <h4>Autonomous Vehicles</h4>
+                        <p>Coordination protocols for self-driving cars at intersections</p>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Environmental Policy</h4>
+                        <p>Modeling international cooperation on climate change</p>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-coins"></i>
+                        <h4>Economic Systems</h4>
+                        <p>Designing incentive structures for collaborative markets</p>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-server"></i>
+                        <h4>Distributed Computing</h4>
+                        <p>Resource allocation in cloud computing environments</p>
+                    </div>
+                </div>
+                
+                <h3>Future Research</h3>
+                <ul>
+                    <li>Extending to continuous action spaces beyond binary cooperate/defect</li>
+                    <li>Incorporating communication channels between agents</li>
+                    <li>Studying the impact of heterogeneous agent capabilities</li>
+                    <li>Real-world validation in specific application domains</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section cta-section">
+            <h2>Interested in This Research?</h2>
+            <p>I'm always excited to discuss game theory, multi-agent systems, and cooperation dynamics. Whether you're interested in the technical details or potential applications, let's connect!</p>
+            <div class="cta-buttons">
+                <a href="../portfolio.html#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+        <p>© <script>document.write(new Date().getFullYear())</script> Cristian Tcaci. All Rights Reserved.</p>
+        <p>Driven by Curiosity, Crafted with Code.</p>
+    </div>
+</footer>
+
+<script src="../portfolio-script.js"></script>
+</body>
+</html>
