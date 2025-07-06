@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap CI/CD Integration Case Study - Cristian Tcaci</title>
+    <meta name="description" content="Case study: Enterprise-scale CI/CD security automation at GE Digital using Nmap, Jenkins, AWS, and Ansible">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../portfolio-style.css">
+    <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="../portfolio.html" class="nav-logo">Cristian Tcaci</a>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="../portfolio.html#about">About</a></li>
+            <li><a href="../portfolio.html#experience">Experience</a></li>
+            <li><a href="../portfolio.html#projects">Projects</a></li>
+            <li><a href="../portfolio.html#skills">Skills</a></li>
+            <li><a href="../portfolio.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="project-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="../portfolio.html">Portfolio</a> / <a href="../portfolio.html#projects">Projects</a> / Case Study
+            </div>
+            <h1>Enterprise CI/CD Security Automation</h1>
+            <p class="subtitle">Automated Port Scanning Framework for AWS Deployments at GE Digital</p>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> June 2023 - September 2024</span>
+                <span><i class="fas fa-building"></i> GE Digital</span>
+                <span><i class="fas fa-award"></i> #Spotlight Award Winner</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="project-content">
+    <div class="container">
+        
+        <!-- Executive Summary -->
+        <section class="content-section">
+            <h2>Executive Summary</h2>
+            <div class="highlight-box">
+                <p>As a software engineering intern at GE Digital, I identified a critical gap in the deployment process: the lack of automated network security validation. Taking full ownership, I designed, built, and implemented a robust port scanning framework using Nmap, integrated directly into CI/CD pipelines. The project evolved from a proof-of-concept into an enterprise-wide solution, automatically securing <strong>72+ unique products</strong> across approximately <strong>140 Jenkins pipelines</strong>.</p>
+            </div>
+        </section>
+
+        <!-- Business Challenge -->
+        <section class="content-section">
+            <h2>Business Challenge</h2>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security Vulnerabilities</h3>
+                    <p>Inadvertently exposed ports could go undetected, creating potential attack vectors</p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-eye-slash"></i>
+                    <h3>Lack of Visibility</h3>
+                    <p>No centralized way to track or enforce network security posture across all products</p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Development Delays</h3>
+                    <p>Discovering security issues post-deployment led to reactive, time-consuming fixes</p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-random"></i>
+                    <h3>Inconsistent Practices</h3>
+                    <p>Manual and inconsistent port verification process across dozens of development teams</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Implementation -->
+        <section class="content-section">
+            <h2>Technical Implementation</h2>
+            
+            <div class="tech-stack">
+                <h3>Technology Stack</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Nmap</span>
+                    <span class="tech-tag">Jenkins</span>
+                    <span class="tech-tag">Groovy</span>
+                    <span class="tech-tag">Ansible</span>
+                    <span class="tech-tag">AWS EC2</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Bash</span>
+                    <span class="tech-tag">Git</span>
+                </div>
+            </div>
+
+            <div class="implementation-flow">
+                <h3>Architecture Overview</h3>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <h4>Pipeline Integration</h4>
+                        <p>New stage added to existing Jenkins deployment pipelines, triggered after successful test deployments</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <h4>Containerized Execution</h4>
+                        <p>Jenkins jobs execute within Docker containers running minimal Linux with Ansible</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <h4>Dynamic Provisioning</h4>
+                        <p>Ansible playbook provisions temporary EC2 instances within the same VPC/subnet as the application</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <h4>Targeted Scanning</h4>
+                        <p>Nmap performs highly-targeted scans against application EC2 instances, checking against predefined "allowed" ports</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <h4>Automated Analysis</h4>
+                        <p>Bash scripts parse Nmap XML output and compare against "golden lists" for each application</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">6</div>
+                        <h4>Pass/Fail Decision</h4>
+                        <p>Pipeline fails if unexpected ports are found, immediately notifying development teams</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">7</div>
+                        <h4>Resource Cleanup</h4>
+                        <p>Temporary scanner EC2 instances are automatically terminated to control costs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Achievement -->
+        <section class="content-section">
+            <h2>Key Achievement: "Port 10001" Investigation</h2>
+            <div class="achievement-story">
+                <p>During initial rollout, the system immediately proved its value by flagging an unexpected open port (10001). This discovery triggered a comprehensive investigation involving:</p>
+                <ul>
+                    <li><strong>Christoph from Smallcases</strong> - Application behavior analysis</li>
+                    <li><strong>Steven Smith, Cyber Security Director</strong> - Security implications assessment</li>
+                    <li><strong>DevOps Team</strong> - Deployment process and AWS configurations review</li>
+                </ul>
+                <p>The investigation revealed an obscure behavior in an underlying service on the base AWS machine image, validating the project's necessity and increasing senior leadership buy-in.</p>
+            </div>
+        </section>
+
+        <!-- Results and Impact -->
+        <section class="content-section">
+            <h2>Results and Impact</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">72+</div>
+                    <div class="metric-label">Products Secured</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">~140</div>
+                    <div class="metric-label">Pipelines Automated</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Automation Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Minutes</div>
+                    <div class="metric-label">vs. Weeks/Months Detection Time</div>
+                </div>
+            </div>
+
+            <div class="impact-list">
+                <h3>Strategic Impact</h3>
+                <ul>
+                    <li><strong>Enhanced Security Posture:</strong> Established consistent, enforceable baseline for network security</li>
+                    <li><strong>Reusable Framework:</strong> Success led to new feature requests (Microsoft Teams integration, automated dashboards)</li>
+                    <li><strong>Cultural Change:</strong> Promoted "security by design" mindset across development teams</li>
+                    <li><strong>Cross-Team Collaboration:</strong> Improved communication between development, DevOps, and cybersecurity teams</li>
+                    <li><strong>Business Case Development:</strong> Initiated integration with GridOS team, setting precedent for future implementations</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Recognition -->
+        <section class="content-section">
+            <h2>Recognition & Achievements</h2>
+            <div class="recognition-cards">
+                <div class="recognition-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>#Spotlight Award</h3>
+                    <p>Received "Deliver with Focus" award in December 2023 for proactive ownership of critical security initiatives</p>
+                </div>
+                <div class="recognition-card">
+                    <i class="fas fa-presentation"></i>
+                    <h3>Engineering Pulse Presentation</h3>
+                    <p>Successfully presented project to senior engineers and directors at company-wide forum</p>
+                </div>
+                <div class="recognition-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Comprehensive Documentation</h3>
+                    <p>Created detailed schematics and documentation for smooth handover and continued success</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Growth -->
+        <section class="content-section">
+            <h2>Personal Growth & Leadership</h2>
+            <div class="growth-timeline">
+                <div class="growth-item">
+                    <i class="fas fa-rocket"></i>
+                    <h3>From Intern to Project Owner</h3>
+                    <p>Transitioned from intern to sole project owner and driver of enterprise-wide initiative</p>
+                </div>
+                <div class="growth-item">
+                    <i class="fas fa-hard-hat"></i>
+                    <h3>Multiple Roles</h3>
+                    <p>Wore multiple hats: Solution Architect, DevOps Engineer, Security Liaison</p>
+                </div>
+                <div class="growth-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Cross-Functional Leadership</h3>
+                    <p>Led investigations and collaborations across development, security, and operations teams</p>
+                </div>
+                <div class="growth-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Problem Identification to Solution</h3>
+                    <p>Demonstrated ability to identify problems and drive solutions from concept to enterprise-wide implementation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section cta-section">
+            <h2>Let's Discuss This Project</h2>
+            <p>Interested in learning more about this security automation framework or discussing similar challenges?</p>
+            <div class="cta-buttons">
+                <a href="../portfolio.html#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="../portfolio.html#projects" class="btn btn-secondary">View More Projects</a>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+        <p>© <script>document.write(new Date().getFullYear())</script> Cristian Tcaci. All Rights Reserved.</p>
+        <p>Driven by Curiosity, Crafted with Code.</p>
+    </div>
+</footer>
+
+<script src="../portfolio-script.js"></script>
+</body>
+</html>
