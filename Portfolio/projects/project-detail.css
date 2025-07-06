@@ -1,0 +1,391 @@
+/* project-detail.css - Styles for project detail pages */
+
+/* Project Hero Section */
+.project-hero {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--accent-color2) 100%);
+    color: var(--text-light);
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-hero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(30, 27, 24, 0.6);
+    z-index: 1;
+}
+
+.project-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.breadcrumb a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.breadcrumb a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.project-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.project-hero .subtitle {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.project-meta {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 1.1rem;
+}
+
+.project-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-meta i {
+    color: var(--accent-color1);
+}
+
+/* Content Sections */
+.project-content {
+    padding: 60px 0;
+    background: var(--light-bg);
+}
+
+.content-section {
+    margin-bottom: 60px;
+}
+
+.content-section h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.content-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color1);
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--primary-color);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Challenge Grid */
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.challenge-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.challenge-card i {
+    font-size: 3rem;
+    color: var(--accent-color1);
+    margin-bottom: 20px;
+}
+
+.challenge-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+/* Tech Stack */
+.tech-stack {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.tech-tag {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Implementation Flow */
+.implementation-flow {
+    margin-top: 30px;
+}
+
+.flow-steps {
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.flow-step {
+    background: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color1);
+    color: var(--dark-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.flow-step h4 {
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+/* Achievement Story */
+.achievement-story {
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    line-height: 1.8;
+}
+
+.achievement-story ul {
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+.achievement-story li {
+    margin-bottom: 10px;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    border-top: 4px solid var(--accent-color1);
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.metric-label {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Impact List */
+.impact-list {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.impact-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.impact-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    line-height: 1.8;
+}
+
+.impact-list li:last-child {
+    border-bottom: none;
+}
+
+/* Recognition Cards */
+.recognition-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.recognition-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.recognition-card:hover {
+    transform: translateY(-5px);
+}
+
+.recognition-card i {
+    font-size: 3rem;
+    color: var(--accent-color1);
+    margin-bottom: 20px;
+}
+
+.recognition-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Growth Timeline */
+.growth-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.growth-item {
+    text-align: center;
+}
+
+.growth-item i {
+    font-size: 2.5rem;
+    color: var(--accent-color1);
+    margin-bottom: 15px;
+}
+
+.growth-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    background: white;
+    padding: 50px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .project-hero .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .project-meta {
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .flow-step {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .step-number {
+        margin: 0 auto;
+    }
+    
+    .metric-value {
+        font-size: 2rem;
+    }
+    
+    .challenge-grid,
+    .metrics-grid,
+    .recognition-cards,
+    .growth-timeline {
+        grid-template-columns: 1fr;
+    }
+}
