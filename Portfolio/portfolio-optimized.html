@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Tcaci - Software Engineer Portfolio</title>
+    <meta name="description" content="Software Engineer specializing in DevOps, Cloud Security, and Full-Stack Development. View my portfolio, projects, and professional experience.">
+    <meta property="og:title" content="Cristian Tcaci - Software Engineer Portfolio">
+    <meta property="og:description" content="Software Engineer specializing in DevOps, Cloud Security, and Full-Stack Development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chris0jeky.github.io/CV_and_Portfolio/">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS inline (extract critical styles here) -->
+    <style>
+        /* Add critical above-the-fold styles here */
+        body { margin: 0; font-family: 'Poppins', sans-serif; }
+        .navbar { position: fixed; width: 100%; top: 0; z-index: 1000; }
+    </style>
+    
+    <!-- Fonts with display=swap for better loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Defer non-critical CSS -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    
+    <link rel="stylesheet" href="portfolio-style.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="portfolio-script.js" as="script">
+    <link rel="preload" href="./images/headshot.jpg" as="image">
+</head>
+<body>
+
+<!-- Same HTML content as original portfolio.html -->
+<!-- (Copy all the HTML from the original file here) -->
+
+<!-- Optimized script loading at the end -->
+<script>
+    // Inline critical JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu functionality (critical)
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('nav-open');
+            });
+        }
+    });
+</script>
+
+<!-- Defer all animation libraries -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<script defer src="portfolio-script.js"></script>
+
+<!-- Load heavy libraries only when needed -->
+<script>
+    // Intersection Observer for lazy loading animations
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Load AOS when content comes into view
+                if (!window.AOS && !document.querySelector('script[src*="aos"]')) {
+                    const aosScript = document.createElement('script');
+                    aosScript.src = 'https://unpkg.com/aos@next/dist/aos.js';
+                    aosScript.onload = () => {
+                        const aosCSS = document.createElement('link');
+                        aosCSS.rel = 'stylesheet';
+                        aosCSS.href = 'https://unpkg.com/aos@next/dist/aos.css';
+                        document.head.appendChild(aosCSS);
+                        AOS.init({ duration: 1000, once: true });
+                    };
+                    document.body.appendChild(aosScript);
+                }
+                animationObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    // Observe elements that need animation
+    document.querySelectorAll('[data-aos]').forEach(el => {
+        animationObserver.observe(el);
+    });
+    
+    // Load particles only after page load and only on desktop
+    window.addEventListener('load', () => {
+        if (window.innerWidth > 768) {
+            setTimeout(() => {
+                const particlesScript = document.createElement('script');
+                particlesScript.src = 'https://cdn.jsdelivr.net/npm/tsparticles-slim@2.11.1/tsparticles.slim.bundle.min.js';
+                particlesScript.onload = () => {
+                    // Initialize particles with reduced particle count
+                    if (window.tsParticles) {
+                        tsParticles.load("tsparticles", {
+                            // Reduced configuration for better performance
+                            particles: {
+                                number: { value: 30 }, // Reduced from 60
+                                move: { speed: 0.5 }, // Slower movement
+                            }
+                        });
+                    }
+                };
+                document.body.appendChild(particlesScript);
+            }, 1000); // Delay loading by 1 second
+        }
+    });
+    
+    // GSAP - Load only if user scrolls past hero
+    let gsapLoaded = false;
+    window.addEventListener('scroll', () => {
+        if (!gsapLoaded && window.scrollY > window.innerHeight * 0.5) {
+            gsapLoaded = true;
+            const gsapScript = document.createElement('script');
+            gsapScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+            document.body.appendChild(gsapScript);
+        }
+    }, { passive: true });
+</script>
+
+</body>
+</html>
