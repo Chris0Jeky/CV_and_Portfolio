@@ -10,11 +10,38 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://chris0jeky.github.io/CV_and_Portfolio/">
     <!-- Add your chosen "godly" fonts from Google Fonts or other sources -->
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    
+    <!-- Critical inline CSS for immediate render -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; }
+        .navbar { position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; background-color: rgba(30, 27, 24, 0.92); padding: 15px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 1200px; margin: 0 auto; }
+        .nav-logo { font-size: 1.8rem; font-weight: 700; color: #EAEAEA; text-decoration: none; }
+        .hero-section { height: 100vh; min-height: 650px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; color: #EAEAEA; background-image: linear-gradient(135deg, #1E1B18 0%, #4A3B31 100%); }
+        .hero-content { position: relative; z-index: 2; max-width: 850px; }
+        .hero-content h1 { font-size: 4.8rem; font-weight: 700; margin-bottom: .3em; color: #EAEAEA; }
+        .btn { display: inline-block; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s; cursor: pointer; border: 2px solid transparent; font-size: 1rem; padding: 14px 32px; margin: 10px 12px; }
+        .btn-primary { background-color: #B71C1C; border-color: #B71C1C; color: #EAEAEA; }
+        .btn-secondary { background-color: #FF8F00; border-color: #FF8F00; color: #1E1B18; }
+        @media (max-width: 768px) { .hero-content h1 { font-size: 3.2rem; } }
+    </style>
+    
+    <!-- Fonts with display=swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Consider animation libraries like AOS (Animate On Scroll) or GSAP for advanced effects -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="portfolio-style.css">
+    
+    <!-- Defer non-critical CSS -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </head>
 <body>
 
@@ -252,20 +279,111 @@
     </div>
 </footer>
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    AOS.init({
-        duration: 1000, // values from 0 to 3000, with step 50ms
-        once: true, // whether animation should happen only once - while scrolling down
-    });
-</script>
-<!-- 🔥 animation libs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<!-- Optimized script loading -->
+<script src="portfolio-script.js" defer></script>
 
-<script src="portfolio-script.js"></script>
+<!-- Load animation libraries only when needed -->
+<script>
+    // Lazy load AOS for scroll animations
+    const loadAOS = () => {
+        if (!window.AOS) {
+            const aosCSS = document.createElement('link');
+            aosCSS.rel = 'stylesheet';
+            aosCSS.href = 'https://unpkg.com/aos@next/dist/aos.css';
+            document.head.appendChild(aosCSS);
+            
+            const aosScript = document.createElement('script');
+            aosScript.src = 'https://unpkg.com/aos@next/dist/aos.js';
+            aosScript.onload = () => {
+                AOS.init({ duration: 800, once: true, offset: 50 });
+            };
+            document.body.appendChild(aosScript);
+        }
+    };
+    
+    // Load AOS when user starts scrolling
+    let aosLoaded = false;
+    window.addEventListener('scroll', () => {
+        if (!aosLoaded && window.scrollY > 100) {
+            aosLoaded = true;
+            loadAOS();
+        }
+    }, { passive: true, once: true });
+    
+    // Load particles only on desktop after page load
+    window.addEventListener('load', () => {
+        if (window.innerWidth > 768) {
+            setTimeout(() => {
+                const particlesScript = document.createElement('script');
+                particlesScript.src = 'https://cdn.jsdelivr.net/npm/tsparticles-slim@2.11.1/tsparticles.slim.bundle.min.js';
+                particlesScript.onload = () => {
+                    if (window.tsParticles && document.getElementById('tsparticles')) {
+                        tsParticles.load("tsparticles", {
+                            fpsLimit: 30,
+                            particles: {
+                                color: { value: "#FF8F00" },
+                                links: {
+                                    color: "#4A3B31",
+                                    distance: 150,
+                                    enable: true,
+                                    opacity: 0.2,
+                                    width: 1
+                                },
+                                move: {
+                                    enable: true,
+                                    speed: 0.5,
+                                    direction: "none",
+                                    random: false,
+                                    straight: false,
+                                    outModes: { default: "bounce" }
+                                },
+                                number: {
+                                    value: 20,
+                                    density: { enable: true, area: 1200 }
+                                },
+                                opacity: { value: 0.3 },
+                                shape: { type: "circle" },
+                                size: { value: { min: 1, max: 2 } }
+                            },
+                            detectRetina: true
+                        });
+                    }
+                };
+                document.body.appendChild(particlesScript);
+            }, 500);
+        }
+    });
+    
+    // Load vanilla-tilt only when project cards are visible
+    const tiltObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !window.VanillaTilt) {
+                const tiltScript = document.createElement('script');
+                tiltScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js';
+                tiltScript.onload = () => {
+                    // Initialize tilt on cards
+                    VanillaTilt.init(document.querySelectorAll(".project-card"), {
+                        max: 10,
+                        speed: 400,
+                        glare: true,
+                        "max-glare": 0.2
+                    });
+                    VanillaTilt.init(document.querySelectorAll(".skill-area"), {
+                        max: 5,
+                        speed: 600
+                    });
+                };
+                document.body.appendChild(tiltScript);
+                tiltObserver.disconnect();
+            }
+        });
+    });
+    
+    // Observe project section
+    const projectSection = document.querySelector('#projects');
+    if (projectSection) {
+        tiltObserver.observe(projectSection);
+    }
+</script>
 </body>
 </html>
