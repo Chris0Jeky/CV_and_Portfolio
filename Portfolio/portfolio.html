@@ -37,13 +37,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     
     <!-- Main stylesheet -->
-    <link rel="stylesheet" href="portfolio-style.css">
+    <link rel="stylesheet" href="portfolio-modern.css">
     
     <!-- Defer non-critical CSS -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 </head>
 <body>
+<!-- Page Loader -->
+<div class="page-loader" id="page-loader">
+    <div class="loader-inner"></div>
+</div>
 
 <!-- Navigation Bar (Sticky or Fixed) -->
 <nav class="navbar">
@@ -70,11 +74,12 @@
 <header id="hero" class="hero-section">
     <div id="tsparticles"></div>
     <div class="hero-overlay"></div> <!-- For background image/video dimming -->
+    <div class="shape-1"></div> <!-- Animated background shape -->
     <div class="hero-content" data-aos="fade-up">
         <h1>Cristian Tcaci</h1>
         <p class="hero-tagline">Software Engineer | DevOps Innovator | AI Researcher | Building Tomorrow's Solutions</p>
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="../CV/cv-tabloid.html" target="_blank" class="btn btn-secondary">Download CV</a>
+        <a href="#projects" class="btn btn-primary"><span>View My Work</span></a>
+        <a href="../CV/cv-tabloid.html" target="_blank" class="btn btn-secondary"><span>Download CV</span></a>
     </div>
 </header>
 
@@ -189,7 +194,7 @@
             <!-- Add more project cards -->
         </div>
         <div class="text-center" style="margin-top: 30px;">
-            <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-primary">More on GitHub <i class="fab fa-github"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-primary"><span>More on GitHub <i class="fab fa-github"></i></span></a>
         </div>
     </div>
 </section>
@@ -262,7 +267,7 @@
     <div class="container text-center" data-aos="fade-up">
         <h2>Let's Build Something Amazing Together</h2>
         <p class="section-intro">I'm always excited to discuss new projects, innovative ideas, or potential collaborations. <br>Reach out, and let's explore how we can create impact.</p>
-        <a href="mailto:Jeky.tck@gmail.com" class="btn btn-primary btn-lg">Get In Touch</a>
+        <a href="mailto:Jeky.tck@gmail.com" class="btn btn-primary btn-lg"><span>Get In Touch</span></a>
         <div class="contact-socials">
             <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin fa-2x"></i></a>
             <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github fa-2x"></i></a>
