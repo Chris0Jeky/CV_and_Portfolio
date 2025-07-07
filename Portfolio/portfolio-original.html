@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Tcaci - Software Engineer Portfolio</title>
+    <meta name="description" content="Software Engineer specializing in DevOps, Cloud Security, and Full-Stack Development. View my portfolio, projects, and professional experience.">
+    <meta property="og:title" content="Cristian Tcaci - Software Engineer Portfolio">
+    <meta property="og:description" content="Software Engineer specializing in DevOps, Cloud Security, and Full-Stack Development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chris0jeky.github.io/CV_and_Portfolio/">
+    <!-- Add your chosen "godly" fonts from Google Fonts or other sources -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Consider animation libraries like AOS (Animate On Scroll) or GSAP for advanced effects -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="portfolio-style.css">
+</head>
+<body>
+
+<!-- Navigation Bar (Sticky or Fixed) -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#hero" class="nav-logo">Cristian Tcaci</a>
+        <button class="nav-toggle" aria-label="toggle navigation"> <!-- ADD BURGER -->
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header id="hero" class="hero-section">
+    <div id="tsparticles"></div>
+    <div class="hero-overlay"></div> <!-- For background image/video dimming -->
+    <div class="hero-content" data-aos="fade-up">
+        <h1>Cristian Tcaci</h1>
+        <p class="hero-tagline">Software Engineer | DevOps Innovator | AI Researcher | Building Tomorrow's Solutions</p>
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="../CV/cv-tabloid.html" target="_blank" class="btn btn-secondary">Download CV</a>
+    </div>
+</header>
+
+<!-- About Me / My Journey Section -->
+<section id="about" class="about-section content-section">
+    <div class="container" data-aos="fade-right">
+        <h2>My Journey: From Curiosity to Code</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I was always a curious individual, fascinated by technology, logic, and how systems fit together... (Incorporate your "Early Passion & Curiosity" here)</p>
+                <p>My high school experiences, particularly the Rome Cup Robotics Competition, ignited a passion for system integration and team-based problem-solving... (Expand on "High School")</p>
+                <p>University life at Middlesex has been transformative, combining rigorous academic theory with hands-on projects, from foundational robotics to advanced AI and full-stack development... (Cover "University-Level Advancement")</p>
+                <p>My internship at GE Digital was a pivotal deep-dive into enterprise-scale DevOps, cloud security, and the nuances of maintaining critical legacy systems while pushing for modernization... (Briefly touch on GE context here, more detail in Experience)</p>
+            </div>
+            <div class="about-image">
+
+                <div class="profile-picture">
+                    <img src="./images/headshot.jpg" alt="Cristian Tcaci - Software Engineer Profile Picture">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section (Timeline Style) -->
+<section id="experience" class="experience-section content-section alt-bg">
+    <div class="container">
+        <h2 data-aos="fade-down">Professional Milestones</h2>
+        <div class="timeline">
+            <!-- DeliveraSoft -->
+            <div class="timeline-item" data-aos="slide-up">
+                <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
+                <div class="timeline-content">
+                    <h3>DevOps Engineer & Full-Stack Developer (Freelance)</h3>
+                    <span class="company">DeliveraSoft</span><span class="date">Mar 2025 - Present</span>
+                    <p>Empowering SMEs with automation, custom software, landing pages, and IT consulting. Driving digital transformation for Italian businesses...</p>
+                    <a href="#project-deliverasoft" class="read-more-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <!-- Middlesex Researcher -->
+            <div class="timeline-item" data-aos="slide-up">
+                <div class="timeline-icon"><i class="fas fa-flask"></i></div>
+                <div class="timeline-content">
+                    <h3>Researcher (N-IPD Simulations)</h3>
+                    <span class="company">Middlesex University</span><span class="date">Dec 2024 - Present</span>
+                    <p>Leading research and co-authoring a scientific paper on the emergence of cooperation in N-Person Iterated Prisoner's Dilemma using MARL...</p>
+                    <a href="projects/nipd-research.html" class="read-more-link">View Research Details <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <!-- GE Digital -->
+            <div class="timeline-item" data-aos="slide-up">
+                <div class="timeline-icon"><i class="fas fa-cogs"></i></div>
+                <div class="timeline-content">
+                    <h3>Software Engineer Intern</h3>
+                    <span class="company">Fortune 500 Enterprise</span><span class="date">Jun 2023 - Sep 2024</span>
+                    <p>Spearheaded security automation in cloud CI/CD. Maintained legacy enterprise systems. Championed "security by design." Earned performance award...</p>
+                    <a href="projects/nmap-case-study.html" class="read-more-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <!-- Student Ambassador/Voice Leader -->
+            <div class="timeline-item" data-aos="slide-up">
+                <div class="timeline-icon"><i class="fas fa-bullhorn"></i></div>
+                <div class="timeline-content">
+                    <h3>Student Ambassador, Voice Leader, Lead Ambassador</h3>
+                    <span class="company">Middlesex University</span><span class="date">Oct 2022 - Present</span>
+                    <p>Represented students, gathered feedback, and collaborated with faculty to enhance academic programs and student experience...</p>
+                </div>
+            </div>
+            <!-- Add other key roles if desired -->
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section (Card-Based or Detailed Showcase) -->
+<section id="projects" class="projects-section content-section">
+    <div class="container">
+        <h2 data-aos="fade-down">Featured Projects & Research</h2>
+        <div class="projects-grid">
+            <!-- Project 1: N-IPD Research -->
+            <div class="project-card no-image" data-aos="zoom-in-up" id="project-nipd">
+                <!-- <img src="project-nipd-image.jpg" alt="N-IPD Simulation"> -->
+                <div class="project-card-overlay">
+                    <h3>N-IPD Simulation & Cooperation Research</h3>
+                    <p>MARL exploration of cooperation dynamics. Aiming for publication.</p>
+                    <a href="projects/nipd-research.html" class="btn btn-secondary">Explore Research</a>
+                </div>
+            </div>
+            <!-- Project 2: GE Nmap Automation -->
+            <div class="project-card no-image" data-aos="zoom-in-up" id="project-ge-nmap">
+                <div class="project-card-overlay">
+                    <h3>Enterprise Security Automation</h3>
+                    <p>Automated security validation in 70+ cloud CI/CD pipelines. Enhanced security posture.</p>
+                    <a href="projects/nmap-case-study.html" class="btn btn-secondary">View Case Study</a>
+                </div>
+            </div>
+            <!-- Project 3: Full-Stack App -->
+            <div class="project-card no-image" data-aos="zoom-in-up">
+                <div class="project-card-overlay">
+                    <h3>Full-Stack "Lesson Purchase" App</h3>
+                    <p>Vue.js, Node.js, Express, MongoDB. Deployed on AWS/Render.</p>
+                    <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-secondary">View on GitHub</a>
+                </div>
+            </div>
+            <!-- Project 4: ML Digit Recognition -->
+            <div class="project-card no-image" data-aos="zoom-in-up">
+                <div class="project-card-overlay">
+                    <h3>ML Digit Recognition (Java)</h3>
+                    <p>Implemented k-NN, MLP, SVM from scratch. Achieved ~98.4% accuracy.</p>
+                    <a href="projects/ml-digit-recognition.html" class="btn btn-secondary">View Details</a>
+                </div>
+            </div>
+            <!-- Add more project cards -->
+        </div>
+        <div class="text-center" style="margin-top: 30px;">
+            <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-primary">More on GitHub <i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Showcase Section -->
+<section id="skills" class="skills-showcase-section content-section alt-bg">
+    <div class="container">
+        <h2 data-aos="fade-down">My Technical Arsenal</h2>
+        <p class="section-intro" data-aos="fade-up">A blend of modern frameworks, robust languages, and strategic methodologies to build and secure impactful software.</p>
+        <div class="skills-grid">
+            <div class="skill-area" data-aos="fade-right">
+                <h4><i class="fas fa-laptop-code"></i> Languages & Paradigms</h4>
+                <ul><li>Java (OOP, Concurrency)</li><li>C++ (STL, Performance)</li><li>Python (Scripting, Data, ML)</li><li>JavaScript/TypeScript</li><li>Magik (GIS)</li><li>SQL & NoSQL</li><li>Bash, Groovy</li></ul>
+            </div>
+            <div class="skill-area" data-aos="fade-up">
+                <h4><i class="fas fa-cubes"></i> Frameworks & Libraries</h4>
+                <ul><li>Vue.js, Node.js/Express</li><li>Scikit-learn, TensorFlow, PyTorch</li><li>JUnit, MUnit, Catch2</li><li>Bootstrap, jQuery</li></ul>
+            </div>
+            <div class="skill-area" data-aos="fade-left">
+                <h4><i class="fas fa-cloud-upload-alt"></i> DevOps & Cloud</h4>
+                <ul><li>AWS (EC2, S3, Security)</li><li>Jenkins, CI/CD Pipelines</li><li>Docker, Kubernetes (Intro)</li><li>Terraform (Concepts)</li><li>Git, GitHub Actions</li></ul>
+            </div>
+            <div class="skill-area" data-aos="fade-right">
+                <h4><i class="fas fa-shield-alt"></i> Security & Testing</h4>
+                <ul><li>Nmap, Port Scanning</li><li>Vulnerability Assessment</li><li>Secure Coding Practices</li><li>Pen Testing Concepts</li></ul>
+            </div>
+            <div class="skill-area" data-aos="fade-up">
+                <h4><i class="fas fa-database"></i> Databases & Data</h4>
+                <ul><li>MongoDB (Atlas)</li><li>SQL (MySQL, PostgreSQL)</li><li>Data Analysis (Pandas)</li><li>ETL Concepts</li></ul>
+            </div>
+            <div class="skill-area" data-aos="fade-left">
+                <h4><i class="fas fa-sitemap"></i> Architecture & Methodologies</h4>
+                <ul><li>OOP, Design Patterns</li><li>Microservices Concepts</li><li>Agile/Scrum</li><li>UML, System Design</li></ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Philosophy / Strengths Section (from your CV's Reflection) -->
+<section id="philosophy" class="philosophy-section content-section">
+    <div class="container">
+        <h2 data-aos="fade-down">Core Philosophy & Strengths</h2>
+        <div class="philosophy-grid">
+            <div class="philosophy-item" data-aos="zoom-in">
+                <i class="fas fa-sync-alt fa-3x"></i>
+                <h3>Adaptable Across Domains</h3>
+                <p>From retail management to enterprise DevOps, I quickly learn domain nuances and deliver value.</p>
+            </div>
+            <div class="philosophy-item" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-layer-group fa-3x"></i>
+                <h3>Solid Full-Stack Foundation</h3>
+                <p>Proficient in both front-end (Vue.js) and back-end (Node, Express, Mongo), enabling end-to-end project development.</p>
+            </div>
+            <div class="philosophy-item" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-shield-virus fa-3x"></i>
+                <h3>Passion for Security & Reliability</h3>
+                <p>Advocating for a "security by design" culture, ensuring robust and resilient systems.</p>
+            </div>
+            <div class="philosophy-item" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-users fa-3x"></i>
+                <h3>Collaboration & Communication</h3>
+                <p>Bridging knowledge gaps and translating technical details for diverse audiences. Communication is key to team alignment.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action / Contact Section -->
+<section id="contact" class="contact-section content-section alt-bg">
+    <div class="container text-center" data-aos="fade-up">
+        <h2>Let's Build Something Amazing Together</h2>
+        <p class="section-intro">I'm always excited to discuss new projects, innovative ideas, or potential collaborations. <br>Reach out, and let's explore how we can create impact.</p>
+        <a href="mailto:Jeky.tck@gmail.com" class="btn btn-primary btn-lg">Get In Touch</a>
+        <div class="contact-socials">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github fa-2x"></i></a>
+            <!-- Add other relevant socials -->
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+        <p>© <script>document.write(new Date().getFullYear())</script> Cristian Tcaci. All Rights Reserved.</p>
+        <p>Driven by Curiosity, Crafted with Code.</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // values from 0 to 3000, with step 50ms
+        once: true, // whether animation should happen only once - while scrolling down
+    });
+</script>
+<!-- 🔥 animation libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+<script src="portfolio-script.js"></script>
+</body>
+</html>
