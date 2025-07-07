@@ -137,3 +137,53 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('img[data-src]').forEach(img => {
     imageObserver.observe(img);
 });
+
+// Parallax scrolling effect
+const parallaxElements = document.querySelectorAll('.hero-section, .shape-1');
+if (parallaxElements.length > 0) {
+    const parallaxScroll = debounce(() => {
+        const scrolled = window.pageYOffset;
+        const speed = 0.5;
+        
+        parallaxElements.forEach(element => {
+            if (element.classList.contains('hero-section')) {
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            } else if (element.classList.contains('shape-1')) {
+                element.style.transform = `translateY(${scrolled * speed * 0.8}px)`;
+            }
+        });
+    }, 10);
+    
+    window.addEventListener('scroll', parallaxScroll, { passive: true });
+}
+
+// Add smooth reveal animations to sections
+const revealSections = () => {
+    const sections = document.querySelectorAll('.content-section');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        revealObserver.observe(section);
+    });
+};
+
+// Initialize reveal animations
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealSections);
+} else {
+    revealSections();
+}
