@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub - After School Lessons Platform | Cristian Tcaci</title>
+    <meta name="description" content="Full-stack web application connecting parents with quality after-school lessons. Built with Vue.js, Node.js, Express, and MongoDB.">
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Project Detail Styles -->
+    <link rel="stylesheet" href="project-detail.css">
+    
+    <style>
+        /* Custom styles for this case study */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .tech-category {
+            background: rgba(15, 15, 30, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tech-category h4 {
+            color: #8b5cf6;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tech-list li {
+            padding: 5px 0;
+            color: #a5b4fc;
+            font-size: 0.95rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+        
+        .feature-card h4 {
+            color: #e0e7ff;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-card li {
+            padding: 8px 0;
+            color: #a5b4fc;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .feature-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+        
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .metric-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-label {
+            color: #a5b4fc;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .warning-note {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            color: #fbbf24;
+        }
+        
+        .warning-note i {
+            margin-right: 10px;
+        }
+        
+        .challenge-solution {
+            background: rgba(15, 15, 30, 0.6);
+            border-left: 4px solid #8b5cf6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .challenge-solution h5 {
+            color: #d946ef;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-solution p {
+            color: #a5b4fc;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../portfolio.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <div class="nav-links">
+                <a href="https://chris0jeky.github.io/CST3144-Coursework-FullstackDev-FrontEnd/" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+                <a href="https://github.com/Chris0Jeky/CST3144-Coursework-FullstackDev-FrontEnd" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="project-hero">
+        <div class="hero-content">
+            <h1>EduHub - After School Lessons Platform</h1>
+            <p class="project-tagline">Full-Stack Web Application for Educational Class Booking</p>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> Developed: October 2024</span>
+                <span><i class="fas fa-code"></i> Full Stack Development</span>
+                <span><i class="fas fa-university"></i> CST3144 Coursework</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="project-content">
+        <div class="container">
+            <!-- Project Overview -->
+            <section class="content-section">
+                <h2>Project Overview</h2>
+                <p>
+                    EduHub is a comprehensive full-stack web application designed to connect parents with quality 
+                    after-school lessons for their children. The platform provides a seamless experience for browsing, 
+                    filtering, and booking educational classes across various subjects including STEM, Arts, Sports, 
+                    and Languages.
+                </p>
+                <p>
+                    This project was developed as part of CST3144 Full Stack Development coursework, demonstrating 
+                    proficiency in modern web development technologies and best practices. The application showcases 
+                    a complete solution from database design to user interface implementation.
+                </p>
+                
+                <div class="warning-note">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Note:</strong> The live demo uses free tier services. The backend (Render.com) may take 
+                    up to 1 minute to wake from idle state. The MongoDB Atlas cluster may also need reactivation if 
+                    unprovisioned. Please be patient on first load.
+                </div>
+            </section>
+
+            <!-- Technical Architecture -->
+            <section class="content-section">
+                <h2>Technical Architecture</h2>
+                
+                <div class="tech-grid">
+                    <div class="tech-category">
+                        <h4><i class="fas fa-laptop-code"></i> Frontend Stack</h4>
+                        <ul class="tech-list">
+                            <li>Vue.js 2.7.8 (Progressive JavaScript Framework)</li>
+                            <li>Custom CSS with CSS Variables</li>
+                            <li>Bootstrap 5 Components</li>
+                            <li>AOS (Animate On Scroll) Library</li>
+                            <li>Font Awesome 6 Icons</li>
+                            <li>LocalStorage for State Persistence</li>
+                            <li>GitHub Pages Deployment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-category">
+                        <h4><i class="fas fa-server"></i> Backend Stack</h4>
+                        <ul class="tech-list">
+                            <li>Node.js Runtime Environment</li>
+                            <li>Express.js 4.21.1 Framework</li>
+                            <li>MongoDB Atlas (Cloud NoSQL)</li>
+                            <li>Helmet.js Security Middleware</li>
+                            <li>CORS & Rate Limiting</li>
+                            <li>Express Validator</li>
+                            <li>RESTful API with MVC Pattern</li>
+                            <li>Render.com Deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Features -->
+            <section class="content-section">
+                <h2>Key Features</h2>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-search"></i> Dynamic Lesson Discovery</h4>
+                        <ul>
+                            <li>Real-time search across topics and locations</li>
+                            <li>Category-based filtering (STEM, Arts, Sports, Languages)</li>
+                            <li>Sort by price, availability, or alphabetically</li>
+                            <li>Visual indicators for lesson availability</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4><i class="fas fa-shopping-cart"></i> Shopping Experience</h4>
+                        <ul>
+                            <li>Intuitive cart management with slide-out panel</li>
+                            <li>Quantity controls with live space tracking</li>
+                            <li>Persistent cart using browser localStorage</li>
+                            <li>Clear visual feedback for all actions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4><i class="fas fa-credit-card"></i> Booking Process</h4>
+                        <ul>
+                            <li>Streamlined checkout flow</li>
+                            <li>Form validation with helpful error messages</li>
+                            <li>Order confirmation with unique reference numbers</li>
+                            <li>Transaction integrity with database transactions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4><i class="fas fa-shield-alt"></i> Security & Performance</h4>
+                        <ul>
+                            <li>Input validation on client and server</li>
+                            <li>CORS configuration for production</li>
+                            <li>Rate limiting to prevent abuse</li>
+                            <li>Responsive design for all devices</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Implementation -->
+            <section class="content-section">
+                <h2>Technical Implementation Details</h2>
+                
+                <h3>Database Design</h3>
+                <p>
+                    The application uses MongoDB with two main collections: Lessons and Orders. The schema design 
+                    supports flexible field names for backward compatibility while maintaining data integrity through 
+                    validation rules.
+                </p>
+                
+                <h3>API Architecture</h3>
+                <p>
+                    Built following RESTful principles with clean separation of concerns. The backend implements:
+                </p>
+                <ul>
+                    <li>Controllers for business logic</li>
+                    <li>Models for data structure</li>
+                    <li>Routes for endpoint management</li>
+                    <li>Middleware for validation and security</li>
+                    <li>MongoDB transactions for data integrity</li>
+                    <li>Async/await pattern for clean asynchronous code</li>
+                </ul>
+                
+                <h3>Frontend Architecture</h3>
+                <p>
+                    The Vue.js frontend utilizes:
+                </p>
+                <ul>
+                    <li>Component-based design for modularity</li>
+                    <li>Reactive data binding for real-time updates</li>
+                    <li>Computed properties for efficient calculations</li>
+                    <li>Watchers for automatic data synchronization</li>
+                    <li>Modern ES6+ JavaScript features</li>
+                </ul>
+            </section>
+
+            <!-- Development Challenges -->
+            <section class="content-section">
+                <h2>Development Challenges & Solutions</h2>
+                
+                <div class="challenge-solution">
+                    <h5>Challenge: Database Field Compatibility</h5>
+                    <p><strong>Problem:</strong> Legacy database used 'space' while new code expected 'spaces'</p>
+                    <p><strong>Solution:</strong> Implemented field normalization middleware to support both formats transparently</p>
+                </div>
+                
+                <div class="challenge-solution">
+                    <h5>Challenge: Real-time Availability Synchronization</h5>
+                    <p><strong>Problem:</strong> Keeping lesson availability synchronized across multiple users</p>
+                    <p><strong>Solution:</strong> API calls on cart operations with optimistic UI updates and rollback handling</p>
+                </div>
+                
+                <div class="challenge-solution">
+                    <h5>Challenge: Transaction Integrity</h5>
+                    <p><strong>Problem:</strong> Preventing race conditions in concurrent bookings</p>
+                    <p><strong>Solution:</strong> MongoDB transactions with proper rollback handling and atomic operations</p>
+                </div>
+                
+                <div class="challenge-solution">
+                    <h5>Challenge: Responsive Design Complexity</h5>
+                    <p><strong>Problem:</strong> Complex layout requirements for multiple screen sizes</p>
+                    <p><strong>Solution:</strong> Mobile-first approach with CSS Grid and Flexbox, progressive enhancement</p>
+                </div>
+            </section>
+
+            <!-- Project Metrics -->
+            <section class="content-section">
+                <h2>Project Metrics</h2>
+                
+                <div class="metrics-container">
+                    <div class="metric-box">
+                        <div class="metric-value">3,000+</div>
+                        <div class="metric-label">Lines of Code</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">10+</div>
+                        <div class="metric-label">API Endpoints</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">90+</div>
+                        <div class="metric-label">Lighthouse Score</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value">A+</div>
+                        <div class="metric-label">Security Headers</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning Outcomes -->
+            <section class="content-section">
+                <h2>Learning Outcomes</h2>
+                <p>
+                    Through this project, I demonstrated comprehensive full-stack development capabilities:
+                </p>
+                <ul>
+                    <li>Complete application development from database to user interface</li>
+                    <li>RESTful API design and implementation</li>
+                    <li>Modern frontend framework proficiency with Vue.js</li>
+                    <li>Database design and optimization with MongoDB</li>
+                    <li>Security best practices implementation</li>
+                    <li>Cloud deployment and DevOps experience</li>
+                    <li>Responsive web design and UX considerations</li>
+                    <li>Version control and collaborative development</li>
+                    <li>Documentation and code organization</li>
+                    <li>Problem-solving and debugging skills</li>
+                </ul>
+            </section>
+
+            <!-- Future Enhancements -->
+            <section class="content-section">
+                <h2>Future Enhancements</h2>
+                <p>
+                    Potential improvements to showcase continuous development:
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><i class="fas fa-user-lock"></i> Authentication System</h4>
+                        <ul>
+                            <li>JWT-based authentication</li>
+                            <li>User profiles and booking history</li>
+                            <li>Role-based access control</li>
+                            <li>Social login integration</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4><i class="fas fa-money-check-alt"></i> Payment Integration</h4>
+                        <ul>
+                            <li>Stripe/PayPal integration</li>
+                            <li>Secure payment processing</li>
+                            <li>Invoice generation</li>
+                            <li>Refund management</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4><i class="fas fa-star"></i> Advanced Features</h4>
+                        <ul>
+                            <li>Email notifications</li>
+                            <li>Calendar integration</li>
+                            <li>Review and rating system</li>
+                            <li>Instructor profiles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4><i class="fas fa-cog"></i> Technical Improvements</h4>
+                        <ul>
+                            <li>GraphQL API option</li>
+                            <li>WebSocket for real-time updates</li>
+                            <li>Progressive Web App features</li>
+                            <li>Automated testing suite</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <h2>Experience EduHub</h2>
+                <p>Explore the live application and see the codebase on GitHub</p>
+                <div class="cta-buttons">
+                    <a href="https://chris0jeky.github.io/CST3144-Coursework-FullstackDev-FrontEnd/" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> Try Live Demo
+                    </a>
+                    <a href="https://github.com/Chris0Jeky/CST3144-Coursework-FullstackDev-FrontEnd" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> Frontend Repository
+                    </a>
+                    <a href="https://github.com/Chris0Jeky/CST3144-Coursework-FullstackDev-BackEnd" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> Backend Repository
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <div class="container">
+            <p>&copy; 2025 Cristian Tcaci. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
