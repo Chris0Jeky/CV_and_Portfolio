@@ -89,16 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Simple fade-in for hero content (no GSAP needed)
     const heroElements = document.querySelectorAll('.hero-content h1, .hero-content .hero-tagline, .hero-content .btn');
-    heroElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 200 + (index * 150));
-    });
+    if (heroElements.length > 0) {
+        // Add animation class instead of inline styles
+        heroElements.forEach((el, index) => {
+            el.style.animationDelay = `${0.2 + (index * 0.15)}s`;
+            el.classList.add('hero-fade-in');
+        });
+    }
 });
 
 // Lazy load images if needed
