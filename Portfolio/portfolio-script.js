@@ -1,4 +1,19 @@
-// Smooth scrolling for anchor links (optional, can be done with CSS scroll-behavior too)
+// Optimized portfolio-script.js for better performance
+
+// Debounce function for scroll events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -6,166 +21,61 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             targetElement.scrollIntoView({
-                behavior: 'smooth'
+                behavior: 'smooth',
+                block: 'start'
             });
         }
     });
 });
 
-// Active Nav Link Highlighting (basic example)
+// Active Nav Link Highlighting - Optimized
 const sections = document.querySelectorAll("section[id]");
-const navLi = document.querySelectorAll(".nav-menu li a");
+const navLinks = document.querySelectorAll(".nav-menu li a");
 
-window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) { // Adjust offset as needed
-            current = section.getAttribute("id");
-        }
-    });
-
-    navLi.forEach((a) => {
-        a.classList.remove("active");
-        if (a.getAttribute("href").substring(1) === current) {
-            a.classList.add("active");
-        }
-    });
+// Create a map for faster lookup
+const linkMap = new Map();
+navLinks.forEach(link => {
+    const href = link.getAttribute("href").substring(1);
+    linkMap.set(href, link);
 });
 
-// --- tsParticles Initialization ---
-// Wait for the DOM to be fully loaded before initializing particles
-document.addEventListener('DOMContentLoaded', (event) => {
-    tsParticles.load("tsparticles", {
-        fpsLimit: 60,
-        interactivity: {
-            events: {
-                onHover: {
-                    enable: true,
-                    mode: "repulse", // Or "grab", "bubble"
-                },
-                onClick: {
-                    enable: true,
-                    mode: "push", // Or "remove", "trail"
-                },
-                resize: true,
-            },
-            modes: {
-                repulse: {
-                    distance: 100, // How far particles are repulsed
-                    duration: 0.4,
-                },
-                push: {
-                    quantity: 4, // Number of particles pushed on click
-                },
-                // You can define other modes like grab, bubble here
-            },
-        },
-        particles: {
-            color: {
-                value: "#FF8F00", // var(--accent-color1) - Amber/Gold particles
-            },
-            links: {
-                color: "#4A3B31", // var(--accent-color2) - Earthy brown links
-                distance: 150,
-                enable: true,
-                opacity: 0.3, // Subtle links
-                width: 1,
-            },
-            collisions: {
-                enable: false, // Keep false for performance unless needed
-            },
-            move: {
-                direction: "none",
-                enable: true,
-                outModes: { // How particles behave when they reach the edge
-                    default: "bounce", // Or "out"
-                },
-                random: false,
-                speed: 1, // Slower, more ambient speed
-                straight: false,
-            },
-            number: {
-                density: {
-                    enable: true,
-                    area: 800, // Adjust for desired particle density
-                },
-                value: 60, // Number of particles
-            },
-            opacity: {
-                value: 0.4, // Subtle particles
-            },
-            shape: {
-                type: "circle", // Or "star", "edge", "polygon"
-            },
-            size: {
-                value: { min: 1, max: 3 }, // Small, varied particle sizes
-            },
-        },
-        detectRetina: true, // Better rendering on high-DPI screens
-        background: { // This will be the background of the #tsparticles div itself
-            // color: "transparent", // Make it transparent so hero-section bg shows
-            // Or you can set a color here if hero-section has no bg image
+// Optimized scroll handler
+const updateActiveNav = debounce(() => {
+    const scrollY = window.pageYOffset;
+    let current = "";
+    
+    // Find current section more efficiently
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (scrollY >= section.offsetTop - 100) {
+            current = section.getAttribute("id");
+            break;
         }
-    }).then(container => {
-        console.log("tsParticles loaded successfully.");
-    }).catch(error => {
-        console.error("Error loading tsParticles:", error);
-    });
-
-    const projectCards = document.querySelectorAll(".project-card");
-    if (projectCards.length > 0) {
-        VanillaTilt.init(projectCards, {
-            max: 15,        // Max tilt rotation (degrees)
-            speed: 400,     // Speed of the enter/exit transition
-            glare: true,    // If you want a glare effect
-            "max-glare": 0.3 // Glare intensity (0.1 to 1)
-        });
-    } else {
-        console.warn("No elements with class .project-card found for Vanilla Tilt.");
     }
-
-    const skillAreaCards = document.querySelectorAll(".skill-area");
-    if (skillAreaCards.length > 0) {
-        VanillaTilt.init(skillAreaCards, {
-            max: 10,        // Slightly less tilt for these cards
-            speed: 600,
-            glare: true,
-            "max-glare": 0.1, // More subtle glare
-            scale: 1.03     // Slight scale up on hover
-        });
-    } else {
-        console.warn("No elements with class .project-card found for Vanilla Tilt.");
+    
+    // Update active class
+    navLinks.forEach(link => link.classList.remove("active"));
+    const activeLink = linkMap.get(current);
+    if (activeLink) {
+        activeLink.classList.add("active");
     }
+}, 50);
 
-    // --- GSAP Hero Animation ---
-    if (typeof gsap !== 'undefined') { // Check if GSAP is loaded
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+// Use passive listener for better performance
+window.addEventListener("scroll", updateActiveNav, { passive: true });
 
-        tl.to(".hero-content h1", { opacity: 1, y: 0, duration: 1, delay: 0.5 })
-            .to(".hero-content .hero-tagline", { opacity: 1, y: 0, duration: 0.8 }, "-=0.6") // Overlap animation
-            .to(".hero-content .btn", { opacity: 1, y: 0, duration: 0.6, stagger: 0.2 }, "-=0.4"); // Stagger buttons
-    } else {
-        console.warn("GSAP not loaded. Hero animations will not run.");
-        // Fallback: If GSAP fails, make elements visible directly
-        document.querySelectorAll(".hero-content h1, .hero-content .hero-tagline, .hero-content .btn").forEach(el => {
-            el.style.opacity = 1;
-            // el.style.transform = 'translateY(0)';
-        });
-    }
-
-    // --- Mobile Navigation Toggle ---
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    const body = document.body; // To add class for open state if needed
-
+    const body = document.body;
+    
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            body.classList.toggle('nav-open'); // For burger animation & potentially overflow hidden
+            body.classList.toggle('nav-open');
         });
-
+        
         // Close mobile menu when a link is clicked
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -176,4 +86,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         });
     }
+    
+    // Simple fade-in for hero content (no GSAP needed)
+    const heroElements = document.querySelectorAll('.hero-content h1, .hero-content .hero-tagline, .hero-content .btn');
+    heroElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        
+        setTimeout(() => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, 200 + (index * 150));
+    });
+});
+
+// Lazy load images if needed
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
+            }
+        }
+    });
+}, {
+    rootMargin: '50px 0px',
+    threshold: 0.01
+});
+
+// Observe all images with data-src
+document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
 });
