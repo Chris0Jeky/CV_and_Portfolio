@@ -444,11 +444,11 @@ body::before {
 .challenge-card h3 {
     font-size: 1.3rem;
     margin-bottom: 15px;
-    color: #1a1a3e;
+    color: #e0e7ff;
 }
 
 .challenge-card p {
-    color: #6b7280;
+    color: #a5b4fc;
 }
 
 /* Tech Stack */
