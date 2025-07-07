@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeliveraSoft - Digital Transformation for Italian SMEs | Cristian Tcaci</title>
+    <meta name="description" content="Freelance DevOps and Full-Stack development services, empowering Italian SMEs with automation, custom software, and digital transformation solutions">
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Project Detail Styles -->
+    <link rel="stylesheet" href="project-detail.css">
+    
+    <style>
+        /* Custom styles for this case study */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            color: #1a1a3e;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        .client-benefits {
+            background: rgba(139, 92, 246, 0.02);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-item i {
+            color: #8b5cf6;
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-item p {
+            color: #374151;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .tech-category {
+            background: white;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .tech-category h4 {
+            color: #1a1a3e;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tech-category h4 i {
+            color: #8b5cf6;
+            font-size: 1.2rem;
+        }
+        
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tech-list li {
+            padding: 5px 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .tech-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+        
+        .future-vision {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(217, 70, 239, 0.05) 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .future-vision h3 {
+            color: #1a1a3e;
+            margin-bottom: 20px;
+        }
+        
+        .future-vision p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-cta {
+            background: white;
+            border: 2px solid #8b5cf6;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-cta h3 {
+            color: #1a1a3e;
+            margin-bottom: 15px;
+        }
+        
+        .contact-cta p {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #8b5cf6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-2px);
+            color: #d946ef;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../portfolio.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <div class="nav-links">
+                <a href="mailto:Jeky.tck@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="project-hero">
+        <div class="hero-content">
+            <h1>DeliveraSoft</h1>
+            <p class="project-tagline">Empowering Italian SMEs with Digital Transformation</p>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> October 2024 - Present</span>
+                <span><i class="fas fa-briefcase"></i> Freelance Consultancy</span>
+                <span><i class="fas fa-map-marker-alt"></i> Italy-focused</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="project-content">
+        <div class="container">
+            <!-- Overview -->
+            <section class="content-section">
+                <h2>Bridging Technology and Business Growth</h2>
+                <p>
+                    DeliveraSoft represents my freelance consultancy venture, dedicated to helping Italian small and 
+                    medium-sized enterprises (SMEs) navigate the digital transformation landscape. By combining my 
+                    technical expertise in DevOps, cloud infrastructure, and full-stack development with a deep 
+                    understanding of business needs, I deliver tailored solutions that drive real value.
+                </p>
+                <p>
+                    My mission is to make enterprise-grade technology accessible and practical for businesses of all 
+                    sizes, ensuring they can compete effectively in today's digital economy while maintaining their 
+                    unique Italian business culture and values.
+                </p>
+            </section>
+
+            <!-- Core Services -->
+            <section class="content-section">
+                <h2>Core Services Offered</h2>
+                
+                <div class="service-grid">
+                    <div class="service-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>Process Automation</h3>
+                        <p>
+                            Streamlining repetitive tasks and workflows through custom automation solutions. 
+                            From data processing to report generation, I help businesses save time and reduce errors.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Custom Software Development</h3>
+                        <p>
+                            Building tailored applications that solve specific business challenges. Whether it's 
+                            internal tools, customer portals, or API integrations, I deliver scalable solutions.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Web Presence & Landing Pages</h3>
+                        <p>
+                            Creating modern, responsive websites and landing pages that convert visitors into 
+                            customers. SEO-optimized and designed with Italian market preferences in mind.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud Infrastructure Setup</h3>
+                        <p>
+                            Migrating businesses to the cloud with cost-effective solutions. From AWS to local 
+                            Italian cloud providers, I ensure secure and scalable infrastructure.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Security Consulting</h3>
+                        <p>
+                            Implementing security best practices and GDPR compliance. Protecting business data 
+                            while ensuring smooth operations and regulatory adherence.
+                        </p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>IT Strategy Consulting</h3>
+                        <p>
+                            Advising on technology roadmaps and digital transformation strategies. Helping 
+                            businesses make informed decisions about their IT investments.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Client Benefits -->
+            <section class="content-section">
+                <h2>Value Proposition for Italian SMEs</h2>
+                
+                <div class="client-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Cultural Understanding:</strong> Deep appreciation for Italian business culture, 
+                        ensuring solutions that respect traditional values while embracing innovation.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Cost-Effective Solutions:</strong> Tailored pricing models that fit SME budgets, 
+                        with focus on ROI and gradual scaling rather than large upfront investments.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Enterprise Experience:</strong> Bringing Fortune 500 best practices to smaller 
+                        businesses, adapted to their scale and specific needs.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Full-Stack Capability:</strong> One consultant who can handle everything from 
+                        infrastructure to user interface, reducing complexity and communication overhead.</p>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Ongoing Support:</strong> Not just implementation, but continuous partnership to 
+                        ensure solutions evolve with business needs.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Expertise -->
+            <section class="content-section">
+                <h2>Technical Stack & Expertise</h2>
+                
+                <div class="tech-showcase">
+                    <div class="tech-category">
+                        <h4><i class="fas fa-server"></i> DevOps & Infrastructure</h4>
+                        <ul class="tech-list">
+                            <li>AWS Services (EC2, S3, Lambda)</li>
+                            <li>Docker & Container Orchestration</li>
+                            <li>CI/CD Pipeline Design</li>
+                            <li>Infrastructure as Code</li>
+                            <li>Monitoring & Alerting Systems</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-category">
+                        <h4><i class="fas fa-laptop-code"></i> Development</h4>
+                        <ul class="tech-list">
+                            <li>Node.js & Express.js</li>
+                            <li>Vue.js & Modern JavaScript</li>
+                            <li>Python Automation Scripts</li>
+                            <li>RESTful API Design</li>
+                            <li>Database Design (SQL & NoSQL)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-category">
+                        <h4><i class="fas fa-tools"></i> Automation Tools</h4>
+                        <ul class="tech-list">
+                            <li>Ansible & Configuration Management</li>
+                            <li>Jenkins & GitLab CI</li>
+                            <li>Custom Python Scripts</li>
+                            <li>API Integrations</li>
+                            <li>Workflow Automation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-category">
+                        <h4><i class="fas fa-lock"></i> Security & Compliance</h4>
+                        <ul class="tech-list">
+                            <li>GDPR Implementation</li>
+                            <li>Security Audits</li>
+                            <li>SSL/TLS Configuration</li>
+                            <li>Access Control Systems</li>
+                            <li>Data Encryption</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Approach -->
+            <section class="content-section">
+                <h2>My Consulting Approach</h2>
+                
+                <div class="implementation-flow">
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h4>Discovery & Analysis</h4>
+                                <p>Understanding your business, current challenges, and goals through detailed 
+                                consultations in Italian or English.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flow-step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h4>Solution Design</h4>
+                                <p>Creating a tailored technology roadmap that aligns with your budget, timeline, 
+                                and business objectives.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flow-step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h4>Agile Implementation</h4>
+                                <p>Building and deploying solutions in iterative phases, ensuring continuous 
+                                feedback and value delivery.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flow-step">
+                            <div class="step-number">4</div>
+                            <div>
+                                <h4>Training & Handover</h4>
+                                <p>Empowering your team with the knowledge to manage and maintain new systems 
+                                independently.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flow-step">
+                            <div class="step-number">5</div>
+                            <div>
+                                <h4>Ongoing Partnership</h4>
+                                <p>Providing continued support, updates, and strategic guidance as your business 
+                                grows and evolves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Future Vision -->
+            <section class="content-section">
+                <div class="future-vision">
+                    <h3>Vision for Italian Digital Innovation</h3>
+                    <p>
+                        My goal with DeliveraSoft is to democratize access to cutting-edge technology for Italian 
+                        businesses. By 2025, I aim to have helped 50+ SMEs transform their operations, creating a 
+                        network of digitally empowered businesses that maintain their Italian excellence while 
+                        competing globally.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="content-section">
+                <div class="contact-cta">
+                    <h3>Ready to Transform Your Business?</h3>
+                    <p>
+                        Let's discuss how DeliveraSoft can help your business embrace digital transformation 
+                        while preserving what makes it uniquely Italian.
+                    </p>
+                    <a href="mailto:Jeky.tck@gmail.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Schedule a Consultation
+                    </a>
+                    
+                    <div class="contact-methods">
+                        <a href="mailto:Jeky.tck@gmail.com" class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>Jeky.tck@gmail.com</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" class="contact-method">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <div class="container">
+            <p>&copy; 2025 Cristian Tcaci - DeliveraSoft. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
