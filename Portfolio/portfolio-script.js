@@ -66,6 +66,24 @@ window.addEventListener("scroll", updateActiveNav, { passive: true });
 
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', () => {
+    // Hide page loader when content is ready
+    const pageLoader = document.getElementById('page-loader');
+    if (pageLoader) {
+        setTimeout(() => {
+            pageLoader.classList.add('hidden');
+        }, 500);
+    }
+    
+    // Add typing effect to hero tagline
+    const heroTagline = document.querySelector('.hero-tagline');
+    if (heroTagline) {
+        heroTagline.classList.add('typing');
+        // Remove typing animation after it completes
+        setTimeout(() => {
+            heroTagline.style.borderRight = 'none';
+            heroTagline.style.animation = 'none';
+        }, 4000);
+    }
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const body = document.body;
