@@ -78,29 +78,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTagline = document.querySelector('.hero-tagline');
     if (heroTagline) {
         // Store original text
-        const fullText = heroTagline.textContent;
+        const fullText = heroTagline.textContent.trim();
         heroTagline.textContent = '';
         heroTagline.style.visibility = 'visible';
+        heroTagline.style.minHeight = '1.5em'; // Prevent layout shift
+        
+        // Add cursor effect
+        const cursor = document.createElement('span');
+        cursor.style.borderRight = '3px solid #8b5cf6';
+        cursor.style.animation = 'blink 0.75s step-end infinite';
+        cursor.style.paddingRight = '2px';
+        heroTagline.appendChild(cursor);
         
         // Type out the text character by character
         let charIndex = 0;
+        const textSpan = document.createElement('span');
+        heroTagline.insertBefore(textSpan, cursor);
+        
         const typeInterval = setInterval(() => {
             if (charIndex < fullText.length) {
-                heroTagline.textContent += fullText[charIndex];
+                textSpan.textContent += fullText[charIndex];
                 charIndex++;
             } else {
                 clearInterval(typeInterval);
                 // Remove cursor after typing is complete
                 setTimeout(() => {
-                    heroTagline.style.borderRight = 'none';
+                    cursor.style.display = 'none';
                 }, 1000);
             }
-        }, 50);
-        
-        // Add cursor effect
-        heroTagline.style.borderRight = '3px solid #8b5cf6';
-        heroTagline.style.paddingRight = '5px';
-        heroTagline.style.animation = 'blink 0.75s step-end infinite';
+        }, 40);
     }
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
