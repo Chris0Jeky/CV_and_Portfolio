@@ -77,12 +77,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add typing effect to hero tagline
     const heroTagline = document.querySelector('.hero-tagline');
     if (heroTagline) {
-        heroTagline.classList.add('typing');
-        // Remove typing animation after it completes
-        setTimeout(() => {
-            heroTagline.style.borderRight = 'none';
-            heroTagline.style.animation = 'none';
-        }, 4000);
+        // Store original text
+        const fullText = heroTagline.textContent;
+        heroTagline.textContent = '';
+        heroTagline.style.visibility = 'visible';
+        
+        // Type out the text character by character
+        let charIndex = 0;
+        const typeInterval = setInterval(() => {
+            if (charIndex < fullText.length) {
+                heroTagline.textContent += fullText[charIndex];
+                charIndex++;
+            } else {
+                clearInterval(typeInterval);
+                // Remove cursor after typing is complete
+                setTimeout(() => {
+                    heroTagline.style.borderRight = 'none';
+                }, 1000);
+            }
+        }, 50);
+        
+        // Add cursor effect
+        heroTagline.style.borderRight = '3px solid #8b5cf6';
+        heroTagline.style.paddingRight = '5px';
+        heroTagline.style.animation = 'blink 0.75s step-end infinite';
     }
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
