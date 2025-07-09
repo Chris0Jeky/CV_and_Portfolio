@@ -662,40 +662,33 @@ body {
     background: var(--gradient-cosmic);
 }
 
-/* Gradient placeholders for missing images */
-.project-card:nth-child(1) .project-image:not([src]),
-.project-card:nth-child(1) .project-image[src=""] {
+/* Gradient placeholders for div-based images */
+.project-card:nth-child(1) .project-image {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.project-card:nth-child(2) .project-image:not([src]),
-.project-card:nth-child(2) .project-image[src=""] {
+.project-card:nth-child(2) .project-image {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-.project-card:nth-child(3) .project-image:not([src]),
-.project-card:nth-child(3) .project-image[src=""] {
+.project-card:nth-child(3) .project-image {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.project-card:nth-child(4) .project-image:not([src]),
-.project-card:nth-child(4) .project-image[src=""] {
+.project-card:nth-child(4) .project-image {
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
-.project-card:nth-child(5) .project-image:not([src]),
-.project-card:nth-child(5) .project-image[src=""] {
+.project-card:nth-child(5) .project-image {
     background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
-.project-card:nth-child(6) .project-image:not([src]),
-.project-card:nth-child(6) .project-image[src=""] {
+.project-card:nth-child(6) .project-image {
     background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
 }
 
 /* Add icon overlay for placeholder images */
-.project-image:not([src])::after,
-.project-image[src=""]::after {
+.project-image::after {
     content: '\f121';  /* Font Awesome code icon */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
