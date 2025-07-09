@@ -625,6 +625,7 @@ body {
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
+    cursor: pointer;
 }
 
 .project-card::before {
@@ -641,8 +642,10 @@ body {
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-strong);
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 
+        0 30px 60px rgba(0, 255, 136, 0.2),
+        0 0 100px rgba(0, 255, 136, 0.1);
     border-color: var(--accent-electric);
 }
 
@@ -655,6 +658,53 @@ body {
     height: 250px;
     object-fit: cover;
     transition: transform 0.3s ease;
+    position: relative;
+    background: var(--gradient-cosmic);
+}
+
+/* Gradient placeholders for missing images */
+.project-card:nth-child(1) .project-image:not([src]),
+.project-card:nth-child(1) .project-image[src=""] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.project-card:nth-child(2) .project-image:not([src]),
+.project-card:nth-child(2) .project-image[src=""] {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.project-card:nth-child(3) .project-image:not([src]),
+.project-card:nth-child(3) .project-image[src=""] {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.project-card:nth-child(4) .project-image:not([src]),
+.project-card:nth-child(4) .project-image[src=""] {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.project-card:nth-child(5) .project-image:not([src]),
+.project-card:nth-child(5) .project-image[src=""] {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.project-card:nth-child(6) .project-image:not([src]),
+.project-card:nth-child(6) .project-image[src=""] {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+/* Add icon overlay for placeholder images */
+.project-image:not([src])::after,
+.project-image[src=""]::after {
+    content: '\f121';  /* Font Awesome code icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .project-card:hover .project-image {
