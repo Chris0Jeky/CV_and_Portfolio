@@ -840,6 +840,42 @@ body {
     }
 }
 
+/* Philosophy Section */
+.philosophy-section {
+    background: var(--bg-secondary);
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.philosophy-item {
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.philosophy-icon {
+    font-size: 3rem;
+    color: var(--accent-electric);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.philosophy-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.philosophy-item p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
 /* Contact Section */
 .contact-content {
     text-align: center;
@@ -1267,27 +1303,65 @@ body {
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 60px;
         right: -100%;
         width: 100%;
-        height: calc(100vh - 70px);
+        height: calc(100vh - 60px);
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         padding-top: 50px;
         gap: 30px;
         transition: right 0.3s ease;
+        z-index: 999;
+        overflow-y: auto;
     }
     
     .nav-menu.active {
         right: 0;
     }
     
+    .nav-menu li {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu.active li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-menu.active li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-menu.active li:nth-child(4) { transition-delay: 0.4s; }
+    .nav-menu.active li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-menu a {
+        font-size: 1.2rem;
+        color: var(--text-primary);
+    }
+    
+    /* Show social links in mobile menu */
     .nav-socials {
+        display: flex !important;
         margin-top: auto;
         margin-bottom: 50px;
+        gap: 30px;
+    }
+    
+    .nav-socials a {
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+    }
+    
+    .nav-socials a:hover {
+        color: var(--accent-electric);
     }
 }
