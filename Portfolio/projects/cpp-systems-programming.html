@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Systems Programming | Cristian Tcaci</title>
+    <meta name="description" content="Advanced C++ systems programming projects showcasing low-level optimization, memory management, and high-performance computing">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="project-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Code Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../portfolio.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="nav-links">
+                <a href="../portfolio.html#projects">Projects</a>
+                <a href="../portfolio.html#skills">Skills</a>
+                <a href="../portfolio.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="project-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">Systems Programming</div>
+                <h1>Advanced C++ Engineering</h1>
+                <p class="hero-subtitle">High-performance systems programming with modern C++ standards</p>
+                
+                <div class="hero-meta">
+                    <span><i class="fas fa-calendar"></i> 2023-2024</span>
+                    <span><i class="fas fa-code"></i> C++17/20</span>
+                    <span><i class="fas fa-microchip"></i> Low-Level</span>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                    <a href="#technical-details" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> Technical Details
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-preview">
+                    <pre><code class="language-cpp">template&lt;typename T&gt;
+class SmartMemoryPool {
+    static constexpr size_t CHUNK_SIZE = 4096;
+    std::vector&lt;std::unique_ptr&lt;T[]&gt;&gt; chunks;
+    std::stack&lt;T*&gt; available;
+    
+public:
+    T* allocate() {
+        if (available.empty()) {
+            expandPool();
+        }
+        T* ptr = available.top();
+        available.pop();
+        return ptr;
+    }
+    
+    void deallocate(T* ptr) noexcept {
+        ptr->~T();
+        available.push(ptr);
+    }
+};</code></pre>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Overview -->
+    <section class="project-section">
+        <div class="container">
+            <h2>Project Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-content">
+                    <p>
+                        This collection showcases my expertise in C++ systems programming, focusing on performance-critical 
+                        applications, memory optimization, and low-level system interactions. Each project demonstrates 
+                        advanced C++ techniques including template metaprogramming, RAII patterns, and modern C++17/20 features.
+                    </p>
+                    <p>
+                        From custom memory allocators to high-performance data structures, these projects represent the 
+                        culmination of deep systems knowledge and practical engineering experience.
+                    </p>
+                </div>
+                <div class="overview-highlights">
+                    <h3>Key Achievements</h3>
+                    <ul>
+                        <li>Implemented custom memory pool allocator with 40% performance improvement</li>
+                        <li>Developed lock-free concurrent data structures for multi-threaded applications</li>
+                        <li>Created compile-time computation framework using template metaprogramming</li>
+                        <li>Built high-performance networking library with zero-copy architecture</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="project-section alt-bg">
+        <div class="container">
+            <h2>Featured C++ Projects</h2>
+            
+            <div class="subproject-grid">
+                <!-- Project 1: Memory Pool Allocator -->
+                <div class="subproject-card">
+                    <div class="subproject-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                    <h3>Custom Memory Pool Allocator</h3>
+                    <p>
+                        High-performance memory management system with thread-safe allocation, 
+                        automatic defragmentation, and compile-time size optimization.
+                    </p>
+                    <div class="tech-stack">
+                        <span>C++17</span>
+                        <span>Templates</span>
+                        <span>Lock-Free</span>
+                        <span>SIMD</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <span class="value">40%</span>
+                            <span class="label">Faster Allocation</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">60%</span>
+                            <span class="label">Less Fragmentation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Lock-Free Data Structures -->
+                <div class="subproject-card">
+                    <div class="subproject-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Lock-Free Concurrent Structures</h3>
+                    <p>
+                        Implementation of wait-free queue, stack, and hash map using atomic operations 
+                        and memory ordering guarantees for maximum concurrency.
+                    </p>
+                    <div class="tech-stack">
+                        <span>C++20</span>
+                        <span>Atomics</span>
+                        <span>Memory Model</span>
+                        <span>CAS</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <span class="value">10x</span>
+                            <span class="label">Throughput Gain</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">Zero</span>
+                            <span class="label">Lock Contention</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Template Metaprogramming -->
+                <div class="subproject-card">
+                    <div class="subproject-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Compile-Time Computation Engine</h3>
+                    <p>
+                        Advanced template metaprogramming framework for compile-time algorithm execution, 
+                        type manipulation, and zero-overhead abstractions.
+                    </p>
+                    <div class="tech-stack">
+                        <span>C++20</span>
+                        <span>Concepts</span>
+                        <span>Constexpr</span>
+                        <span>SFINAE</span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <span class="value">100%</span>
+                            <span class="label">Compile-Time</span>
+                        </div>
+                        <div class="metric">
+                            <span class="value">0ns</span>
+                            <span class="label">Runtime Cost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section id="technical-details" class="project-section">
+        <div class="container">
+            <h2>Technical Deep Dive</h2>
+            
+            <div class="technical-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="architecture">Architecture</button>
+                    <button class="tab-btn" data-tab="performance">Performance</button>
+                    <button class="tab-btn" data-tab="patterns">Design Patterns</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active" id="architecture">
+                        <h3>System Architecture</h3>
+                        <div class="architecture-diagram">
+                            <img src="../images/cpp-architecture.png" alt="C++ System Architecture">
+                        </div>
+                        <ul>
+                            <li><strong>Memory Layer:</strong> Custom allocators, pool management, NUMA-aware allocation</li>
+                            <li><strong>Concurrency Layer:</strong> Lock-free algorithms, thread pools, work-stealing queues</li>
+                            <li><strong>Template Layer:</strong> Type traits, SFINAE, concepts, compile-time polymorphism</li>
+                            <li><strong>System Layer:</strong> OS interfaces, hardware abstraction, SIMD intrinsics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane" id="performance">
+                        <h3>Performance Optimizations</h3>
+                        <div class="optimization-list">
+                            <div class="optimization-item">
+                                <h4>Cache Optimization</h4>
+                                <p>Data structures designed for cache locality, false sharing prevention, and prefetch hints</p>
+                                <code>alignas(std::hardware_destructive_interference_size) struct Node { ... };</code>
+                            </div>
+                            <div class="optimization-item">
+                                <h4>Branch Prediction</h4>
+                                <p>Branchless algorithms, likely/unlikely hints, and profile-guided optimization</p>
+                                <code>[[likely]] if (hot_path) { ... }</code>
+                            </div>
+                            <div class="optimization-item">
+                                <h4>Vectorization</h4>
+                                <p>SIMD intrinsics for parallel data processing, auto-vectorization friendly code</p>
+                                <code>__m256 result = _mm256_add_ps(a, b);</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="patterns">
+                        <h3>Design Patterns & Techniques</h3>
+                        <div class="patterns-grid">
+                            <div class="pattern-card">
+                                <h4>RAII & Smart Pointers</h4>
+                                <p>Resource management through constructors/destructors, custom deleters</p>
+                            </div>
+                            <div class="pattern-card">
+                                <h4>CRTP</h4>
+                                <p>Curiously Recurring Template Pattern for static polymorphism</p>
+                            </div>
+                            <div class="pattern-card">
+                                <h4>Policy-Based Design</h4>
+                                <p>Compile-time strategy pattern using template parameters</p>
+                            </div>
+                            <div class="pattern-card">
+                                <h4>Expression Templates</h4>
+                                <p>Lazy evaluation and optimization of mathematical expressions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Examples -->
+    <section class="project-section alt-bg">
+        <div class="container">
+            <h2>Code Examples</h2>
+            
+            <div class="code-example">
+                <h3>Lock-Free Queue Implementation</h3>
+                <pre><code class="language-cpp">template&lt;typename T&gt;
+class LockFreeQueue {
+    struct Node {
+        std::atomic&lt;T*&gt; data;
+        std::atomic&lt;Node*&gt; next;
+        
+        Node() : data(nullptr), next(nullptr) {}
+    };
+    
+    std::atomic&lt;Node*&gt; head;
+    std::atomic&lt;Node*&gt; tail;
+    
+public:
+    void enqueue(T item) {
+        Node* newNode = new Node;
+        T* data = new T(std::move(item));
+        newNode->data.store(data);
+        
+        Node* prevTail = tail.exchange(newNode);
+        prevTail->next.store(newNode);
+    }
+    
+    std::optional&lt;T&gt; dequeue() {
+        Node* head_node = head.load();
+        Node* next = head_node->next.load();
+        
+        if (next == nullptr) {
+            return std::nullopt;
+        }
+        
+        T* data = next->data.exchange(nullptr);
+        head.store(next);
+        delete head_node;
+        
+        return data ? std::optional&lt;T&gt;(*data) : std::nullopt;
+    }
+};</code></pre>
+            </div>
+            
+            <div class="code-example">
+                <h3>Compile-Time Fibonacci</h3>
+                <pre><code class="language-cpp">template&lt;int N&gt;
+struct Fibonacci {
+    static constexpr int value = Fibonacci&lt;N-1&gt;::value + Fibonacci&lt;N-2&gt;::value;
+};
+
+template&lt;&gt; struct Fibonacci&lt;0&gt; { static constexpr int value = 0; };
+template&lt;&gt; struct Fibonacci&lt;1&gt; { static constexpr int value = 1; };
+
+// C++20 version using concepts
+template&lt;int N&gt;
+concept ValidFibIndex = N >= 0;
+
+template&lt;ValidFibIndex auto N&gt;
+consteval auto fib() {
+    if constexpr (N == 0) return 0;
+    else if constexpr (N == 1) return 1;
+    else return fib&lt;N-1&gt;() + fib&lt;N-2&gt;();
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results & Impact -->
+    <section class="project-section">
+        <div class="container">
+            <h2>Results & Impact</h2>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Performance Gains</h3>
+                    <p>Achieved 10-40% performance improvements across various system components through 
+                    careful optimization and modern C++ techniques</p>
+                </div>
+                <div class="result-card">
+                    <i class="fas fa-memory"></i>
+                    <h3>Memory Efficiency</h3>
+                    <p>Reduced memory consumption by 60% using custom allocators and efficient data structures 
+                    tailored to specific use cases</p>
+                </div>
+                <div class="result-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Code Quality</h3>
+                    <p>Maintained zero-overhead abstractions while improving code readability and maintainability 
+                    through modern C++ idioms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="project-section alt-bg">
+        <div class="container">
+            <div class="next-steps">
+                <h2>Interested in C++ Development?</h2>
+                <p>I'm always excited to discuss systems programming, performance optimization, and modern C++ techniques.</p>
+                <div class="cta-buttons">
+                    <a href="../portfolio.html#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> More Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <div class="container">
+            <p>&copy; 2024 Cristian Tcaci. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Update buttons
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update content
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
