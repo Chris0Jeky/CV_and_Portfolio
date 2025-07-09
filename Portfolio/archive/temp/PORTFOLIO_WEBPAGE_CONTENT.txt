@@ -1,0 +1,282 @@
+================================================================================
+AI-POWERED ANALYTICS PROJECT - PORTFOLIO WEBPAGE CONTENT
+================================================================================
+
+PROJECT TITLE:
+AI-Powered Analytics: Student Performance Prediction & Fake News Detection
+
+TAGLINE:
+Advanced Machine Learning & Deep Learning Solutions for Education and Media Analysis
+
+================================================================================
+EXECUTIVE SUMMARY (For Hero Section)
+================================================================================
+
+This project demonstrates mastery of both traditional machine learning and modern deep learning techniques through two real-world applications:
+
+1. Student Performance Prediction - Achieving 98% R² score using Random Forest
+2. Fake News Detection - Reaching 99.99% accuracy with LSTM neural networks
+
+The project showcases end-to-end data science capabilities: from handling severely corrupted data to deploying interactive demonstrations, making it a perfect example of practical AI applications in education and media integrity.
+
+================================================================================
+PROJECT OVERVIEW (Main Description)
+================================================================================
+
+WHAT THIS PROJECT IS:
+This is a comprehensive data science project completed for CST3133 - Advanced Topics in Data Science and Artificial Intelligence. It tackles two critical real-world problems using different AI approaches, demonstrating versatility in machine learning methodologies.
+
+PROBLEM STATEMENTS:
+1. Educational Challenge: Predict student academic performance based on various personal, behavioral, and environmental factors to enable early intervention and support.
+2. Media Integrity: Automatically detect fake news articles to combat misinformation spread in digital media.
+
+WHY IT MATTERS:
+- Education: Helps identify at-risk students early, enabling targeted support
+- Media: Protects information integrity in the age of digital misinformation
+- Technical: Demonstrates proficiency across the entire ML/DL spectrum
+
+================================================================================
+TECHNICAL ACCOMPLISHMENTS
+================================================================================
+
+PART 1: STUDENT PERFORMANCE PREDICTION
+
+Dataset:
+- Source: Kaggle Student Performance Factors dataset
+- Size: Multiple student records with 15+ features
+- Challenge: Severely corrupted data with multiple formats and missing values
+
+Key Technical Achievements:
+- Developed custom data cleaning pipeline handling 15+ corruption types
+- Performed comprehensive Exploratory Data Analysis (EDA)
+- Implemented feature engineering to extract maximum predictive value
+- Built Random Forest model for both regression and classification tasks
+
+Results:
+- Regression: 98% R² Score (predicting exact scores)
+- Classification: 99.73% Accuracy (predicting grade categories)
+- Training Time: <1 minute on standard hardware
+- Key Insight: Study hours and previous scores are strongest predictors
+
+Technologies Used:
+- Python, Pandas, NumPy
+- Scikit-learn (Random Forest)
+- Matplotlib, Seaborn (Visualizations)
+
+PART 2: FAKE NEWS DETECTION
+
+Dataset:
+- Source: Kaggle Fake and Real News dataset
+- Size: 44,918 articles (21,417 real, 23,501 fake)
+- Challenge: Natural language processing at scale
+
+Key Technical Achievements:
+- Implemented comprehensive text preprocessing pipeline
+- Integrated pre-trained GloVe embeddings (100-dimensional)
+- Designed LSTM architecture with dropout for regularization
+- Optimized for both CPU and GPU execution
+
+Results:
+- Accuracy: 99.99%
+- Precision: 100%
+- Recall: 99.98%
+- F1 Score: 99.99%
+- Training Time: 18 seconds (GPU) / 131 seconds (CPU)
+
+Technologies Used:
+- TensorFlow/Keras
+- NLTK (Natural Language Processing)
+- GloVe Embeddings (Stanford NLP)
+- GPU Acceleration
+
+================================================================================
+PROJECT FEATURES (For Feature Cards/Bullets)
+================================================================================
+
+1. DUAL ALGORITHM APPROACH
+   - Traditional ML: Random Forest for structured data
+   - Deep Learning: LSTM for unstructured text
+   - Shows versatility across problem types
+
+2. ROBUST DATA HANDLING
+   - Custom preprocessing for corrupted educational data
+   - Handles missing values, format inconsistencies
+   - Text cleaning and tokenization for NLP
+
+3. INTERACTIVE DEMO
+   - Streamlit web application
+   - Real-time predictions
+   - Visualization dashboard
+   - User-friendly interface
+
+4. PRODUCTION-READY CODE
+   - Modular architecture
+   - Comprehensive documentation
+   - Easy setup with requirements.txt
+   - Jupyter notebooks for exploration
+
+5. PERFORMANCE VISUALIZATION
+   - Confusion matrices
+   - Feature importance plots
+   - Training curves
+   - Correlation heatmaps
+
+================================================================================
+KEY METRICS (For Impact Section)
+================================================================================
+
+Student Performance Model:
+- 98% R² Score
+- 99.73% Classification Accuracy
+- <1 minute training time
+- 15+ features analyzed
+
+Fake News Detection Model:
+- 99.99% Accuracy
+- 100% Precision
+- 45,000+ articles processed
+- 5x faster on GPU
+
+================================================================================
+VISUAL ELEMENTS TO INCLUDE
+================================================================================
+
+1. Architecture Diagram:
+   Show flow from raw data → preprocessing → model → predictions
+
+2. Performance Graphs:
+   - Confusion matrices for both models
+   - Training curves for LSTM
+   - Feature importance bar chart
+
+3. Demo Screenshots:
+   - Streamlit interface
+   - Live prediction examples
+   - Interactive visualizations
+
+4. Tech Stack Icons:
+   Python, TensorFlow, Scikit-learn, Pandas, NLTK, Jupyter
+
+================================================================================
+CODE HIGHLIGHTS (For Technical Section)
+================================================================================
+
+1. Data Preprocessing Innovation:
+   "Developed custom algorithms to handle 15+ types of data corruption including text-as-numbers ('sixty-five' → 65) and mixed formats"
+
+2. Model Architecture:
+   "LSTM with GloVe embeddings: Embedding(100d) → LSTM(128) → Dropout(0.5) → Dense(sigmoid)"
+
+3. Performance Optimization:
+   "Achieved 5x speedup using GPU acceleration and batch processing"
+
+================================================================================
+PORTFOLIO TALKING POINTS
+================================================================================
+
+For Interviews:
+1. "I chose these two problems to demonstrate versatility - structured vs unstructured data"
+2. "The data cleaning challenge taught me to build robust, real-world solutions"
+3. "Achieving 99.99% accuracy required careful architecture design and regularization"
+4. "The interactive demo makes complex ML accessible to non-technical stakeholders"
+
+Technical Deep-Dive:
+1. Random Forest: "Used feature importance to provide interpretable results for educators"
+2. LSTM Design: "Chose LSTM over transformer due to dataset size and training efficiency"
+3. GloVe Integration: "Leveraged transfer learning for better semantic understanding"
+4. Preprocessing: "Built resilient pipeline handling edge cases like corrupted entries"
+
+Business Impact:
+1. Education: "Enables early intervention for at-risk students"
+2. Media: "Protects information integrity at scale"
+3. Efficiency: "Processes thousands of articles in seconds"
+4. Accessibility: "Web interface allows non-technical users to benefit"
+
+================================================================================
+LINKS AND RESOURCES
+================================================================================
+
+GitHub Repository:
+https://github.com/Chris0Jeky/CST3133-Advanced-AI-Topics
+
+Live Demo:
+[Add Streamlit Cloud URL when deployed]
+
+Datasets:
+- Student Performance: https://www.kaggle.com/datasets/nikhil7280/student-performance-multiple-linear-regression
+- Fake News: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+
+Technologies:
+- Python 3.8+
+- TensorFlow 2.13.0
+- Scikit-learn 1.3.0
+- Streamlit 1.25.0
+
+================================================================================
+SUGGESTED WEBPAGE LAYOUT
+================================================================================
+
+1. HERO SECTION
+   - Project title with gradient background
+   - Key metrics (98% R², 99.99% Accuracy) as animated counters
+   - "View Demo" and "Source Code" buttons
+
+2. OVERVIEW CARDS
+   - Two side-by-side cards for each application
+   - Include mini-visualization in each card
+   - Quick stats below each description
+
+3. TECHNICAL DEEP-DIVE
+   - Tabbed interface or accordion
+   - Architecture diagrams
+   - Code snippets with syntax highlighting
+   - Performance graphs
+
+4. DEMO SECTION
+   - Embedded Streamlit app or video
+   - Screenshots with captions
+   - "Try it yourself" CTA
+
+5. IMPACT & RESULTS
+   - Before/after comparison
+   - Business value statements
+   - Future enhancement possibilities
+
+6. TECH STACK
+   - Icon grid of all technologies
+   - Hover effects showing proficiency level
+   - Links to relevant sections
+
+7. CALL TO ACTION
+   - "Explore on GitHub" button
+   - "Contact Me" for discussions
+   - Social sharing buttons
+
+================================================================================
+SEO KEYWORDS
+================================================================================
+
+Primary: machine learning project, deep learning portfolio, data science showcase
+Secondary: student performance prediction, fake news detection, LSTM model
+Technical: Random Forest, GloVe embeddings, TensorFlow, Python ML
+Skills: data preprocessing, feature engineering, neural networks, NLP
+
+================================================================================
+FINAL NOTES
+================================================================================
+
+This project is ideal for demonstrating:
+- Full-stack data science capabilities
+- Problem-solving with messy, real-world data
+- Both traditional and modern ML approaches
+- Production-ready code practices
+- Communication through interactive demos
+
+Perfect for roles in:
+- Data Science
+- Machine Learning Engineering
+- AI/ML Research
+- Applied AI Development
+- Technical Product Management
+
+The combination of education and media applications shows social awareness and practical impact, making this more than just a technical exercise.
