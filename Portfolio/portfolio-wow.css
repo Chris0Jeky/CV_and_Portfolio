@@ -963,36 +963,247 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Hide custom cursor on mobile */
+    .cursor,
+    .cursor-follower {
+        display: none;
+    }
+    
+    /* Mobile navigation */
     .nav-menu {
         display: none;
     }
     
+    .nav-socials {
+        display: none;
+    }
+    
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    /* Hero adjustments */
+    .hero-section {
+        padding: 0 20px;
+    }
+    
     .hero-content h1 {
-        font-size: clamp(3rem, 12vw, 5rem);
-        letter-spacing: -2px;
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        letter-spacing: -1px;
+        line-height: 1;
+    }
+    
+    .hero-tagline {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        padding: 0 10px;
     }
     
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 16px;
     }
     
     .btn {
         width: 100%;
         justify-content: center;
+        padding: 14px 24px;
+        font-size: 0.95rem;
     }
     
+    /* Disable complex animations on mobile for performance */
+    .floating-shapes {
+        display: none;
+    }
+    
+    .grid-overlay {
+        opacity: 0.3;
+    }
+    
+    /* Content sections */
+    .content-section {
+        padding: 60px 0;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+    
+    .content-section h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    /* About section */
+    .about-text {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    .about-image {
+        margin-top: 30px;
+        border-radius: 12px;
+    }
+    
+    /* Timeline mobile */
+    .timeline {
+        padding: 20px 0;
+    }
+    
+    .timeline-content {
+        padding: 20px;
+        font-size: 0.95rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Projects mobile */
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
+    .project-card {
+        border-radius: 12px;
+    }
+    
+    .project-image {
+        height: 200px;
+    }
+    
+    .project-content {
+        padding: 20px;
+    }
+    
+    .project-title {
+        font-size: 1.3rem;
+    }
+    
+    .project-description {
+        font-size: 0.95rem;
+    }
+    
+    .tech-tag {
+        font-size: 0.8rem;
+        padding: 4px 12px;
+    }
+    
+    /* Skills mobile */
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
+    .skill-category {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Philosophy mobile */
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .philosophy-item {
+        text-align: center;
+    }
+    
+    .philosophy-icon {
+        font-size: 2.5rem;
+    }
+    
+    /* Contact mobile */
     .contact-links {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: 16px;
+    }
+    
+    .contact-link {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Footer mobile */
+    .footer {
+        padding: 30px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Scroll indicator */
+    .hero-scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-tagline {
+        font-size: 1rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .project-title {
+        font-size: 1.1rem;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    .project-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .timeline-content:hover {
+        transform: none;
+    }
+    
+    .skill-category:hover {
+        transform: none;
+    }
+    
+    /* Increase tap targets */
+    .btn {
+        min-height: 48px;
+    }
+    
+    .nav-toggle {
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    .contact-link {
+        min-height: 48px;
     }
 }
 
