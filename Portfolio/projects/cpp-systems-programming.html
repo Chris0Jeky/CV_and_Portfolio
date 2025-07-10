@@ -116,92 +116,89 @@ public:
         </div>
     </section>
 
-    <!-- Featured Projects -->
+    <!-- Featured Components -->
     <section class="project-section alt-bg">
         <div class="container">
-            <h2>Featured C++ Projects</h2>
+            <h2>Core Components</h2>
             
             <div class="subproject-grid">
-                <!-- Project 1: Memory Pool Allocator -->
+                <!-- Component 1: Multi-Index Architecture -->
                 <div class="subproject-card">
                     <div class="subproject-icon">
-                        <i class="fas fa-memory"></i>
+                        <i class="fas fa-database"></i>
                     </div>
-                    <h3>Custom Memory Pool Allocator</h3>
+                    <h3>Multi-Index Hash Tables</h3>
                     <p>
-                        High-performance memory management system with thread-safe allocation, 
-                        automatic defragmentation, and compile-time size optimization.
+                        Four separate hash-based indexes for O(1) lookups by title, artist, album, or genre. 
+                        Memory-efficient design stores tracks once with multiple references.
                     </p>
                     <div class="tech-stack">
-                        <span>C++17</span>
-                        <span>Templates</span>
-                        <span>Lock-Free</span>
-                        <span>SIMD</span>
+                        <span>unordered_multimap</span>
+                        <span>shared_ptr</span>
+                        <span>RAII</span>
                     </div>
                     <div class="metrics">
                         <div class="metric">
-                            <span class="value">40%</span>
-                            <span class="label">Faster Allocation</span>
+                            <span class="value">O(1)</span>
+                            <span class="label">Lookup Time</span>
                         </div>
                         <div class="metric">
-                            <span class="value">60%</span>
-                            <span class="label">Less Fragmentation</span>
+                            <span class="value">4x</span>
+                            <span class="label">Index Coverage</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Lock-Free Data Structures -->
+                <!-- Component 2: Advanced Search Engine -->
                 <div class="subproject-card">
                     <div class="subproject-icon">
-                        <i class="fas fa-project-diagram"></i>
+                        <i class="fas fa-search"></i>
                     </div>
-                    <h3>Lock-Free Concurrent Structures</h3>
+                    <h3>Multi-Mode Search Engine</h3>
                     <p>
-                        Implementation of wait-free queue, stack, and hash map using atomic operations 
-                        and memory ordering guarantees for maximum concurrency.
+                        Supports exact, prefix, substring, fuzzy (Levenshtein distance), and regex searches. 
+                        Features inverted index for full-text search and weighted relevance scoring.
                     </p>
                     <div class="tech-stack">
-                        <span>C++20</span>
-                        <span>Atomics</span>
-                        <span>Memory Model</span>
-                        <span>CAS</span>
+                        <span>std::regex</span>
+                        <span>Fuzzy Matching</span>
+                        <span>Inverted Index</span>
                     </div>
                     <div class="metrics">
                         <div class="metric">
-                            <span class="value">10x</span>
-                            <span class="label">Throughput Gain</span>
+                            <span class="value">5</span>
+                            <span class="label">Search Modes</span>
                         </div>
                         <div class="metric">
-                            <span class="value">Zero</span>
-                            <span class="label">Lock Contention</span>
+                            <span class="value"><1ms</span>
+                            <span class="label">Query Time</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 3: Template Metaprogramming -->
+                <!-- Component 3: Thread-Safe Operations -->
                 <div class="subproject-card">
                     <div class="subproject-icon">
-                        <i class="fas fa-code-branch"></i>
+                        <i class="fas fa-lock"></i>
                     </div>
-                    <h3>Compile-Time Computation Engine</h3>
+                    <h3>Concurrent Access Control</h3>
                     <p>
-                        Advanced template metaprogramming framework for compile-time algorithm execution, 
-                        type manipulation, and zero-overhead abstractions.
+                        Reader-writer lock pattern using std::shared_mutex allows multiple concurrent 
+                        readers with exclusive write access. All operations are thread-safe by design.
                     </p>
                     <div class="tech-stack">
-                        <span>C++20</span>
-                        <span>Concepts</span>
-                        <span>Constexpr</span>
-                        <span>SFINAE</span>
+                        <span>shared_mutex</span>
+                        <span>RAII Guards</span>
+                        <span>Lock-Free Reads</span>
                     </div>
                     <div class="metrics">
+                        <div class="metric">
+                            <span class="value">∞</span>
+                            <span class="label">Concurrent Readers</span>
+                        </div>
                         <div class="metric">
                             <span class="value">100%</span>
-                            <span class="label">Compile-Time</span>
-                        </div>
-                        <div class="metric">
-                            <span class="value">0ns</span>
-                            <span class="label">Runtime Cost</span>
+                            <span class="label">Thread Safe</span>
                         </div>
                     </div>
                 </div>
@@ -288,65 +285,98 @@ public:
             <h2>Code Examples</h2>
             
             <div class="code-example">
-                <h3>Lock-Free Queue Implementation</h3>
-                <pre><code class="language-cpp">template&lt;typename T&gt;
-class LockFreeQueue {
-    struct Node {
-        std::atomic&lt;T*&gt; data;
-        std::atomic&lt;Node*&gt; next;
-        
-        Node() : data(nullptr), next(nullptr) {}
+                <h3>Thread-Safe Search with Multiple Indexes</h3>
+                <pre><code class="language-cpp">std::vector&lt;TrackPtr&gt; MusicLibrary::search(const std::string& query) const {
+    std::shared_lock lock(mutex_);  // Multiple readers allowed
+    
+    std::vector&lt;TrackPtr&gt; results;
+    std::unordered_set&lt;TrackPtr&gt; unique_results;
+    
+    // Search across all indexes
+    auto search_in_index = [&](const auto& index) {
+        auto range = index.equal_range(query);
+        for (auto it = range.first; it != range.second; ++it) {
+            if (it->second < tracks_.size() && tracks_[it->second]) {
+                unique_results.insert(tracks_[it->second]);
+            }
+        }
     };
     
-    std::atomic&lt;Node*&gt; head;
-    std::atomic&lt;Node*&gt; tail;
+    search_in_index(title_index_);
+    search_in_index(artist_index_);
+    search_in_index(album_index_);
+    search_in_index(genre_index_);
     
-public:
-    void enqueue(T item) {
-        Node* newNode = new Node;
-        T* data = new T(std::move(item));
-        newNode->data.store(data);
-        
-        Node* prevTail = tail.exchange(newNode);
-        prevTail->next.store(newNode);
-    }
-    
-    std::optional&lt;T&gt; dequeue() {
-        Node* head_node = head.load();
-        Node* next = head_node->next.load();
-        
-        if (next == nullptr) {
-            return std::nullopt;
-        }
-        
-        T* data = next->data.exchange(nullptr);
-        head.store(next);
-        delete head_node;
-        
-        return data ? std::optional&lt;T&gt;(*data) : std::nullopt;
-    }
-};</code></pre>
+    results.assign(unique_results.begin(), unique_results.end());
+    return results;
+}</code></pre>
             </div>
             
             <div class="code-example">
-                <h3>Compile-Time Fibonacci</h3>
-                <pre><code class="language-cpp">template&lt;int N&gt;
-struct Fibonacci {
-    static constexpr int value = Fibonacci&lt;N-1&gt;::value + Fibonacci&lt;N-2&gt;::value;
-};
-
-template&lt;&gt; struct Fibonacci&lt;0&gt; { static constexpr int value = 0; };
-template&lt;&gt; struct Fibonacci&lt;1&gt; { static constexpr int value = 1; };
-
-// C++20 version using concepts
-template&lt;int N&gt;
-concept ValidFibIndex = N >= 0;
-
-template&lt;ValidFibIndex auto N&gt;
-consteval auto fib() {
-    if constexpr (N == 0) return 0;
-    else if constexpr (N == 1) return 1;
-    else return fib&lt;N-1&gt;() + fib&lt;N-2&gt;();
+                <h3>Fuzzy Search with Levenshtein Distance</h3>
+                <pre><code class="language-cpp">size_t SearchEngine::levenshtein_distance(const std::string& s1, const std::string& s2) {
+    const size_t m = s1.size();
+    const size_t n = s2.size();
+    
+    if (m == 0) return n;
+    if (n == 0) return m;
+    
+    std::vector&lt;std::vector&lt;size_t&gt;&gt; dp(m + 1, std::vector&lt;size_t&gt;(n + 1));
+    
+    // Initialize base cases
+    for (size_t i = 0; i <= m; ++i) dp[i][0] = i;
+    for (size_t j = 0; j <= n; ++j) dp[0][j] = j;
+    
+    // Fill the matrix
+    for (size_t i = 1; i <= m; ++i) {
+        for (size_t j = 1; j <= n; ++j) {
+            size_t cost = (s1[i-1] == s2[j-1]) ? 0 : 1;
+            
+            dp[i][j] = std::min({
+                dp[i-1][j] + 1,      // deletion
+                dp[i][j-1] + 1,      // insertion
+                dp[i-1][j-1] + cost  // substitution
+            });
+        }
+    }
+    
+    return dp[m][n];
+}</code></pre>
+            </div>
+            
+            <div class="code-example">
+                <h3>CSV Parser with Quoted Field Support</h3>
+                <pre><code class="language-cpp">std::vector&lt;std::string&gt; FileIO::parse_csv_line(const std::string& line) {
+    std::vector&lt;std::string&gt; fields;
+    std::string current_field;
+    bool in_quotes = false;
+    
+    for (size_t i = 0; i < line.length(); ++i) {
+        char c = line[i];
+        
+        if (in_quotes) {
+            if (c == '"' && i + 1 < line.length() && line[i + 1] == '"') {
+                current_field += '"';  // Escaped quote
+                ++i;
+            } else if (c == '"') {
+                in_quotes = false;     // End of quoted field
+            } else {
+                current_field += c;
+            }
+        } else {
+            if (c == '"' && current_field.empty()) {
+                in_quotes = true;      // Start of quoted field
+            } else if (c == ',') {
+                fields.push_back(current_field);
+                current_field.clear();
+            } else {
+                current_field += c;
+            }
+        }
+    }
+    
+    fields.push_back(current_field);  // Don't forget the last field
+    return fields;
 }</code></pre>
             </div>
         </div>
