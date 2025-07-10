@@ -37,17 +37,17 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-label">Systems Programming</div>
-                <h1>Advanced C++ Engineering</h1>
-                <p class="hero-subtitle">High-performance systems programming with modern C++ standards</p>
+                <h1>Audio Library Management System</h1>
+                <p class="hero-subtitle">Modern C++17 music library with advanced search, thread-safety, and high performance</p>
                 
                 <div class="hero-meta">
                     <span><i class="fas fa-calendar"></i> 2023-2024</span>
-                    <span><i class="fas fa-code"></i> C++17/20</span>
-                    <span><i class="fas fa-microchip"></i> Low-Level</span>
+                    <span><i class="fas fa-code"></i> C++17</span>
+                    <span><i class="fas fa-trophy"></i> CST2550 Project</span>
                 </div>
                 
                 <div class="hero-actions">
-                    <a href="https://github.com/Chris0Jeky" target="_blank" class="btn btn-primary">
+                    <a href="https://github.com/Chris0Jeky/AudioLibrary" target="_blank" class="btn btn-primary">
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
                     <a href="#technical-details" class="btn btn-secondary">
@@ -57,25 +57,25 @@
             </div>
             <div class="hero-visual">
                 <div class="code-preview">
-                    <pre><code class="language-cpp">template&lt;typename T&gt;
-class SmartMemoryPool {
-    static constexpr size_t CHUNK_SIZE = 4096;
-    std::vector&lt;std::unique_ptr&lt;T[]&gt;&gt; chunks;
-    std::stack&lt;T*&gt; available;
+                    <pre><code class="language-cpp">class MusicLibrary {
+private:
+    mutable std::shared_mutex mutex_;
+    std::vector&lt;TrackPtr&gt; tracks_;
+    std::unordered_multimap&lt;std::string, size_t&gt; title_index_;
+    std::unordered_multimap&lt;std::string, size_t&gt; artist_index_;
     
 public:
-    T* allocate() {
-        if (available.empty()) {
-            expandPool();
-        }
-        T* ptr = available.top();
-        available.pop();
-        return ptr;
+    // Thread-safe operations with O(1) lookup
+    std::vector&lt;TrackPtr&gt; search(const std::string& query) const {
+        std::shared_lock lock(mutex_);
+        return search_engine_.search(query, tracks_, options);
     }
     
-    void deallocate(T* ptr) noexcept {
-        ptr->~T();
-        available.push(ptr);
+    bool add_track(const Track& track) {
+        std::unique_lock lock(mutex_);
+        tracks_.push_back(std::make_shared&lt;Track&gt;(track));
+        rebuild_indexes();
+        return true;
     }
 };</code></pre>
                 </div>
@@ -90,22 +90,26 @@ public:
             <div class="overview-grid">
                 <div class="overview-content">
                     <p>
-                        This collection showcases my expertise in C++ systems programming, focusing on performance-critical 
-                        applications, memory optimization, and low-level system interactions. Each project demonstrates 
-                        advanced C++ techniques including template metaprogramming, RAII patterns, and modern C++17/20 features.
+                        The Audio Library Management System is a comprehensive C++17 application that demonstrates 
+                        professional software engineering through a high-performance music catalog system. Originally 
+                        developed as a university project, it has been completely redesigned to showcase modern C++ 
+                        best practices, thread-safe architecture, and sophisticated data structures.
                     </p>
                     <p>
-                        From custom memory allocators to high-performance data structures, these projects represent the 
-                        culmination of deep systems knowledge and practical engineering experience.
+                        This project transforms a simple requirement into a feature-rich application with advanced 
+                        search capabilities, multiple file format support, and a user-friendly command-line interface, 
+                        all while maintaining exceptional performance and memory safety.
                     </p>
                 </div>
                 <div class="overview-highlights">
                     <h3>Key Achievements</h3>
                     <ul>
-                        <li>Implemented custom memory pool allocator with 40% performance improvement</li>
-                        <li>Developed lock-free concurrent data structures for multi-threaded applications</li>
-                        <li>Created compile-time computation framework using template metaprogramming</li>
-                        <li>Built high-performance networking library with zero-copy architecture</li>
+                        <li>O(1) average-case search performance with multi-index architecture</li>
+                        <li>Thread-safe concurrent operations using std::shared_mutex</li>
+                        <li>5 different search modes including fuzzy matching and regex</li>
+                        <li>Zero memory leaks with smart pointer management</li>
+                        <li>100% clean compilation with -Wall -Wextra -Wpedantic</li>
+                        <li>Comprehensive unit test coverage with Catch2 framework</li>
                     </ul>
                 </div>
             </div>
