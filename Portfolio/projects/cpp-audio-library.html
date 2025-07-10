@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Audio Library Management System - Cristian Tcaci</title>
+    <meta name="description" content="Modern C++17 music library management system with advanced search capabilities and thread-safe operations">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="../portfolio.html" class="nav-logo">Cristian Tcaci</a>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="../portfolio.html#about">About</a></li>
+            <li><a href="../portfolio.html#experience">Experience</a></li>
+            <li><a href="../portfolio.html#projects">Projects</a></li>
+            <li><a href="../portfolio.html#skills">Skills</a></li>
+            <li><a href="../portfolio.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="project-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="../portfolio.html">Portfolio</a> / <a href="../portfolio.html#projects">Projects</a> / C++ Project
+            </div>
+            <h1>Audio Library Management System</h1>
+            <p class="subtitle">High-Performance Music Catalog with Advanced Search Capabilities</p>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> 2023-2024</span>
+                <span><i class="fas fa-university"></i> Middlesex University</span>
+                <span><i class="fas fa-code"></i> C++17 / STL</span>
+                <span><i class="fas fa-trophy"></i> CST2550 Project</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="project-content">
+    <div class="container">
+        
+        <!-- Executive Summary -->
+        <section class="content-section">
+            <h2>Executive Summary</h2>
+            <div class="highlight-box">
+                <p>The Audio Library Management System is a comprehensive C++17 application that transforms a simple music catalog requirement into a professional-grade system. Originally developed as a university project, it showcases modern C++ best practices through thread-safe architecture, sophisticated data structures, and exceptional performance. The system handles <strong>100,000+ tracks</strong> with <strong>O(1) lookup performance</strong> and features <strong>5 different search modes</strong> including fuzzy matching and regex support.</p>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="content-section">
+            <h2>Key Features</h2>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Advanced Search Engine</h3>
+                    <p>5 search modes: exact, prefix, substring, fuzzy (with edit distance), and regex patterns</p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Multi-Index Architecture</h3>
+                    <p>Four hash-based indexes enabling O(1) lookups by title, artist, album, or genre</p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Thread-Safe Operations</h3>
+                    <p>Reader-writer locks using std::shared_mutex for concurrent access</p>
+                </div>
+                <div class="challenge-card">
+                    <i class="fas fa-file-import"></i>
+                    <h3>File Format Support</h3>
+                    <p>Import/export capabilities for CSV and JSON with robust error handling</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Implementation -->
+        <section class="content-section">
+            <h2>Technical Implementation</h2>
+            
+            <div class="tech-stack">
+                <h3>Technology Stack</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">C++17</span>
+                    <span class="tech-tag">STL Containers</span>
+                    <span class="tech-tag">Smart Pointers</span>
+                    <span class="tech-tag">Threading</span>
+                    <span class="tech-tag">RAII</span>
+                    <span class="tech-tag">Catch2</span>
+                </div>
+            </div>
+
+            <div class="implementation-details">
+                <h3>Architecture Highlights</h3>
+                <ul>
+                    <li><strong>Memory Management:</strong> Zero memory leaks using std::shared_ptr for all dynamic allocations</li>
+                    <li><strong>Data Structures:</strong> std::unordered_multimap for efficient multi-field indexing</li>
+                    <li><strong>Concurrency:</strong> std::shared_mutex enabling multiple concurrent readers</li>
+                    <li><strong>Search Algorithm:</strong> Levenshtein distance implementation for fuzzy matching</li>
+                    <li><strong>Error Handling:</strong> Exception-safe design with RAII patterns throughout</li>
+                    <li><strong>Testing:</strong> Comprehensive unit tests covering edge cases and thread safety</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Performance Metrics -->
+        <section class="content-section metrics-section">
+            <h2>Performance & Quality Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">O(1)</div>
+                    <div class="metric-label">Average Lookup Time</div>
+                    <div class="metric-description">Hash-based indexing for instant searches</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100K+</div>
+                    <div class="metric-label">Track Capacity</div>
+                    <div class="metric-description">Tested with large-scale datasets</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0</div>
+                    <div class="metric-label">Memory Leaks</div>
+                    <div class="metric-description">Smart pointer management throughout</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Warning-Free</div>
+                    <div class="metric-description">Clean compilation with -Wall -Wextra -Wpedantic</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Capabilities -->
+        <section class="content-section">
+            <h2>System Capabilities</h2>
+            
+            <div class="capability-section">
+                <h3><i class="fas fa-search-plus"></i> Search Functionality</h3>
+                <div class="capability-grid">
+                    <div class="capability-item">
+                        <h4>Exact Matching</h4>
+                        <p>Direct hash table lookups for perfect string matches across all indexed fields</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4>Fuzzy Search</h4>
+                        <p>Typo-tolerant searching using Levenshtein distance algorithm with configurable threshold</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4>Regex Support</h4>
+                        <p>Full regular expression pattern matching for complex search queries</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4>Multi-Field Search</h4>
+                        <p>Simultaneous searching across title, artist, album, and genre fields</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="capability-section">
+                <h3><i class="fas fa-cogs"></i> Core Features</h3>
+                <div class="capability-grid">
+                    <div class="capability-item">
+                        <h4>Track Management</h4>
+                        <p>Add, remove, and update tracks with comprehensive metadata including ratings and play counts</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4>Statistics & Analytics</h4>
+                        <p>Track library statistics, most played songs, and rating distributions</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4>Import/Export</h4>
+                        <p>CSV and JSON file support with robust parsing and error handling</p>
+                    </div>
+                    <div class="capability-item">
+                        <h4>CLI Interface</h4>
+                        <p>User-friendly command-line interface with clear menus and input validation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Process -->
+        <section class="content-section">
+            <h2>Development Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="timeline-content">
+                        <h3>Initial Design</h3>
+                        <p>Started with basic requirements for a music library system. Identified the need for efficient searching and scalability.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-code"></i></div>
+                    <div class="timeline-content">
+                        <h3>Architecture Redesign</h3>
+                        <p>Completely restructured from original hash table to multi-index architecture with smart pointers and modern C++ features.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="timeline-content">
+                        <h3>Thread Safety</h3>
+                        <p>Implemented reader-writer locks to enable concurrent access, crucial for real-world applications.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="timeline-content">
+                        <h3>Testing & Polish</h3>
+                        <p>Added comprehensive unit tests, fixed edge cases, and achieved 100% clean compilation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="content-section">
+            <h2>Technical Insights</h2>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <h3>Modern C++ Best Practices</h3>
+                    <p>Leveraged C++17 features like std::optional, structured bindings, and if-init statements for cleaner, safer code.</p>
+                </div>
+                <div class="lesson-card">
+                    <h3>Performance vs. Flexibility</h3>
+                    <p>Balanced the trade-offs between search performance and memory usage by maintaining multiple indexes.</p>
+                </div>
+                <div class="lesson-card">
+                    <h3>Error Handling Strategy</h3>
+                    <p>Implemented comprehensive input validation and graceful error recovery for a robust user experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="content-section cta-section">
+            <h2>Explore the Code</h2>
+            <p>Interested in the implementation details? The full source code, documentation, and build instructions are available on GitHub.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/Chris0Jeky/SWECW2-AudioLibrary" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="../portfolio.html#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+        <p>© <script>document.write(new Date().getFullYear())</script> Cristian Tcaci. All Rights Reserved.</p>
+        <p>Driven by Curiosity, Crafted with Code.</p>
+    </div>
+</footer>
+
+<script src="../portfolio-script.js"></script>
+</body>
+</html>
