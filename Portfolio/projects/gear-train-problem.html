@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gear Train Problem Solver - Cristian Tcaci</title>
+    <meta name="description" content="Case study: Mathematical algorithm for Google Foobar challenge - calculating gear configurations with precise speed ratios">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="project-detail.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="../portfolio.html" class="nav-logo">Cristian Tcaci</a>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="../portfolio.html#about">About</a></li>
+            <li><a href="../portfolio.html#experience">Experience</a></li>
+            <li><a href="../portfolio.html#projects">Projects</a></li>
+            <li><a href="../portfolio.html#skills">Skills</a></li>
+            <li><a href="../portfolio.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Chris0Jeky" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="project-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="../portfolio.html">Portfolio</a> / <a href="../portfolio.html#projects">Projects</a> / Case Study
+            </div>
+            <h1>Gear Train Problem Solver</h1>
+            <p class="subtitle">Mathematical Algorithm for Mechanical Engineering Challenge</p>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> Google Foobar Challenge</span>
+                <span><i class="fas fa-code"></i> Java, JavaScript, HTML5</span>
+                <span><i class="fas fa-calculator"></i> Algorithm Design</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="project-content">
+    <div class="container">
+        
+        <!-- Project Overview -->
+        <section class="content-section">
+            <h2>The Challenge</h2>
+            <p class="lead">During the Google Foobar challenge, I encountered this fascinating problem that combines mathematical modeling, algorithm design, and constraint satisfaction. The challenge requires calculating gear configurations where the first gear rotates at exactly twice the speed of the last gear.</p>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-tasks"></i> Key Requirements</h3>
+                <ul>
+                    <li>Place gears on fixed pegs such that adjacent gears mesh properly</li>
+                    <li>Ensure the first gear rotates at exactly 2x the speed of the last gear</li>
+                    <li>All gear radii must be at least 1 unit</li>
+                    <li>Return the solution as a simplified fraction</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Technical Approach -->
+        <section class="content-section">
+            <h2>Technical Approach</h2>
+            
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <h3><i class="fas fa-square-root-alt"></i> Mathematical Foundation</h3>
+                    <p>Derived a system of linear equations based on gear meshing constraints and speed relationships. The solution leverages the principle that for meshing gears, the product of radius and angular velocity remains constant.</p>
+                </div>
+                
+                <div class="approach-card">
+                    <h3><i class="fas fa-code"></i> Algorithm Design</h3>
+                    <p>Implemented an O(n) solution that calculates the first gear's radius using a closed-form formula. The algorithm handles both even and odd numbers of pegs with different mathematical approaches.</p>
+                </div>
+                
+                <div class="approach-card">
+                    <h3><i class="fas fa-flask"></i> Validation System</h3>
+                    <p>Built comprehensive validation to ensure all gears meet the minimum radius constraint. The system verifies each gear in the train maintains proper meshing and size requirements.</p>
+                </div>
+            </div>
+
+            <div class="code-snippet">
+                <h4>Core Algorithm</h4>
+                <pre><code>// Calculate the sum with alternating signs
+int sum = 0;
+for (int i = 0; i < pegs.length - 1; i++) {
+    sum += Math.pow(-1, i) * (pegs[i + 1] - pegs[i]);
+}
+
+// Apply formula based on peg count parity
+if (pegs.length % 2 == 0) {
+    numerator = 2 * sum;
+    denominator = 3;
+} else {
+    numerator = 2 * sum;
+    denominator = 1;
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Implementation Details -->
+        <section class="content-section">
+            <h2>Implementation Highlights</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-calculator feature-icon"></i>
+                    <h3>Dual Implementations</h3>
+                    <p>Created two solution approaches: one using direct mathematical calculation and another using continued fractions for numerical robustness.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3>Interactive Visualization</h3>
+                    <p>Built multiple visualization tools including an enhanced web demo with real-time animation, mechanical statistics, and example configurations.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-vial feature-icon"></i>
+                    <h3>Comprehensive Testing</h3>
+                    <p>Developed extensive test suite covering edge cases, fractional results, large-scale scenarios, and special patterns.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-desktop feature-icon"></i>
+                    <h3>Cross-Platform GUI</h3>
+                    <p>Created Java Swing desktop application for native performance with real-time gear animation and detailed results display.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demonstrations -->
+        <section class="content-section">
+            <h2>Interactive Demonstrations</h2>
+            
+            <div class="demo-section">
+                <h3>Live Demo Features</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-cog"></i> Real-time gear train visualization with proper proportions</li>
+                    <li><i class="fas fa-play-circle"></i> Animated rotation showing 2:1 speed ratio</li>
+                    <li><i class="fas fa-sliders-h"></i> Variable speed controls and 12+ example configurations</li>
+                    <li><i class="fas fa-chart-bar"></i> Live mechanical statistics (teeth count, gear ratios, mechanical advantage)</li>
+                    <li><i class="fas fa-gamepad"></i> Challenge mode for testing different configurations</li>
+                    <li><i class="fas fa-formula"></i> Mathematical formula display option</li>
+                </ul>
+                
+                <div class="demo-buttons">
+                    <a href="https://chris0jeky.github.io/GearTrainProblem/" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> View Live Demo
+                    </a>
+                    <a href="https://github.com/Chris0Jeky/GearTrainProblem" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> View Source Code
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Applications -->
+        <section class="content-section">
+            <h2>Real-World Applications</h2>
+            
+            <div class="applications-grid">
+                <div class="application-card">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Mechanical Engineering</h4>
+                    <p>Gear train design for transmission systems</p>
+                </div>
+                <div class="application-card">
+                    <i class="fas fa-robot"></i>
+                    <h4>Robotics</h4>
+                    <p>Drive train calculations for precise motion control</p>
+                </div>
+                <div class="application-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Clock Making</h4>
+                    <p>Gear ratio calculations for timekeeping mechanisms</p>
+                </div>
+                <div class="application-card">
+                    <i class="fas fa-industry"></i>
+                    <h4>Manufacturing</h4>
+                    <p>Precision machinery design and optimization</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="content-section">
+            <h2>Key Takeaways</h2>
+            
+            <div class="takeaways-box">
+                <div class="takeaway-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Mathematical Modeling</h4>
+                    <p>Successfully translated physical constraints into a solvable system of equations, demonstrating the power of mathematical abstraction in solving real-world problems.</p>
+                </div>
+                
+                <div class="takeaway-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Algorithm Optimization</h4>
+                    <p>Achieved O(n) time complexity through careful mathematical derivation, avoiding brute-force approaches in favor of elegant closed-form solutions.</p>
+                </div>
+                
+                <div class="takeaway-item">
+                    <i class="fas fa-eye"></i>
+                    <h4>Visualization Value</h4>
+                    <p>Created interactive visualizations that not only demonstrate the solution but also help users understand the underlying mechanical principles.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="cta-section">
+            <h2>Explore the Project</h2>
+            <p>Experience the interactive demonstration or dive into the source code to see the implementation details.</p>
+            <div class="cta-buttons">
+                <a href="https://chris0jeky.github.io/GearTrainProblem/" target="_blank" class="btn btn-primary btn-lg">
+                    <i class="fas fa-play"></i> Try Live Demo
+                </a>
+                <a href="https://github.com/Chris0Jeky/GearTrainProblem" target="_blank" class="btn btn-secondary btn-lg">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <nav class="project-nav">
+            <a href="ml-digit-recognition.html" class="nav-prev">
+                <i class="fas fa-arrow-left"></i>
+                <span>Previous Project</span>
+                <strong>ML Digit Recognition</strong>
+            </a>
+            <a href="nipd-research.html" class="nav-next">
+                <span>Next Project</span>
+                <strong>NIPD Research</strong>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </nav>
+        
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Cristian Tcaci. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="../portfolio-script.js"></script>
+</body>
+</html>
