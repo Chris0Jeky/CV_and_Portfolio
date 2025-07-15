@@ -71,7 +71,7 @@
                 margin: 0 !important;
                 box-shadow: none !important;
                 display: flex !important;
-                min-height: 15in; /* Ensure it uses most of tabloid height */
+                min-height: 16.5in; /* Use more of tabloid height */
             }
             .sidebar {
                 width: 35% !important;
@@ -81,12 +81,65 @@
             .main-content {
                 width: 65% !important;
             }
+            /* Override small font sizes for skill tags */
+            .skill-tag {
+                font-size: 8pt !important; /* Increased from 6pt */
+                padding: 3pt 5pt !important; /* Slightly more padding */
+                margin: 2pt !important;
+                line-height: 1.2 !important;
+            }
+            .soft-skills-sidebar .tags span {
+                font-size: 8pt !important; /* Increased from 6pt */
+                padding: 3pt 5pt !important;
+                margin: 2pt !important;
+            }
+            /* Reduce excessive spacing */
+            .main-section {
+                margin-bottom: 20px !important; /* Reduced from 35px */
+            }
+            .job, .education-entry, .project {
+                margin-bottom: 18px !important; /* Reduced from 30px */
+                padding-bottom: 12px !important; /* Reduced from 20px */
+            }
             /* Ensure content doesn't break across pages */
             .job, .education-entry, .project, .award-entry {
                 page-break-inside: avoid;
             }
             h1, h2, h3 {
                 page-break-after: avoid;
+            }
+            /* Reduce section heading margins */
+            .main-section > h2 {
+                margin-bottom: 15px !important; /* Reduced from 25px */
+                padding-bottom: 8px !important; /* Reduced from 12px */
+            }
+            /* Reduce paragraph spacing in profile */
+            #profile-main p {
+                margin-bottom: 10px !important;
+            }
+            /* Awards section adjustments */
+            .award-entry {
+                margin-bottom: 12px !important;
+            }
+            /* Adjust skill category spacing */
+            .skill-category-group {
+                margin-bottom: 12px !important; /* Reduce space between skill categories */
+            }
+            /* Adjust list item spacing */
+            .job ul li {
+                margin-bottom: 6px !important; /* Reduced from 9px */
+            }
+            /* Adjust education and project paragraph spacing */
+            .education-entry p, .project p {
+                margin-bottom: 6px !important;
+            }
+            /* Ensure sidebar sections fill space properly */
+            .sidebar section {
+                margin-bottom: 20px !important;
+            }
+            /* Adjust contact info spacing */
+            .contact-info p {
+                margin-bottom: 6px !important;
             }
         }
     </style>
