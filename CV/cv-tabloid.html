@@ -62,6 +62,7 @@
                 margin: 0;
                 padding: 0;
                 background: white;
+                font-size: 11pt !important; /* Base font size increase for tabloid */
             }
             .print-controls {
                 display: none !important;
@@ -71,75 +72,94 @@
                 margin: 0 !important;
                 box-shadow: none !important;
                 display: flex !important;
-                min-height: 16.5in; /* Use more of tabloid height */
+                min-height: 16.8in; /* Nearly full tabloid height minus margins */
             }
             .sidebar {
                 width: 35% !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                font-size: 10pt !important;
             }
             .main-content {
                 width: 65% !important;
+                font-size: 11pt !important;
             }
-            /* Override small font sizes for skill tags */
+            
+            /* AGGRESSIVE FONT SIZE INCREASES */
+            h1 {
+                font-size: 24pt !important; /* Much larger name */
+            }
+            .sidebar h2 {
+                font-size: 14pt !important; /* Larger sidebar headings */
+            }
+            .main-section > h2 {
+                font-size: 16pt !important; /* Larger main headings */
+                margin-bottom: 20px !important;
+                padding-bottom: 10px !important;
+            }
+            .job h3, .education-entry h3, .project h3 {
+                font-size: 13pt !important; /* Larger job titles */
+            }
+            
+            /* SKILL TAGS - MUCH LARGER */
             .skill-tag {
-                font-size: 8pt !important; /* Increased from 6pt */
-                padding: 3pt 5pt !important; /* Slightly more padding */
-                margin: 2pt !important;
-                line-height: 1.2 !important;
+                font-size: 10pt !important; /* Significantly increased */
+                padding: 4pt 8pt !important;
+                margin: 3pt !important;
+                line-height: 1.3 !important;
             }
             .soft-skills-sidebar .tags span {
-                font-size: 8pt !important; /* Increased from 6pt */
-                padding: 3pt 5pt !important;
-                margin: 2pt !important;
+                font-size: 10pt !important;
+                padding: 4pt 8pt !important;
+                margin: 3pt !important;
             }
-            /* Reduce excessive spacing */
+            
+            /* CONTENT SIZING */
+            .contact-info p {
+                font-size: 10pt !important;
+                margin-bottom: 8px !important;
+            }
+            .job ul li, .education-entry p, .project p {
+                font-size: 11pt !important;
+                line-height: 1.6 !important;
+            }
+            #profile-main p {
+                font-size: 12pt !important;
+                line-height: 1.7 !important;
+                margin-bottom: 15px !important;
+            }
+            
+            /* SPACING ADJUSTMENTS FOR TABLOID */
             .main-section {
-                margin-bottom: 20px !important; /* Reduced from 35px */
+                margin-bottom: 30px !important; /* More space between sections */
             }
             .job, .education-entry, .project {
-                margin-bottom: 18px !important; /* Reduced from 30px */
-                padding-bottom: 12px !important; /* Reduced from 20px */
+                margin-bottom: 25px !important;
+                padding-bottom: 18px !important;
             }
+            .skill-category-group {
+                margin-bottom: 18px !important;
+            }
+            .sidebar section {
+                margin-bottom: 25px !important;
+            }
+            .job ul li {
+                margin-bottom: 10px !important;
+            }
+            .award-entry {
+                margin-bottom: 20px !important;
+            }
+            .company-location-date {
+                font-size: 10pt !important;
+                margin-bottom: 15px !important;
+            }
+            
             /* Ensure content doesn't break across pages */
             .job, .education-entry, .project, .award-entry {
                 page-break-inside: avoid;
             }
             h1, h2, h3 {
                 page-break-after: avoid;
-            }
-            /* Reduce section heading margins */
-            .main-section > h2 {
-                margin-bottom: 15px !important; /* Reduced from 25px */
-                padding-bottom: 8px !important; /* Reduced from 12px */
-            }
-            /* Reduce paragraph spacing in profile */
-            #profile-main p {
-                margin-bottom: 10px !important;
-            }
-            /* Awards section adjustments */
-            .award-entry {
-                margin-bottom: 12px !important;
-            }
-            /* Adjust skill category spacing */
-            .skill-category-group {
-                margin-bottom: 12px !important; /* Reduce space between skill categories */
-            }
-            /* Adjust list item spacing */
-            .job ul li {
-                margin-bottom: 6px !important; /* Reduced from 9px */
-            }
-            /* Adjust education and project paragraph spacing */
-            .education-entry p, .project p {
-                margin-bottom: 6px !important;
-            }
-            /* Ensure sidebar sections fill space properly */
-            .sidebar section {
-                margin-bottom: 20px !important;
-            }
-            /* Adjust contact info spacing */
-            .contact-info p {
-                margin-bottom: 6px !important;
             }
         }
     </style>
