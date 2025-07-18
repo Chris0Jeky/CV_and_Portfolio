@@ -3,36 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cristian Tcaci - Academic CV</title>
-    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <title>Cristian Tcaci - Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Academic CV Style for Tabloid Print */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
-            line-height: 1.6;
-            color: #000;
-            background: white;
+        /* Tabloid-optimized print styles */
+        @page {
+            size: 11in 17in; /* Tabloid size */
+            margin: 0.5in;
         }
         
         @media screen {
             body {
-                max-width: 1100px;
+                max-width: 1400px; /* Wider for tabloid preview */
                 margin: 0 auto;
                 padding: 20px;
                 background: #f5f5f5;
-            }
-            .cv-container {
-                background: white;
-                box-shadow: 0 0 20px rgba(0,0,0,0.1);
-                padding: 60px;
             }
             .print-controls {
                 background: #1A2F4B;
@@ -63,344 +50,393 @@
             .print-controls button:hover {
                 background: #0056b3;
             }
-        }
-        
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #000;
-            padding-bottom: 20px;
-        }
-        
-        .header h1 {
-            font-size: 32pt;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        
-        .contact-line {
-            font-size: 12pt;
-            color: #333;
-            margin-top: 8px;
-        }
-        
-        .contact-line a {
-            color: #333;
-            text-decoration: none;
-        }
-        
-        .contact-line a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Section Headers */
-        h2 {
-            font-size: 18pt;
-            font-weight: 700;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
-        }
-        
-        /* Profile Section */
-        .profile {
-            margin-bottom: 30px;
-            text-align: justify;
-            font-size: 14pt;
-            line-height: 1.8;
-            font-style: italic;
-        }
-        
-        /* Education Section */
-        .education-entry {
-            margin-bottom: 25px;
-        }
-        
-        .education-header {
-            margin-bottom: 8px;
-        }
-        
-        .degree-title {
-            font-weight: 700;
-            font-size: 14pt;
-        }
-        
-        .university-name {
-            font-size: 13pt;
-            margin-top: 5px;
-        }
-        
-        .date-range {
-            font-style: italic;
-            font-size: 12pt;
-            color: #555;
-        }
-        
-        .thesis-info {
-            margin-left: 25px;
-            margin-top: 8px;
-            font-size: 13pt;
-        }
-        
-        .thesis-title {
-            font-style: italic;
-        }
-        
-        /* Experience Entries */
-        .experience-entry {
-            margin-bottom: 30px;
-        }
-        
-        .experience-header {
-            margin-bottom: 10px;
-        }
-        
-        .position-title {
-            font-weight: 700;
-            font-size: 14pt;
-        }
-        
-        .company-info {
-            font-size: 13pt;
-            color: #333;
-        }
-        
-        ul {
-            margin-left: 25px;
-            margin-top: 10px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-            font-size: 13pt;
-            line-height: 1.7;
-        }
-        
-        /* Projects Section */
-        .project-entry {
-            margin-bottom: 15px;
-            font-size: 13pt;
-            line-height: 1.7;
-        }
-        
-        .project-title {
-            font-weight: 700;
-        }
-        
-        .project-tech {
-            font-style: italic;
-            color: #555;
-        }
-        
-        /* Skills Section */
-        .skills-grid {
-            margin-top: 15px;
-        }
-        
-        .skill-category {
-            margin-bottom: 10px;
-            font-size: 13pt;
-        }
-        
-        .skill-category strong {
-            font-weight: 700;
-        }
-        
-        /* Publications Section */
-        .publication-entry {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            text-indent: -25px;
-            font-size: 13pt;
-            line-height: 1.7;
-        }
-        
-        /* Awards Section */
-        .award-entry {
-            margin-bottom: 12px;
-            font-size: 13pt;
-        }
-        
-        .award-title {
-            font-weight: 700;
-        }
-        
-        /* Print Styles for Tabloid */
-        @media print {
-            @page {
-                size: 11in 17in;
-                margin: 0.75in;
+            .print-controls .instructions {
+                margin-top: 15px;
+                font-size: 14px;
+                opacity: 0.9;
             }
-            
+        }
+        
+        @media print {
             body {
                 margin: 0;
                 padding: 0;
-                font-size: 14pt;
+                background: white;
+                font-size: 11pt !important; /* Base font size increase for tabloid */
             }
-            
             .print-controls {
                 display: none !important;
             }
-            
             .cv-container {
-                padding: 0 !important;
+                max-width: 100% !important;
+                margin: 0 !important;
                 box-shadow: none !important;
+                display: flex !important;
+                min-height: 16.8in; /* Nearly full tabloid height minus margins */
+            }
+            .sidebar {
+                width: 35% !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                font-size: 10pt !important;
+            }
+            .main-content {
+                width: 65% !important;
+                font-size: 11pt !important;
             }
             
-            .header h1 {
-                font-size: 36pt;
+            /* AGGRESSIVE FONT SIZE INCREASES */
+            h1 {
+                font-size: 24pt !important; /* Much larger name */
+            }
+            .sidebar h2 {
+                font-size: 14pt !important; /* Larger sidebar headings */
+            }
+            .main-section > h2 {
+                font-size: 16pt !important; /* Larger main headings */
+                margin-bottom: 20px !important;
+                padding-bottom: 10px !important;
+            }
+            .job h3, .education-entry h3, .project h3 {
+                font-size: 13pt !important; /* Larger job titles */
             }
             
-            .contact-line {
-                font-size: 14pt;
+            /* SKILL TAGS - MUCH LARGER */
+            .skill-tag {
+                font-size: 10pt !important; /* Significantly increased */
+                padding: 4pt 8pt !important;
+                margin: 3pt !important;
+                line-height: 1.3 !important;
+            }
+            .soft-skills-sidebar .tags span {
+                font-size: 10pt !important;
+                padding: 4pt 8pt !important;
+                margin: 3pt !important;
             }
             
-            h2 {
-                font-size: 20pt;
-                margin-top: 40px;
-                margin-bottom: 20px;
-                page-break-after: avoid;
+            /* CONTENT SIZING */
+            .contact-info p {
+                font-size: 10pt !important;
+                margin-bottom: 8px !important;
+            }
+            .job ul li, .education-entry p, .project p {
+                font-size: 11pt !important;
+                line-height: 1.6 !important;
+            }
+            #profile-main p {
+                font-size: 12pt !important;
+                line-height: 1.7 !important;
+                margin-bottom: 15px !important;
             }
             
-            .profile {
-                font-size: 16pt;
-                margin-bottom: 40px;
+            /* SPACING ADJUSTMENTS FOR TABLOID */
+            .main-section {
+                margin-bottom: 30px !important; /* More space between sections */
+            }
+            .job, .education-entry, .project {
+                margin-bottom: 25px !important;
+                padding-bottom: 18px !important;
+            }
+            .skill-category-group {
+                margin-bottom: 18px !important;
+            }
+            .sidebar section {
+                margin-bottom: 25px !important;
+            }
+            .job ul li {
+                margin-bottom: 10px !important;
+            }
+            .award-entry {
+                margin-bottom: 20px !important;
+            }
+            .company-location-date {
+                font-size: 10pt !important;
+                margin-bottom: 15px !important;
             }
             
-            .degree-title, .position-title {
-                font-size: 16pt;
-            }
-            
-            .thesis-info, li, .project-entry, .skill-category, .publication-entry, .award-entry {
-                font-size: 15pt;
-            }
-            
-            .experience-entry, .education-entry {
+            /* Ensure content doesn't break across pages */
+            .job, .education-entry, .project, .award-entry {
                 page-break-inside: avoid;
-                margin-bottom: 35px;
             }
-            
-            ul {
-                margin-left: 30px;
-            }
-            
-            li {
-                margin-bottom: 12px;
-                line-height: 1.8;
+            h1, h2, h3 {
+                page-break-after: avoid;
             }
         }
     </style>
 </head>
 <body>
 <div class="print-controls no-print">
-    <h3>📄 Academic CV - Tabloid Version</h3>
+    <h3>📄 Tabloid PDF Version (11" × 17")</h3>
     <button onclick="window.print()">Print / Save as PDF</button>
     <button onclick="window.location.href='cv.html'">Back to Web Version</button>
+    <div class="instructions">
+        <strong>Print Instructions:</strong> Select Destination > Microsoft Print to PDF. Under More Settings, Paper Size > Tabloid or "11×17" paper size.
+        If printing on A4, select "Fit to page" or "Scale to fit" in your print settings.
+    </div>
 </div>
 
 <div class="cv-container">
-    <div class="header">
-        <h1>CRISTIAN TCACI</h1>
-        <div class="contact-line">
-            London, W9 • +44 7588221922 • <a href="mailto:Jeky.tck@gmail.com">Jeky.tck@gmail.com</a>
-        </div>
-        <div class="contact-line">
-            <a href="https://www.linkedin.com/in/cristian-tcaci/">linkedin.com/in/cristian-tcaci</a> • 
-            <a href="https://github.com/Chris0Jeky">github.com/Chris0Jeky</a> • 
-            <a href="https://chris0jeky.github.io/CV_and_Portfolio/">chris0jeky.github.io/CV_and_Portfolio</a>
-        </div>
-    </div>
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <div class="profile-header">
+                <h1>Cristian Tcaci</h1>
+                <p class="tagline">Innovative Software Engineer | DevOps & Cloud Enthusiast | Researcher</p>
+            </div>
 
-    <div class="profile">
-        First Class Honours Computer Science graduate with a research focus on multi-agent reinforcement learning and proven experience in developing robust software for enterprise-level DevOps and cloud security environments. Eager to apply a unique background in AI and practical software engineering to the challenges of high-speed embedded optimisation for safety-critical autonomous systems.
-    </div>
+            <section class="contact-info">
+                <h2><i class="fas fa-user-circle"></i> Contact</h2>
+                <p><i class="fas fa-map-marker-alt"></i> London, W9</p>
+                <p><i class="fa s fa-phone"></i> <a href="tel:+447588221922">+44 7588221922</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:Jeky.tck@gmail.com">Jeky.tck@gmail.com</a></p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/cristian-tcaci/" target="_blank">linkedin.com/in/cristian-tcaci</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/Chris0Jeky" target="_blank">github.com/Chris0Jeky</a></p>
+            </section>
 
-    <h2>Education</h2>
-    <div class="education-entry">
-        <div class="education-header">
-            <div class="degree-title">BSc (Hons) Computer Science (with Industrial Placement) — Anticipated First Class Honours</div>
-            <div class="university-name">Middlesex University, London, UK <span class="date-range">(Oct 2018 – May 2025)</span></div>
-        </div>
-        <div class="thesis-info">
-            <strong>Thesis:</strong> <span class="thesis-title">"Emergence of Cooperation in N-Person Iterated Prisoner's Dilemma Simulations using Multi-Agent Reinforcement Learning"</span> (Supervisor: Prof. Chris Huyck)
-        </div>
-        <div class="thesis-info">
-            <strong>Key Modules:</strong> Artificial Intelligence & Machine Learning, Data Structures & Algorithms, Operating Systems, Computer Networks & Security
-        </div>
-    </div>
+            <section class="skills-deep-dive">
+                <h2><i class="fas fa-cogs"></i> Technical Expertise</h2>
 
-    <h2>Research Experience</h2>
-    <div class="experience-entry">
-        <div class="experience-header">
-            <div class="position-title">Lead Researcher</div>
-            <div class="company-info">Middlesex University <span class="date-range">(Apr 2024 - Present)</span></div>
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>Programming Languages:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">Java (OOP, Concurrency, JavaFX, JUnit)</span>
+                        <span class="skill-tag">C++ (STL, OOP, Memory Mgmt)</span>
+                        <span class="skill-tag">Magik (Smallworld GIS)</span>
+                        <span class="skill-tag">Python (Scripting, Pandas, Scikit-learn)</span>
+                        <span class="skill-tag">JavaScript (ES6+, DOM)</span>
+                        <span class="skill-tag">TypeScript (Basics)</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Groovy</span>
+                        <span class="skill-tag">SQL (MySQL, PostgreSQL)</span>
+                        <span class="skill-tag">NoSQL (MongoDB)</span>
+                        <span class="skill-tag">PHP (Coursework)</span>
+                        <span class="skill-tag">HTML5/CSS3</span>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>Frameworks &amp; Libraries:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">Node.js/Express.js</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">jQuery</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TensorFlow (Basics)</span>
+                        <span class="skill-tag">PyTorch (Intro)</span>
+                        <span class="skill-tag">MUnit</span>
+                        <span class="skill-tag">JUnit</span>
+                        <span class="skill-tag">Catch2</span>
+                        <span class="skill-tag">Mocha/Chai (Basics)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>DevOps &amp; Cloud:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">AWS (EC2, S3, Security Groups, CI/CD Integration)</span>
+                        <span class="skill-tag">Jenkins (Pipeline Scripting, Groovy)</span>
+                        <span class="skill-tag">Docker (Basics, Images)</span>
+                        <span class="skill-tag">Kubernetes (Intro-level)</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">GitLab CI (Familiarity)</span>
+                        <span class="skill-tag">Terraform (Concepts)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>Security &amp; Testing:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">Nmap (Port Scanning, Automation)</span>
+                        <span class="skill-tag">Cybersecurity (Vulnerability Scanning, Policy)</span>
+                        <span class="skill-tag">Secure Coding (Injection Prevention, Data Validation)</span>
+                        <span class="skill-tag">Pen Testing (Basics)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>Databases &amp; Data Handling:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">MongoDB (Atlas, CRUD, Indexing)</span>
+                        <span class="skill-tag">SQL (Schemas, Normalization, Stored Procedures)</span>
+                        <span class="skill-tag">Data Analysis (Python, Pandas, Matplotlib, CSV/JSON)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>Software Engineering &amp; Architecture:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">OOP &amp; Design Patterns (Factory, Singleton, Observer, MVC)</span>
+                        <span class="skill-tag">UML Diagrams</span>
+                        <span class="skill-tag">Microservices Concepts (Partitioning, Node Usage)</span>
+                        <span class="skill-tag">Robotics Fundamentals (Arduino, C for Microcontrollers)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category-group">
+                    <p class="skill-main-category"><strong>CI/CD &amp; Collaboration Tools:</strong></p>
+                    <div class="skill-tag-container">
+                        <span class="skill-tag">Git (Branching, Merging, Conflict Resolution)</span>
+                        <span class="skill-tag">Jira (Tickets, Sprints, Agile Boards)</span>
+                        <span class="skill-tag">Confluence/Wiki (Documentation)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="soft-skills-sidebar">
+                <h2><i class="fas fa-users-cog"></i> Soft Skills & Methodologies</h2>
+                <div class="tags">
+                    <span>Agile/Scrum</span><span>Problem-Solving</span><span>Leadership</span><span>Communication</span><span>Mentoring</span><span>Presentation Skills</span><span>Resilience</span><span>Stakeholder Engagement</span><span>Adaptability</span><span>Critical Thinking</span><span>Teamwork</span><span>Coaching</span>
+                </div>
+            </section>
+
+            <section class="languages-spoken">
+                <h2><i class="fas fa-language"></i> Languages</h2>
+                <p>English (Fluent)</p>
+                <p>Italian (Fluent)</p>
+                <p>Romanian (Native)</p>
+                <p>Moldovan (Native)</p>
+            </section>
+
+            <section class="key-certifications">
+                <h2><i class="fas fa-certificate"></i> Certifications & Training</h2>
+                <p>Public Speaking Diploma (Level 1) - The SPEAKup Challenge</p>
+                <p>Oracle Java Certification: Methods and Inheritance (Step towards OCP)</p>
+            </section>
         </div>
-        <ul>
-            <li>Lead author on a scientific paper (in preparation) extending my undergraduate thesis on N-Person Iterated Prisoner's Dilemma</li>
-            <li>Designed and implemented a Python-based Multi-Agent Reinforcement Learning (MARL) simulation to investigate the emergence of cooperative policies in complex N-player scenarios</li>
-            <li>Analyzed the impact of voting mechanisms and reward structures on agent convergence, demonstrating a link between information structure and optimal policy generation</li>
-        </ul>
-    </div>
+    </aside>
 
-    <h2>Professional Experience</h2>
-    <div class="experience-entry">
-        <div class="experience-header">
-            <div class="position-title">Software Engineer Intern</div>
-            <div class="company-info">GE Digital, Cambridge, UK <span class="date-range">(Jun 2023 - Sep 2024)</span></div>
-        </div>
-        <ul>
-            <li>Spearheaded integration of automated Nmap scanning into ~72 AWS CI/CD pipelines using Jenkins, Bash, and Groovy, significantly reducing manual checks and enhancing pre-release security posture</li>
-            <li>Enhanced and maintained a large, complex legacy codebase in Magik, demonstrating adaptability to unfamiliar languages and mission-critical systems</li>
-            <li>Collaborated in an agile team of DevOps engineers and security architects, contributing to improved pipeline reliability and early vulnerability detection</li>
-            <li>Received #Spotlight Award for "Deliver with Focus" for proactive ownership and resilient problem-solving in a dynamic project environment</li>
-        </ul>
-    </div>
+    <main class="main-content">
+        <section id="profile-main" class="main-section">
+            <h2><i class="fas fa-id-card"></i> Professional Profile</h2>
+            <p>
+                Highly motivated Software Engineer with hands-on experience in enterprise DevOps, cloud security (AWS), and legacy software maintenance. My GE Digital internship involved end-to-end project ownership, integrating Nmap automated port scanning into large-scale AWS CI/CD pipelines and enhancing a proprietary Magik ecosystem. Currently completing a BSc in Computer Science at Middlesex University, with ongoing research towards a publication on N-Person Iterated Prisoner's Dilemma simulations.
+            </p>
+            <p>
+                I thrive on bridging full-stack development (Vue.js, Node.js, MongoDB) with robust DevOps practices and a "security by design" philosophy. A proactive problem-solver, I am adept at translating technical complexities for diverse audiences and am committed to continuous learning in AI, cloud-native solutions, and advanced software architecture.
+            </p>
+        </section>
 
-    <div class="experience-entry">
-        <div class="experience-header">
-            <div class="position-title">Freelance Developer</div>
-            <div class="company-info">DeliveraSoft, London, UK <span class="date-range">(Mar 2024 - Present)</span></div>
-        </div>
-        <ul>
-            <li>Developed bespoke automation scripts and full-stack solutions for SMEs, demonstrating strong project management and client communication skills</li>
-        </ul>
-    </div>
+        <section id="experience" class="main-section">
+            <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+            <div class="job">
+                <h3>DeliveraSoft / DevOps Engineer & Full-Stack Developer (Freelance)</h3>
+                <p class="company-location-date">London, UK (Remote) | Mar 2024 - Present</p>
+                <ul>
+                    <li>Developing automation scripts and software solutions for small to medium-sized Italian businesses.</li>
+                    <li>Designing and implementing landing pages, enhancing online presence and user engagement.</li>
+                    <li>Providing technical troubleshooting, database management (cleaning, normalization), and IT consulting.</li>
+                    <li>Collaborating closely with stakeholders as part of a two-person team to deliver tailored solutions.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Middlesex University / Researcher</h3>
+                <p class="company-location-date">London, UK (Hybrid) | Apr 2024 - Present</p>
+                <ul>
+                    <li>Lead author for a scientific paper on N-Person Iterated Prisoner's Dilemma (N-IPD) simulations, investigating the emergence of cooperation.</li>
+                    <li>Expanding thesis research for publication, collaborating with academic supervisors.</li>
+                    <li>Conducting scholarly research, academic writing, and refining multi-agent reinforcement learning models.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>GE Digital / Software Engineer Intern</h3>
+                <p class="company-location-date">Cambridge, UK | Jun 2023 - Sep 2024 (1 yr 4 mos)</p>
+                <ul>
+                    <li>Spearheaded integration of automated Nmap scanning into ~72 AWS CI/CD pipelines using Jenkins, Bash, and Groovy, significantly reducing manual checks and enhancing pre-release security posture.</li>
+                    <li>Maintained and enhanced legacy Magik (Smallworld GIS) codebase: fixed bugs, improved database interactions, and developed MUnit tests.</li>
+                    <li>Collaborated with DevOps engineers and security architects, contributing to improved pipeline reliability and early vulnerability detection.</li>
+                    <li>Active participation in daily stand-ups, code reviews, and agile ceremonies; documented solutions and best practices.</li>
+                    <li>Earned #Spotlight Award for "Deliver with Focus" for proactive ownership of critical security initiatives.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Middlesex University / Student Ambassador & Student Voice Leader</h3>
+                <p class="company-location-date">London, UK | Nov 2023 - Present</p>
+                <ul>
+                    <li>Represented the university at events, guiding prospective students and sharing insights into academic life.</li>
+                    <li>Gathered and presented student feedback to faculty and departmental boards, contributing to curriculum and experience improvements.</li>
+                    <li>Enhanced public speaking, negotiation, and leadership skills through active engagement and formal training.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>MP Moran / Stock Controller</h3>
+                <p class="company-location-date">London, UK | Feb 2022 - Jun 2023 (1 yr 5 mos)</p>
+                <ul>
+                    <li>Managed inventory accuracy, implemented policies reducing wastage by ~12.5%, and improved inter-departmental communication.</li>
+                    <li>Utilized inventory management software for data analysis, trend identification, and process optimization.</li>
+                </ul>
+            </div>
+        </section>
 
-    <h2>Selected Projects</h2>
-    <div class="project-entry">
-        <span class="project-title">Network Security Audit Automation</span> <span class="project-tech">(Python/Bash):</span> Developed security audit scripts used in a production environment at GE Digital, automating port scanning and vulnerability assessment to ensure system integrity.
-    </div>
-    <div class="project-entry">
-        <span class="project-title">Machine Learning Digit Recognition</span> <span class="project-tech">(Java):</span> Implemented several ML algorithms (k-NN, MLP, SVM) from first principles to achieve ~98.4% accuracy on handwritten digit classification, focusing on algorithmic understanding and performance analysis.
-    </div>
+        <section id="education" class="main-section">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="education-entry">
+                <h3>Middlesex University, London, UK</h3>
+                <p class="degree-title">BSc (Hons) Computer Science (with Industrial Placement)</p>
+                <p class="company-location-date">Oct 2018 – May 2025 (Anticipating First Class Honours)</p>
+                <p><strong>Key Modules:</strong> AI & Data Science, Full-Stack Development, Software Engineering, Machine Learning, Operating Systems, Computer Networks.</p>
+                <p><strong>Thesis & Research:</strong> "Emergence of Cooperation in N-Person Iterated Prisoner's Dilemma," currently preparing for publication.</p>
+            </div>
+            <div class="education-entry">
+                <h3>ITC Vincenzo Arangio Ruiz, Rome, Italy</h3>
+                <p class="degree-title">IT Diploma (Informatica e Telecomunicazione)</p>
+                <p class="company-location-date">Sep 2011 – July 2016</p>
+                <p>Focus on Computer Science (JavaScript), Electronics, Project Management, and Network Systems.</p>
+            </div>
+        </section>
 
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-        <div class="skill-category">
-            <strong>Languages:</strong> Python, C++, Java, Rust (Basics), SQL, Bash
-        </div>
-        <div class="skill-category">
-            <strong>Key Libraries & Tools:</strong> Pandas, Scikit-learn, PyTorch (Intro), Git, Docker, Jenkins, AWS
-        </div>
-    </div>
+        <section id="projects" class="main-section">
+            <h2><i class="fas fa-project-diagram"></i> Key Projects & Research</h2>
+            <div class="project">
+                <h3>N-Person Iterated Prisoner's Dilemma Simulation (Research/Thesis)</h3>
+                <p>Developing a Multi-Agent Reinforcement Learning (MARL) simulation to study cooperation dynamics in complex N-player scenarios. Aiming for academic publication. (Python, Soar Cognitive Architecture concepts).</p>
+            </div>
+            <div class="project">
+                <h3>Full-Stack "Lesson Purchase" Web Application (Vue.js, Node.js, MongoDB)</h3>
+                <p>Designed and deployed a feature-rich single-page application with RESTful APIs, dynamic data rendering, search-as-you-type, sorting/filtering, robust form validation, and secure authentication. Deployed on AWS/Render.com.</p>
+            </div>
+            <div class="project">
+                <h3>Machine Learning Digit Recognition (Java)</h3>
+                <p>Implemented various ML algorithms from scratch (k-NN, MLP, SVM, Ensembles) for handwritten digit classification, achieving ~98.4% accuracy. Focused on algorithmic understanding, data wrangling, and performance analysis.</p>
+            </div>
+            <div class="project">
+                <h3>Gear Train Problem Solver (JavaScript/HTML5)</h3>
+                <p>Developed an interactive web-based solver for mechanical engineering gear train problems. Implements algorithms for calculating gear ratios, speeds, and torque transmission in complex multi-stage gear systems. Features visual representation and step-by-step solution explanations.</p>
+            </div>
+            <div class="project">
+                <h3>Network Security Audit Automation (Python/Bash)</h3>
+                <p>Created automated security audit scripts integrating multiple tools for comprehensive network vulnerability assessment. Includes port scanning, service enumeration, and vulnerability detection with formatted reporting. Used in production environment at GE Digital.</p>
+            </div>
+            <p><em>Further project details and code repositories available on <a href="https://github.com/Chris0Jeky" target="_blank">GitHub</a>.</em></p>
+        </section>
 
-    <h2>Publications</h2>
-    <div class="publication-entry">
-        Tcaci, C., Huyck, C. "Navigating the N-Person Prisoner's Dilemma: Emergence of Cooperation through Multi-Agent Reinforcement Learning and Voting Mechanisms." <em>In Preparation</em>, 2024.
-    </div>
+        <section id="coursework" class="main-section">
+            <h2><i class="fas fa-book"></i> Relevant Coursework & Academic Projects</h2>
+            <div class="coursework-grid">
+                <p><strong>Advanced Software Engineering:</strong> Design patterns, SOLID principles, microservices architecture, TDD/BDD methodologies</p>
+                <p><strong>Artificial Intelligence & Machine Learning:</strong> Neural networks, reinforcement learning, natural language processing, computer vision</p>
+                <p><strong>Computer Networks & Security:</strong> TCP/IP stack, cryptography, network protocols, penetration testing fundamentals</p>
+                <p><strong>Database Systems:</strong> RDBMS design, NoSQL databases, query optimization, distributed databases</p>
+                <p><strong>Operating Systems:</strong> Process management, memory allocation, file systems, concurrent programming</p>
+                <p><strong>Data Structures & Algorithms:</strong> Advanced algorithms, computational complexity, graph theory applications</p>
+            </div>
+        </section>
 
-    <h2>Awards & Recognition</h2>
-    <div class="award-entry">
-        <span class="award-title">#Spotlight Award "Deliver with Focus"</span>, GE Digital (2023) — For leading a critical DevOps security initiative
-    </div>
-    <div class="award-entry">
-        <span class="award-title">Public Speaking Diploma (Level 1)</span>, The SPEAKup Challenge (2023)
-    </div>
+        <section id="awards" class="main-section">
+            <h2><i class="fas fa-award"></i> Awards & Recognition</h2>
+            <div class="award-entry">
+                <p><strong>#Spotlight Award "Deliver with Focus"</strong> - GE Digital (Dec 2023)</p>
+                <span class="award-detail">Recognized for leading a critical DevOps security initiative (Nmap automation in AWS CI/CD pipelines).</span>
+            </div>
+            <div class="award-entry">
+                <p><strong>District's Best Branch</strong> - Starbucks (2021)</p>
+                <span class="award-detail">Contributed to team success through high sales volumes and customer satisfaction as Shift Supervisor.</span>
+            </div>
+            <div class="award-entry">
+                <p><strong>Robotics Competition Winner</strong> - VEX Robotics Italy (2016)</p>
+                <span class="award-detail">Led team to regional championship with innovative autonomous navigation system design.</span>
+            </div>
+        </section>
+    </main>
 </div>
 </body>
 </html>
