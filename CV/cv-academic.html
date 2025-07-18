@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Tcaci - Academic CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Academic CV Style - Clean, Professional, Minimal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #000;
+            background: white;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .contact-line {
+            font-size: 10pt;
+            color: #333;
+            margin-top: 5px;
+        }
+        
+        .contact-line a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .contact-line a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Section Headers */
+        h2 {
+            font-size: 14pt;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3px;
+        }
+        
+        /* Profile Section */
+        .profile {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-style: italic;
+        }
+        
+        /* Education Section */
+        .education-entry {
+            margin-bottom: 15px;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        
+        .degree-title {
+            font-weight: 700;
+        }
+        
+        .date-range {
+            font-style: italic;
+            font-size: 10pt;
+        }
+        
+        .thesis-info {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .thesis-title {
+            font-style: italic;
+        }
+        
+        /* Experience Entries */
+        .experience-entry {
+            margin-bottom: 15px;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        
+        .position-title {
+            font-weight: 700;
+        }
+        
+        .company-location {
+            font-style: italic;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        li {
+            margin-bottom: 4px;
+        }
+        
+        /* Projects Section */
+        .project-entry {
+            margin-bottom: 10px;
+        }
+        
+        .project-title {
+            font-weight: 700;
+            display: inline;
+        }
+        
+        .project-tech {
+            font-style: italic;
+            display: inline;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            margin-top: 10px;
+        }
+        
+        .skill-category {
+            margin-bottom: 5px;
+        }
+        
+        .skill-category strong {
+            font-weight: 700;
+        }
+        
+        /* Publications Section */
+        .publication-entry {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            text-indent: -20px;
+        }
+        
+        /* Awards Section */
+        .award-entry {
+            margin-bottom: 8px;
+        }
+        
+        .award-title {
+            font-weight: 700;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0.5in;
+                font-size: 10.5pt;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .experience-entry, .education-entry {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CRISTIAN TCACI</h1>
+        <div class="contact-line">
+            London, W9 • +44 7588221922 • <a href="mailto:Jeky.tck@gmail.com">Jeky.tck@gmail.com</a>
+        </div>
+        <div class="contact-line">
+            <a href="https://www.linkedin.com/in/cristian-tcaci/">linkedin.com/in/cristian-tcaci</a> • 
+            <a href="https://github.com/Chris0Jeky">github.com/Chris0Jeky</a> • 
+            <a href="https://chris0jeky.github.io/CV_and_Portfolio/">chris0jeky.github.io/CV_and_Portfolio</a>
+        </div>
+    </div>
+
+    <div class="profile">
+        First Class Honours Computer Science graduate with a research focus on multi-agent reinforcement learning and proven experience in developing robust software for enterprise-level DevOps and cloud security environments. Eager to apply a unique background in AI and practical software engineering to the challenges of high-speed embedded optimisation for safety-critical autonomous systems.
+    </div>
+
+    <h2>Education</h2>
+    <div class="education-entry">
+        <div class="education-header">
+            <div>
+                <span class="degree-title">BSc (Hons) Computer Science (with Industrial Placement)</span> — Anticipated First Class Honours
+            </div>
+        </div>
+        <div>Middlesex University, London, UK <span class="date-range">(Oct 2018 – May 2025)</span></div>
+        <div class="thesis-info">
+            <strong>Thesis:</strong> <span class="thesis-title">"Emergence of Cooperation in N-Person Iterated Prisoner's Dilemma Simulations using Multi-Agent Reinforcement Learning"</span> (Supervisor: Prof. Chris Huyck)
+        </div>
+        <div class="thesis-info">
+            <strong>Key Modules:</strong> Artificial Intelligence & Machine Learning, Data Structures & Algorithms, Operating Systems, Computer Networks & Security
+        </div>
+    </div>
+
+    <h2>Research Experience</h2>
+    <div class="experience-entry">
+        <div class="experience-header">
+            <div>
+                <span class="position-title">Lead Researcher</span> | <span class="company-location">Middlesex University</span>
+            </div>
+            <span class="date-range">Apr 2024 - Present</span>
+        </div>
+        <ul>
+            <li>Lead author on a scientific paper (in preparation) extending my undergraduate thesis on N-Person Iterated Prisoner's Dilemma</li>
+            <li>Designed and implemented a Python-based Multi-Agent Reinforcement Learning (MARL) simulation to investigate the emergence of cooperative policies in complex N-player scenarios</li>
+            <li>Analyzed the impact of voting mechanisms and reward structures on agent convergence, demonstrating a link between information structure and optimal policy generation</li>
+        </ul>
+    </div>
+
+    <h2>Professional Experience</h2>
+    <div class="experience-entry">
+        <div class="experience-header">
+            <div>
+                <span class="position-title">Software Engineer Intern</span> | <span class="company-location">GE Digital, Cambridge, UK</span>
+            </div>
+            <span class="date-range">Jun 2023 - Sep 2024</span>
+        </div>
+        <ul>
+            <li>Spearheaded integration of automated Nmap scanning into ~72 AWS CI/CD pipelines using Jenkins, Bash, and Groovy, significantly reducing manual checks and enhancing pre-release security posture</li>
+            <li>Enhanced and maintained a large, complex legacy codebase in Magik, demonstrating adaptability to unfamiliar languages and mission-critical systems</li>
+            <li>Collaborated in an agile team of DevOps engineers and security architects, contributing to improved pipeline reliability and early vulnerability detection</li>
+            <li>Received #Spotlight Award for "Deliver with Focus" for proactive ownership and resilient problem-solving in a dynamic project environment</li>
+        </ul>
+    </div>
+
+    <div class="experience-entry">
+        <div class="experience-header">
+            <div>
+                <span class="position-title">Freelance Developer</span> | <span class="company-location">DeliveraSoft, London, UK</span>
+            </div>
+            <span class="date-range">Mar 2024 - Present</span>
+        </div>
+        <ul>
+            <li>Developed bespoke automation scripts and full-stack solutions for SMEs, demonstrating strong project management and client communication skills</li>
+        </ul>
+    </div>
+
+    <h2>Selected Projects</h2>
+    <div class="project-entry">
+        <span class="project-title">Network Security Audit Automation</span> <span class="project-tech">(Python/Bash):</span> Developed security audit scripts used in a production environment at GE Digital, automating port scanning and vulnerability assessment to ensure system integrity.
+    </div>
+    <div class="project-entry">
+        <span class="project-title">Machine Learning Digit Recognition</span> <span class="project-tech">(Java):</span> Implemented several ML algorithms (k-NN, MLP, SVM) from first principles to achieve ~98.4% accuracy on handwritten digit classification, focusing on algorithmic understanding and performance analysis.
+    </div>
+
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-category">
+            <strong>Languages:</strong> Python, C++, Java, Rust (Basics), SQL, Bash
+        </div>
+        <div class="skill-category">
+            <strong>Key Libraries & Tools:</strong> Pandas, Scikit-learn, PyTorch (Intro), Git, Docker, Jenkins, AWS
+        </div>
+    </div>
+
+    <h2>Publications</h2>
+    <div class="publication-entry">
+        Tcaci, C., Huyck, C. "Navigating the N-Person Prisoner's Dilemma: Emergence of Cooperation through Multi-Agent Reinforcement Learning and Voting Mechanisms." <em>In Preparation</em>, 2024.
+    </div>
+
+    <h2>Awards & Recognition</h2>
+    <div class="award-entry">
+        <span class="award-title">#Spotlight Award "Deliver with Focus"</span>, GE Digital (2023) — For leading a critical DevOps security initiative
+    </div>
+    <div class="award-entry">
+        <span class="award-title">Public Speaking Diploma (Level 1)</span>, The SPEAKup Challenge (2023)
+    </div>
+</body>
+</html>
