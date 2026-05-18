@@ -1,0 +1,72 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(pwd)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(wc:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(python -m http.server:*)",
+      "Bash(npx htmlhint:*)",
+      "Bash(npx stylelint:*)",
+      "Bash(npx eslint:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:cdnjs.cloudflare.com)",
+      "WebFetch(domain:fonts.googleapis.com)",
+      "WebFetch(domain:developer.mozilla.org)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(*rm -rf /*)",
+      "Bash(*rm -rf ./*)",
+      "Bash(*| xargs rm*)",
+      "Bash(*| Remove-Item*)",
+      "Bash(git push --force*)",
+      "Bash(git push * --force*)",
+      "Bash(git rebase*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(git checkout -- .)",
+      "Bash(git restore .)",
+      "Bash(npm publish*)",
+      "Bash(*>.env*)",
+      "Bash(*>> .env*)",
+      "Bash(chmod 777*)",
+      "Bash(*curl*| sh*)",
+      "Bash(*curl*| bash*)",
+      "Bash(*wget*| sh*)",
+      "Bash(*wget*| bash*)",
+      "Bash(*API_KEY*=*)",
+      "Bash(*SECRET*=*)",
+      "Bash(*PASSWORD*=*)",
+      "Bash(*TOKEN*=*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python scripts/agent_hooks/pre_tool_use.py",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}
