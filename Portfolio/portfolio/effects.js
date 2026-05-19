@@ -659,7 +659,7 @@
         const p = target.dataset.proj;
         return ({
           wealthlens: { k: 'wealthlens', b: "The civic-data one. £17 trillion of UK wealth, 874 tests, ten cited datasets, zero opinions disguised as facts." },
-          taskdeck:   { k: 'taskdeck',   b: "The local-first one. 5,500+ commits and 1,070+ PRs of stubbornness about who is actually in charge of your board." },
+          taskdeck:   { k: 'taskdeck',   b: "The local-first one. 5,300+ commits and 620+ PRs of stubbornness about who is actually in charge of your board." },
           metrix:     { k: 'metrix',     b: "The ambitious one. ~3,144 commits of opinions about backtests, plus an AI assistant that knows it is a tool." },
           navsentinel:{ k: 'navsentinel',b: "The security one. 112 Gym fixtures, zero remote lookups, every decision explainable." },
           npdl:       { k: 'npdl',       b: "The research one. Springer / SGAI-AI 2025. Cooperation emerges, defection spreads in clusters. Same instinct as the day job." },

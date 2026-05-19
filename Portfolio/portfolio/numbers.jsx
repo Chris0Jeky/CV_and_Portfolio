@@ -51,11 +51,11 @@ window.ByTheNumbers = function ByTheNumbers() {
     { v: '£17T', l: 'of UK wealth · visualised' },
     { v: '9,799', l: 'tests on Taskdeck', accent: 'forest' },
     { v: '874', l: 'tests on WealthLens', accent: 'teal' },
-    { v: '5,500+', l: 'taskdeck commits', accent: 'forest' },
-    { v: '1,070+', l: 'taskdeck PRs', accent: 'forest' },
+    { v: '5,300+', l: 'taskdeck commits', accent: 'forest' },
+    { v: '620+', l: 'taskdeck PRs', accent: 'forest' },
     { v: '3,144', l: 'metrix commits', accent: 'rouge' },
     { v: '72', l: 'aws pipelines · ge' },
-    { v: '112', l: 'security fixtures · navsentinel', accent: 'rouge' },
+    { v: '112', l: 'gym fixtures · navsentinel', accent: 'rouge' },
     { v: '1', l: 'paper · springer · SGAI-AI 25', accent: 'gold' },
   ];
 
@@ -74,7 +74,7 @@ window.ByTheNumbers = function ByTheNumbers() {
           <span className="label">the receipts</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 0,
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9, 1fr)', gap: 0,
           border: '1.5px solid var(--rule)', background: 'var(--paper-2)' }}>
           {stats.map((s, i) => {
             const color = s.accent === 'teal' ? 'var(--teal)' :

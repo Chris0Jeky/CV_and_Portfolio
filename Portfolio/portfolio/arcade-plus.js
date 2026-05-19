@@ -25,6 +25,10 @@
     const game = window.__tcaciGame;
     const api  = game.api;
 
+    game.magnetUntil = 0;
+    game.piercingUntil = 0;
+    game.usedPowerUps = new Set();
+
     /* ──────────────────────────────────────────
        SOUND — minimal WebAudio chiptune
        ────────────────────────────────────────── */
@@ -64,6 +68,10 @@
       star:        () => arp([1046, 1318, 1568, 2093], 0.04, 0.09, 'sine', 0.06),
       achievement: () => arp([523, 659, 784, 1046, 1318, 1568], 0.05, 0.09, 'square', 0.05),
       bonus:       () => arp([392, 523, 659, 784, 1046], 0.05, 0.1, 'square', 0.05),
+      magnet:      () => arp([330, 440, 660, 880], 0.04, 0.1, 'sine', 0.05),
+      freeze:      () => arp([1568, 1318, 1046, 784], 0.06, 0.12, 'triangle', 0.06),
+      nuke:        () => { beep(80, 0.3, 'sawtooth', 0.08); setTimeout(() => arp([120, 180, 260], 0.04, 0.08, 'square', 0.06), 150); },
+      piercing:    () => arp([1200, 1600, 2000, 1800], 0.03, 0.06, 'sawtooth', 0.05),
     };
 
     /* ──────────────────────────────────────────
@@ -106,6 +114,10 @@
       'speedrun':     { label: 'STOP PRESS',        sub: '5 kills in 5 seconds' },
       'pacifist':     { label: 'PACIFIST',          sub: '20 coins · zero hits' },
       'collector':    { label: 'COLLECTOR',         sub: 'caught a falling star' },
+      'magnetised':   { label: 'MAGNETISED',        sub: 'activated a magnet' },
+      'frostbite':    { label: 'FROSTBITE',         sub: 'froze the press room' },
+      'demolition':   { label: 'DEMOLITION',        sub: 'dropped a nuke' },
+      'arsenal':      { label: 'FULL ARSENAL',      sub: 'used 5 different power-ups' },
     };
     function award(key) {
       if (game.achievements.has(key)) return;
@@ -206,6 +218,84 @@
           setTimeout(() => fl.remove(), 520);
         },
       },
+      magnet: {
+        size: 32, color: '#e04080', life: 12000,
+        svg: `<svg viewBox="0 0 32 32" width="100%" height="100%">
+          <path d="M 8 6 L 8 20 Q 8 28 16 28 Q 24 28 24 20 L 24 6" fill="none" stroke="#e04080" stroke-width="4" stroke-linecap="round"/>
+          <rect x="5" y="4" width="6" height="6" rx="1" fill="#cc3a2e"/>
+          <rect x="21" y="4" width="6" height="6" rx="1" fill="#3a9ee0"/>
+        </svg>`,
+        apply: () => {
+          SFX.magnet(); toast('magnet · 8s', 'rouge', '🧲'); award('magnetised');
+          game.magnetUntil = Date.now() + 8000;
+        },
+      },
+      freeze: {
+        size: 32, color: '#a0e8ff', life: 10000,
+        svg: `<svg viewBox="0 0 32 32" width="100%" height="100%">
+          <line x1="16" y1="2" x2="16" y2="30" stroke="#a0e8ff" stroke-width="2.5"/>
+          <line x1="2" y1="16" x2="30" y2="16" stroke="#a0e8ff" stroke-width="2.5"/>
+          <line x1="6" y1="6" x2="26" y2="26" stroke="#a0e8ff" stroke-width="1.8"/>
+          <line x1="26" y1="6" x2="6" y2="26" stroke="#a0e8ff" stroke-width="1.8"/>
+          <circle cx="16" cy="16" r="5" fill="#a0e8ff" opacity="0.5"/>
+          <circle cx="16" cy="16" r="2" fill="#fff"/>
+        </svg>`,
+        apply: () => {
+          SFX.freeze(); toast('freeze · 5s', 'teal', '❄'); award('frostbite');
+          const list = (api.ghosts || []).slice();
+          const saved = list.filter(g => g.alive).map(g => ({ g, spd: g.speed }));
+          saved.forEach(({ g }) => {
+            g.speed = 0;
+            if (g.el) g.el.style.filter = (g.el.style.filter || '') + ' brightness(1.6) saturate(0.3)';
+          });
+          setTimeout(() => {
+            saved.forEach(({ g, spd }) => {
+              g.speed = spd;
+              if (g.el) g.el.style.filter = g.el.style.filter.replace(/ ?brightness\(1\.6\) saturate\(0\.3\)/, '');
+            });
+          }, 5000);
+        },
+      },
+      nuke: {
+        size: 34, color: '#ff6040', life: 10000,
+        svg: `<svg viewBox="0 0 34 34" width="100%" height="100%">
+          <circle cx="17" cy="20" r="12" fill="#ff6040" stroke="#6b1a14" stroke-width="1.8"/>
+          <rect x="15" y="2" width="4" height="10" rx="2" fill="#6b1a14"/>
+          <path d="M 19 4 Q 24 2 22 7" stroke="#ffd84a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="17" y="24" text-anchor="middle" font-family="Impact, sans-serif" font-size="10" fill="#fff">!</text>
+        </svg>`,
+        apply: () => {
+          SFX.nuke(); toast('nuke · 1 dmg all', 'rouge', '💣'); award('demolition');
+          const list = (api.ghosts || []).slice();
+          for (const g of list) {
+            if (!g.alive) continue;
+            g.hp--;
+            if (g.hp <= 0) {
+              api.killGhost(g, g.x + g.size / 2, g.y + g.size / 2);
+            } else {
+              if (g.el) { g.el.style.transform = 'scale(1.2)'; setTimeout(() => { if (g.alive && g.el) g.el.style.transform = ''; }, 200); }
+            }
+          }
+          const fl = document.createElement('div');
+          fl.style.cssText = 'position:fixed;inset:0;background:rgba(255,96,64,0.35);z-index:9990;pointer-events:none;animation:hit-flash 0.5s ease-out forwards;';
+          document.body.appendChild(fl);
+          setTimeout(() => fl.remove(), 520);
+        },
+      },
+      piercing: {
+        size: 30, color: '#b060ff', life: 10000,
+        svg: `<svg viewBox="0 0 30 30" width="100%" height="100%">
+          <circle cx="15" cy="15" r="12" fill="none" stroke="#b060ff" stroke-width="2" stroke-dasharray="4 3"/>
+          <polygon points="15,4 18,12 15,10 12,12" fill="#b060ff"/>
+          <polygon points="15,26 18,18 15,20 12,18" fill="#b060ff"/>
+          <polygon points="4,15 12,12 10,15 12,18" fill="#b060ff"/>
+          <polygon points="26,15 18,18 20,15 18,12" fill="#b060ff"/>
+        </svg>`,
+        apply: () => {
+          SFX.piercing(); toast('piercing · 6s', 'violet', '⚡');
+          game.piercingUntil = Date.now() + 6000;
+        },
+      },
     };
 
     function spawnPickup(type = 'coin', opts = {}) {
@@ -255,12 +345,15 @@
         p.x += p.vx; p.y += p.vy;
         p.rotate += p.rotateV;
 
-        // magnetic attraction within 90px
+        // magnetic attraction — boosted when magnet powerup active
+        const magnetOn = Date.now() < game.magnetUntil;
+        const magnetR = magnetOn ? 500 : 90;
+        const magnetStr = magnetOn ? 2.5 : 0.5;
         const dx = cur.x - p.x;
         const dy = cur.y - p.y;
         const d = Math.hypot(dx, dy);
-        if (d < 90 && d > 1) {
-          const pull = (90 - d) / 90 * 0.5;
+        if (d < magnetR && d > 1) {
+          const pull = (magnetR - d) / magnetR * magnetStr;
           p.x += dx / d * pull;
           p.y += dy / d * pull;
         }
@@ -277,6 +370,10 @@
           document.body.appendChild(burst);
           setTimeout(() => burst.remove(), 520);
           p.def.apply();
+          if (p.type !== 'coin') {
+            game.usedPowerUps.add(p.type);
+            if (game.usedPowerUps.size >= 5) award('arsenal');
+          }
           p.el.remove();
           PICKUPS.splice(i, 1);
           continue;
@@ -374,15 +471,18 @@
       for (let i = 0; i < N; i++) {
         setTimeout(() => spawnPickup('coin'), i * 140);
       }
-      // chance of a power-up
+      // guaranteed power-up per section + chance of a second
+      setTimeout(() => {
+        const pool = ['shield','slow','mult','magnet','freeze','piercing'];
+        spawnPickup(pool[Math.floor(Math.random() * pool.length)]);
+      }, 1200);
       setTimeout(() => {
         const r = Math.random();
-        if (r < 0.22) spawnPickup('shield');
-        else if (r < 0.44) spawnPickup('slow');
-        else if (r < 0.66) spawnPickup('mult');
-        else if (r < 0.74) spawnPickup('star');
-        else if (r < 0.78) spawnPickup('life');
-      }, 1200);
+        if (r < 0.18) spawnPickup('star');
+        else if (r < 0.30) spawnPickup('nuke');
+        else if (r < 0.40) spawnPickup('life');
+        else if (r < 0.55) spawnPickup('magnet');
+      }, 2200);
       // themed enemy wave
       const wave = WAVES[id]; if (wave) wave();
       // full-edition achievement
@@ -426,11 +526,15 @@
       document.body.appendChild(banner);
       setTimeout(() => banner.remove(), 1700);
       SFX.bonus();
-      // 3 themed enemies + 1 coin
+      // 3 themed enemies + coins + a powerup
       for (let i = 0; i < 3; i++) {
         setTimeout(() => api.spawnGhost({ color: theme.color }), 500 + i * 220);
       }
-      setTimeout(() => spawnPickup('coin'), 900);
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => spawnPickup('coin'), 800 + i * 150);
+      }
+      const wavePool = ['shield','slow','mult','magnet','freeze','piercing'];
+      setTimeout(() => spawnPickup(wavePool[Math.floor(Math.random() * wavePool.length)]), 1400);
     });
 
     /* ──────────────────────────────────────────
@@ -461,22 +565,22 @@
       `;
       document.body.appendChild(banner);
       setTimeout(() => banner.remove(), 2500);
-      // coin rain
-      for (let i = 0; i < 18; i++) {
-        setTimeout(() => spawnPickup('coin'), 1500 + i * 110);
+      // coin rain + powerup shower
+      for (let i = 0; i < 22; i++) {
+        setTimeout(() => spawnPickup('coin'), 1500 + i * 100);
       }
-      setTimeout(() => {
-        const r = Math.random();
-        if (r < 0.45) spawnPickup('star');
-        else if (r < 0.78) spawnPickup('mult');
-        else spawnPickup('life');
-      }, 2400);
+      const bonusPool = ['star','mult','life','magnet','freeze','nuke','shield','piercing'];
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          spawnPickup(bonusPool[Math.floor(Math.random() * bonusPool.length)]);
+        }, 2200 + i * 600);
+      }
     }
     function scheduleBonus() {
-      const wait = 75000 + Math.random() * 25000;
+      const wait = 60000 + Math.random() * 20000;
       setTimeout(() => { bonusStage(); scheduleBonus(); }, wait);
     }
-    setTimeout(scheduleBonus, 50000);
+    setTimeout(scheduleBonus, 40000);
 
     /* ──────────────────────────────────────────
        EVENT HOOKS — kill / hit / shield-block
@@ -497,12 +601,33 @@
       if (game.score >= 1000) award('published');
       if (game.score >= 5000) award('bestseller');
 
-      // chance of a drop at the kill site
-      const dropChance = 0.18 + Math.min(0.18, game.stage * 0.025);
+      // piercing splash: when active, kills damage nearby ghosts
+      if (g && Date.now() < game.piercingUntil) {
+        const splashR = 120;
+        const gx = g.x + g.size / 2, gy = g.y + g.size / 2;
+        for (const other of (api.ghosts || [])) {
+          if (!other.alive || other === g) continue;
+          const od = Math.hypot((other.x + other.size / 2) - gx, (other.y + other.size / 2) - gy);
+          if (od < splashR) {
+            other.hp--;
+            if (other.hp <= 0) {
+              api.killGhost(other, other.x + other.size / 2, other.y + other.size / 2);
+            } else if (other.el) {
+              other.el.style.transform = 'scale(1.15)';
+              setTimeout(() => { if (other.alive && other.el) other.el.style.transform = ''; }, 150);
+            }
+          }
+        }
+      }
+
+      // chance of a drop at the kill site — expanded pool
+      const dropChance = 0.25 + Math.min(0.20, game.stage * 0.03);
       if (g && Math.random() < dropChance) {
-        const pool = ['coin','coin','coin','coin','shield','slow','mult'];
-        if (Math.random() < 0.07) pool.push('life');
-        if (Math.random() < 0.05) pool.push('star');
+        const pool = ['coin','coin','coin','shield','slow','mult','magnet','freeze'];
+        if (Math.random() < 0.10) pool.push('life');
+        if (Math.random() < 0.07) pool.push('star');
+        if (Math.random() < 0.08) pool.push('nuke');
+        if (Math.random() < 0.08) pool.push('piercing');
         const t = pool[Math.floor(Math.random() * pool.length)];
         spawnPickup(t, {
           x: g.x + g.size/2, y: g.y + g.size/2,
@@ -510,16 +635,21 @@
         });
       }
       if (g && g.isBoss) {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 8; i++) {
           setTimeout(() => spawnPickup('coin', {
             x: g.x + g.size/2 + (Math.random() * 60 - 30),
             y: g.y + g.size/2, fromTop: false,
             vy: -1.5, vx: (Math.random() * 2 - 1) * 2,
           }), i * 70);
         }
-        setTimeout(() => spawnPickup('star', {
+        const bossDrops = ['star', 'nuke', 'freeze', 'magnet'];
+        const bossDrop = bossDrops[Math.floor(Math.random() * bossDrops.length)];
+        setTimeout(() => spawnPickup(bossDrop, {
           x: g.x + g.size/2, y: g.y + g.size/2, fromTop: false, vy: -1, vx: 0,
         }), 250);
+        setTimeout(() => spawnPickup('life', {
+          x: g.x + g.size/2 + 30, y: g.y + g.size/2, fromTop: false, vy: -1.2, vx: 0.5,
+        }), 350);
       }
     });
     window.addEventListener('tcaci:hit', () => { SFX.hit(); });
@@ -530,13 +660,28 @@
        ────────────────────────────────────────── */
     if (!sessionStorage.getItem('tcaci_plus_hint')) {
       sessionStorage.setItem('tcaci_plus_hint', '1');
-      setTimeout(() => toast('catch coins · click ghosts', 'gold', '¢'), 4200);
+      setTimeout(() => toast('catch coins · grab power-ups · click ghosts', 'gold', '¢'), 4200);
       setTimeout(() => {
-        for (let i = 0; i < 4; i++) {
-          setTimeout(() => spawnPickup('coin', { x: 120 + Math.random() * 320, y: 60 }), i * 200);
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => spawnPickup('coin', { x: 100 + Math.random() * 360, y: 60 }), i * 180);
         }
+        setTimeout(() => spawnPickup('shield', { x: 280, y: 50 }), 1200);
       }, 5500);
     }
+
+    /* ──────────────────────────────────────────
+       AMBIENT DROPS — periodic powerup rain between sections
+       ────────────────────────────────────────── */
+    function ambientDrop() {
+      if (game.gameOver || game.paused) return;
+      const pool = ['coin','coin','coin','shield','slow','mult','magnet','freeze','piercing'];
+      spawnPickup(pool[Math.floor(Math.random() * pool.length)]);
+    }
+    function scheduleAmbient() {
+      const wait = 12000 + Math.random() * 10000;
+      setTimeout(() => { ambientDrop(); scheduleAmbient(); }, wait);
+    }
+    setTimeout(scheduleAmbient, 15000);
 
     /* ──────────────────────────────────────────
        CSS

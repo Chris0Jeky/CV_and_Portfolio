@@ -140,7 +140,7 @@ function ProposalCard({ state, setState }) {
         <DiffLine kind="meta">@@ now.yml @@</DiffLine>
         <DiffLine kind="add">+ building:</DiffLine>
         <DiffLine kind="add">+   - wealthlens # UK inequality data · 874 tests · 10 pipelines</DiffLine>
-        <DiffLine kind="add">+   - taskdeck   # local-first board · 5,500+ commits · 1,070+ PRs</DiffLine>
+        <DiffLine kind="add">+   - taskdeck   # local-first board · 5,300+ commits · 620+ PRs</DiffLine>
         <DiffLine kind="add">+   - metrix     # options backtester · ~3.1k commits</DiffLine>
         <DiffLine kind="add">+ shipping:    "weekly, sometimes daily"</DiffLine>
         <DiffLine kind="add">+ mission:     "make unequal systems legible"</DiffLine>

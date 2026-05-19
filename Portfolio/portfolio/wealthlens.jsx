@@ -5,7 +5,7 @@ window.WealthLensFeature = function WealthLensFeature() {
   return (
     <article>
       <FeatureHeader num="043" name="WealthLens" cat="Civic Data · Open Source · MIT + CC-BY"
-        years="2025 — building" team="sole architect · 180 PRs · 540+ commits · 874 tests"
+        years="2025 — building" team="sole architect · 260+ PRs · 830+ commits · 874 tests"
         tone="teal"/>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>

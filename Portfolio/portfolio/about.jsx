@@ -38,7 +38,7 @@ window.About = function About() {
                 local-first task board where every automation lands as a
                 <em> proposal</em> you accept or reject. No silent mutations.
                 No surprise cards. Roughly
-                <strong> 5,500+ commits</strong>, <strong>1,070+ PRs</strong> and 30 CI workflows of stubbornness
+                <strong> 5,300+ commits</strong>, <strong>620+ PRs</strong> and 30 CI workflows of stubbornness
                 about who's actually in charge of your board.
               </li>
               <li>

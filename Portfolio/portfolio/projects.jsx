@@ -240,7 +240,7 @@ function TaskdeckFeature() {
   return (
     <article style={{ borderTop: '1px solid var(--rule)', paddingTop: 32 }}>
       <FeatureHeader num="041" name="Taskdeck" cat="Local-first Devtool · Clean Architecture"
-      years="2025 — active" team="solo · 5,500+ commits · 1,070+ PRs · 9,799 tests · 21 ADRs" tone="forest" />
+      years="2025 — active" team="solo · 5,300+ commits · 620+ PRs · 9,799 tests · 21 ADRs" tone="forest" />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 48 }}>
         <div>

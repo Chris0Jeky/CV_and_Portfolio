@@ -222,7 +222,6 @@
       z-index: 9; pointer-events: none;
       transition: left ${dur}s linear, opacity 0.6s ease;
       opacity: 0;
-      white-space: nowrap;
     `;
     bubble.innerHTML = `<span style="color:var(--rouge);">★</span> ${headline}`;
     document.body.appendChild(bubble);
