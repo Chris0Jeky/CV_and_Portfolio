@@ -18,7 +18,7 @@
     const tilt   = (Math.random() * 18 - 9);
     const sx = fromLeft ? -90 : innerWidth + 90;
     const ex = fromLeft ? innerWidth + 90 : -90;
-    const rot = fromLeft ? -8 + tilt : 188 + tilt;
+    const rot = fromLeft ? 188 + tilt : -8 + tilt;
 
     const el = document.createElement('div');
     el.style.cssText = `
@@ -49,7 +49,7 @@
       el.style.opacity = '0.85';
       el.style.left = ex + 'px';
       el.style.top  = yEnd + 'px';
-      el.style.transform = `rotate(${rot + (fromLeft ? 6 : -6)}deg)`;
+      el.style.transform = `rotate(${rot + (fromLeft ? -6 : 6)}deg)`;
     });
 
     // Sample plane position periodically to drop tiny ink dots
