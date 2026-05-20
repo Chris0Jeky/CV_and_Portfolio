@@ -8,13 +8,15 @@
   if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
 
   function whenReady(cb) {
-    if (window.__tcaciGame && window.__tcaciGame.api) return cb();
-    window.addEventListener('tcaci:ready', cb, { once: true });
+    let called = false;
+    function once() { if (called) return; called = true; cb(); }
+    if (window.__tcaciGame && window.__tcaciGame.api) return once();
+    window.addEventListener('tcaci:ready', once, { once: true });
     let tries = 0;
     const id = setInterval(() => {
       tries++;
       if (window.__tcaciGame && window.__tcaciGame.api) {
-        clearInterval(id); cb();
+        clearInterval(id); once();
       } else if (tries > 100) clearInterval(id);
     }, 100);
   }
@@ -844,60 +846,121 @@
        YOUTUBE MUSIC PLAYER — iconic game soundtracks
        ────────────────────────────────────────── */
     const YT_TRACKS = [
-      { name: 'Besaid Island · FFX',     id: '8DmsfYt_-hU' },
-      { name: 'FFVII · Full OST',        id: '-1ZBWUnYPbA' },
-      { name: 'Pokémon R/B · OST',       id: 'HWob6x4Yk7E' },
-      { name: 'Persona 5 · OST',         id: 'ZXni9_91ORs' },
-      { name: "Baldur's Gate 3 · OST",   id: 'mC4GQTy5sqk' },
-      { name: 'Game Music Orchestra',    id: 'y1pKkcw2WxE' },
-      { name: 'Game Lofi · 24/7',        id: '4ud1w3_nJO8' },
-      { name: 'Chrono Trigger · OST',    id: 'EeOexldS2B8' },
-      { name: 'Zelda · OoT OST',         id: 'sIiEi96USlo' },
-      { name: 'Skyrim · Full OST',       id: 'aQeIYVM3YBM' },
-      { name: 'Kingdom Hearts · OST',    id: '5IJTYaj23Tc' },
-      { name: 'NieR Automata · OST',     id: 'p2ETA--T4q4' },
-      { name: 'Hollow Knight · OST',     id: '0HbnqjGirFg' },
-      { name: 'Undertale · Full OST',    id: 's19c4Ysywyg' },
-      { name: 'Stardew Valley · OST',    id: 'UKZF5k5cqOs' },
-      { name: 'Ori · Blind Forest',      id: 'MeVFrt7BUyw' },
-      { name: 'Divinity OS2 · OST',      id: 'WimydicRuGg' },
-      { name: 'Witcher 3 · Full OST',    id: 'rI2vjPUztJc' },
-      { name: 'Dark Souls · Full OST',   id: 'MTUI0nv29Rs' },
-      { name: 'Hades · Full OST',        id: '3GRKJ87S5cI' },
-      { name: 'Celeste · Full OST',      id: 'LcLvLVjVS5o' },
-      { name: 'Minecraft · C418 OST',    id: 'Dg0IjOzopYU' },
-      { name: 'Zelda · BotW OST',        id: 'o46NJtHcNgU' },
-      { name: 'Outer Wilds · OST',       id: 'jnjE1_qQelQ' },
+      { name: 'Besaid Island · FFX', id: '8DmsfYt_-hU',
+        game: 'Final Fantasy X', year: 2001, composer: 'Nobuo Uematsu',
+        fact: 'Besaid Island\'s theme was composed to evoke the feeling of arriving somewhere warm and safe after a long journey. The track uses a blend of guitar, flute, and ocean ambience — Uematsu said he wanted players to "feel the sand between their toes." FFX was the first Final Fantasy with voice acting and a fully orchestrated score.',
+        theme: { bg: 'linear-gradient(135deg, #0a2342, #1a5276, #21618c)', accent: '#5dade2', particles: ['🌊','🌴','✨','🐚'], effect: 'wave' }},
+      { name: 'FFVII · Full OST', id: '-1ZBWUnYPbA',
+        game: 'Final Fantasy VII', year: 1997, composer: 'Nobuo Uematsu',
+        fact: 'FFVII\'s soundtrack contains 85 tracks — Uematsu composed the entire score in just one year. "One-Winged Angel" was the first Final Fantasy piece to feature full choir vocals and is considered one of gaming\'s most iconic boss themes. The opening Mako Reactor theme was designed to make players feel like industrial trespassers.',
+        theme: { bg: 'linear-gradient(135deg, #0b3d0b, #145a14, #1a7a1a)', accent: '#39ff14', particles: ['⚡','🌿','💚','🗡️'], effect: 'mako' }},
+      { name: 'Pokémon R/B · OST', id: 'HWob6x4Yk7E',
+        game: 'Pokémon Red & Blue', year: 1996, composer: 'Junichi Masuda',
+        fact: 'Junichi Masuda composed the entire Pokémon Red/Blue soundtrack on a Game Boy sound chip with only 4 audio channels. The Lavender Town theme became an internet legend for its unsettling, high-pitched tones that allegedly disturbed young players. Despite hardware limits, Masuda created 40+ distinct tracks.',
+        theme: { bg: 'linear-gradient(135deg, #7b241c, #c0392b, #e74c3c)', accent: '#ff6b6b', particles: ['⚡','🔴','⭐','🎮'], effect: 'pixel' }},
+      { name: 'Persona 5 · OST', id: 'ZXni9_91ORs',
+        game: 'Persona 5', year: 2016, composer: 'Shoji Meguro',
+        fact: '"Last Surprise" — Persona 5\'s battle theme — has over 200 million streams across platforms, making it one of the most-listened JRPG tracks ever. Meguro blended acid jazz, funk, and rock to create a sound unlike any other RPG. The vocalist Lyn Inaizumi was a then-unknown singer who auditioned on a whim.',
+        theme: { bg: 'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)', accent: '#e94560', particles: ['🎭','♠️','🃏','🔴'], effect: 'cards' }},
+      { name: "Baldur's Gate 3 · OST", id: 'mC4GQTy5sqk',
+        game: "Baldur's Gate 3", year: 2023, composer: 'Borislav Slavov',
+        fact: 'Borislav Slavov recorded the BG3 soundtrack with the Budapest Film Orchestra. The companion song "I Want to Live" (Shadowheart\'s theme) moved so many players that it charted on music platforms. The camp music dynamically layers instruments based on which companions are present — a technical feat of adaptive scoring.',
+        theme: { bg: 'linear-gradient(135deg, #2d1b4e, #4a1a6b, #6c2b8e)', accent: '#c39bd3', particles: ['🎲','✨','⚔️','🐉'], effect: 'magic' }},
+      { name: 'Game Music Orchestra', id: 'y1pKkcw2WxE',
+        game: 'Orchestral Medley', year: 2024, composer: 'Various Artists',
+        fact: 'Video game orchestral concerts began with "Orchestral Game Music Concerts" in Tokyo (1991) and have since filled venues like the Royal Albert Hall and Sydney Opera House. The London Philharmonic\'s "Greatest Video Game Music" album debuted at #23 on the Billboard charts — a first for a game music album.',
+        theme: { bg: 'linear-gradient(135deg, #4a3728, #6d4c30, #8b6914)', accent: '#f4d03f', particles: ['🎵','🎻','🎹','🎶'], effect: 'notes' }},
+      { name: 'Game Lofi · 24/7', id: '4ud1w3_nJO8',
+        game: 'Lofi Gaming Mix', year: 2024, composer: 'Various Artists',
+        fact: 'The "lofi hip hop beats to study/relax to" phenomenon started on YouTube in 2017 and has since become a cultural institution. Game lofi remixes nostalgic melodies through vinyl crackle and jazz chords, creating the perfect blend of focus and nostalgia. These streams often run 24/7 with millions of concurrent listeners.',
+        theme: { bg: 'linear-gradient(135deg, #3e2723, #5d4037, #795548)', accent: '#ffab91', particles: ['☕','🌧️','📻','🎧'], effect: 'rain' }},
+      { name: 'Chrono Trigger · OST', id: 'EeOexldS2B8',
+        game: 'Chrono Trigger', year: 1995, composer: 'Yasunori Mitsuda',
+        fact: 'Yasunori Mitsuda was so determined to compose Chrono Trigger that he threatened to quit Square if he didn\'t get the job. He worked so intensely that he developed stomach ulcers, and Nobuo Uematsu finished the final 10 tracks. "Corridors of Time" is frequently cited as the greatest SNES composition ever made.',
+        theme: { bg: 'linear-gradient(135deg, #1a237e, #283593, #3949ab)', accent: '#7c4dff', particles: ['⏰','🌀','⚡','🌟'], effect: 'time' }},
+      { name: 'Zelda · OoT OST', id: 'sIiEi96USlo',
+        game: 'Legend of Zelda: Ocarina of Time', year: 1998, composer: 'Koji Kondo',
+        fact: 'Koji Kondo designed the ocarina songs to be playable on just 5 buttons — the same as a real pentatonic scale. "Zelda\'s Lullaby" uses only 3 notes in its core melody yet is instantly recognizable worldwide. The Lost Woods theme (Saria\'s Song) became one of the earliest viral game music memes on the internet.',
+        theme: { bg: 'linear-gradient(135deg, #1b5e20, #2e7d32, #388e3c)', accent: '#69f0ae', particles: ['🧚','🌿','🗡️','🛡️'], effect: 'fairy' }},
+      { name: 'Skyrim · Full OST', id: 'aQeIYVM3YBM',
+        game: 'The Elder Scrolls V: Skyrim', year: 2011, composer: 'Jeremy Soule',
+        fact: 'Jeremy Soule recorded "Dragonborn" (Dovahkiin) with a 30-person choir singing in the fictional dragon language. The choir had to learn to pronounce words like "Dovahkiin" and "Fus Ro Dah" correctly. The ambient exploration music was designed to blend seamlessly with wind and nature sounds, making players forget they were hearing a score.',
+        theme: { bg: 'linear-gradient(135deg, #1a3a4a, #2c5f6e, #3d8393)', accent: '#b3e5fc', particles: ['❄️','⚔️','🐲','🏔️'], effect: 'snow' }},
+      { name: 'Kingdom Hearts · OST', id: '5IJTYaj23Tc',
+        game: 'Kingdom Hearts', year: 2002, composer: 'Yoko Shimomura',
+        fact: 'Yoko Shimomura composed "Dearly Beloved" — the series\' menu theme — in a single sitting, and it has appeared in every Kingdom Hearts game since. Utada Hikaru\'s "Simple and Clean" was originally written in Japanese as "Hikari" and was re-recorded in English specifically for Western audiences. The game was born from a chance elevator meeting between Square and Disney executives.',
+        theme: { bg: 'linear-gradient(135deg, #1a237e, #1565c0, #0277bd)', accent: '#ffd54f', particles: ['⭐','🗝️','💫','👑'], effect: 'sparkle' }},
+      { name: 'NieR Automata · OST', id: 'p2ETA--T4q4',
+        game: 'NieR: Automata', year: 2017, composer: 'Keiichi Okabe',
+        fact: 'NieR Automata\'s soundtrack features vocals in a fictional "Chaos Language" — a blend of English, French, Japanese, and invented syllables designed to sound emotional without conveying literal meaning. The hacking minigame has an 8-bit version of every track. "Weight of the World" exists in 4 language versions, each unlocked in different endings.',
+        theme: { bg: 'linear-gradient(135deg, #37474f, #455a64, #546e7a)', accent: '#cfd8dc', particles: ['⚙️','🌸','🤖','⚪'], effect: 'petals' }},
+      { name: 'Hollow Knight · OST', id: '0HbnqjGirFg',
+        game: 'Hollow Knight', year: 2017, composer: 'Christopher Larkin',
+        fact: 'Christopher Larkin scored the entire game from his bedroom in Adelaide, Australia, using a mix of live instruments and digital samples. The City of Tears theme uses a constant rain percussion overlay that syncs with the in-game weather. Hollow Knight was made by a team of just 3 people, and Larkin\'s haunting score elevated it to classic status.',
+        theme: { bg: 'linear-gradient(135deg, #0d1b2a, #1b2838, #253447)', accent: '#4fc3f7', particles: ['🦋','💎','🌙','🕯️'], effect: 'rain' }},
+      { name: 'Undertale · Full OST', id: 's19c4Ysywyg',
+        game: 'Undertale', year: 2015, composer: 'Toby Fox',
+        fact: '"Megalovania" — originally composed for a Homestuck hack — has become one of the most remixed songs in internet history with over 50,000 fan versions. Toby Fox composed all 101 tracks himself. The soundtrack uses leitmotifs extensively: "Your Best Friend" contains melodic DNA that reappears across 15+ other tracks, rewarding attentive listeners.',
+        theme: { bg: 'linear-gradient(135deg, #1a1a1a, #2d2d2d, #404040)', accent: '#ffeb3b', particles: ['❤️','💀','⭐','🦴'], effect: 'pixel' }},
+      { name: 'Stardew Valley · OST', id: 'UKZF5k5cqOs',
+        game: 'Stardew Valley', year: 2016, composer: 'ConcernedApe (Eric Barone)',
+        fact: 'Eric "ConcernedApe" Barone not only programmed, designed, and drew all art for Stardew Valley — he also composed every single track. The seasonal music changes dynamically as in-game days progress. "Spring (It\'s a Big World Outside)" is specifically designed to evoke the feeling of starting something new with gentle optimism. The game has sold over 30 million copies.',
+        theme: { bg: 'linear-gradient(135deg, #33691e, #558b2f, #689f38)', accent: '#c5e1a5', particles: ['⭐','🌾','🌻','🦋'], effect: 'sparkle' }},
+      { name: 'Ori · Blind Forest', id: 'MeVFrt7BUyw',
+        game: 'Ori and the Blind Forest', year: 2015, composer: 'Gareth Coker',
+        fact: 'Gareth Coker recorded the soundtrack with the Nashville Music Scoring Orchestra. The opening track "Ori, Lost in the Storm" has made countless players cry within the first 10 minutes of gameplay — it\'s consistently ranked among the most emotional game openings ever. Coker personally attended over 200 recording sessions to perfect every nuance.',
+        theme: { bg: 'linear-gradient(135deg, #1a237e, #0d47a1, #01579b)', accent: '#80d8ff', particles: ['✨','🌳','💫','🦋'], effect: 'glow' }},
+      { name: 'Divinity OS2 · OST', id: 'WimydicRuGg',
+        game: 'Divinity: Original Sin 2', year: 2017, composer: 'Borislav Slavov',
+        fact: 'Borislav Slavov\'s work on Divinity OS2 earned him a BAFTA nomination and is considered a turning point for CRPG soundtracks. Each origin character has a unique musical theme that subtly plays during their story moments. The tavern song "Sing for Me" became a fan favorite, spawning countless covers and becoming a community anthem.',
+        theme: { bg: 'linear-gradient(135deg, #4a148c, #6a1b9a, #7b1fa2)', accent: '#ea80fc', particles: ['🔥','💧','⚡','🌍'], effect: 'magic' }},
+      { name: 'Witcher 3 · Full OST', id: 'rI2vjPUztJc',
+        game: 'The Witcher 3: Wild Hunt', year: 2015, composer: 'Marcin Przybyłowicz',
+        fact: 'The Witcher 3 soundtrack blends Slavic folk instruments — hurdy-gurdy, lute, and Slavic percussion — with a full orchestra. "The Wolven Storm" (Priscilla\'s Song) was performed in-game by voice actress Emma Hiddleston and became a viral sensation. The combat music dynamically layers based on enemy difficulty — a gwent match has entirely different music than a griffin fight.',
+        theme: { bg: 'linear-gradient(135deg, #2c3e50, #34495e, #415b76)', accent: '#95a5a6', particles: ['⚔️','🐺','🌧️','🍺'], effect: 'rain' }},
+      { name: 'Dark Souls · Full OST', id: 'MTUI0nv29Rs',
+        game: 'Dark Souls', year: 2011, composer: 'Motoi Sakuraba',
+        fact: 'Dark Souls deliberately uses silence for most exploration — there is no overworld music. This makes boss themes hit exponentially harder when they erupt. "Gwyn, Lord of Cinder" breaks every boss music convention: instead of bombastic orchestra, it\'s a simple, melancholic piano piece for the final boss, reflecting a fallen god rather than a triumphant villain.',
+        theme: { bg: 'linear-gradient(135deg, #1a1a1a, #2d2d2d, #3e3e3e)', accent: '#ff6f00', particles: ['🔥','💀','⚔️','🌑'], effect: 'ember' }},
+      { name: 'Hades · Full OST', id: '3GRKJ87S5cI',
+        game: 'Hades', year: 2020, composer: 'Darren Korb',
+        fact: 'Darren Korb invented the genre term "Mediterranean prog-rock death metal" to describe Hades\' sound. He voiced Zagreus AND composed every track, performing most instruments himself. "In the Blood" — the credits song — features vocals by Ashley Barrett and was nominated for a Grammy, a first for a video game original song at that time.',
+        theme: { bg: 'linear-gradient(135deg, #4a0e0e, #7f1d1d, #991b1b)', accent: '#ef5350', particles: ['⚡','🏛️','🔥','💀'], effect: 'ember' }},
+      { name: 'Celeste · Full OST', id: 'LcLvLVjVS5o',
+        game: 'Celeste', year: 2018, composer: 'Lena Raine',
+        fact: 'Lena Raine composed Celeste\'s soundtrack as a deeply personal exploration of anxiety and depression — themes central to the game\'s story. "Resurrections" (Chapter 6) builds from ambient dread into triumphant synths, mirroring Madeline\'s journey of self-acceptance. The B-side remixes were composed to match the brutally difficult alternate levels, creating an auditory "difficulty spike."',
+        theme: { bg: 'linear-gradient(135deg, #1a237e, #283593, #4527a0)', accent: '#f48fb1', particles: ['🏔️','❄️','💜','⭐'], effect: 'snow' }},
+      { name: 'Minecraft · C418 OST', id: 'Dg0IjOzopYU',
+        game: 'Minecraft', year: 2011, composer: 'C418 (Daniel Rosenfeld)',
+        fact: 'C418 composed "Sweden" — gaming\'s most nostalgic ambient track — in his bedroom as a 20-year-old. The music plays randomly and infrequently in-game, which makes each occurrence feel special and personal. Minecraft\'s soundtrack was designed to be the "silence between sounds" — Rosenfeld intentionally left long gaps between tracks so the game\'s natural audio could breathe.',
+        theme: { bg: 'linear-gradient(135deg, #2e7d32, #388e3c, #43a047)', accent: '#a5d6a7', particles: ['🟩','⛏️','🌳','💎'], effect: 'pixel' }},
+      { name: 'Zelda · BotW OST', id: 'o46NJtHcNgU',
+        game: 'Legend of Zelda: Breath of the Wild', year: 2017, composer: 'Manaka Kataoka',
+        fact: 'BotW broke Zelda tradition by using minimal, sparse piano instead of sweeping orchestral themes. Manaka Kataoka designed the soundtrack so players would hear more birdsong and wind than music — each piano note was placed to feel like a "raindrop in silence." The horse-riding music dynamically speeds up and slows down to match your galloping speed.',
+        theme: { bg: 'linear-gradient(135deg, #1b5e20, #2e7d32, #4caf50)', accent: '#b9f6ca', particles: ['🌸','🍃','🎹','🌿'], effect: 'petals' }},
+      { name: 'Outer Wilds · OST', id: 'jnjE1_qQelQ',
+        game: 'Outer Wilds', year: 2019, composer: 'Andrew Prahlow',
+        fact: 'Outer Wilds\' soundtrack features a banjo in space — an intentionally "wrong" instrument choice that perfectly captures the game\'s cozy-yet-cosmic tone. Each planet has a unique traveler playing a different instrument, and when you find them, their music layers into the mix. The 22-minute loop structure mirrors the game\'s time-loop mechanic — the music literally resets with the universe.',
+        theme: { bg: 'linear-gradient(135deg, #0d1b2a, #1b2838, #1a237e)', accent: '#b388ff', particles: ['🔭','🪐','🌌','🏕️'], effect: 'cosmic' }},
     ];
 
     let ytPlayer = null;
+    let ytReady = false;
     let ytTrackIdx = Math.floor(Math.random() * YT_TRACKS.length);
     let ytIsPlaying = false;
     let ytVolume = 30;
     let ytApiLoaded = false;
     let userPaused = false;
+    let ytPendingPlay = false;
 
     const ytWrap = document.createElement('div');
     ytWrap.id = 'tcaci-yt-wrap';
     ytWrap.innerHTML = '<div id="tcaci-yt-player"></div>';
     document.body.appendChild(ytWrap);
 
-    const player = document.createElement('div');
-    player.id = 'tcaci-music';
-    player.innerHTML = `
-      <button data-mp="play" title="Play / Pause">♫</button>
-      <span data-mp="name">${YT_TRACKS[ytTrackIdx].name}</span>
-      <button data-mp="prev" title="Previous track">◂◂</button>
-      <button data-mp="next" title="Next track">▸▸</button>
-      <input data-mp="vol" type="range" min="0" max="100" value="30" title="Volume">
-    `;
-    document.body.appendChild(player);
-
-    let ytPendingPlay = false;
-
     function loadYTApi() {
       if (window.YT && window.YT.Player) {
-        if (!ytPlayer) initYTPlayer();
+        if (!ytReady) initYTPlayer();
         return;
       }
       if (ytApiLoaded) return;
@@ -913,68 +976,51 @@
     }
 
     function initYTPlayer() {
-      ytPlayer = new YT.Player('tcaci-yt-player', {
+      new YT.Player('tcaci-yt-player', {
         height: '1',
         width: '1',
         videoId: YT_TRACKS[ytTrackIdx].id,
         playerVars: { autoplay: 1, controls: 0, disablekb: 1, fs: 0, modestbranding: 1, rel: 0, playsinline: 1 },
         events: {
           onReady: function (ev) {
-            ev.target.setVolume(ytVolume);
-            ev.target.playVideo();
+            ytPlayer = ev.target;
+            ytReady = true;
+            ytPlayer.setVolume(ytVolume);
+            ytPlayer.playVideo();
           },
           onStateChange: function (ev) {
             if (ev.data === YT.PlayerState.ENDED) {
-              ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
-              ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+              changeTrack(1);
             }
             ytIsPlaying = (ev.data === YT.PlayerState.PLAYING);
             if (ytIsPlaying) { ytPendingPlay = false; removeResumeListeners(); }
-            updateMusicUI();
+            updateAllUI();
           },
           onError: function () {
-            ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
-            if (ytPlayer) ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
-            updateMusicUI();
+            changeTrack(1);
           },
         },
       });
     }
 
-    function updateMusicUI() {
-      const playBtn = player.querySelector('[data-mp="play"]');
-      const nameEl = player.querySelector('[data-mp="name"]');
-      if (playBtn) playBtn.textContent = (ytIsPlaying || ytPendingPlay) ? '◼' : '♫';
-      if (nameEl) nameEl.textContent = YT_TRACKS[ytTrackIdx].name;
-    }
-
-    loadYTApi();
-    ytPendingPlay = true;
-    updateMusicUI();
-
-    function removeResumeListeners() {
-      ['pointerdown','keydown','click','scroll'].forEach(ev =>
-        window.removeEventListener(ev, tryResumeOnInteraction)
-      );
-    }
-    function tryResumeOnInteraction() {
-      if (userPaused) { removeResumeListeners(); return; }
-      if (ytPlayer && !ytIsPlaying && ytPendingPlay) {
-        try { ytPlayer.playVideo(); } catch (_) {}
+    function changeTrack(dir) {
+      ytTrackIdx = (ytTrackIdx + dir + YT_TRACKS.length) % YT_TRACKS.length;
+      if (ytReady && ytPlayer) {
+        ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+        ytPendingPlay = true;
+        userPaused = false;
+      } else {
+        loadYTApi();
       }
-      if (ytIsPlaying) removeResumeListeners();
+      updateAllUI();
     }
-    ['pointerdown','keydown','click','scroll'].forEach(ev =>
-      window.addEventListener(ev, tryResumeOnInteraction, { passive: true })
-    );
 
-    player.querySelector('[data-mp="play"]').addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (!ytPlayer) {
+    function togglePlay() {
+      if (!ytReady || !ytPlayer) {
         userPaused = false;
         loadYTApi();
         ytPendingPlay = true;
-        updateMusicUI();
+        updateAllUI();
         return;
       }
       const state = ytPlayer.getPlayerState();
@@ -987,47 +1033,225 @@
         ytPendingPlay = true;
         userPaused = false;
       }
-      updateMusicUI();
-    });
+      updateAllUI();
+    }
 
-    player.querySelector('[data-mp="prev"]').addEventListener('click', (e) => {
-      e.stopPropagation();
-      ytTrackIdx = (ytTrackIdx - 1 + YT_TRACKS.length) % YT_TRACKS.length;
-      if (ytPlayer) {
-        ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
-        ytPendingPlay = true;
-        userPaused = false;
-      } else {
-        loadYTApi();
+    function setVolume(val) {
+      ytVolume = val;
+      if (ytReady && ytPlayer) ytPlayer.setVolume(ytVolume);
+    }
+
+    function updateAllUI() {
+      updateMiniPlayer();
+      updateCassette();
+      updateThemeEffects();
+    }
+
+    loadYTApi();
+    ytPendingPlay = true;
+
+    function removeResumeListeners() {
+      ['pointerdown','keydown','click','scroll'].forEach(ev =>
+        window.removeEventListener(ev, tryResumeOnInteraction)
+      );
+    }
+    function tryResumeOnInteraction() {
+      if (userPaused) { removeResumeListeners(); return; }
+      if (ytReady && ytPlayer && !ytIsPlaying && ytPendingPlay) {
+        try { ytPlayer.playVideo(); } catch (_) {}
       }
-      updateMusicUI();
-    });
-
-    player.querySelector('[data-mp="next"]').addEventListener('click', (e) => {
-      e.stopPropagation();
-      ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
-      if (ytPlayer) {
-        ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
-        ytPendingPlay = true;
-        userPaused = false;
-      } else {
-        loadYTApi();
-      }
-      updateMusicUI();
-    });
-
-    player.querySelector('[data-mp="vol"]').addEventListener('input', (e) => {
-      e.stopPropagation();
-      ytVolume = parseInt(e.target.value, 10);
-      if (ytPlayer && typeof ytPlayer.setVolume === 'function') ytPlayer.setVolume(ytVolume);
-    });
+      if (ytIsPlaying) removeResumeListeners();
+    }
+    ['pointerdown','keydown','click','scroll'].forEach(ev =>
+      window.addEventListener(ev, tryResumeOnInteraction, { passive: true })
+    );
 
     window.addEventListener('tcaci:arcade-off', () => {
-      if (ytPlayer && ytIsPlaying) ytPlayer.pauseVideo();
+      if (ytReady && ytPlayer && ytIsPlaying) ytPlayer.pauseVideo();
     });
 
+    /* ──────────────────────────────────────────
+       MINI PLAYER — compact bottom-right controller
+       ────────────────────────────────────────── */
+    const miniPlayer = document.createElement('div');
+    miniPlayer.id = 'tcaci-music';
+    miniPlayer.innerHTML = `
+      <button data-mp="play" title="Play / Pause">♫</button>
+      <span data-mp="name">${YT_TRACKS[ytTrackIdx].name}</span>
+      <button data-mp="prev" title="Previous track">◂◂</button>
+      <button data-mp="next" title="Next track">▸▸</button>
+      <input data-mp="vol" type="range" min="0" max="100" value="30" title="Volume">
+    `;
+    document.body.appendChild(miniPlayer);
+
+    function updateMiniPlayer() {
+      const playBtn = miniPlayer.querySelector('[data-mp="play"]');
+      const nameEl = miniPlayer.querySelector('[data-mp="name"]');
+      if (playBtn) playBtn.textContent = (ytIsPlaying || ytPendingPlay) ? '◼' : '♫';
+      if (nameEl) nameEl.textContent = YT_TRACKS[ytTrackIdx].name;
+    }
+    updateMiniPlayer();
+
+    miniPlayer.querySelector('[data-mp="play"]').addEventListener('click', (e) => {
+      e.stopPropagation(); togglePlay();
+    });
+    miniPlayer.querySelector('[data-mp="prev"]').addEventListener('click', (e) => {
+      e.stopPropagation(); changeTrack(-1);
+    });
+    miniPlayer.querySelector('[data-mp="next"]').addEventListener('click', (e) => {
+      e.stopPropagation(); changeTrack(1);
+    });
+    miniPlayer.querySelector('[data-mp="vol"]').addEventListener('input', (e) => {
+      e.stopPropagation();
+      setVolume(parseInt(e.target.value, 10));
+      const casVol = document.querySelector('#tcaci-cassette input[type="range"]');
+      if (casVol) casVol.value = e.target.value;
+    });
+
+    /* ──────────────────────────────────────────
+       CASSETTE PLAYER — large retro music section
+       ────────────────────────────────────────── */
+    const cassette = document.createElement('section');
+    cassette.id = 'tcaci-cassette';
+    const track = YT_TRACKS[ytTrackIdx];
+    cassette.innerHTML = `
+      <div class="cas-inner">
+        <div class="cas-header">
+          <span class="cas-label">NOW SPINNING</span>
+          <span class="cas-label">VOL. ${ytTrackIdx + 1} / ${YT_TRACKS.length}</span>
+        </div>
+        <div class="cas-body">
+          <div class="cas-decor cas-decor-l"></div>
+          <div class="cas-main">
+            <div class="cas-tape">
+              <div class="cas-tape-label">
+                <div class="cas-tape-title">GAME SOUNDTRACKS</div>
+                <div class="cas-tape-sub">MIXTAPE · SIDE A · ${YT_TRACKS.length} TRACKS</div>
+              </div>
+              <div class="cas-tape-window">
+                <div class="cas-reel cas-reel-l"><div class="cas-reel-inner"></div></div>
+                <div class="cas-tape-strip"></div>
+                <div class="cas-reel cas-reel-r"><div class="cas-reel-inner"></div></div>
+              </div>
+              <div class="cas-tape-bottom">
+                <div class="cas-tape-holes"></div>
+              </div>
+            </div>
+            <div class="cas-info">
+              <div class="cas-now-playing">NOW PLAYING</div>
+              <div class="cas-track-name">${track.name}</div>
+              <div class="cas-track-meta">${track.game} · ${track.year} · ${track.composer}</div>
+              <div class="cas-track-fact">${track.fact}</div>
+            </div>
+            <div class="cas-controls">
+              <button class="cas-btn" data-cas="prev" title="Previous">⏮</button>
+              <button class="cas-btn cas-btn-play" data-cas="play" title="Play / Pause">▶</button>
+              <button class="cas-btn" data-cas="next" title="Next">⏭</button>
+              <div class="cas-vol-wrap">
+                <span class="cas-vol-icon">🔊</span>
+                <input type="range" min="0" max="100" value="${ytVolume}" class="cas-vol">
+              </div>
+            </div>
+          </div>
+          <div class="cas-decor cas-decor-r"></div>
+        </div>
+        <div class="cas-particles"></div>
+      </div>
+    `;
+
+    const aboutEl = document.getElementById('about');
+    if (aboutEl) {
+      aboutEl.parentNode.insertBefore(cassette, aboutEl);
+    } else {
+      const root = document.getElementById('root');
+      if (root) root.appendChild(cassette);
+    }
+
+    function updateCassette() {
+      const t = YT_TRACKS[ytTrackIdx];
+      const nameEl = cassette.querySelector('.cas-track-name');
+      const metaEl = cassette.querySelector('.cas-track-meta');
+      const factEl = cassette.querySelector('.cas-track-fact');
+      const volLabel = cassette.querySelector('.cas-inner > .cas-header > .cas-label:last-child');
+      const playBtn = cassette.querySelector('[data-cas="play"]');
+      if (nameEl) nameEl.textContent = t.name;
+      if (metaEl) metaEl.textContent = `${t.game} · ${t.year} · ${t.composer}`;
+      if (factEl) factEl.textContent = t.fact;
+      if (volLabel) volLabel.textContent = `VOL. ${ytTrackIdx + 1} / ${YT_TRACKS.length}`;
+      if (playBtn) playBtn.textContent = (ytIsPlaying || ytPendingPlay) ? '⏸' : '▶';
+
+      const body = cassette.querySelector('.cas-body');
+      if (body) body.style.background = t.theme.bg;
+
+      cassette.classList.toggle('is-playing', ytIsPlaying || ytPendingPlay);
+    }
+    updateCassette();
+
+    cassette.querySelector('[data-cas="play"]').addEventListener('click', (e) => {
+      e.stopPropagation(); togglePlay();
+    });
+    cassette.querySelector('[data-cas="prev"]').addEventListener('click', (e) => {
+      e.stopPropagation(); changeTrack(-1);
+    });
+    cassette.querySelector('[data-cas="next"]').addEventListener('click', (e) => {
+      e.stopPropagation(); changeTrack(1);
+    });
+    cassette.querySelector('.cas-vol').addEventListener('input', (e) => {
+      e.stopPropagation();
+      setVolume(parseInt(e.target.value, 10));
+      const miniVol = miniPlayer.querySelector('[data-mp="vol"]');
+      if (miniVol) miniVol.value = e.target.value;
+    });
+
+    /* ──────────────────────────────────────────
+       THEMED EFFECTS — ambient particles per track
+       ────────────────────────────────────────── */
+    let activeParticles = [];
+    let particleRAF = null;
+    const particleBox = cassette.querySelector('.cas-particles');
+
+    function updateThemeEffects() {
+      const t = YT_TRACKS[ytTrackIdx];
+      activeParticles.forEach(el => el.remove());
+      activeParticles = [];
+
+      const decorL = cassette.querySelector('.cas-decor-l');
+      const decorR = cassette.querySelector('.cas-decor-r');
+      if (decorL) decorL.innerHTML = t.theme.particles.slice(0, 2).map(p =>
+        `<span class="cas-float-icon">${p}</span>`).join('');
+      if (decorR) decorR.innerHTML = t.theme.particles.slice(2, 4).map(p =>
+        `<span class="cas-float-icon">${p}</span>`).join('');
+
+      if (particleBox) {
+        particleBox.innerHTML = '';
+        if (ytIsPlaying || ytPendingPlay) spawnAmbientParticles(t);
+      }
+    }
+    updateThemeEffects();
+
+    function spawnAmbientParticles(t) {
+      if (!particleBox) return;
+      const count = 12;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('span');
+        p.className = 'cas-particle';
+        p.textContent = t.theme.particles[i % t.theme.particles.length];
+        p.style.left = (Math.random() * 100) + '%';
+        p.style.animationDelay = (Math.random() * 6) + 's';
+        p.style.animationDuration = (4 + Math.random() * 6) + 's';
+        p.style.fontSize = (12 + Math.random() * 16) + 'px';
+        p.style.opacity = 0.15 + Math.random() * 0.35;
+        particleBox.appendChild(p);
+        activeParticles.push(p);
+      }
+    }
+
+    /* ──────────────────────────────────────────
+       ALL STYLES
+       ────────────────────────────────────────── */
     const musicCss = document.createElement('style');
     musicCss.textContent = `
+      /* --- Mini player (bottom-right) --- */
       #tcaci-music {
         position: fixed; bottom: 14px; right: 14px; z-index: 9988;
         font-family: 'IBM Plex Mono', monospace; font-size: 10px;
@@ -1075,9 +1299,268 @@
       #tcaci-music input[type="range"]::-moz-range-track {
         height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; border: none;
       }
-      @media print { #tcaci-music { display: none !important; } }
+
+      /* --- Cassette player section --- */
+      #tcaci-cassette {
+        position: relative; padding: 48px 0 56px; overflow: hidden;
+        border-top: 2px solid var(--rule, #1a1817);
+        border-bottom: 2px solid var(--rule, #1a1817);
+        background: var(--paper-2, #ebe6db);
+      }
+      .cas-inner {
+        max-width: 900px; margin: 0 auto; padding: 0 32px; position: relative;
+      }
+      .cas-header {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-bottom: 20px;
+      }
+      .cas-label {
+        font-family: var(--sans, 'IBM Plex Sans', sans-serif);
+        font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+        color: var(--ink-dim, #5a554d);
+      }
+      .cas-body {
+        display: flex; align-items: stretch; gap: 0;
+        border-radius: 12px; overflow: hidden;
+        background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+        transition: background 0.8s ease;
+      }
+      .cas-decor {
+        width: 60px; min-height: 100%; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 20px;
+        padding: 20px 8px; position: relative; overflow: hidden;
+      }
+      .cas-float-icon {
+        font-size: 24px; opacity: 0.6;
+        animation: cas-float 4s ease-in-out infinite alternate;
+        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+      }
+      .cas-float-icon:nth-child(2) { animation-delay: -2s; }
+      .cas-main {
+        flex: 1; padding: 28px 32px; display: flex; flex-direction: column; gap: 20px;
+      }
+
+      /* Cassette tape visual */
+      .cas-tape {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px; padding: 16px 20px 12px;
+        position: relative;
+      }
+      .cas-tape::before {
+        content: ''; position: absolute; top: 8px; left: 50%;
+        transform: translateX(-50%);
+        width: 60%; height: 2px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 1px;
+      }
+      .cas-tape-label {
+        text-align: center; margin-bottom: 14px;
+      }
+      .cas-tape-title {
+        font-family: var(--sans, 'IBM Plex Sans', sans-serif);
+        font-size: 11px; font-weight: 700;
+        letter-spacing: 0.3em; text-transform: uppercase;
+        color: rgba(255,255,255,0.9);
+      }
+      .cas-tape-sub {
+        font-family: var(--mono, 'IBM Plex Mono', monospace);
+        font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+        color: rgba(255,255,255,0.4); margin-top: 4px;
+      }
+      .cas-tape-window {
+        display: flex; align-items: center; justify-content: center; gap: 0;
+        background: rgba(0,0,0,0.4); border-radius: 6px;
+        padding: 12px 16px; position: relative;
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+      .cas-reel {
+        width: 52px; height: 52px; border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        border: 2px solid rgba(255,255,255,0.15);
+        display: flex; align-items: center; justify-content: center;
+        position: relative; flex-shrink: 0;
+      }
+      .cas-reel-inner {
+        width: 20px; height: 20px; border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.2);
+        background: rgba(0,0,0,0.4);
+        position: relative;
+      }
+      .cas-reel-inner::before {
+        content: ''; position: absolute; inset: 4px;
+        border-radius: 50%; background: rgba(255,255,255,0.1);
+      }
+      .cas-reel-inner::after {
+        content: '+'; position: absolute; inset: 0;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; color: rgba(255,255,255,0.3);
+        font-family: var(--mono, monospace);
+      }
+      #tcaci-cassette.is-playing .cas-reel {
+        animation: cas-spin 3s linear infinite;
+      }
+      .cas-tape-strip {
+        flex: 1; height: 4px; margin: 0 8px;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(139,69,19,0.6) 0px, rgba(139,69,19,0.6) 2px,
+          rgba(139,69,19,0.3) 2px, rgba(139,69,19,0.3) 4px
+        );
+        border-radius: 2px;
+        position: relative;
+      }
+      .cas-tape-strip::after {
+        content: ''; position: absolute; inset: -1px 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 50%, transparent);
+      }
+      .cas-tape-bottom {
+        margin-top: 10px; display: flex; justify-content: center;
+      }
+      .cas-tape-holes {
+        display: flex; gap: 6px;
+      }
+      .cas-tape-holes::before, .cas-tape-holes::after {
+        content: ''; width: 8px; height: 8px; border-radius: 50%;
+        background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      /* Track info */
+      .cas-info { text-align: center; }
+      .cas-now-playing {
+        font-family: var(--sans, 'IBM Plex Sans', sans-serif);
+        font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+        color: rgba(255,255,255,0.4); margin-bottom: 6px;
+      }
+      .cas-track-name {
+        font-family: var(--serif, 'Newsreader', serif);
+        font-size: 22px; font-weight: 500; color: #fff;
+        letter-spacing: -0.02em; margin-bottom: 4px;
+      }
+      .cas-track-meta {
+        font-family: var(--mono, 'IBM Plex Mono', monospace);
+        font-size: 10px; letter-spacing: 0.1em;
+        color: rgba(255,255,255,0.5); margin-bottom: 12px;
+      }
+      .cas-track-fact {
+        font-family: var(--serif, 'Newsreader', serif);
+        font-size: 14px; line-height: 1.6;
+        color: rgba(255,255,255,0.75);
+        max-width: 520px; margin: 0 auto;
+        font-style: italic;
+      }
+
+      /* Controls */
+      .cas-controls {
+        display: flex; align-items: center; justify-content: center; gap: 16px;
+      }
+      .cas-btn {
+        background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+        color: #fff; font-size: 16px; width: 40px; height: 40px;
+        border-radius: 50%; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.15s;
+        pointer-events: auto; position: relative;
+      }
+      .cas-btn:hover {
+        background: rgba(255,255,255,0.15);
+        border-color: rgba(255,255,255,0.3);
+        transform: scale(1.05);
+      }
+      .cas-btn-play {
+        width: 52px; height: 52px; font-size: 20px;
+        background: rgba(255,255,255,0.12);
+        border: 2px solid rgba(255,255,255,0.25);
+      }
+      .cas-btn-play:hover {
+        background: rgba(255,255,255,0.2);
+        border-color: rgba(255,255,255,0.4);
+      }
+      .cas-vol-wrap {
+        display: flex; align-items: center; gap: 6px;
+        margin-left: 8px;
+      }
+      .cas-vol-icon { font-size: 14px; opacity: 0.6; }
+      .cas-vol {
+        width: 70px; height: 4px;
+        -webkit-appearance: none; appearance: none;
+        background: rgba(255,255,255,0.15); border-radius: 2px;
+        outline: none; cursor: pointer;
+        pointer-events: auto; position: relative;
+      }
+      .cas-vol::-webkit-slider-thumb {
+        -webkit-appearance: none; width: 14px; height: 14px;
+        background: #fff; border-radius: 50%; cursor: pointer;
+        margin-top: -5px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      }
+      .cas-vol::-moz-range-thumb {
+        width: 14px; height: 14px; border: none;
+        background: #fff; border-radius: 50%; cursor: pointer;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      }
+      .cas-vol::-moz-range-track {
+        height: 4px; background: rgba(255,255,255,0.15);
+        border-radius: 2px; border: none;
+      }
+
+      /* Particles */
+      .cas-particles {
+        position: absolute; inset: 0; pointer-events: none;
+        overflow: hidden; z-index: 0;
+      }
+      .cas-particle {
+        position: absolute; bottom: -30px;
+        animation: cas-rise linear infinite;
+        pointer-events: none;
+      }
+
+      /* Animations */
+      @keyframes cas-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes cas-float {
+        0% { transform: translateY(0) rotate(0deg); }
+        100% { transform: translateY(-8px) rotate(10deg); }
+      }
+      @keyframes cas-rise {
+        0% { bottom: -30px; opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { bottom: 100%; opacity: 0; transform: translateX(20px) rotate(180deg); }
+      }
+
+      /* Print & responsive */
+      @media print {
+        #tcaci-music, #tcaci-cassette { display: none !important; }
+      }
+      @media (max-width: 900px) {
+        .cas-inner { padding: 0 20px; }
+        .cas-decor { width: 40px; }
+        .cas-float-icon { font-size: 18px; }
+        .cas-main { padding: 20px 16px; }
+        .cas-track-name { font-size: 18px; }
+        .cas-track-fact { font-size: 13px; }
+        .cas-reel { width: 40px; height: 40px; }
+        .cas-reel-inner { width: 16px; height: 16px; }
+      }
       @media (max-width: 600px) {
         #tcaci-music { bottom: 10px; right: 8px; font-size: 9px; padding: 5px 8px; }
+        #tcaci-cassette { padding: 32px 0 40px; }
+        .cas-decor { display: none; }
+        .cas-body { border-radius: 8px; }
+        .cas-main { padding: 16px 12px; }
+        .cas-track-name { font-size: 16px; }
+        .cas-track-fact { font-size: 12px; }
+        .cas-tape-window { padding: 8px 12px; }
+        .cas-reel { width: 36px; height: 36px; }
+        .cas-reel-inner { width: 14px; height: 14px; }
+        .cas-controls { gap: 10px; }
+        .cas-btn { width: 36px; height: 36px; font-size: 14px; }
+        .cas-btn-play { width: 44px; height: 44px; font-size: 18px; }
+        .cas-vol { width: 50px; }
       }
     `;
     document.head.appendChild(musicCss);
