@@ -877,10 +877,14 @@
     let ytApiLoaded = false;
     let userPaused = false;
 
+    const ytWrap = document.createElement('div');
+    ytWrap.id = 'tcaci-yt-wrap';
+    ytWrap.innerHTML = '<div id="tcaci-yt-player"></div>';
+    document.body.appendChild(ytWrap);
+
     const player = document.createElement('div');
     player.id = 'tcaci-music';
     player.innerHTML = `
-      <div id="tcaci-yt-wrap"><div id="tcaci-yt-player"></div></div>
       <button data-mp="play" title="Play / Pause">♫</button>
       <span data-mp="name">${YT_TRACKS[ytTrackIdx].name}</span>
       <button data-mp="prev" title="Previous track">◂◂</button>
@@ -925,7 +929,7 @@
               ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
             }
             ytIsPlaying = (ev.data === YT.PlayerState.PLAYING);
-            if (ytIsPlaying) ytPendingPlay = false;
+            if (ytIsPlaying) { ytPendingPlay = false; removeResumeListeners(); }
             updateMusicUI();
           },
           onError: function () {
@@ -948,14 +952,20 @@
     ytPendingPlay = true;
     updateMusicUI();
 
+    function removeResumeListeners() {
+      ['pointerdown','keydown','click','scroll'].forEach(ev =>
+        window.removeEventListener(ev, tryResumeOnInteraction)
+      );
+    }
     function tryResumeOnInteraction() {
-      if (userPaused) return;
+      if (userPaused) { removeResumeListeners(); return; }
       if (ytPlayer && !ytIsPlaying && ytPendingPlay) {
         try { ytPlayer.playVideo(); } catch (_) {}
       }
+      if (ytIsPlaying) removeResumeListeners();
     }
     ['pointerdown','keydown','click','scroll'].forEach(ev =>
-      window.addEventListener(ev, tryResumeOnInteraction, { once: true, passive: true })
+      window.addEventListener(ev, tryResumeOnInteraction, { passive: true })
     );
 
     player.querySelector('[data-mp="play"]').addEventListener('click', (e) => {
@@ -1038,9 +1048,9 @@
       #tcaci-music button {
         background: none; border: none;
         font-family: inherit; font-size: 12px; cursor: pointer;
-        padding: 0 2px; color: var(--paper, #f4f1ea);
+        padding: 2px 6px; color: var(--paper, #f4f1ea);
         opacity: 0.7; transition: opacity 0.15s;
-        line-height: 1;
+        line-height: 1; pointer-events: auto; position: relative;
       }
       #tcaci-music button:hover { opacity: 1; }
       #tcaci-music [data-mp="name"] {
@@ -1051,7 +1061,7 @@
       #tcaci-music input[type="range"] {
         width: 40px; height: 3px; -webkit-appearance: none; appearance: none;
         background: rgba(255,255,255,0.2); border-radius: 2px; outline: none;
-        cursor: pointer;
+        cursor: pointer; pointer-events: auto; position: relative;
       }
       #tcaci-music input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none; width: 12px; height: 12px;
