@@ -752,6 +752,8 @@
     `;
     document.body.appendChild(player);
 
+    let ytPendingPlay = false;
+
     function loadYTApi() {
       if (ytApiLoaded) return;
       ytApiLoaded = true;
@@ -782,6 +784,7 @@
               ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
             }
             ytIsPlaying = (ev.data === YT.PlayerState.PLAYING);
+            if (ytIsPlaying) ytPendingPlay = false;
             updateMusicUI();
           },
           onError: function () {
@@ -796,14 +799,27 @@
     function updateMusicUI() {
       const playBtn = player.querySelector('[data-mp="play"]');
       const nameEl = player.querySelector('[data-mp="name"]');
-      if (playBtn) playBtn.textContent = ytIsPlaying ? '◼' : '♫';
+      if (playBtn) playBtn.textContent = (ytIsPlaying || ytPendingPlay) ? '◼' : '♫';
       if (nameEl) nameEl.textContent = YT_TRACKS[ytTrackIdx].name;
     }
 
+    loadYTApi();
+    ytPendingPlay = true;
+    updateMusicUI();
+
+    function tryResumeOnInteraction() {
+      if (ytPlayer && !ytIsPlaying && ytPendingPlay) {
+        try { ytPlayer.playVideo(); } catch (_) {}
+      }
+    }
+    ['pointerdown','keydown','click','scroll'].forEach(ev =>
+      window.addEventListener(ev, tryResumeOnInteraction, { once: true, passive: true })
+    );
+
     player.querySelector('[data-mp="play"]').addEventListener('click', () => {
       if (!ytPlayer) { loadYTApi(); return; }
-      if (ytIsPlaying) ytPlayer.pauseVideo();
-      else ytPlayer.playVideo();
+      if (ytIsPlaying) { ytPlayer.pauseVideo(); ytPendingPlay = false; }
+      else { ytPlayer.playVideo(); ytPendingPlay = true; }
     });
 
     player.querySelector('[data-mp="prev"]').addEventListener('click', () => {
