@@ -464,6 +464,7 @@
       skills:      () => { for (let i=0;i<2;i++) setTimeout(() => api.spawnGhost(), 1400 + i*700); },
     };
     window.addEventListener('tcaci:section', (e) => {
+      if (game.arcadeOff) return;
       const { id } = e.detail;
       SFX.bonus();
       // coin shower
@@ -502,6 +503,7 @@
     let lastProjWave = 0;
     document.addEventListener('click', (e) => {
       const el = e.target.closest('.tx-proj'); if (!el) return;
+      if (game.arcadeOff) return;
       const now = Date.now();
       if (now - lastProjWave < 2500) return;
       lastProjWave = now;
@@ -660,13 +662,15 @@
        ────────────────────────────────────────── */
     if (!sessionStorage.getItem('tcaci_plus_hint')) {
       sessionStorage.setItem('tcaci_plus_hint', '1');
-      setTimeout(() => toast('catch coins · grab power-ups · click ghosts', 'gold', '¢'), 4200);
-      setTimeout(() => {
-        for (let i = 0; i < 5; i++) {
-          setTimeout(() => spawnPickup('coin', { x: 100 + Math.random() * 360, y: 60 }), i * 180);
-        }
-        setTimeout(() => spawnPickup('shield', { x: 280, y: 50 }), 1200);
-      }, 5500);
+      if (!game.arcadeOff) {
+        setTimeout(() => toast('catch coins · grab power-ups · click ghosts', 'gold', '¢'), 4200);
+        setTimeout(() => {
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => spawnPickup('coin', { x: 100 + Math.random() * 360, y: 60 }), i * 180);
+          }
+          setTimeout(() => spawnPickup('shield', { x: 280, y: 50 }), 1200);
+        }, 5500);
+      }
     }
 
     /* ──────────────────────────────────────────
@@ -718,240 +722,133 @@
     document.head.appendChild(css);
 
     /* ──────────────────────────────────────────
-       RETRO BACKGROUND MUSIC — Web Audio chiptune
+       YOUTUBE MUSIC PLAYER — iconic game soundtracks
        ────────────────────────────────────────── */
-    const TRACKS = [
-      {
-        name: 'Press Room',
-        bpm: 120,
-        loop: 16,
-        melody: [
-          [0,523,.5],[.5,659,.5],[1,784,1],[2,659,.5],[2.5,523,.5],
-          [3,587,1],[4,523,.5],[4.5,587,.5],[5,659,1],
-          [6,587,.5],[6.5,523,.5],[7,440,1],
-          [8,523,.5],[8.5,659,.5],[9,784,.5],[9.5,880,.5],
-          [10,784,1],[11,659,.5],[11.5,587,.5],
-          [12,523,1],[13,440,.5],[13.5,392,.5],
-          [14,440,1],[15,392,1],
-        ],
-        bass: [
-          [0,131,2],[2,98,2],[4,110,2],[6,87,1],[7,98,1],
-          [8,131,2],[10,165,2],[12,87,2],[14,98,2],
-        ],
-        arp: [
-          [0,262,.25],[.25,330,.25],[.5,392,.25],[.75,330,.25],
-          [1,262,.25],[1.25,330,.25],[1.5,392,.25],[1.75,330,.25],
-          [2,196,.25],[2.25,247,.25],[2.5,294,.25],[2.75,247,.25],
-          [3,196,.25],[3.25,247,.25],[3.5,294,.25],[3.75,247,.25],
-          [4,220,.25],[4.25,262,.25],[4.5,330,.25],[4.75,262,.25],
-          [5,220,.25],[5.25,262,.25],[5.5,330,.25],[5.75,262,.25],
-          [6,175,.25],[6.25,220,.25],[6.5,262,.25],[6.75,220,.25],
-          [7,196,.25],[7.25,247,.25],[7.5,294,.25],[7.75,247,.25],
-          [8,262,.25],[8.25,330,.25],[8.5,392,.25],[8.75,330,.25],
-          [9,262,.25],[9.25,330,.25],[9.5,392,.25],[9.75,330,.25],
-          [10,330,.25],[10.25,392,.25],[10.5,494,.25],[10.75,392,.25],
-          [11,330,.25],[11.25,392,.25],[11.5,494,.25],[11.75,392,.25],
-          [12,175,.25],[12.25,220,.25],[12.5,262,.25],[12.75,220,.25],
-          [13,196,.25],[13.25,247,.25],[13.5,294,.25],[13.75,247,.25],
-          [14,220,.25],[14.25,262,.25],[14.5,330,.25],[14.75,262,.25],
-          [15,262,.25],[15.25,330,.25],[15.5,392,.25],[15.75,330,.25],
-        ],
-      },
-      {
-        name: 'Night Edition',
-        bpm: 95,
-        loop: 16,
-        melody: [
-          [0,440,1],[1,523,1],[2,494,.5],[2.5,440,.5],[3,392,1],
-          [4,349,1],[5,330,.5],[5.5,294,.5],[6,330,1],[7,262,1],
-          [8,440,1],[9,523,1],[10,587,.5],[10.5,523,.5],[11,494,1],
-          [12,440,.5],[12.5,392,.5],[13,349,1],[14,330,1],[15,262,1],
-        ],
-        bass: [
-          [0,110,2],[2,131,2],[4,87,2],[6,98,2],
-          [8,110,2],[10,131,2],[12,87,1],[13,98,1],[14,82,2],
-        ],
-        arp: [
-          [0,220,.25],[.25,262,.25],[.5,330,.25],[.75,262,.25],
-          [1,220,.25],[1.25,262,.25],[1.5,330,.25],[1.75,262,.25],
-          [2,262,.25],[2.25,330,.25],[2.5,392,.25],[2.75,330,.25],
-          [3,262,.25],[3.25,330,.25],[3.5,392,.25],[3.75,330,.25],
-          [4,175,.25],[4.25,220,.25],[4.5,262,.25],[4.75,220,.25],
-          [5,175,.25],[5.25,220,.25],[5.5,262,.25],[5.75,220,.25],
-          [6,196,.25],[6.25,247,.25],[6.5,294,.25],[6.75,247,.25],
-          [7,196,.25],[7.25,247,.25],[7.5,294,.25],[7.75,247,.25],
-          [8,220,.25],[8.25,262,.25],[8.5,330,.25],[8.75,262,.25],
-          [9,220,.25],[9.25,262,.25],[9.5,330,.25],[9.75,262,.25],
-          [10,262,.25],[10.25,330,.25],[10.5,392,.25],[10.75,330,.25],
-          [11,262,.25],[11.25,330,.25],[11.5,392,.25],[11.75,330,.25],
-          [12,175,.25],[12.25,220,.25],[12.5,262,.25],[12.75,220,.25],
-          [13,196,.25],[13.25,247,.25],[13.5,294,.25],[13.75,247,.25],
-          [14,165,.25],[14.25,196,.25],[14.5,247,.25],[14.75,196,.25],
-          [15,165,.25],[15.25,196,.25],[15.5,247,.25],[15.75,196,.25],
-        ],
-      },
-      {
-        name: 'Hot Metal',
-        bpm: 145,
-        loop: 8,
-        melody: [
-          [0,392,.5],[.5,494,.5],[1,587,.5],[1.5,494,.5],
-          [2,523,.5],[2.5,587,.5],[3,659,1],
-          [4,587,.5],[4.5,523,.5],[5,494,.5],[5.5,440,.5],
-          [6,392,1],[7,494,1],
-        ],
-        bass: [
-          [0,98,1],[1,98,1],[2,131,1],[3,131,1],
-          [4,110,1],[5,110,1],[6,98,1],[7,82,1],
-        ],
-        arp: [
-          [0,196,.25],[.25,247,.25],[.5,294,.25],[.75,247,.25],
-          [1,196,.25],[1.25,247,.25],[1.5,294,.25],[1.75,247,.25],
-          [2,262,.25],[2.25,330,.25],[2.5,392,.25],[2.75,330,.25],
-          [3,262,.25],[3.25,330,.25],[3.5,392,.25],[3.75,330,.25],
-          [4,220,.25],[4.25,262,.25],[4.5,330,.25],[4.75,262,.25],
-          [5,220,.25],[5.25,262,.25],[5.5,330,.25],[5.75,262,.25],
-          [6,196,.25],[6.25,247,.25],[6.5,294,.25],[6.75,247,.25],
-          [7,165,.25],[7.25,196,.25],[7.5,247,.25],[7.75,196,.25],
-        ],
-      },
+    const YT_TRACKS = [
+      { name: 'Besaid Island · FFX',     id: '8DmsfYt_-hU' },
+      { name: 'FFVII · Full OST',        id: '-1ZBWUnYPbA' },
+      { name: 'Pokémon R/B · OST',       id: 'HWob6x4Yk7E' },
+      { name: 'Persona 5 · OST',         id: 'ZXni9_91ORs' },
+      { name: "Baldur's Gate 3 · OST",   id: 'mC4GQTy5sqk' },
+      { name: 'Game Music Orchestra',    id: 'y1pKkcw2WxE' },
+      { name: 'Game Lofi · 24/7',        id: '4ud1w3_nJO8' },
     ];
 
-    let musicCtx = null;
-    let musicGain = null;
-    let musicPlaying = false;
-    let musicTrack = 0;
-    let musicVol = 0.04;
-    let musicTimer = null;
-    let musicNextTime = 0;
+    let ytPlayer = null;
+    let ytTrackIdx = 0;
+    let ytIsPlaying = false;
+    let ytVolume = 30;
+    let ytApiLoaded = false;
 
-    function musicEnsureCtx() {
-      if (!musicCtx) {
-        try { musicCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
-      }
-      if (musicCtx.state === 'suspended') musicCtx.resume();
-      return musicCtx;
-    }
-
-    function musicNote(freq, time, dur, type, vol) {
-      if (!musicCtx) return;
-      const osc = musicCtx.createOscillator();
-      const g = musicCtx.createGain();
-      osc.type = type;
-      osc.frequency.value = freq;
-      const attack = Math.min(0.02, dur * 0.1);
-      g.gain.setValueAtTime(0, time);
-      g.gain.linearRampToValueAtTime(vol, time + attack);
-      g.gain.exponentialRampToValueAtTime(0.0001, time + dur * 0.9);
-      osc.connect(g);
-      g.connect(musicGain);
-      osc.start(time);
-      osc.stop(time + dur);
-    }
-
-    function musicScheduleLoop(track, startTime) {
-      const beatDur = 60 / track.bpm;
-      for (const [beat, freq, dur] of track.melody) {
-        musicNote(freq, startTime + beat * beatDur, dur * beatDur, 'square', musicVol * 0.8);
-      }
-      for (const [beat, freq, dur] of track.bass) {
-        musicNote(freq, startTime + beat * beatDur, dur * beatDur, 'triangle', musicVol * 1.2);
-      }
-      if (track.arp) {
-        for (const [beat, freq, dur] of track.arp) {
-          musicNote(freq, startTime + beat * beatDur, dur * beatDur, 'sine', musicVol * 0.5);
-        }
-      }
-    }
-
-    function musicScheduler() {
-      if (!musicPlaying || !musicCtx) return;
-      const track = TRACKS[musicTrack];
-      const loopDur = (track.loop * 60) / track.bpm;
-      while (musicNextTime < musicCtx.currentTime + 0.3) {
-        musicScheduleLoop(track, musicNextTime);
-        musicNextTime += loopDur;
-      }
-    }
-
-    function musicStart() {
-      const ctx = musicEnsureCtx();
-      if (!ctx) return;
-      if (musicPlaying) return;
-      musicPlaying = true;
-      musicGain = ctx.createGain();
-      musicGain.gain.value = 1;
-      musicGain.connect(ctx.destination);
-      musicNextTime = ctx.currentTime + 0.05;
-      musicScheduler();
-      musicTimer = setInterval(musicScheduler, 150);
-      updateMusicUI();
-    }
-
-    function musicStop() {
-      musicPlaying = false;
-      if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
-      if (musicGain) { musicGain.disconnect(); musicGain = null; }
-      updateMusicUI();
-    }
-
-    function musicNext() {
-      const wasPlaying = musicPlaying;
-      musicStop();
-      musicTrack = (musicTrack + 1) % TRACKS.length;
-      if (wasPlaying) setTimeout(musicStart, 100);
-      else updateMusicUI();
-    }
-
-    function musicSetVol(v) {
-      musicVol = Math.max(0.01, Math.min(0.08, v));
-      updateMusicUI();
-    }
-
-    // ── Music player UI ──
     const player = document.createElement('div');
     player.id = 'tcaci-music';
     player.innerHTML = `
+      <div id="tcaci-yt-wrap"><div id="tcaci-yt-player"></div></div>
       <button data-mp="play" title="Play / Pause">♫</button>
-      <span data-mp="name">${TRACKS[0].name}</span>
+      <span data-mp="name">${YT_TRACKS[0].name}</span>
+      <button data-mp="prev" title="Previous track">◂◂</button>
       <button data-mp="next" title="Next track">▸▸</button>
-      <input data-mp="vol" type="range" min="1" max="8" value="4" title="Volume">
+      <input data-mp="vol" type="range" min="0" max="100" value="30" title="Volume">
     `;
     document.body.appendChild(player);
+
+    function loadYTApi() {
+      if (ytApiLoaded) return;
+      ytApiLoaded = true;
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      const prevCb = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = function () {
+        if (prevCb) prevCb();
+        initYTPlayer();
+      };
+    }
+
+    function initYTPlayer() {
+      ytPlayer = new YT.Player('tcaci-yt-player', {
+        height: '1',
+        width: '1',
+        videoId: YT_TRACKS[ytTrackIdx].id,
+        playerVars: { autoplay: 1, controls: 0, disablekb: 1, fs: 0, modestbranding: 1, rel: 0, playsinline: 1 },
+        events: {
+          onReady: function (ev) {
+            ev.target.setVolume(ytVolume);
+            ev.target.playVideo();
+          },
+          onStateChange: function (ev) {
+            if (ev.data === YT.PlayerState.ENDED) {
+              ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
+              ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+            }
+            ytIsPlaying = (ev.data === YT.PlayerState.PLAYING);
+            updateMusicUI();
+          },
+          onError: function () {
+            ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
+            if (ytPlayer) ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+            updateMusicUI();
+          },
+        },
+      });
+    }
 
     function updateMusicUI() {
       const playBtn = player.querySelector('[data-mp="play"]');
       const nameEl = player.querySelector('[data-mp="name"]');
-      const volEl = player.querySelector('[data-mp="vol"]');
-      if (playBtn) playBtn.textContent = musicPlaying ? '◼' : '♫';
-      if (nameEl) nameEl.textContent = TRACKS[musicTrack].name;
-      if (volEl) volEl.value = Math.round(musicVol * 100);
+      if (playBtn) playBtn.textContent = ytIsPlaying ? '◼' : '♫';
+      if (nameEl) nameEl.textContent = YT_TRACKS[ytTrackIdx].name;
     }
 
     player.querySelector('[data-mp="play"]').addEventListener('click', () => {
-      musicPlaying ? musicStop() : musicStart();
+      if (!ytPlayer) { loadYTApi(); return; }
+      if (ytIsPlaying) ytPlayer.pauseVideo();
+      else ytPlayer.playVideo();
     });
-    player.querySelector('[data-mp="next"]').addEventListener('click', musicNext);
+
+    player.querySelector('[data-mp="prev"]').addEventListener('click', () => {
+      ytTrackIdx = (ytTrackIdx - 1 + YT_TRACKS.length) % YT_TRACKS.length;
+      if (ytPlayer) ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+      else loadYTApi();
+      updateMusicUI();
+    });
+
+    player.querySelector('[data-mp="next"]').addEventListener('click', () => {
+      ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
+      if (ytPlayer) ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+      else loadYTApi();
+      updateMusicUI();
+    });
+
     player.querySelector('[data-mp="vol"]').addEventListener('input', (e) => {
-      musicSetVol(e.target.value / 100);
+      ytVolume = parseInt(e.target.value);
+      if (ytPlayer && ytPlayer.setVolume) ytPlayer.setVolume(ytVolume);
+    });
+
+    window.addEventListener('tcaci:arcade-off', () => {
+      if (ytPlayer && ytIsPlaying) ytPlayer.pauseVideo();
     });
 
     const musicCss = document.createElement('style');
     musicCss.textContent = `
       #tcaci-music {
-        position: fixed; bottom: 14px; right: 14px; z-index: 9988;
+        position: fixed; bottom: 48px; right: 14px; z-index: 9988;
         font-family: 'IBM Plex Mono', monospace; font-size: 10px;
         letter-spacing: 0.1em;
         background: rgba(244, 241, 234, 0.94);
         border: 1.5px solid var(--ink, #161514);
         box-shadow: 3px 3px 0 var(--rouge, #cc3a2e);
         padding: 6px 10px;
-        display: flex; gap: 8px; align-items: center;
+        display: flex; gap: 6px; align-items: center;
+      }
+      #tcaci-yt-wrap {
+        width: 0; height: 0; overflow: hidden; position: absolute;
+        pointer-events: none; opacity: 0;
       }
       #tcaci-music button {
         background: none; border: 1px solid var(--ink, #161514);
         font-family: inherit; font-size: 11px; cursor: pointer;
-        padding: 2px 8px; color: var(--ink, #161514);
+        padding: 2px 6px; color: var(--ink, #161514);
         transition: background 0.15s, color 0.15s;
       }
       #tcaci-music button:hover {
@@ -959,12 +856,13 @@
       }
       #tcaci-music [data-mp="name"] {
         color: var(--rouge, #cc3a2e); font-weight: 600;
-        min-width: 80px; text-align: center;
+        min-width: 100px; text-align: center;
+        max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       }
       #tcaci-music input[type="range"] { width: 50px; }
       @media print { #tcaci-music { display: none !important; } }
       @media (max-width: 600px) {
-        #tcaci-music { bottom: 44px; right: 8px; font-size: 9px; padding: 4px 8px; }
+        #tcaci-music { bottom: 80px; right: 8px; font-size: 9px; padding: 4px 6px; }
       }
     `;
     document.head.appendChild(musicCss);
