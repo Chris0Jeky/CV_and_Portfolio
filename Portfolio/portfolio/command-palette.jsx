@@ -9,11 +9,10 @@ window.CommandPalette = function CommandPalette() {
   const inputRef = useRef(null);
 
   function fireCode(name) {
-    const evt = new KeyboardEvent('keydown', { key: ' ' });
-    document.dispatchEvent(evt);
-    const buf = name.split('');
-    buf.forEach((ch, i) => {
-      setTimeout(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: ch })), i * 20);
+    name.split('').forEach((ch, i) => {
+      setTimeout(() => {
+        document.body.dispatchEvent(new KeyboardEvent('keydown', { key: ch, bubbles: true }));
+      }, i * 20);
     });
   }
 
