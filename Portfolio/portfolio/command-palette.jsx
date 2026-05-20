@@ -36,7 +36,10 @@ window.CommandPalette = function CommandPalette() {
     { kind: 'egg', label: 'play yokai survivors', hint: '妖怪', action: () => { if (window.__launchSurvivors) window.__launchSurvivors(); } },
     { kind: 'egg', label: 'yokai', hint: 'survive the horde', action: () => { if (window.__launchSurvivors) window.__launchSurvivors(); } },
     { kind: 'egg', label: 'sudo make me a sandwich', hint: 'permission denied', action: () => alert('xkcd #149 — but actually: you have to ask politely.') },
-    { kind: 'egg', label: 'press run', hint: '↑↑↓↓←→←→ B A', action: () => alert('Type the Konami code anywhere on the page.') },
+    { kind: 'egg', label: 'press run', hint: '↑↑↓↓←→←→ B A', action: () => alert('Type the Konami code anywhere on the page — ↑↑↓↓←→←→BA. Or just type "konami". There are 30+ secret keyword codes hidden on this page!') },
+    { kind: 'egg', label: 'roll d20', hint: 'D&D dice roll', action: () => alert('Type "d20" anywhere on the page for a dice roll, or "nat20" for a guaranteed critical hit!') },
+    { kind: 'egg', label: 'baldur\'s gate 3', hint: 'mind flayer', action: () => alert('Type any BG3 companion name: astarion, karlach, shadowheart, laezel, gale, withers, wyll, halsin, jaheira, minsc… or try "bg3", "darkurge", "eldritch", "fireball"!') },
+    { kind: 'egg', label: 'secret codes list', hint: '30+ hidden', action: () => alert('Try typing these anywhere on the page:\n\n🎮 Retro: sega, pacman, sonic, mario, hadouken, fatality\n🎲 D&D: d20, nat20, initiative, fireball, eldritch\n⚔️ BG3: bg3, karlach, astarion, shadowheart, laezel, gale, withers, darkurge, minsc, halsin, wyll, jaheira\n🔧 Meta: press, dark, boring, konami\n\n…and more!') },
   ], []);
 
   // Keyboard listener
