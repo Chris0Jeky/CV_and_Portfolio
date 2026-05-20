@@ -2247,46 +2247,61 @@
           let dy = cy - (g.y + g.size / 2);
           let dist = Math.hypot(dx, dy);
 
+          const piercingOn = now < (STATE.piercingUntil || 0);
+          const fleeing = !g.isBoss && (shieldOn || piercingOn) && dist < 200;
+
           if (g.mode === 'chase') {
-            if (shieldOn && dist < 140 && dist > 1) { dx = -dx; dy = -dy; }
+            if (fleeing && dist > 1) { dx = -dx; dy = -dy; }
+            else if (shieldOn && dist < 140 && dist > 1) { dx = -dx; dy = -dy; }
             if (dist > 1) {
-              g.x += (dx / dist) * g.speed * slowMul;
-              g.y += (dy / dist) * g.speed * slowMul;
+              const spd = fleeing ? g.speed * 1.6 : g.speed;
+              g.x += (dx / dist) * spd * slowMul;
+              g.y += (dy / dist) * spd * slowMul;
             }
           } else if (g.mode === 'patrol') {
-            const pd = g.patrol;
-            pd.phase++;
-            const spd = g.speed * slowMul;
-            if (pd.pattern === 'linear') {
-              g.x += Math.cos(pd.angle) * spd * 1.2;
-              g.y += Math.sin(pd.angle) * spd * 1.2;
-            } else if (pd.pattern === 'slalom') {
-              g.x += Math.cos(pd.angle) * spd;
-              g.y += Math.sin(pd.angle) * spd;
-              const perp = pd.angle + Math.PI / 2;
-              const wave = Math.sin(pd.phase * 0.05) * spd * 1.8;
-              g.x += Math.cos(perp) * wave;
-              g.y += Math.sin(perp) * wave;
-            } else if (pd.pattern === 'zigzag') {
-              g.x += Math.cos(pd.angle) * spd;
-              g.y += Math.sin(pd.angle) * spd;
-              const za = pd.phase % 60 < 30 ? pd.angle + Math.PI / 4 : pd.angle - Math.PI / 4;
-              g.x += Math.cos(za) * spd * 0.5;
-              g.y += Math.sin(za) * spd * 0.5;
+            if (fleeing && dist > 1) {
+              g.x += (-dx / dist) * g.speed * 1.6 * slowMul;
+              g.y += (-dy / dist) * g.speed * 1.6 * slowMul;
+            } else {
+              const pd = g.patrol;
+              pd.phase++;
+              const spd = g.speed * slowMul;
+              if (pd.pattern === 'linear') {
+                g.x += Math.cos(pd.angle) * spd * 1.2;
+                g.y += Math.sin(pd.angle) * spd * 1.2;
+              } else if (pd.pattern === 'slalom') {
+                g.x += Math.cos(pd.angle) * spd;
+                g.y += Math.sin(pd.angle) * spd;
+                const perp = pd.angle + Math.PI / 2;
+                const wave = Math.sin(pd.phase * 0.05) * spd * 1.8;
+                g.x += Math.cos(perp) * wave;
+                g.y += Math.sin(perp) * wave;
+              } else if (pd.pattern === 'zigzag') {
+                g.x += Math.cos(pd.angle) * spd;
+                g.y += Math.sin(pd.angle) * spd;
+                const za = pd.phase % 60 < 30 ? pd.angle + Math.PI / 4 : pd.angle - Math.PI / 4;
+                g.x += Math.cos(za) * spd * 0.5;
+                g.y += Math.sin(za) * spd * 0.5;
+              }
             }
             dx = cx - (g.x + g.size / 2);
             dy = cy - (g.y + g.size / 2);
             dist = Math.hypot(dx, dy);
           } else if (g.mode === 'wander') {
-            const wd = g.wander;
-            wd.timer++;
-            if (wd.timer >= wd.interval) {
-              wd.angle += (Math.random() - 0.5) * Math.PI * 0.8;
-              wd.timer = 0;
-              wd.interval = 50 + Math.random() * 100;
+            if (fleeing && dist > 1) {
+              g.x += (-dx / dist) * g.speed * 1.6 * slowMul;
+              g.y += (-dy / dist) * g.speed * 1.6 * slowMul;
+            } else {
+              const wd = g.wander;
+              wd.timer++;
+              if (wd.timer >= wd.interval) {
+                wd.angle += (Math.random() - 0.5) * Math.PI * 0.8;
+                wd.timer = 0;
+                wd.interval = 50 + Math.random() * 100;
+              }
+              g.x += Math.cos(wd.angle) * g.speed * slowMul * 0.7;
+              g.y += Math.sin(wd.angle) * g.speed * slowMul * 0.7;
             }
-            g.x += Math.cos(wd.angle) * g.speed * slowMul * 0.7;
-            g.y += Math.sin(wd.angle) * g.speed * slowMul * 0.7;
             if (g.x < 10) { g.x = 10; wd.angle = Math.PI - wd.angle; }
             if (g.x > innerWidth - g.size - 10) { g.x = innerWidth - g.size - 10; wd.angle = Math.PI - wd.angle; }
             if (g.y < 10) { g.y = 10; wd.angle = -wd.angle; }
@@ -2298,6 +2313,7 @@
 
           g.el.style.left = g.x + 'px';
           g.el.style.top = g.y + 'px';
+          g.el.style.opacity = fleeing ? '0.5' : '';
 
           const eyes = g.el.querySelectorAll('.eye');
           if (eyes.length === 2) {
