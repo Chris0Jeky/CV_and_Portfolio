@@ -851,20 +851,38 @@
       { name: "Baldur's Gate 3 · OST",   id: 'mC4GQTy5sqk' },
       { name: 'Game Music Orchestra',    id: 'y1pKkcw2WxE' },
       { name: 'Game Lofi · 24/7',        id: '4ud1w3_nJO8' },
+      { name: 'Chrono Trigger · OST',    id: 'EeOexldS2B8' },
+      { name: 'Zelda · OoT OST',         id: 'sIiEi96USlo' },
+      { name: 'Skyrim · Full OST',       id: 'aQeIYVM3YBM' },
+      { name: 'Kingdom Hearts · OST',    id: '5IJTYaj23Tc' },
+      { name: 'NieR Automata · OST',     id: 'p2ETA--T4q4' },
+      { name: 'Hollow Knight · OST',     id: '0HbnqjGirFg' },
+      { name: 'Undertale · Full OST',    id: 's19c4Ysywyg' },
+      { name: 'Stardew Valley · OST',    id: 'UKZF5k5cqOs' },
+      { name: 'Ori · Blind Forest',      id: 'MeVFrt7BUyw' },
+      { name: 'Divinity OS2 · OST',      id: 'WimydicRuGg' },
+      { name: 'Witcher 3 · Full OST',    id: 'rI2vjPUztJc' },
+      { name: 'Dark Souls · Full OST',   id: 'MTUI0nv29Rs' },
+      { name: 'Hades · Full OST',        id: '3GRKJ87S5cI' },
+      { name: 'Celeste · Full OST',      id: 'LcLvLVjVS5o' },
+      { name: 'Minecraft · C418 OST',    id: 'Dg0IjOzopYU' },
+      { name: 'Zelda · BotW OST',        id: 'o46NJtHcNgU' },
+      { name: 'Outer Wilds · OST',       id: 'jnjE1_qQelQ' },
     ];
 
     let ytPlayer = null;
-    let ytTrackIdx = 0;
+    let ytTrackIdx = Math.floor(Math.random() * YT_TRACKS.length);
     let ytIsPlaying = false;
     let ytVolume = 30;
     let ytApiLoaded = false;
+    let userPaused = false;
 
     const player = document.createElement('div');
     player.id = 'tcaci-music';
     player.innerHTML = `
       <div id="tcaci-yt-wrap"><div id="tcaci-yt-player"></div></div>
       <button data-mp="play" title="Play / Pause">♫</button>
-      <span data-mp="name">${YT_TRACKS[0].name}</span>
+      <span data-mp="name">${YT_TRACKS[ytTrackIdx].name}</span>
       <button data-mp="prev" title="Previous track">◂◂</button>
       <button data-mp="next" title="Next track">▸▸</button>
       <input data-mp="vol" type="range" min="0" max="100" value="30" title="Volume">
@@ -874,6 +892,10 @@
     let ytPendingPlay = false;
 
     function loadYTApi() {
+      if (window.YT && window.YT.Player) {
+        if (!ytPlayer) initYTPlayer();
+        return;
+      }
       if (ytApiLoaded) return;
       ytApiLoaded = true;
       const tag = document.createElement('script');
@@ -927,6 +949,7 @@
     updateMusicUI();
 
     function tryResumeOnInteraction() {
+      if (userPaused) return;
       if (ytPlayer && !ytIsPlaying && ytPendingPlay) {
         try { ytPlayer.playVideo(); } catch (_) {}
       }
@@ -935,36 +958,58 @@
       window.addEventListener(ev, tryResumeOnInteraction, { once: true, passive: true })
     );
 
-    player.querySelector('[data-mp="play"]').addEventListener('click', () => {
+    player.querySelector('[data-mp="play"]').addEventListener('click', (e) => {
+      e.stopPropagation();
       if (!ytPlayer) {
-        ytApiLoaded = false;
+        userPaused = false;
         loadYTApi();
         ytPendingPlay = true;
         updateMusicUI();
         return;
       }
-      if (ytIsPlaying) { ytPlayer.pauseVideo(); ytPendingPlay = false; }
-      else { ytPlayer.playVideo(); ytPendingPlay = true; }
+      const state = ytPlayer.getPlayerState();
+      if (state === 1 || state === 3) {
+        ytPlayer.pauseVideo();
+        ytPendingPlay = false;
+        userPaused = true;
+      } else {
+        ytPlayer.playVideo();
+        ytPendingPlay = true;
+        userPaused = false;
+      }
       updateMusicUI();
     });
 
-    player.querySelector('[data-mp="prev"]').addEventListener('click', () => {
+    player.querySelector('[data-mp="prev"]').addEventListener('click', (e) => {
+      e.stopPropagation();
       ytTrackIdx = (ytTrackIdx - 1 + YT_TRACKS.length) % YT_TRACKS.length;
-      if (ytPlayer) ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
-      else loadYTApi();
+      if (ytPlayer) {
+        ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+        ytPendingPlay = true;
+        userPaused = false;
+      } else {
+        loadYTApi();
+      }
       updateMusicUI();
     });
 
-    player.querySelector('[data-mp="next"]').addEventListener('click', () => {
+    player.querySelector('[data-mp="next"]').addEventListener('click', (e) => {
+      e.stopPropagation();
       ytTrackIdx = (ytTrackIdx + 1) % YT_TRACKS.length;
-      if (ytPlayer) ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
-      else loadYTApi();
+      if (ytPlayer) {
+        ytPlayer.loadVideoById(YT_TRACKS[ytTrackIdx].id);
+        ytPendingPlay = true;
+        userPaused = false;
+      } else {
+        loadYTApi();
+      }
       updateMusicUI();
     });
 
     player.querySelector('[data-mp="vol"]').addEventListener('input', (e) => {
-      ytVolume = parseInt(e.target.value);
-      if (ytPlayer && ytPlayer.setVolume) ytPlayer.setVolume(ytVolume);
+      e.stopPropagation();
+      ytVolume = parseInt(e.target.value, 10);
+      if (ytPlayer && typeof ytPlayer.setVolume === 'function') ytPlayer.setVolume(ytVolume);
     });
 
     window.addEventListener('tcaci:arcade-off', () => {
@@ -1006,10 +1051,19 @@
       #tcaci-music input[type="range"] {
         width: 40px; height: 3px; -webkit-appearance: none; appearance: none;
         background: rgba(255,255,255,0.2); border-radius: 2px; outline: none;
+        cursor: pointer;
       }
       #tcaci-music input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none; width: 10px; height: 10px;
+        -webkit-appearance: none; width: 12px; height: 12px;
         background: var(--rouge, #cc3a2e); border-radius: 50%; cursor: pointer;
+        margin-top: -4.5px;
+      }
+      #tcaci-music input[type="range"]::-moz-range-thumb {
+        width: 12px; height: 12px; border: none;
+        background: var(--rouge, #cc3a2e); border-radius: 50%; cursor: pointer;
+      }
+      #tcaci-music input[type="range"]::-moz-range-track {
+        height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; border: none;
       }
       @media print { #tcaci-music { display: none !important; } }
       @media (max-width: 600px) {
