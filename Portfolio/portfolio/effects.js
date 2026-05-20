@@ -1335,6 +1335,7 @@
       seenSections: new Set(),
       paused: false,
       gameOver: false,
+      arcadeOff: false,
     };
     window.__tcaciGame = STATE; // dev hook
 
@@ -1403,7 +1404,7 @@
     // ── Ghosts ──
     const ghosts = [];
     function spawnGhost(opts = {}) {
-      if (STATE.gameOver || STATE.paused) return;
+      if (STATE.gameOver || STATE.paused || STATE.arcadeOff) return;
       const side = Math.floor(Math.random() * 4);
       let x, y;
       const margin = 40;
@@ -1421,6 +1422,28 @@
       const speed = speedBase * (opts.speedMul || 1);
       const hp = opts.hp != null ? opts.hp : (isBoss ? 4 : 1);
       const kind = opts.kind || (isBoss ? 'boss' : 'ghost');
+
+      // Movement mode: bosses always chase, others random
+      let mode = 'chase', patrol = null, wander = null;
+      if (!isBoss) {
+        const modeRoll = Math.random();
+        if (modeRoll < 0.25) {
+          mode = 'chase';
+        } else if (modeRoll < 0.75) {
+          mode = 'patrol';
+          const patterns = ['linear', 'slalom', 'zigzag'];
+          const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+          let angle;
+          if (side === 0) angle = (Math.random() * 0.6 - 0.3) * Math.PI;
+          else if (side === 1) angle = Math.PI + (Math.random() * 0.6 - 0.3) * Math.PI;
+          else if (side === 2) angle = Math.PI / 2 + (Math.random() * 0.6 - 0.3) * Math.PI;
+          else angle = -Math.PI / 2 + (Math.random() * 0.6 - 0.3) * Math.PI;
+          patrol = { pattern, angle, phase: Math.random() * 100 };
+        } else {
+          mode = 'wander';
+          wander = { angle: Math.random() * Math.PI * 2, timer: 0, interval: 50 + Math.random() * 100 };
+        }
+      }
 
       const el = document.createElement('div');
       el.className = 'tcaci-ghost';
@@ -1446,7 +1469,7 @@
       `;
       document.body.appendChild(el);
 
-      const ghost = { el, x, y, color, speed, alive: true, age: 0, isBoss, hp, size, kind, points: opts.points };
+      const ghost = { el, x, y, color, speed, alive: true, age: 0, diedAt: 0, isBoss, hp, size, kind, points: opts.points, mode, patrol, wander };
 
       el.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1468,6 +1491,7 @@
 
     function killGhost(g, sx, sy) {
       g.alive = false;
+      g.diedAt = Date.now();
       STATE.kills++;
       STATE.combo++;
       clearTimeout(STATE.comboT);
@@ -1574,7 +1598,7 @@
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
         pointer-events: auto;
-        animation: hit-flash 0.5s ease-out forwards;
+        animation: gameover-in 0.5s ease-out forwards;
       `;
       ov.innerHTML = `
         <div style="font-family: Impact, sans-serif; font-size: clamp(60px, 12vw, 150px);
@@ -1636,29 +1660,73 @@
 
     // ── Animation loop ──
     function tick() {
-      if (!STATE.gameOver && !STATE.paused) {
+      if (!STATE.gameOver && !STATE.paused && !STATE.arcadeOff) {
         const now = Date.now();
         const slowMul = now < STATE.slowUntil ? 0.32 : 1;
         const shieldOn = now < STATE.shieldUntil;
-        for (const g of ghosts) {
-          if (!g.alive) continue;
+        for (let i = ghosts.length - 1; i >= 0; i--) {
+          const g = ghosts[i];
+          if (!g.alive) {
+            if (g.diedAt && now - g.diedAt > 2000) ghosts.splice(i, 1);
+            continue;
+          }
           g.age++;
-          const cxc = g.x + g.size / 2;
-          const cyc = g.y + g.size / 2;
-          let dx = cx - cxc;
-          let dy = cy - cyc;
+          let dx = cx - (g.x + g.size / 2);
+          let dy = cy - (g.y + g.size / 2);
           let dist = Math.hypot(dx, dy);
-          // Shield repels ghosts (reverse direction within 140px)
-          if (shieldOn && dist < 140 && dist > 1) {
-            dx = -dx; dy = -dy;
+
+          if (g.mode === 'chase') {
+            if (shieldOn && dist < 140 && dist > 1) { dx = -dx; dy = -dy; }
+            if (dist > 1) {
+              g.x += (dx / dist) * g.speed * slowMul;
+              g.y += (dy / dist) * g.speed * slowMul;
+            }
+          } else if (g.mode === 'patrol') {
+            const pd = g.patrol;
+            pd.phase++;
+            const spd = g.speed * slowMul;
+            if (pd.pattern === 'linear') {
+              g.x += Math.cos(pd.angle) * spd * 1.2;
+              g.y += Math.sin(pd.angle) * spd * 1.2;
+            } else if (pd.pattern === 'slalom') {
+              g.x += Math.cos(pd.angle) * spd;
+              g.y += Math.sin(pd.angle) * spd;
+              const perp = pd.angle + Math.PI / 2;
+              const wave = Math.sin(pd.phase * 0.05) * spd * 1.8;
+              g.x += Math.cos(perp) * wave;
+              g.y += Math.sin(perp) * wave;
+            } else if (pd.pattern === 'zigzag') {
+              g.x += Math.cos(pd.angle) * spd;
+              g.y += Math.sin(pd.angle) * spd;
+              const za = pd.phase % 60 < 30 ? pd.angle + Math.PI / 4 : pd.angle - Math.PI / 4;
+              g.x += Math.cos(za) * spd * 0.5;
+              g.y += Math.sin(za) * spd * 0.5;
+            }
+            dx = cx - (g.x + g.size / 2);
+            dy = cy - (g.y + g.size / 2);
+            dist = Math.hypot(dx, dy);
+          } else if (g.mode === 'wander') {
+            const wd = g.wander;
+            wd.timer++;
+            if (wd.timer >= wd.interval) {
+              wd.angle += (Math.random() - 0.5) * Math.PI * 0.8;
+              wd.timer = 0;
+              wd.interval = 50 + Math.random() * 100;
+            }
+            g.x += Math.cos(wd.angle) * g.speed * slowMul * 0.7;
+            g.y += Math.sin(wd.angle) * g.speed * slowMul * 0.7;
+            if (g.x < 10) { g.x = 10; wd.angle = Math.PI - wd.angle; }
+            if (g.x > innerWidth - g.size - 10) { g.x = innerWidth - g.size - 10; wd.angle = Math.PI - wd.angle; }
+            if (g.y < 10) { g.y = 10; wd.angle = -wd.angle; }
+            if (g.y > innerHeight - g.size - 10) { g.y = innerHeight - g.size - 10; wd.angle = -wd.angle; }
+            dx = cx - (g.x + g.size / 2);
+            dy = cy - (g.y + g.size / 2);
+            dist = Math.hypot(dx, dy);
           }
-          if (dist > 1) {
-            g.x += (dx / dist) * g.speed * slowMul;
-            g.y += (dy / dist) * g.speed * slowMul;
-            g.el.style.left = g.x + 'px';
-            g.el.style.top = g.y + 'px';
-          }
-          // eye-follow cursor
+
+          g.el.style.left = g.x + 'px';
+          g.el.style.top = g.y + 'px';
+
           const eyes = g.el.querySelectorAll('.eye');
           if (eyes.length === 2) {
             const ex = Math.max(-1.4, Math.min(1.4, dx * 0.004));
@@ -1668,19 +1736,27 @@
             eyes[1].setAttribute('cx', 25 + ex);
             eyes[1].setAttribute('cy', 19 + ey);
           }
-          // caught?
+
           const catchR = g.isBoss ? 32 : 18;
           if (dist < catchR) {
             g.alive = false;
+            g.diedAt = now;
             g.el.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
             g.el.style.transform = `scale(2) rotate(${(Math.random() * 80 - 40).toFixed(0)}deg)`;
             g.el.style.opacity = '0';
             setTimeout(() => g.el.remove(), 420);
             loseLife();
           }
-          // bored — leave after ~24s
-          if (g.age > 60 * 24) {
+
+          const offScreen = g.x < -g.size * 3 || g.x > innerWidth + g.size * 3 ||
+                            g.y < -g.size * 3 || g.y > innerHeight + g.size * 3;
+          if (g.mode === 'patrol' && g.age > 180 && offScreen) {
             g.alive = false;
+            g.diedAt = now;
+            g.el.remove();
+          } else if (g.age > 60 * 30) {
+            g.alive = false;
+            g.diedAt = now;
             g.el.style.transition = 'opacity 0.6s ease';
             g.el.style.opacity = '0';
             setTimeout(() => g.el.remove(), 700);
@@ -1695,9 +1771,8 @@
     function scheduleSpawn() {
       const wait = Math.max(3800, 13000 - STATE.stage * 900) + Math.random() * 5000;
       setTimeout(() => {
-        if (!STATE.gameOver && !STATE.paused) {
+        if (!STATE.gameOver && !STATE.paused && !STATE.arcadeOff) {
           spawnGhost();
-          // occasional double-spawn
           if (STATE.stage >= 3 && Math.random() < 0.25) {
             setTimeout(() => spawnGhost(), 600);
           }
@@ -1774,7 +1849,7 @@
 
     // ── Click bonus (extra +5 per non-game click as before, gentle) ──
     document.addEventListener('click', (e) => {
-      if (STATE.gameOver) return;
+      if (STATE.gameOver || STATE.arcadeOff) return;
       if (e.target.closest('.tcaci-ghost')) return;
       if (e.target.closest('a, button, input, textarea, select, [role="button"], .navbar, #tcaci-boot, #marquee, #tcaci-coin-hud, #tcaci-gameover')) return;
       STATE.score += 5;
@@ -1859,6 +1934,10 @@
       @keyframes hit-flash {
         0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; }
       }
+      @keyframes gameover-in {
+        0% { opacity: 0; transform: scale(1.04); }
+        100% { opacity: 1; transform: scale(1); }
+      }
       @keyframes boss-pulse {
         0%, 100% { filter: drop-shadow(0 0 14px rgba(139, 61, 240, 0.7)) drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
         50% { filter: drop-shadow(0 0 28px rgba(139, 61, 240, 0.95)) drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
@@ -1873,6 +1952,114 @@
       @media print { #tcaci-coin-hud, .tcaci-ghost, #tcaci-gameover { display: none !important; } }
     `;
     document.head.appendChild(css);
+  }
+
+  /* ───────────────────────────────────────────────
+     ARCADE TOGGLE — on/off switch for the mini-game
+     ─────────────────────────────────────────────── */
+  function initArcadeToggle() {
+    function whenGame(cb) {
+      if (window.__tcaciGame && window.__tcaciGame.api) return cb();
+      window.addEventListener('tcaci:ready', cb, { once: true });
+    }
+    whenGame(() => {
+      const game = window.__tcaciGame;
+      const hud = document.getElementById('tcaci-coin-hud');
+
+      const toggle = document.createElement('div');
+      toggle.id = 'tcaci-arcade-toggle';
+      toggle.innerHTML = `
+        <button id="tcaci-toggle-btn" title="Toggle arcade mini-game">
+          <span class="tcaci-toggle-track">
+            <span class="tcaci-toggle-thumb"></span>
+          </span>
+          <span class="tcaci-toggle-label">ARCADE</span>
+        </button>
+      `;
+      const navInner = document.querySelector('.nav-inner');
+      if (navInner) {
+        navInner.appendChild(toggle);
+      } else {
+        toggle.style.position = 'fixed';
+        toggle.style.top = '14px';
+        toggle.style.right = '14px';
+        toggle.style.zIndex = '55';
+        document.body.appendChild(toggle);
+      }
+
+      const btn = document.getElementById('tcaci-toggle-btn');
+      let isOn = true;
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOn = !isOn;
+        game.arcadeOff = !isOn;
+        btn.classList.toggle('is-off', !isOn);
+
+        if (!isOn) {
+          // Remove all alive ghosts
+          const list = (game.api.ghosts || []).slice();
+          for (const g of list) {
+            if (g.alive) {
+              g.alive = false;
+              g.diedAt = Date.now();
+              g.el.style.transition = 'opacity 0.3s ease';
+              g.el.style.opacity = '0';
+              setTimeout(() => g.el.remove(), 320);
+            }
+          }
+          // Remove pickups
+          document.querySelectorAll('[data-pickup]').forEach(el => {
+            el.style.transition = 'opacity 0.3s';
+            el.style.opacity = '0';
+            setTimeout(() => el.remove(), 320);
+          });
+          if (hud) hud.style.display = 'none';
+          const mp = document.getElementById('tcaci-music');
+          if (mp) mp.style.display = 'none';
+        } else {
+          game.arcadeOff = false;
+          if (hud) hud.style.display = '';
+          const mp = document.getElementById('tcaci-music');
+          if (mp) mp.style.display = '';
+        }
+      });
+
+      const css = document.createElement('style');
+      css.textContent = `
+        #tcaci-arcade-toggle { display: flex; align-items: center; }
+        #tcaci-toggle-btn {
+          display: inline-flex; align-items: center; gap: 7px;
+          background: none; border: none; cursor: pointer;
+          font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+          letter-spacing: 0.16em; text-transform: uppercase;
+          color: var(--ink-dim, #5a554d); padding: 4px 0;
+        }
+        #tcaci-toggle-btn:hover { color: var(--rouge, #cc3a2e); }
+        .tcaci-toggle-track {
+          display: inline-block; width: 28px; height: 14px;
+          background: var(--forest, #1a4d3a); border-radius: 7px;
+          position: relative; transition: background 0.2s;
+        }
+        .tcaci-toggle-thumb {
+          display: block; width: 10px; height: 10px;
+          background: var(--paper, #f4f1ea); border-radius: 50%;
+          position: absolute; top: 2px; left: 16px;
+          transition: left 0.2s;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        #tcaci-toggle-btn.is-off .tcaci-toggle-track {
+          background: var(--ink-mute, #8a847a);
+        }
+        #tcaci-toggle-btn.is-off .tcaci-toggle-thumb { left: 2px; }
+        #tcaci-toggle-btn.is-off .tcaci-toggle-label { opacity: 0.45; }
+        @media print { #tcaci-arcade-toggle { display: none !important; } }
+        @media (max-width: 900px) {
+          #tcaci-arcade-toggle { position: fixed; top: 10px; right: 10px; z-index: 55; }
+        }
+      `;
+      document.head.appendChild(css);
+    });
   }
 
   /* ─────────────────────────────────────────────── */
@@ -1898,6 +2085,7 @@
         initCrossHighlight();
         initSecretCodes();
         initArcadeChaos();
+        initArcadeToggle();
       }
     }, 100);
   }
