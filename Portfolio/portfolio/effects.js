@@ -150,7 +150,7 @@
       pointer-events: none; z-index: 9998;
       color: #cc3a2e;
       transform: translate3d(-100px, -100px, 0) rotate(0deg);
-      mix-blend-mode: multiply;
+      mix-blend-mode: difference;
       will-change: transform;
       transition: width 0.18s ease, height 0.18s ease, color 0.18s ease;
     `;
@@ -2288,11 +2288,11 @@
             dy = cy - (g.y + g.size / 2);
             dist = Math.hypot(dx, dy);
           } else if (g.mode === 'wander') {
+            const wd = g.wander;
             if (fleeing && dist > 1) {
               g.x += (-dx / dist) * g.speed * 1.6 * slowMul;
               g.y += (-dy / dist) * g.speed * 1.6 * slowMul;
             } else {
-              const wd = g.wander;
               wd.timer++;
               if (wd.timer >= wd.interval) {
                 wd.angle += (Math.random() - 0.5) * Math.PI * 0.8;
@@ -2536,7 +2536,7 @@
         80% { opacity: 1; transform: translateY(0) scale(1); }
         100% { opacity: 0; transform: translateY(-8px) scale(1.02); }
       }
-      .tcaci-ghost:hover { transform: scale(1.08); }
+      .tcaci-ghost { cursor: crosshair; }
       @media print { #tcaci-coin-hud, .tcaci-ghost, #tcaci-gameover { display: none !important; } }
     `;
     document.head.appendChild(css);

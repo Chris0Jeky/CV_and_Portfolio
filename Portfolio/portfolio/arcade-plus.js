@@ -936,9 +936,16 @@
     );
 
     player.querySelector('[data-mp="play"]').addEventListener('click', () => {
-      if (!ytPlayer) { loadYTApi(); return; }
+      if (!ytPlayer) {
+        ytApiLoaded = false;
+        loadYTApi();
+        ytPendingPlay = true;
+        updateMusicUI();
+        return;
+      }
       if (ytIsPlaying) { ytPlayer.pauseVideo(); ytPendingPlay = false; }
       else { ytPlayer.playVideo(); ytPendingPlay = true; }
+      updateMusicUI();
     });
 
     player.querySelector('[data-mp="prev"]').addEventListener('click', () => {
@@ -979,8 +986,9 @@
         border-radius: 3px;
       }
       #tcaci-yt-wrap {
-        width: 0; height: 0; overflow: hidden; position: absolute;
-        pointer-events: none; opacity: 0;
+        position: fixed; left: -200px; top: -200px;
+        width: 1px; height: 1px;
+        pointer-events: none; opacity: 0.01;
       }
       #tcaci-music button {
         background: none; border: none;
