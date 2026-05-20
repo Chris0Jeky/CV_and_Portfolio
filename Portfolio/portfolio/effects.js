@@ -1629,15 +1629,19 @@
       boo: () => codes.minsc(),
 
       /* ── Pokémon summons ── */
-      pikachu:   () => summonPokemon('pikachu'),
-      charizard: () => summonPokemon('charizard'),
-      bulbasaur: () => summonPokemon('bulbasaur'),
-      squirtle:  () => summonPokemon('squirtle'),
-      gengar:    () => summonPokemon('gengar'),
-      mewtwo:    () => summonPokemon('mewtwo'),
-      eevee:     () => summonPokemon('eevee'),
-      snorlax:   () => summonPokemon('snorlax'),
-      pokemon:   () => {
+      pikachu:    () => summonPokemon('pikachu'),
+      charizard:  () => summonPokemon('charizard'),
+      bulbasaur:  () => summonPokemon('bulbasaur'),
+      squirtle:   () => summonPokemon('squirtle'),
+      gengar:     () => summonPokemon('gengar'),
+      mewtwo:     () => summonPokemon('mewtwo'),
+      eevee:      () => summonPokemon('eevee'),
+      snorlax:    () => summonPokemon('snorlax'),
+      jigglypuff: () => summonPokemon('jigglypuff'),
+      gyarados:   () => summonPokemon('gyarados'),
+      dragonite:  () => summonPokemon('dragonite'),
+      lucario:    () => summonPokemon('lucario'),
+      pokemon:    () => {
         const keys = Object.keys(POKEMON);
         const pick = keys[Math.floor(Math.random() * keys.length)];
         summonPokemon(pick);
