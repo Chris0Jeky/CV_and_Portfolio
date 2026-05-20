@@ -850,6 +850,259 @@
       setTimeout(() => t.remove(), 2700);
     }
 
+    /* ── ALLY / SUMMON SYSTEM — friendly entities that hunt enemies ── */
+    const ALLIES = [];
+    function spawnAlly(opts) {
+      const game = window.__tcaciGame;
+      if (!game || !game.api) return null;
+      const side = Math.floor(Math.random() * 4);
+      let x, y;
+      if (side === 0) { x = -40; y = Math.random() * innerHeight; }
+      else if (side === 1) { x = innerWidth + 40; y = Math.random() * innerHeight; }
+      else if (side === 2) { x = Math.random() * innerWidth; y = -40; }
+      else { x = Math.random() * innerWidth; y = innerHeight + 40; }
+      if (opts.x != null) x = opts.x;
+      if (opts.y != null) y = opts.y;
+      const size = opts.size || 40;
+      const el = document.createElement('div');
+      el.className = 'tcaci-ally';
+      el.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${size}px;height:${size}px;z-index:68;pointer-events:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3)) drop-shadow(0 0 8px ${opts.glow || 'rgba(255,216,74,0.4)'});transition:transform 0.1s ease;`;
+      el.innerHTML = opts.svg;
+      document.body.appendChild(el);
+      const ally = {
+        el, x, y, size, speed: opts.speed || 1.8, hp: opts.hp || 3,
+        maxHp: opts.hp || 3, alive: true, born: performance.now(),
+        duration: opts.duration || 20000, name: opts.name || 'ally',
+        dmg: opts.dmg || 1, color: opts.color || '#ffd84a',
+        onKill: opts.onKill || null, stationary: opts.stationary || false,
+        radius: opts.radius || null,
+      };
+      ALLIES.push(ally);
+      return ally;
+    }
+    function allyTick() {
+      const game = window.__tcaciGame;
+      const now = performance.now();
+      if (!game || !game.api) { requestAnimationFrame(allyTick); return; }
+      const ghosts = game.api.ghosts || [];
+      for (let i = ALLIES.length - 1; i >= 0; i--) {
+        const a = ALLIES[i];
+        if (!a.alive) { ALLIES.splice(i, 1); continue; }
+        if (now - a.born > a.duration) {
+          a.alive = false;
+          a.el.style.transition = 'opacity 0.5s, transform 0.5s';
+          a.el.style.opacity = '0';
+          a.el.style.transform = 'scale(0.5)';
+          setTimeout(() => a.el.remove(), 550);
+          ALLIES.splice(i, 1); continue;
+        }
+        if (a.stationary) {
+          for (const g of ghosts) {
+            if (!g.alive) continue;
+            const gx = g.x + g.size / 2, gy = g.y + g.size / 2;
+            const d = Math.hypot(gx - a.x, gy - a.y);
+            if (d < (a.radius || a.size)) {
+              g.hp -= a.dmg;
+              if (g.hp <= 0) game.api.killGhost(g, gx, gy);
+              else if (g.el) { g.el.style.transform = 'scale(1.15)'; setTimeout(() => { if (g.alive && g.el) g.el.style.transform = ''; }, 150); }
+            }
+          }
+          const fade = 1 - Math.max(0, (now - a.born - a.duration * 0.7)) / (a.duration * 0.3);
+          if (fade < 1) a.el.style.opacity = String(Math.max(0, fade));
+          continue;
+        }
+        let nearest = null, nearD = Infinity;
+        for (const g of ghosts) {
+          if (!g.alive) continue;
+          const d = Math.hypot((g.x + g.size / 2) - a.x, (g.y + g.size / 2) - a.y);
+          if (d < nearD) { nearD = d; nearest = g; }
+        }
+        if (nearest) {
+          const dx = (nearest.x + nearest.size / 2) - a.x;
+          const dy = (nearest.y + nearest.size / 2) - a.y;
+          const d = Math.hypot(dx, dy);
+          if (d > 1) {
+            a.x += (dx / d) * a.speed;
+            a.y += (dy / d) * a.speed;
+            const flip = dx < 0 ? 'scaleX(-1)' : '';
+            a.el.style.transform = flip;
+          }
+          if (d < (a.size / 2 + nearest.size / 2) * 0.6) {
+            nearest.hp -= a.dmg;
+            if (nearest.hp <= 0) {
+              game.api.killGhost(nearest, nearest.x + nearest.size / 2, nearest.y + nearest.size / 2);
+              if (a.onKill) a.onKill(a);
+            } else if (nearest.el) {
+              nearest.el.style.transform = 'scale(1.15)';
+              setTimeout(() => { if (nearest.alive && nearest.el) nearest.el.style.transform = ''; }, 150);
+            }
+            a.hp--;
+            if (a.hp <= 0) {
+              a.alive = false;
+              a.el.style.transition = 'opacity 0.3s, transform 0.3s';
+              a.el.style.opacity = '0';
+              a.el.style.transform = 'scale(0.3) rotate(180deg)';
+              setTimeout(() => a.el.remove(), 350);
+              ALLIES.splice(i, 1); continue;
+            }
+            a.el.style.filter = `drop-shadow(0 0 12px ${a.color}) brightness(1.4)`;
+            setTimeout(() => { if (a.alive) a.el.style.filter = `drop-shadow(0 2px 6px rgba(0,0,0,0.3)) drop-shadow(0 0 8px ${a.color}40)`; }, 200);
+            a.x -= (dx / d) * 20;
+            a.y -= (dy / d) * 20;
+          }
+        } else {
+          a.x += Math.sin(now * 0.002 + i) * 0.5;
+          a.y += Math.cos(now * 0.0015 + i) * 0.5;
+        }
+        a.el.style.left = a.x + 'px';
+        a.el.style.top = a.y + 'px';
+      }
+      requestAnimationFrame(allyTick);
+    }
+    requestAnimationFrame(allyTick);
+
+    function aoeKillGhosts(cx, cy, radius) {
+      const game = window.__tcaciGame;
+      if (!game || !game.api) return 0;
+      let kills = 0;
+      for (const g of (game.api.ghosts || []).slice()) {
+        if (!g.alive) continue;
+        const d = Math.hypot((g.x + g.size / 2) - cx, (g.y + g.size / 2) - cy);
+        if (d < radius) {
+          game.api.killGhost(g, g.x + g.size / 2, g.y + g.size / 2);
+          kills++;
+        }
+      }
+      return kills;
+    }
+
+    /* ── POKEMON SVG SPRITES ── */
+    const POKEMON = {
+      pikachu: {
+        name: 'Pikachu', color: '#ffd84a', hp: 5, speed: 2.2, size: 42,
+        svg: `<svg viewBox="0 0 42 42" width="100%" height="100%">
+          <path d="M 10 10 L 6 0 L 14 6" fill="#ffd84a"/><path d="M 6 0 L 8 3" stroke="#161514" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 32 10 L 36 0 L 28 6" fill="#ffd84a"/><path d="M 36 0 L 34 3" stroke="#161514" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="21" cy="16" rx="11" ry="10" fill="#ffd84a"/>
+          <ellipse cx="21" cy="28" rx="10" ry="9" fill="#ffd84a"/>
+          <circle cx="16" cy="14" r="2.2" fill="#161514"/><circle cx="26" cy="14" r="2.2" fill="#161514"/>
+          <circle cx="16.6" cy="13.4" r="0.8" fill="#fff"/><circle cx="26.6" cy="13.4" r="0.8" fill="#fff"/>
+          <circle cx="12" cy="19" r="3.5" fill="#cc3a2e" opacity="0.5"/><circle cx="30" cy="19" r="3.5" fill="#cc3a2e" opacity="0.5"/>
+          <path d="M 18 20 Q 21 22 24 20" fill="none" stroke="#161514" stroke-width="0.8"/>
+          <path d="M 33 24 L 40 18 L 38 12 L 36 18 L 33 22" fill="#ffd84a" stroke="#b08a2e" stroke-width="0.6"/>
+        </svg>`,
+      },
+      charizard: {
+        name: 'Charizard', color: '#ff6040', hp: 6, speed: 2.0, size: 48,
+        svg: `<svg viewBox="0 0 48 48" width="100%" height="100%">
+          <path d="M 10 16 L 2 8 L 6 16 L 0 20 L 8 20" fill="#ff8c40" opacity="0.7"/>
+          <path d="M 38 16 L 46 8 L 42 16 L 48 20 L 40 20" fill="#ff8c40" opacity="0.7"/>
+          <ellipse cx="24" cy="26" rx="13" ry="14" fill="#ff6040"/>
+          <ellipse cx="24" cy="32" rx="11" ry="8" fill="#ffd84a" opacity="0.3"/>
+          <ellipse cx="24" cy="16" rx="8" ry="7" fill="#ff6040"/>
+          <circle cx="20" cy="14" r="2" fill="#fff"/><circle cx="28" cy="14" r="2" fill="#fff"/>
+          <circle cx="20.5" cy="14.5" r="1" fill="#161514"/><circle cx="28.5" cy="14.5" r="1" fill="#161514"/>
+          <path d="M 22 19 L 24 21 L 26 19" fill="none" stroke="#cc3a2e" stroke-width="1"/>
+          <path d="M 4 14 Q 2 10 6 6 Q 4 10 8 14" fill="#ffd84a"/><path d="M 4 12 Q 3 9 5 7" fill="#ff6040" opacity="0.6"/>
+          <path d="M 36 36 Q 40 34 42 38 Q 44 42 40 40 L 38 38" fill="#ff6040"/>
+          <path d="M 42 38 Q 44 36 43 34" fill="#ffd84a" opacity="0.8"/><path d="M 43 36 Q 44 35 43.5 34" fill="#ff2030" opacity="0.6"/>
+        </svg>`,
+      },
+      bulbasaur: {
+        name: 'Bulbasaur', color: '#4a9e6a', hp: 5, speed: 1.6, size: 40,
+        svg: `<svg viewBox="0 0 40 40" width="100%" height="100%">
+          <ellipse cx="20" cy="28" rx="14" ry="10" fill="#4a9e6a"/>
+          <ellipse cx="20" cy="14" rx="10" ry="9" fill="#4a9e6a"/>
+          <circle cx="15" cy="12" r="2.5" fill="#cc3a2e"/><circle cx="25" cy="12" r="2.5" fill="#cc3a2e"/>
+          <circle cx="15.5" cy="11.5" r="1" fill="#fff"/><circle cx="25.5" cy="11.5" r="1" fill="#fff"/>
+          <path d="M 17 17 Q 20 19 23 17" fill="none" stroke="#1a4d3a" stroke-width="1"/>
+          <ellipse cx="20" cy="22" rx="7" ry="6" fill="#2a7a4a"/>
+          <path d="M 16 18 Q 20 14 24 18 Q 20 16 16 18" fill="#1a6038"/>
+          <path d="M 20 16 L 20 24" stroke="#1a4d3a" stroke-width="0.6" opacity="0.5"/>
+          <ellipse cx="10" cy="32" rx="3" ry="2" fill="#3a8a5a"/><ellipse cx="30" cy="32" rx="3" ry="2" fill="#3a8a5a"/>
+        </svg>`,
+      },
+      squirtle: {
+        name: 'Squirtle', color: '#3a9ee0', hp: 5, speed: 1.8, size: 40,
+        svg: `<svg viewBox="0 0 40 40" width="100%" height="100%">
+          <ellipse cx="20" cy="26" rx="11" ry="10" fill="#b08a2e" opacity="0.6"/>
+          <ellipse cx="20" cy="28" rx="12" ry="9" fill="#3a9ee0"/>
+          <ellipse cx="20" cy="14" rx="9" ry="9" fill="#3a9ee0"/>
+          <circle cx="15" cy="12" r="2.5" fill="#fff"/><circle cx="25" cy="12" r="2.5" fill="#fff"/>
+          <circle cx="15.5" cy="12.5" r="1.2" fill="#161514"/><circle cx="25.5" cy="12.5" r="1.2" fill="#161514"/>
+          <path d="M 17 17 Q 20 20 23 17" fill="none" stroke="#1a5a8e" stroke-width="1"/>
+          <ellipse cx="20" cy="28" rx="8" ry="6" fill="#ffd84a" opacity="0.3"/>
+          <path d="M 30 28 Q 34 24 32 20 Q 36 24 34 28" fill="#3a9ee0"/>
+          <ellipse cx="10" cy="34" rx="3" ry="2" fill="#3a9ee0"/><ellipse cx="30" cy="34" rx="3" ry="2" fill="#3a9ee0"/>
+        </svg>`,
+      },
+      gengar: {
+        name: 'Gengar', color: '#8b3df0', hp: 4, speed: 2.5, size: 44,
+        svg: `<svg viewBox="0 0 44 44" width="100%" height="100%">
+          <ellipse cx="22" cy="24" rx="18" ry="16" fill="#5a2a8a"/>
+          <path d="M 6 16 L 10 6 L 16 14" fill="#5a2a8a"/><path d="M 38 16 L 34 6 L 28 14" fill="#5a2a8a"/>
+          <circle cx="14" cy="18" r="5" fill="#fff"/><circle cx="30" cy="18" r="5" fill="#fff"/>
+          <circle cx="15" cy="18" r="3" fill="#cc3a2e"/><circle cx="31" cy="18" r="3" fill="#cc3a2e"/>
+          <path d="M 12 28 L 16 24 L 19 28 L 22 24 L 25 28 L 28 24 L 32 28" fill="#fff" stroke="#5a2a8a" stroke-width="0.5"/>
+          <path d="M 4 20 L 2 28 L 6 24" fill="#5a2a8a" opacity="0.6"/>
+          <path d="M 40 20 L 42 28 L 38 24" fill="#5a2a8a" opacity="0.6"/>
+        </svg>`,
+      },
+      mewtwo: {
+        name: 'Mewtwo', color: '#b060ff', hp: 7, speed: 2.4, size: 46,
+        svg: `<svg viewBox="0 0 46 46" width="100%" height="100%">
+          <ellipse cx="23" cy="30" rx="10" ry="12" fill="#d0b0e8"/>
+          <ellipse cx="23" cy="16" rx="8" ry="10" fill="#d0b0e8"/>
+          <path d="M 18 8 Q 16 2 20 6" fill="#d0b0e8"/><path d="M 28 8 Q 30 2 26 6" fill="#d0b0e8"/>
+          <circle cx="19" cy="14" r="3" fill="#b060ff"/><circle cx="27" cy="14" r="3" fill="#b060ff"/>
+          <circle cx="19.5" cy="13.5" r="1.5" fill="#fff" opacity="0.8"/><circle cx="27.5" cy="13.5" r="1.5" fill="#fff" opacity="0.8"/>
+          <path d="M 21 19 Q 23 21 25 19" fill="none" stroke="#8040a0" stroke-width="0.8"/>
+          <path d="M 30 30 Q 34 28 36 34 Q 38 40 34 38 Q 30 36 28 32" fill="#b060ff" opacity="0.7"/>
+          <ellipse cx="23" cy="30" rx="6" ry="8" fill="#d8c0f0" opacity="0.3"/>
+        </svg>`,
+      },
+      eevee: {
+        name: 'Eevee', color: '#c49a6c', hp: 4, speed: 2.3, size: 38,
+        svg: `<svg viewBox="0 0 38 38" width="100%" height="100%">
+          <ellipse cx="19" cy="24" rx="10" ry="9" fill="#c49a6c"/>
+          <ellipse cx="19" cy="14" rx="9" ry="9" fill="#c49a6c"/>
+          <path d="M 10 10 L 4 2 L 12 8" fill="#c49a6c"/><path d="M 28 10 L 34 2 L 26 8" fill="#c49a6c"/>
+          <path d="M 5 3 L 8 6" fill="#8a5a3a" opacity="0.5"/>
+          <path d="M 33 3 L 30 6" fill="#8a5a3a" opacity="0.5"/>
+          <circle cx="15" cy="13" r="2.2" fill="#161514"/><circle cx="23" cy="13" r="2.2" fill="#161514"/>
+          <circle cx="15.5" cy="12.5" r="0.8" fill="#fff"/><circle cx="23.5" cy="12.5" r="0.8" fill="#fff"/>
+          <ellipse cx="19" cy="17" rx="2" ry="1.2" fill="#161514"/>
+          <ellipse cx="19" cy="18" rx="5" ry="3" fill="#f4e8d8"/>
+          <path d="M 10 26 Q 6 30 8 34 Q 6 28 10 26" fill="#c49a6c"/>
+          <path d="M 28 26 Q 32 30 30 34 Q 32 28 28 26" fill="#c49a6c"/>
+        </svg>`,
+      },
+      snorlax: {
+        name: 'Snorlax', color: '#2a5a6a', hp: 10, speed: 0.8, size: 52,
+        svg: `<svg viewBox="0 0 52 52" width="100%" height="100%">
+          <ellipse cx="26" cy="30" rx="20" ry="18" fill="#2a5a6a"/>
+          <ellipse cx="26" cy="30" rx="14" ry="14" fill="#d8d0c0"/>
+          <ellipse cx="26" cy="16" rx="12" ry="10" fill="#2a5a6a"/>
+          <path d="M 18 14 L 22 14" stroke="#161514" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 30 14 L 34 14" stroke="#161514" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="26" cy="19" rx="3" ry="2" fill="#161514" opacity="0.6"/>
+          <path d="M 22 22 Q 26 24 30 22" fill="none" stroke="#161514" stroke-width="0.8"/>
+          <ellipse cx="12" cy="36" rx="5" ry="4" fill="#2a5a6a"/><ellipse cx="40" cy="36" rx="5" ry="4" fill="#2a5a6a"/>
+          <circle cx="14" cy="18" r="2" fill="#2a5a6a"/><circle cx="38" cy="18" r="2" fill="#2a5a6a"/>
+        </svg>`,
+      },
+    };
+
+    function summonPokemon(key) {
+      const p = POKEMON[key]; if (!p) return;
+      const ally = spawnAlly({
+        svg: p.svg, size: p.size, speed: p.speed, hp: p.hp,
+        duration: 18000 + Math.random() * 8000, name: p.name,
+        color: p.color, glow: p.color + '60', dmg: 1,
+      });
+      if (ally) toast(`★ ${p.name.toLowerCase()} · i choose you! ★`, 'gold');
+    }
+
     const codes = {
       audit: () => {
         const re = /audit ?log/gi;
@@ -1167,7 +1420,8 @@
           setTimeout(() => p.remove(), 1300);
         }
         setTimeout(() => ov.remove(), 2700);
-        toast('★ nat 20 · how do you want to do this? ★', 'gold');
+        const killed = aoeKillGhosts(innerWidth / 2, innerHeight / 2, 9999);
+        toast(`★ nat 20 · critical hit! · ${killed} obliterated ★`, 'gold');
       },
       initiative: () => {
         const banner = document.createElement('div');
@@ -1216,7 +1470,8 @@
         sq.innerHTML = `<svg viewBox="0 0 80 60" width="80" height="60"><ellipse cx="40" cy="25" rx="22" ry="20" fill="#3a1060" stroke="#b060ff" stroke-width="1.5"/><circle cx="33" cy="20" r="4" fill="#ffd84a" opacity="0.8"/><circle cx="33" cy="20" r="2" fill="#0a0520"/><circle cx="47" cy="20" r="4" fill="#ffd84a" opacity="0.8"/><circle cx="47" cy="20" r="2" fill="#0a0520"/>${[0,1,2,3].map(i=>`<path d="M ${30+i*7} 42 Q ${32+i*7} 55 ${28+i*9} 58" fill="none" stroke="#8b3df0" stroke-width="2.5" stroke-linecap="round"/>`).join('')}</svg>`;
         document.body.appendChild(sq);
         setTimeout(() => sq.remove(), 3600);
-        toast('★ ceremorphosis · you feel a presence ★', 'violet');
+        const killed = aoeKillGhosts(innerWidth / 2, innerHeight / 2, 180);
+        toast(`★ ceremorphosis · psychic blast · ${killed} consumed ★`, 'violet');
       },
       tadpole: () => codes.mindflayer(),
       karlach: () => {
@@ -1232,7 +1487,8 @@
           setTimeout(() => p.remove(), 1300);
         }
         setTimeout(() => ov.remove(), 2100);
-        toast('★ karlach · my heart is on fire! ★', 'rouge');
+        const killed = aoeKillGhosts(innerWidth / 2, innerHeight / 2, 200);
+        toast(`★ karlach · my heart is on fire! · ${killed} scorched ★`, 'rouge');
       },
       astarion: () => {
         const fl = document.createElement('div');
@@ -1243,7 +1499,8 @@
         fangs.innerHTML = `<svg viewBox="0 0 100 80" width="100" height="80" style="filter:drop-shadow(0 0 16px rgba(204,58,46,0.7));"><path d="M 30 10 L 38 50 L 46 10" fill="#f4f1ea" stroke="#cc3a2e" stroke-width="1.5"/><path d="M 54 10 L 62 50 L 70 10" fill="#f4f1ea" stroke="#cc3a2e" stroke-width="1.5"/><circle cx="40" cy="55" r="4" fill="#cc3a2e" opacity="0.7"/><circle cx="58" cy="58" r="3" fill="#cc3a2e" opacity="0.5"/></svg>`;
         document.body.appendChild(fangs);
         setTimeout(() => { fl.remove(); fangs.remove(); }, 1900);
-        toast('★ astarion · how positively delightful ★', 'rouge');
+        const killed = aoeKillGhosts(innerWidth / 2, innerHeight * 0.35, 150);
+        toast(`★ astarion · how positively delightful · ${killed} drained ★`, 'rouge');
       },
       shadowheart: () => {
         const ov = document.createElement('div');
@@ -1258,7 +1515,14 @@
           </svg>`;
         document.body.appendChild(ov);
         setTimeout(() => ov.remove(), 2300);
-        toast('★ shadowheart · lady shar provides ★', 'violet');
+        const sharSvg = `<svg viewBox="0 0 80 80" width="100%" height="100%"><circle cx="40" cy="40" r="36" fill="rgba(26,10,48,0.4)" stroke="#8040c0" stroke-width="1.5" stroke-dasharray="6 4"/><circle cx="40" cy="40" r="24" fill="rgba(128,64,192,0.15)"/><circle cx="40" cy="30" r="6" fill="#2a1050" stroke="#b060ff" stroke-width="1"/><path d="M 40 36 L 34 52 L 40 48 L 46 52 Z" fill="#b060ff" opacity="0.5"/></svg>`;
+        spawnAlly({
+          svg: sharSvg, size: 80, speed: 0, hp: 999, duration: 10000,
+          name: 'shar-zone', color: '#8040c0', glow: 'rgba(128,64,192,0.5)',
+          stationary: true, radius: 60, dmg: 2,
+          x: innerWidth / 2, y: innerHeight / 2,
+        });
+        toast('★ shadowheart · lady shar provides · damage zone active ★', 'violet');
       },
       laezel: () => {
         const slash = document.createElement('div');
@@ -1272,22 +1536,46 @@
           setTimeout(() => fl.remove(), 350);
         }, 200);
         setTimeout(() => slash.remove(), 600);
-        toast('★ lae\'zel · tsk. impressive. for an istik. ★', 'forest');
+        const game = window.__tcaciGame;
+        let slashKills = 0;
+        if (game && game.api) {
+          const slashY = innerHeight * 0.4;
+          for (const g of (game.api.ghosts || []).slice()) {
+            if (!g.alive) continue;
+            if (Math.abs((g.y + g.size / 2) - slashY) < 60) {
+              game.api.killGhost(g, g.x + g.size / 2, g.y + g.size / 2);
+              slashKills++;
+            }
+          }
+        }
+        toast(`★ lae\'zel · tsk. ${slashKills} cleaved. ★`, 'forest');
       },
       gale: () => {
+        const game = window.__tcaciGame;
+        const targets = game && game.api ? (game.api.ghosts || []).filter(g => g.alive).slice(0, 4) : [];
+        const colors = ['#7adfff','#b060ff','#3a9ee0','#fff'];
+        let galeKills = 0;
         for (let i = 0; i < 8; i++) {
           setTimeout(() => {
             const m = document.createElement('div');
-            const x = Math.random()*innerWidth, y = Math.random()*innerHeight;
-            const colors = ['#7adfff','#b060ff','#3a9ee0','#fff'];
+            const x = innerWidth / 2, y = innerHeight / 2;
             m.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:12px;height:12px;border-radius:50%;background:${colors[i%4]};z-index:9994;pointer-events:none;box-shadow:0 0 16px ${colors[i%4]};transition:transform 0.6s ease-out,opacity 0.6s ease-out;`;
             document.body.appendChild(m);
-            const tx = (Math.random()-0.5)*300, ty = (Math.random()-0.5)*300;
-            requestAnimationFrame(() => { m.style.transform = `translate(${tx}px,${ty}px) scale(0.2)`; m.style.opacity = '0'; });
+            const target = targets[i % targets.length];
+            if (target && target.alive) {
+              const tx = (target.x + target.size / 2) - x, ty = (target.y + target.size / 2) - y;
+              requestAnimationFrame(() => { m.style.transform = `translate(${tx}px,${ty}px) scale(0.2)`; m.style.opacity = '0'; });
+              setTimeout(() => {
+                if (target.alive && game.api) { game.api.killGhost(target, target.x + target.size / 2, target.y + target.size / 2); galeKills++; }
+              }, 500);
+            } else {
+              const tx = (Math.random()-0.5)*400, ty = (Math.random()-0.5)*400;
+              requestAnimationFrame(() => { m.style.transform = `translate(${tx}px,${ty}px) scale(0.2)`; m.style.opacity = '0'; });
+            }
             setTimeout(() => m.remove(), 700);
           }, i * 80);
         }
-        toast('★ gale · ah, marvellous! ★', 'teal');
+        setTimeout(() => toast(`★ gale · marvellous! · ${galeKills} arcane'd ★`, 'teal'), 600);
       },
       withers: () => {
         const ov = document.createElement('div');
@@ -1295,7 +1583,15 @@
         ov.innerHTML = `<svg viewBox="0 0 80 120" width="80" height="120" style="filter:drop-shadow(0 0 12px rgba(244,241,234,0.5));"><ellipse cx="40" cy="30" rx="18" ry="22" fill="#d8d0c0" stroke="#8a7a68" stroke-width="1.5"/><circle cx="34" cy="26" r="5" fill="#1a1410"/><circle cx="46" cy="26" r="5" fill="#1a1410"/><circle cx="34" cy="26" r="2" fill="#ffd84a" opacity="0.7"/><circle cx="46" cy="26" r="2" fill="#ffd84a" opacity="0.7"/><path d="M 35 36 Q 40 40 45 36" fill="none" stroke="#1a1410" stroke-width="1.5"/><rect x="30" y="50" width="20" height="40" rx="3" fill="#8a7a68" opacity="0.7"/><line x1="28" y1="55" x2="18" y2="70" stroke="#8a7a68" stroke-width="3" stroke-linecap="round"/><line x1="52" y1="55" x2="62" y2="70" stroke="#8a7a68" stroke-width="3" stroke-linecap="round"/></svg>`;
         document.body.appendChild(ov);
         setTimeout(() => ov.remove(), 2600);
-        toast('★ withers · death is but a door ★', 'gold');
+        const skullSvg = `<svg viewBox="0 0 36 36" width="100%" height="100%"><ellipse cx="18" cy="16" rx="12" ry="14" fill="#d8d0c0" stroke="#8a7a68" stroke-width="1"/><circle cx="13" cy="13" r="3.5" fill="#1a1410"/><circle cx="23" cy="13" r="3.5" fill="#1a1410"/><circle cx="13" cy="13" r="1.5" fill="#ffd84a" opacity="0.6"/><circle cx="23" cy="13" r="1.5" fill="#ffd84a" opacity="0.6"/><path d="M 15 22 Q 18 24 21 22" fill="none" stroke="#1a1410" stroke-width="1"/><rect x="12" y="28" width="12" height="6" rx="2" fill="#8a7a68" opacity="0.5"/></svg>`;
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => spawnAlly({
+            svg: skullSvg, size: 36, speed: 1.4, hp: 2, duration: 15000,
+            name: 'bone-shield', color: '#d8d0c0', glow: 'rgba(244,241,234,0.3)',
+            x: innerWidth / 2 + (i - 1) * 60, y: innerHeight - 40,
+          }), i * 400);
+        }
+        toast('★ withers · death is but a door · 3 skeletons summoned ★', 'gold');
       },
       tav: () => {
         const fl = document.createElement('div');
@@ -1323,9 +1619,11 @@
         </div>`;
         document.body.appendChild(ov);
         setTimeout(() => ov.remove(), 2100);
-        toast('★ dark urge · embrace the slaughter ★', 'rouge');
+        const killed = aoeKillGhosts(innerWidth / 2, innerHeight / 2, 250);
+        toast(`★ dark urge · embrace the slaughter · ${killed} fallen ★`, 'rouge');
       },
       eldritch: () => {
+        let totalKills = 0;
         for (let i = 0; i < 3; i++) {
           setTimeout(() => {
             const beam = document.createElement('div');
@@ -1333,9 +1631,20 @@
             beam.style.cssText = `position:fixed;top:${y}px;left:-100px;width:160px;height:8px;z-index:9994;pointer-events:none;background:linear-gradient(90deg,transparent,#40ff80,#00ff60,#40ff80,transparent);box-shadow:0 0 24px rgba(64,255,128,0.7),0 0 48px rgba(0,255,96,0.3);border-radius:4px;animation:hadouken-fly ${0.7+i*0.15}s linear forwards;`;
             document.body.appendChild(beam);
             setTimeout(() => beam.remove(), 1000+i*200);
+            const game = window.__tcaciGame;
+            if (game && game.api) {
+              for (const g of (game.api.ghosts || []).slice()) {
+                if (!g.alive) continue;
+                const gy = g.y + g.size / 2;
+                if (Math.abs(gy - y) < 40) {
+                  game.api.killGhost(g, g.x + g.size / 2, gy);
+                  totalKills++;
+                }
+              }
+            }
           }, i * 150);
         }
-        toast('★ eldritch blast · i call upon the void ★', 'forest');
+        setTimeout(() => toast(`★ eldritch blast · ${totalKills} blasted ★`, 'forest'), 500);
       },
       eldritchblast: () => codes.eldritch(),
       fireball: () => {
@@ -1359,7 +1668,8 @@
           document.body.style.transform = `translate(${(Math.random()*8-4).toFixed(1)}px,${(Math.random()*8-4).toFixed(1)}px)`;
           if (frames > 12) { clearInterval(id); document.body.style.transform = ''; }
         }, 40);
-        toast('★ fireball · 8d6 fire damage ★', 'rouge');
+        const killed = aoeKillGhosts(innerWidth / 2, innerHeight / 2, 280);
+        toast(`★ fireball · 8d6 fire damage · ${killed} defeated ★`, 'rouge');
       },
       criticalrole: () => {
         const banner = document.createElement('div');
@@ -1414,6 +1724,21 @@
         toast('★ minsc & boo · evil, meet my sword ★', 'rouge');
       },
       boo: () => codes.minsc(),
+
+      /* ── Pokémon summons ── */
+      pikachu:   () => summonPokemon('pikachu'),
+      charizard: () => summonPokemon('charizard'),
+      bulbasaur: () => summonPokemon('bulbasaur'),
+      squirtle:  () => summonPokemon('squirtle'),
+      gengar:    () => summonPokemon('gengar'),
+      mewtwo:    () => summonPokemon('mewtwo'),
+      eevee:     () => summonPokemon('eevee'),
+      snorlax:   () => summonPokemon('snorlax'),
+      pokemon:   () => {
+        const keys = Object.keys(POKEMON);
+        const pick = keys[Math.floor(Math.random() * keys.length)];
+        summonPokemon(pick);
+      },
     };
 
     function triggerKonami() {
@@ -1506,7 +1831,7 @@
     let bufT = null;
     document.addEventListener('keydown', (e) => {
       if (e.target.matches('input, textarea, [contenteditable="true"]')) return;
-      if (e.key.length !== 1 || !/^[a-z]$/i.test(e.key)) return;
+      if (e.key.length !== 1 || !/^[a-z0-9]$/i.test(e.key)) return;
       buf += e.key.toLowerCase();
       buf = buf.slice(-20);
       clearTimeout(bufT);

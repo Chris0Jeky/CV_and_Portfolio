@@ -87,14 +87,18 @@ window.CommandPalette = function CommandPalette() {
 
   return (
     <>
-      {/* Floating prompt-hint (subtle) */}
+      {/* Floating prompt-hint (subtle, above music player) */}
       <div style={{
-        position: 'fixed', bottom: 16, right: 16, zIndex: 40,
-        fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-mute)',
-        background: 'var(--paper-2)', border: '1px solid var(--rule)',
-        padding: '6px 10px', letterSpacing: '0.08em', textTransform: 'uppercase',
-        cursor: 'pointer', userSelect: 'none',
-      }} onClick={() => setOpen(true)}>
+        position: 'fixed', bottom: 50, right: 14, zIndex: 40,
+        fontFamily: 'var(--mono)', fontSize: 9, color: 'rgba(244,241,234,0.6)',
+        background: 'var(--ink, #161514)',
+        padding: '5px 10px', letterSpacing: '0.1em', textTransform: 'uppercase',
+        cursor: 'pointer', userSelect: 'none', borderRadius: 3,
+        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+        transition: 'color 0.15s',
+      }} onClick={() => setOpen(true)}
+         onMouseEnter={e => e.currentTarget.style.color = 'rgba(244,241,234,0.95)'}
+         onMouseLeave={e => e.currentTarget.style.color = 'rgba(244,241,234,0.6)'}>
         <span style={{ color: 'var(--rouge)' }}>⌘K</span> command palette
       </div>
 

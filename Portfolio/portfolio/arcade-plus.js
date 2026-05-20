@@ -832,37 +832,45 @@
     const musicCss = document.createElement('style');
     musicCss.textContent = `
       #tcaci-music {
-        position: fixed; bottom: 48px; right: 14px; z-index: 9988;
+        position: fixed; bottom: 14px; right: 14px; z-index: 9988;
         font-family: 'IBM Plex Mono', monospace; font-size: 10px;
-        letter-spacing: 0.1em;
-        background: rgba(244, 241, 234, 0.94);
-        border: 1.5px solid var(--ink, #161514);
-        box-shadow: 3px 3px 0 var(--rouge, #cc3a2e);
-        padding: 6px 10px;
-        display: flex; gap: 6px; align-items: center;
+        letter-spacing: 0.08em;
+        background: var(--ink, #161514);
+        color: var(--paper, #f4f1ea);
+        border: none;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+        padding: 7px 12px;
+        display: flex; gap: 8px; align-items: center;
+        border-radius: 3px;
       }
       #tcaci-yt-wrap {
         width: 0; height: 0; overflow: hidden; position: absolute;
         pointer-events: none; opacity: 0;
       }
       #tcaci-music button {
-        background: none; border: 1px solid var(--ink, #161514);
-        font-family: inherit; font-size: 11px; cursor: pointer;
-        padding: 2px 6px; color: var(--ink, #161514);
-        transition: background 0.15s, color 0.15s;
+        background: none; border: none;
+        font-family: inherit; font-size: 12px; cursor: pointer;
+        padding: 0 2px; color: var(--paper, #f4f1ea);
+        opacity: 0.7; transition: opacity 0.15s;
+        line-height: 1;
       }
-      #tcaci-music button:hover {
-        background: var(--ink, #161514); color: var(--paper, #f4f1ea);
-      }
+      #tcaci-music button:hover { opacity: 1; }
       #tcaci-music [data-mp="name"] {
         color: var(--rouge, #cc3a2e); font-weight: 600;
-        min-width: 100px; text-align: center;
-        max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        font-size: 9px; letter-spacing: 0.12em;
+        max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       }
-      #tcaci-music input[type="range"] { width: 50px; }
+      #tcaci-music input[type="range"] {
+        width: 40px; height: 3px; -webkit-appearance: none; appearance: none;
+        background: rgba(255,255,255,0.2); border-radius: 2px; outline: none;
+      }
+      #tcaci-music input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; width: 10px; height: 10px;
+        background: var(--rouge, #cc3a2e); border-radius: 50%; cursor: pointer;
+      }
       @media print { #tcaci-music { display: none !important; } }
       @media (max-width: 600px) {
-        #tcaci-music { bottom: 80px; right: 8px; font-size: 9px; padding: 4px 6px; }
+        #tcaci-music { bottom: 10px; right: 8px; font-size: 9px; padding: 5px 8px; }
       }
     `;
     document.head.appendChild(musicCss);
