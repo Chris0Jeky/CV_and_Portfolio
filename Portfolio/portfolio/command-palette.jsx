@@ -31,6 +31,8 @@ window.CommandPalette = function CommandPalette() {
     { kind: 'cmd', label: 'cite wealthlens', hint: 'project', action: () => location.hash = '#projects' },
     { kind: 'cmd', label: 'reach-out --form', hint: 'contact', action: () => location.hash = '#contact' },
     // Easter eggs
+    { kind: 'egg', label: 'play doom', hint: 'iddqd', action: () => { if (window.__launchDoom) window.__launchDoom(); } },
+    { kind: 'egg', label: 'iddqd', hint: 'god mode', action: () => { if (window.__launchDoom) window.__launchDoom(); } },
     { kind: 'egg', label: 'sudo make me a sandwich', hint: 'permission denied', action: () => alert('xkcd #149 — but actually: you have to ask politely.') },
     { kind: 'egg', label: 'press run', hint: '↑↑↓↓←→←→ B A', action: () => alert('Type the Konami code anywhere on the page.') },
   ], []);
