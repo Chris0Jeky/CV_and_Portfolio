@@ -33,6 +33,8 @@ window.CommandPalette = function CommandPalette() {
     // Easter eggs
     { kind: 'egg', label: 'play doom', hint: 'iddqd', action: () => { if (window.__launchDoom) window.__launchDoom(); } },
     { kind: 'egg', label: 'iddqd', hint: 'god mode', action: () => { if (window.__launchDoom) window.__launchDoom(); } },
+    { kind: 'egg', label: 'play yokai survivors', hint: '妖怪', action: () => { if (window.__launchSurvivors) window.__launchSurvivors(); } },
+    { kind: 'egg', label: 'yokai', hint: 'survive the horde', action: () => { if (window.__launchSurvivors) window.__launchSurvivors(); } },
     { kind: 'egg', label: 'sudo make me a sandwich', hint: 'permission denied', action: () => alert('xkcd #149 — but actually: you have to ask politely.') },
     { kind: 'egg', label: 'press run', hint: '↑↑↓↓←→←→ B A', action: () => alert('Type the Konami code anywhere on the page.') },
   ], []);

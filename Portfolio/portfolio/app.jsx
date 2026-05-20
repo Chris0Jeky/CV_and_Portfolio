@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Masthead, Hero, About, Experience, ByTheNumbers, Credentials, Projects, Skills, Contact, Colophon, CommandPalette, DoomEasterEgg */
+/* global React, ReactDOM, Masthead, Hero, About, Experience, ByTheNumbers, Credentials, Projects, Skills, Contact, Colophon, CommandPalette, DoomEasterEgg, YokaiSurvivors */
 const { useState, useEffect, useRef } = React;
 
 function Nav() {
@@ -75,6 +75,7 @@ function App() {
       <Nav/>
       <CommandPalette/>
       <DoomEasterEgg/>
+      <YokaiSurvivors/>
       <Masthead/>
       <Hero/>
       <About/>
