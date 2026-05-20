@@ -453,15 +453,134 @@
       });
     }
 
+    function spawnRedactor(opts = {}) {
+      return api.spawnGhost({
+        ...opts, kind: 'redactor', color: '#161514',
+        size: 38, speedMul: 1.8, hp: 1, points: 90,
+        svg: `<svg viewBox="0 0 38 38" width="100%" height="100%">
+          <rect x="4" y="8" width="30" height="22" rx="2" fill="#161514" stroke="#cc3a2e" stroke-width="1.5"/>
+          <rect x="8" y="12" width="22" height="3" rx="1" fill="#cc3a2e" opacity="0.8"/>
+          <rect x="8" y="18" width="16" height="3" rx="1" fill="#cc3a2e" opacity="0.6"/>
+          <rect x="8" y="24" width="20" height="3" rx="1" fill="#cc3a2e" opacity="0.4"/>
+          <circle class="eye eye-l" cx="12" cy="7" r="1.5" fill="#ff4d4d"/>
+          <circle class="eye eye-r" cx="26" cy="7" r="1.5" fill="#ff4d4d"/>
+        </svg>`,
+      });
+    }
+    function spawnCoffeeMug(opts = {}) {
+      return api.spawnGhost({
+        ...opts, kind: 'coffee', color: '#8a5a3a',
+        size: 42, speedMul: 0.75, hp: 3, points: 100,
+        svg: `<svg viewBox="0 0 42 42" width="100%" height="100%">
+          <rect x="8" y="12" width="22" height="22" rx="3" fill="#8a5a3a" stroke="#5a3a2a" stroke-width="1.5"/>
+          <path d="M 30 18 Q 38 18 38 24 Q 38 30 30 30" fill="none" stroke="#8a5a3a" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="19" cy="12" rx="11" ry="3" fill="#5a3a2a"/>
+          <path d="M 14 6 Q 16 2 18 6" fill="none" stroke="#d8d0c0" stroke-width="1" opacity="0.5"/>
+          <path d="M 19 4 Q 21 0 23 4" fill="none" stroke="#d8d0c0" stroke-width="1" opacity="0.5"/>
+          <circle class="eye eye-l" cx="15" cy="22" r="2" fill="#f4f1ea"/>
+          <circle class="eye eye-r" cx="25" cy="22" r="2" fill="#f4f1ea"/>
+        </svg>`,
+      });
+    }
+    function spawnEraserDust(opts = {}) {
+      return api.spawnGhost({
+        ...opts, kind: 'eraser', color: '#e8a0b0',
+        size: 36, speedMul: 2.0, hp: 1, points: 75,
+        svg: `<svg viewBox="0 0 36 36" width="100%" height="100%">
+          <rect x="4" y="10" width="28" height="16" rx="8" fill="#e8a0b0" stroke="#c06080" stroke-width="1.5"/>
+          <rect x="22" y="10" width="10" height="16" rx="4" fill="#c06080"/>
+          <circle class="eye eye-l" cx="12" cy="18" r="2" fill="#fff"/>
+          <circle class="eye eye-r" cx="18" cy="18" r="2" fill="#fff"/>
+          <circle cx="12.5" cy="18.5" r="1" fill="#4a1a2a"/>
+          <circle cx="18.5" cy="18.5" r="1" fill="#4a1a2a"/>
+        </svg>`,
+      });
+    }
+    function spawnRuler(opts = {}) {
+      return api.spawnGhost({
+        ...opts, kind: 'ruler', color: '#b08a2e',
+        size: 48, speedMul: 0.9, hp: 2, points: 85,
+        svg: `<svg viewBox="0 0 48 20" width="100%" height="100%">
+          <rect x="2" y="2" width="44" height="16" rx="2" fill="#ffd84a" stroke="#b08a2e" stroke-width="1.5"/>
+          ${[0,1,2,3,4,5,6,7].map(i => `<line x1="${6+i*5.5}" y1="2" x2="${6+i*5.5}" y2="${i%2===0?10:7}" stroke="#8a6a1e" stroke-width="0.8"/>`).join('')}
+          <circle class="eye eye-l" cx="16" cy="10" r="1.8" fill="#4a2a0a"/>
+          <circle class="eye eye-r" cx="32" cy="10" r="1.8" fill="#4a2a0a"/>
+        </svg>`,
+      });
+    }
+
+    function spawnBoss(bossType) {
+      if (game.gameOver || game.paused || game.arcadeOff) return;
+      const bosses = {
+        editor: {
+          color: '#cc3a2e', size: 90, hp: 6, points: 800,
+          svg: `<svg viewBox="0 0 90 90" width="100%" height="100%">
+            <path d="M 8 50 V 80 L 16 72 L 24 80 L 32 72 L 40 80 L 48 72 L 56 80 L 64 72 L 72 80 L 80 72 L 85 80 V 50 A 38 38 0 0 0 8 50 Z" fill="#cc3a2e"/>
+            <circle cx="30" cy="42" r="10" fill="#fff"/><circle cx="62" cy="42" r="10" fill="#fff"/>
+            <circle class="eye eye-l" cx="32" cy="44" r="5" fill="#0a1738"/>
+            <circle class="eye eye-r" cx="64" cy="44" r="5" fill="#0a1738"/>
+            <path d="M 18 28 L 28 20 L 38 28" stroke="#fff" stroke-width="3" fill="none"/>
+            <path d="M 54 28 L 64 20 L 74 28" stroke="#fff" stroke-width="3" fill="none"/>
+            <text x="46" y="70" text-anchor="middle" font-family="Impact" font-size="14" fill="#ffd84a">EDITOR</text>
+          </svg>`,
+        },
+        deadline: {
+          color: '#8b3df0', size: 100, hp: 8, points: 1200,
+          svg: `<svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="42" fill="#1a0a30" stroke="#8b3df0" stroke-width="3"/>
+            <circle cx="50" cy="50" r="36" fill="none" stroke="#b060ff" stroke-width="1" stroke-dasharray="6 4"/>
+            <line x1="50" y1="50" x2="50" y2="20" stroke="#ffd84a" stroke-width="3" stroke-linecap="round"/>
+            <line x1="50" y1="50" x2="72" y2="50" stroke="#cc3a2e" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="3" fill="#ffd84a"/>
+            ${[0,1,2,3,4,5,6,7,8,9,10,11].map(i => { const a=i*30*Math.PI/180; return `<line x1="${50+Math.sin(a)*34}" y1="${50-Math.cos(a)*34}" x2="${50+Math.sin(a)*38}" y2="${50-Math.cos(a)*38}" stroke="#b060ff" stroke-width="${i%3===0?2:1}"/>`; }).join('')}
+            <circle class="eye eye-l" cx="40" cy="45" r="4" fill="#cc3a2e"/>
+            <circle class="eye eye-r" cx="60" cy="45" r="4" fill="#cc3a2e"/>
+            <text x="50" y="78" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#b060ff" letter-spacing="0.2em">DEADLINE</text>
+          </svg>`,
+        },
+        printer: {
+          color: '#2a6b78', size: 110, hp: 10, points: 1500,
+          svg: `<svg viewBox="0 0 110 100" width="100%" height="100%">
+            <rect x="10" y="30" width="90" height="50" rx="6" fill="#2a6b78" stroke="#1a4d3a" stroke-width="2"/>
+            <rect x="20" y="10" width="70" height="25" rx="3" fill="#3a8a9a"/>
+            <rect x="30" y="75" width="50" height="18" rx="2" fill="#f4f1ea" stroke="#b08a2e" stroke-width="1"/>
+            <rect x="35" y="79" width="40" height="2" rx="1" fill="#161514" opacity="0.3"/>
+            <rect x="35" y="84" width="30" height="2" rx="1" fill="#161514" opacity="0.3"/>
+            <circle class="eye eye-l" cx="38" cy="50" r="8" fill="#0e1418"/>
+            <circle class="eye eye-r" cx="72" cy="50" r="8" fill="#0e1418"/>
+            <circle cx="40" cy="50" r="3" fill="#ff4d4d"/>
+            <circle cx="74" cy="50" r="3" fill="#ff4d4d"/>
+            <rect x="48" y="42" width="14" height="4" rx="2" fill="#cc3a2e"/>
+            <text x="55" y="68" text-anchor="middle" font-family="Impact" font-size="10" fill="#ffd84a">PRINTER</text>
+          </svg>`,
+        },
+      };
+      const b = bosses[bossType] || bosses.editor;
+      api.spawnGhost({ boss: true, color: b.color, size: b.size, hp: b.hp, points: b.points, svg: b.svg });
+      toast(`★ BOSS · ${bossType.toUpperCase()} approaches! ★`, 'rouge', '💀');
+    }
+
+    let secretBossChance = 0;
+    function maybeSecretBoss() {
+      if (game.gameOver || game.paused || game.arcadeOff) return;
+      secretBossChance += 0.02;
+      if (game.score >= 3000 && Math.random() < secretBossChance) {
+        secretBossChance = 0;
+        spawnBoss(Math.random() < 0.5 ? 'deadline' : 'printer');
+      }
+    }
+    window.addEventListener('tcaci:kill', () => maybeSecretBoss());
+
     /* ──────────────────────────────────────────
        SECTION ENTER → wave + coin shower
        ────────────────────────────────────────── */
     const WAVES = {
-      about:       () => { for (let i=0;i<2;i++) setTimeout(spawnInkBlob,   1400 + i*700); },
-      experience:  () => { for (let i=0;i<3;i++) setTimeout(spawnTypewriter,1400 + i*500); },
-      credentials: () => { for (let i=0;i<2;i++) setTimeout(spawnGoldStar,  1400 + i*800); },
-      projects:    () => { for (let i=0;i<3;i++) setTimeout(spawnPaperclip, 1400 + i*600); },
-      skills:      () => { for (let i=0;i<2;i++) setTimeout(() => api.spawnGhost(), 1400 + i*700); },
+      about:       () => { for (let i=0;i<2;i++) setTimeout(spawnInkBlob,   1400 + i*700); setTimeout(spawnCoffeeMug, 2400); },
+      experience:  () => { for (let i=0;i<3;i++) setTimeout(spawnTypewriter,1400 + i*500); setTimeout(spawnRedactor, 2800); },
+      credentials: () => { for (let i=0;i<2;i++) setTimeout(spawnGoldStar,  1400 + i*800); setTimeout(spawnRuler, 2600); },
+      projects:    () => { for (let i=0;i<3;i++) setTimeout(spawnPaperclip, 1400 + i*600); setTimeout(spawnEraserDust, 2400); },
+      skills:      () => { for (let i=0;i<2;i++) setTimeout(() => api.spawnGhost(), 1400 + i*700); setTimeout(spawnRedactor, 2200); },
+      contact:     () => { setTimeout(() => spawnBoss('editor'), 2000); },
     };
     window.addEventListener('tcaci:section', (e) => {
       if (game.arcadeOff) return;
