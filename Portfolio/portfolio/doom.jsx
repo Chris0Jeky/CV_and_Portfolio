@@ -3,8 +3,6 @@ const { useState, useEffect, useRef } = React;
 
 window.DoomEasterEgg = function DoomEasterEgg() {
   const [open, setOpen] = useState(false);
-  const [phase, setPhase] = useState('idle');
-  const gameRef = useRef(null);
   const wasPaused = useRef(false);
 
   useEffect(() => {
@@ -39,44 +37,6 @@ window.DoomEasterEgg = function DoomEasterEgg() {
     }
   }, [open]);
 
-  useEffect(() => {
-    if (!open) return;
-    let dead = false;
-    setPhase('loading');
-
-    (async () => {
-      try {
-        if (!document.querySelector('link[data-doom]')) {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = 'https://v8.js-dos.com/latest/js-dos.css';
-          link.dataset.doom = '';
-          document.head.appendChild(link);
-        }
-        if (!window.Dos) {
-          await new Promise((resolve, reject) => {
-            const s = document.createElement('script');
-            s.src = 'https://v8.js-dos.com/latest/js-dos.js';
-            s.onload = resolve;
-            s.onerror = () => reject(new Error('script'));
-            document.head.appendChild(s);
-          });
-        }
-        if (dead) return;
-        await new Promise(r => requestAnimationFrame(r));
-        if (dead || !gameRef.current) return;
-        window.Dos(gameRef.current, {
-          url: 'https://cdn.dos.zone/custom/dos/doom.jsdos',
-        });
-        setPhase('ready');
-      } catch (_) {
-        if (!dead) setPhase('error');
-      }
-    })();
-
-    return () => { dead = true; };
-  }, [open]);
-
   if (!open) return null;
 
   return (
@@ -90,7 +50,6 @@ window.DoomEasterEgg = function DoomEasterEgg() {
         @keyframes doom-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .doom-panel { animation: doom-in 0.2s ease-out; }
         .doom-x:hover { background: var(--rouge, #cc3a2e); color: var(--paper, #f4f1ea); }
-        .doom-panel .emulator-button { pointer-events: auto; }
       `}</style>
       <div className="doom-panel" onClick={e => e.stopPropagation()} style={{
         background: 'var(--paper, #f4f1ea)',
@@ -144,48 +103,17 @@ window.DoomEasterEgg = function DoomEasterEgg() {
           </div>
         </div>
 
-        {/* Game area */}
-        <div style={{ position: 'relative', flexGrow: 1, minHeight: 'min(480px, 56vw)' }}>
-          <div ref={gameRef} style={{
-            width: '100%', height: '100%',
-            position: 'absolute', inset: 0,
-            background: '#0e1418',
-          }} />
-          {phase === 'loading' && (
-            <div style={{
-              position: 'absolute', inset: 0, zIndex: 1,
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              fontFamily: 'var(--mono, monospace)',
-              color: '#7cf4b8', fontSize: 12, letterSpacing: '0.1em',
-              background: '#0e1418', pointerEvents: 'none',
-            }}>
-              <div style={{ marginBottom: 8, animation: 'blink 1s steps(1) infinite' }}>
-                ▸ loading doom engine…
-              </div>
-              <div style={{ color: '#46555f', fontSize: 10 }}>
-                DOOM™ shareware · id Software 1993
-              </div>
-            </div>
-          )}
-          {phase === 'error' && (
-            <div style={{
-              position: 'absolute', inset: 0, zIndex: 1,
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              fontFamily: 'var(--mono, monospace)', fontSize: 12,
-              color: 'var(--ink-dim, #5a554d)', background: '#0e1418',
-            }}>
-              <div style={{ color: 'var(--rouge, #cc3a2e)', marginBottom: 8 }}>
-                ● transmission interrupted
-              </div>
-              The DOOM engine could not be loaded.
-              <div style={{ marginTop: 6, fontSize: 10, color: '#46555f' }}>
-                The CDN may be temporarily unavailable — try again later.
-              </div>
-            </div>
-          )}
-        </div>
+        {/* Game — WebPrBoom (PrBoom WASM) via GitHub Pages */}
+        <iframe
+          src="https://raz0red.github.io/webprboom/"
+          style={{
+            width: '100%', border: 'none',
+            flexGrow: 1, minHeight: 'min(480px, 56vw)',
+            background: '#000',
+          }}
+          allow="autoplay; fullscreen; pointer-lock; gamepad"
+          allowFullScreen
+        />
 
         {/* Footer */}
         <div style={{
