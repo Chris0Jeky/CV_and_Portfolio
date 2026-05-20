@@ -250,6 +250,9 @@
       '£17 TRILLION · VISUALISED',
       '△ ○ ✕ ▢  ·  PRESS START',
       'INSERT COIN · CONTINUE? 9',
+      '↑↑↓↓←→←→BA · KONAMI CODE',
+      'TYPE SECRET WORDS · 30+ HIDDEN CODES',
+      'ROLL FOR INITIATIVE · TYPE D20',
       '★ STOP PRESS',
     ];
     const line = items.join('   ·   ');
@@ -824,7 +827,12 @@
      ⑭ SECRET KEYWORD CODES (audit / press / dark / lychee / boring)
      ─────────────────────────────────────────────── */
   function initSecretCodes() {
+    const TONE_COLORS = {
+      rouge: 'var(--rouge, #cc3a2e)', forest: 'var(--forest, #1a4d3a)',
+      gold: '#b08a2e', teal: '#2a6b78', violet: '#8b3df0', blue: '#3a9ee0',
+    };
     function toast(text, tone) {
+      const c = TONE_COLORS[tone] || TONE_COLORS.rouge;
       const t = document.createElement('div');
       t.style.cssText = `
         position: fixed; bottom: 60px; right: 16px;
@@ -833,7 +841,7 @@
         font-family: 'IBM Plex Mono', monospace; font-size: 11px;
         letter-spacing: 0.18em; text-transform: uppercase;
         padding: 9px 14px;
-        box-shadow: 4px 4px 0 ${tone === 'rouge' ? 'var(--rouge)' : tone === 'forest' ? 'var(--forest)' : 'var(--rouge)'};
+        box-shadow: 4px 4px 0 ${c};
         z-index: 9995;
         animation: tcaci-hint 2.6s ease-out forwards;
       `;
@@ -1106,6 +1114,306 @@
       },
       konami: () => triggerKonami(),
       cheat: () => triggerKonami(),
+
+      /* ── D&D / Baldur's Gate easter eggs ── */
+      d20: () => {
+        const result = Math.floor(Math.random() * 20) + 1;
+        const nat20 = result === 20, nat1 = result === 1;
+        const col = nat20 ? '#ffd84a' : nat1 ? '#ff2030' : '#b060ff';
+        const bg = nat20 ? 'rgba(255,216,74,0.25)' : nat1 ? 'rgba(204,58,46,0.25)' : 'rgba(139,61,240,0.15)';
+        const ov = document.createElement('div');
+        ov.style.cssText = `position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle,${bg} 0%,rgba(0,0,0,0.6) 70%);animation:sega-flash ${nat20?2.4:1.8}s ease-out forwards;`;
+        ov.innerHTML = `
+          <svg viewBox="0 0 120 140" width="120" height="140" style="filter:drop-shadow(0 0 30px ${col}80);animation:sega-bounce 1s cubic-bezier(0.6,-0.2,0.4,1.4) forwards;">
+            <polygon points="60,5 110,40 95,100 25,100 10,40" fill="none" stroke="${col}" stroke-width="3" opacity="0.7"/>
+            <polygon points="60,15 100,44 88,92 32,92 20,44" fill="${col}22" stroke="${col}" stroke-width="1.5"/>
+            <text x="60" y="72" text-anchor="middle" font-family="Impact,sans-serif" font-size="${result<10?'48':'40'}" fill="${col}" font-weight="700">${result}</text>
+          </svg>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#fff;letter-spacing:0.3em;margin-top:12px;">
+            ${nat20 ? '★ NATURAL 20 · CRITICAL HIT ★' : nat1 ? '✕ NATURAL 1 · CRITICAL FAIL ✕' : 'D20 ROLL'}
+          </div>`;
+        document.body.appendChild(ov);
+        setTimeout(() => ov.remove(), nat20 ? 2500 : 1900);
+        if (nat20) {
+          for (let i = 0; i < 16; i++) {
+            const p = document.createElement('div');
+            const ang = (Math.PI*2*i)/16, dist = 80+Math.random()*100;
+            p.style.cssText = `position:fixed;left:50%;top:50%;width:6px;height:6px;background:#ffd84a;border-radius:50%;z-index:9995;pointer-events:none;box-shadow:0 0 10px #ffd84a;transition:transform 0.8s ease-out,opacity 0.8s ease-out;`;
+            document.body.appendChild(p);
+            requestAnimationFrame(() => { p.style.transform = `translate(${Math.cos(ang)*dist}px,${Math.sin(ang)*dist}px)`; p.style.opacity = '0'; });
+            setTimeout(() => p.remove(), 900);
+          }
+        }
+        toast(nat20 ? '★ nat 20 · the dice gods smile ★' : nat1 ? '✕ nat 1 · the dice gods weep ✕' : `⚄ rolled ${result}`, nat20 ? 'gold' : nat1 ? 'rouge' : 'violet');
+      },
+      nat20: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = `position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle,rgba(255,216,74,0.3) 0%,rgba(0,0,0,0.6) 70%);animation:sega-flash 2.6s ease-out forwards;`;
+        ov.innerHTML = `
+          <svg viewBox="0 0 120 140" width="160" height="180" style="filter:drop-shadow(0 0 40px rgba(255,216,74,0.8));animation:sega-bounce 1s cubic-bezier(0.6,-0.2,0.4,1.4) forwards;">
+            <polygon points="60,5 110,40 95,100 25,100 10,40" fill="none" stroke="#ffd84a" stroke-width="3"/>
+            <polygon points="60,15 100,44 88,92 32,92 20,44" fill="#ffd84a22" stroke="#ffd84a" stroke-width="1.5"/>
+            <text x="60" y="72" text-anchor="middle" font-family="Impact,sans-serif" font-size="40" fill="#ffd84a" font-weight="700">20</text>
+          </svg>
+          <div style="font-family:Impact,sans-serif;font-size:clamp(32px,6vw,60px);color:#ffd84a;text-shadow:0 4px 0 rgba(0,0,0,0.4),0 0 40px rgba(255,216,74,0.6);letter-spacing:0.08em;margin-top:12px;">CRITICAL HIT!</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#fff;letter-spacing:0.3em;margin-top:8px;opacity:0.9;">★ THE DICE GODS SMILE UPON YOU ★</div>`;
+        document.body.appendChild(ov);
+        for (let i = 0; i < 24; i++) {
+          const p = document.createElement('div');
+          const ang = (Math.PI*2*i)/24, dist = 100+Math.random()*140;
+          p.style.cssText = `position:fixed;left:50%;top:45%;width:${4+Math.random()*6}px;height:${4+Math.random()*6}px;background:${['#ffd84a','#ffb454','#fff','#cc3a2e'][i%4]};border-radius:50%;z-index:9995;pointer-events:none;box-shadow:0 0 12px #ffd84a;transition:transform 1.2s ease-out,opacity 1.2s ease-out;`;
+          document.body.appendChild(p);
+          requestAnimationFrame(() => { p.style.transform = `translate(${Math.cos(ang)*dist}px,${Math.sin(ang)*dist}px)`; p.style.opacity = '0'; });
+          setTimeout(() => p.remove(), 1300);
+        }
+        setTimeout(() => ov.remove(), 2700);
+        toast('★ nat 20 · how do you want to do this? ★', 'gold');
+      },
+      initiative: () => {
+        const banner = document.createElement('div');
+        banner.style.cssText = `position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(20,20,30,0);animation:fight-pulse 1.6s ease-out forwards;`;
+        banner.innerHTML = `
+          <div style="font-family:Impact,'Arial Black',sans-serif;font-size:clamp(50px,12vw,160px);color:#b060ff;-webkit-text-stroke:3px #4a1a8a;text-shadow:0 6px 0 #1a0a38,0 0 40px rgba(176,96,255,0.6);animation:fight-zoom 1.4s cubic-bezier(0.2,0.9,0.2,1) forwards;">
+            ROLL INITIATIVE!
+          </div>`;
+        document.body.appendChild(banner);
+        setTimeout(() => banner.remove(), 1700);
+        toast('★ roll for initiative · combat begins ★', 'violet');
+      },
+      bg3: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = `position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle,rgba(139,61,240,0.3) 0%,rgba(10,5,20,0.75) 70%);animation:sega-flash 2.2s ease-out forwards;`;
+        ov.innerHTML = `
+          <svg viewBox="0 0 200 180" width="200" height="180" style="filter:drop-shadow(0 0 30px rgba(139,61,240,0.7));animation:sega-bounce 1.2s cubic-bezier(0.6,-0.2,0.4,1.4) forwards;">
+            <ellipse cx="100" cy="70" rx="45" ry="55" fill="#2a0a4a" stroke="#8b3df0" stroke-width="2"/>
+            <circle cx="85" cy="55" r="8" fill="#ffd84a" opacity="0.9"/><circle cx="85" cy="55" r="4" fill="#0a0520"/>
+            <circle cx="115" cy="55" r="8" fill="#ffd84a" opacity="0.9"/><circle cx="115" cy="55" r="4" fill="#0a0520"/>
+            <path d="M 70 90 Q 80 100 100 105 Q 120 100 130 90" fill="none" stroke="#8b3df0" stroke-width="1.5"/>
+            ${[0,1,2,3].map(i => {
+              const a = -0.6+i*0.4, x1=100+Math.sin(a)*30, y1=105, x2=100+Math.sin(a)*20+Math.sin(a+1)*40, y2=170;
+              return `<path d="M ${x1} ${y1} Q ${(x1+x2)/2+Math.sin(a)*15} ${(y1+y2)/2} ${x2} ${y2}" fill="none" stroke="#8b3df0" stroke-width="3" opacity="0.7" stroke-linecap="round"/>`;
+            }).join('')}
+          </svg>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#b060ff;letter-spacing:0.3em;margin-top:14px;">THE ABSOLUTE CALLS</div>`;
+        document.body.appendChild(ov);
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;background:rgba(139,61,240,0.15);z-index:9993;pointer-events:none;animation:hit-flash 0.6s ease-out forwards;';
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 650);
+        setTimeout(() => ov.remove(), 2300);
+        toast('★ baldur\'s gate 3 · an adventure awaits ★', 'violet');
+      },
+      baldursgate: () => codes.bg3(),
+      mindflayer: () => {
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;animation:sega-flash 2s ease-out forwards;';
+        fl.innerHTML = `<div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(176,96,255,0.4) 0%,transparent 60%);animation:tatsu-spin 2s linear forwards;"></div>`;
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 2100);
+        const sq = document.createElement('div');
+        const startX = -80, y = 30 + Math.random() * (innerHeight - 160);
+        sq.style.cssText = `position:fixed;top:${y}px;left:${startX}px;z-index:9994;pointer-events:none;animation:pac-walk 3.5s linear forwards;`;
+        sq.innerHTML = `<svg viewBox="0 0 80 60" width="80" height="60"><ellipse cx="40" cy="25" rx="22" ry="20" fill="#3a1060" stroke="#b060ff" stroke-width="1.5"/><circle cx="33" cy="20" r="4" fill="#ffd84a" opacity="0.8"/><circle cx="33" cy="20" r="2" fill="#0a0520"/><circle cx="47" cy="20" r="4" fill="#ffd84a" opacity="0.8"/><circle cx="47" cy="20" r="2" fill="#0a0520"/>${[0,1,2,3].map(i=>`<path d="M ${30+i*7} 42 Q ${32+i*7} 55 ${28+i*9} 58" fill="none" stroke="#8b3df0" stroke-width="2.5" stroke-linecap="round"/>`).join('')}</svg>`;
+        document.body.appendChild(sq);
+        setTimeout(() => sq.remove(), 3600);
+        toast('★ ceremorphosis · you feel a presence ★', 'violet');
+      },
+      tadpole: () => codes.mindflayer(),
+      karlach: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;border:6px solid #ff6040;box-shadow:inset 0 0 80px rgba(255,96,64,0.4),inset 0 0 200px rgba(255,96,64,0.15);animation:sega-flash 2s ease-out forwards;';
+        document.body.appendChild(ov);
+        for (let i = 0; i < 18; i++) {
+          const p = document.createElement('div');
+          const x = Math.random() * innerWidth, y = innerHeight + 20;
+          p.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:${6+Math.random()*8}px;height:${10+Math.random()*14}px;background:${['#ff6040','#ffd84a','#ff8c40','#fff'][i%4]};border-radius:50% 50% 20% 20%;z-index:9995;pointer-events:none;opacity:0.85;transition:transform 1.2s ease-out,opacity 1.2s ease-out;`;
+          document.body.appendChild(p);
+          requestAnimationFrame(() => { p.style.transform = `translateY(-${200+Math.random()*400}px) rotate(${Math.random()*360}deg)`; p.style.opacity = '0'; });
+          setTimeout(() => p.remove(), 1300);
+        }
+        setTimeout(() => ov.remove(), 2100);
+        toast('★ karlach · my heart is on fire! ★', 'rouge');
+      },
+      astarion: () => {
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;background:radial-gradient(circle at 50% 30%,rgba(180,20,40,0.35) 0%,transparent 60%);animation:sega-flash 1.8s ease-out forwards;';
+        document.body.appendChild(fl);
+        const fangs = document.createElement('div');
+        fangs.style.cssText = 'position:fixed;left:50%;top:35%;transform:translateX(-50%);z-index:9995;pointer-events:none;animation:sega-bounce 1s cubic-bezier(0.6,-0.2,0.4,1.4) forwards;';
+        fangs.innerHTML = `<svg viewBox="0 0 100 80" width="100" height="80" style="filter:drop-shadow(0 0 16px rgba(204,58,46,0.7));"><path d="M 30 10 L 38 50 L 46 10" fill="#f4f1ea" stroke="#cc3a2e" stroke-width="1.5"/><path d="M 54 10 L 62 50 L 70 10" fill="#f4f1ea" stroke="#cc3a2e" stroke-width="1.5"/><circle cx="40" cy="55" r="4" fill="#cc3a2e" opacity="0.7"/><circle cx="58" cy="58" r="3" fill="#cc3a2e" opacity="0.5"/></svg>`;
+        document.body.appendChild(fangs);
+        setTimeout(() => { fl.remove(); fangs.remove(); }, 1900);
+        toast('★ astarion · how positively delightful ★', 'rouge');
+      },
+      shadowheart: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(60,20,100,0.4) 0%,rgba(0,0,10,0.7) 70%);animation:sega-flash 2.2s ease-out forwards;';
+        ov.innerHTML = `
+          <svg viewBox="0 0 120 120" width="140" height="140" style="filter:drop-shadow(0 0 30px rgba(100,40,180,0.8));animation:tatsu-spin 2s linear forwards;">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="#6428b4" stroke-width="2.5"/>
+            <circle cx="60" cy="60" r="38" fill="#1a0a30" stroke="#8040c0" stroke-width="1.5"/>
+            <circle cx="60" cy="42" r="10" fill="#2a1050" stroke="#b060ff" stroke-width="1.5"/>
+            <path d="M 60 52 L 50 75 L 60 68 L 70 75 Z" fill="#b060ff" opacity="0.8"/>
+            <circle cx="60" cy="42" r="4" fill="#b060ff" opacity="0.6"/>
+          </svg>`;
+        document.body.appendChild(ov);
+        setTimeout(() => ov.remove(), 2300);
+        toast('★ shadowheart · lady shar provides ★', 'violet');
+      },
+      laezel: () => {
+        const slash = document.createElement('div');
+        const y = innerHeight * 0.4;
+        slash.style.cssText = `position:fixed;top:${y}px;left:-200px;width:${innerWidth+400}px;height:4px;z-index:9994;pointer-events:none;background:linear-gradient(90deg,transparent 0%,#c0c0c0 20%,#fff 50%,#c0c0c0 80%,transparent 100%);box-shadow:0 0 20px rgba(192,192,192,0.8),0 0 40px rgba(192,192,192,0.4);animation:hadouken-fly 0.5s linear forwards;`;
+        document.body.appendChild(slash);
+        setTimeout(() => {
+          const fl = document.createElement('div');
+          fl.style.cssText = 'position:fixed;inset:0;background:rgba(255,255,255,0.15);z-index:9993;pointer-events:none;animation:hit-flash 0.3s ease-out forwards;';
+          document.body.appendChild(fl);
+          setTimeout(() => fl.remove(), 350);
+        }, 200);
+        setTimeout(() => slash.remove(), 600);
+        toast('★ lae\'zel · tsk. impressive. for an istik. ★', 'forest');
+      },
+      gale: () => {
+        for (let i = 0; i < 8; i++) {
+          setTimeout(() => {
+            const m = document.createElement('div');
+            const x = Math.random()*innerWidth, y = Math.random()*innerHeight;
+            const colors = ['#7adfff','#b060ff','#3a9ee0','#fff'];
+            m.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:12px;height:12px;border-radius:50%;background:${colors[i%4]};z-index:9994;pointer-events:none;box-shadow:0 0 16px ${colors[i%4]};transition:transform 0.6s ease-out,opacity 0.6s ease-out;`;
+            document.body.appendChild(m);
+            const tx = (Math.random()-0.5)*300, ty = (Math.random()-0.5)*300;
+            requestAnimationFrame(() => { m.style.transform = `translate(${tx}px,${ty}px) scale(0.2)`; m.style.opacity = '0'; });
+            setTimeout(() => m.remove(), 700);
+          }, i * 80);
+        }
+        toast('★ gale · ah, marvellous! ★', 'teal');
+      },
+      withers: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:9994;pointer-events:none;animation:shoryu-rise 2.5s ease-out forwards;';
+        ov.innerHTML = `<svg viewBox="0 0 80 120" width="80" height="120" style="filter:drop-shadow(0 0 12px rgba(244,241,234,0.5));"><ellipse cx="40" cy="30" rx="18" ry="22" fill="#d8d0c0" stroke="#8a7a68" stroke-width="1.5"/><circle cx="34" cy="26" r="5" fill="#1a1410"/><circle cx="46" cy="26" r="5" fill="#1a1410"/><circle cx="34" cy="26" r="2" fill="#ffd84a" opacity="0.7"/><circle cx="46" cy="26" r="2" fill="#ffd84a" opacity="0.7"/><path d="M 35 36 Q 40 40 45 36" fill="none" stroke="#1a1410" stroke-width="1.5"/><rect x="30" y="50" width="20" height="40" rx="3" fill="#8a7a68" opacity="0.7"/><line x1="28" y1="55" x2="18" y2="70" stroke="#8a7a68" stroke-width="3" stroke-linecap="round"/><line x1="52" y1="55" x2="62" y2="70" stroke="#8a7a68" stroke-width="3" stroke-linecap="round"/></svg>`;
+        document.body.appendChild(ov);
+        setTimeout(() => ov.remove(), 2600);
+        toast('★ withers · death is but a door ★', 'gold');
+      },
+      tav: () => {
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(255,216,74,0.3) 0%,transparent 50%);animation:sega-flash 1.6s ease-out forwards;';
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 1700);
+        toast('★ tav · the hero of baldur\'s gate ★', 'gold');
+      },
+      darkurge: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;animation:sega-flash 2s ease-out forwards;';
+        for (let i = 0; i < 12; i++) {
+          const s = document.createElement('div');
+          const x = Math.random()*100, y = Math.random()*100, sz = 20+Math.random()*60;
+          s.style.cssText = `position:absolute;left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;background:radial-gradient(circle,rgba(180,20,20,0.6) 0%,transparent 70%);border-radius:50%;`;
+          ov.appendChild(s);
+        }
+        ov.innerHTML += `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 100 100" width="120" height="120" style="filter:drop-shadow(0 0 20px rgba(204,58,46,0.8));animation:sega-bounce 1s cubic-bezier(0.6,-0.2,0.4,1.4) forwards;">
+            <circle cx="50" cy="38" r="20" fill="#2a0a0a" stroke="#cc3a2e" stroke-width="2"/>
+            <circle cx="43" cy="34" r="5" fill="#cc3a2e" opacity="0.8"/><circle cx="57" cy="34" r="5" fill="#cc3a2e" opacity="0.8"/>
+            <path d="M 35 55 Q 50 75 65 55" fill="none" stroke="#cc3a2e" stroke-width="2"/>
+            <path d="M 40 18 Q 35 5 50 12 Q 65 5 60 18" fill="none" stroke="#cc3a2e" stroke-width="2"/>
+          </svg>
+        </div>`;
+        document.body.appendChild(ov);
+        setTimeout(() => ov.remove(), 2100);
+        toast('★ dark urge · embrace the slaughter ★', 'rouge');
+      },
+      eldritch: () => {
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            const beam = document.createElement('div');
+            const y = innerHeight*0.3 + i*80 + Math.random()*40;
+            beam.style.cssText = `position:fixed;top:${y}px;left:-100px;width:160px;height:8px;z-index:9994;pointer-events:none;background:linear-gradient(90deg,transparent,#40ff80,#00ff60,#40ff80,transparent);box-shadow:0 0 24px rgba(64,255,128,0.7),0 0 48px rgba(0,255,96,0.3);border-radius:4px;animation:hadouken-fly ${0.7+i*0.15}s linear forwards;`;
+            document.body.appendChild(beam);
+            setTimeout(() => beam.remove(), 1000+i*200);
+          }, i * 150);
+        }
+        toast('★ eldritch blast · i call upon the void ★', 'forest');
+      },
+      eldritchblast: () => codes.eldritch(),
+      fireball: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;';
+        const exp = document.createElement('div');
+        exp.style.cssText = 'width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#ffd84a 30%,#ff6040 60%,#cc3a2e 80%,transparent 100%);box-shadow:0 0 40px #ff6040,0 0 100px rgba(255,96,64,0.5);transition:width 0.4s ease-out,height 0.4s ease-out,opacity 0.6s ease-out;';
+        ov.appendChild(exp);
+        document.body.appendChild(ov);
+        requestAnimationFrame(() => { exp.style.width = '500px'; exp.style.height = '500px'; });
+        setTimeout(() => { exp.style.opacity = '0'; }, 400);
+        setTimeout(() => ov.remove(), 1000);
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;background:rgba(255,96,64,0.2);z-index:9993;pointer-events:none;animation:hit-flash 0.5s ease-out forwards;';
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 550);
+        document.body.style.transition = 'transform 0.04s linear';
+        let frames = 0;
+        const id = setInterval(() => {
+          frames++;
+          document.body.style.transform = `translate(${(Math.random()*8-4).toFixed(1)}px,${(Math.random()*8-4).toFixed(1)}px)`;
+          if (frames > 12) { clearInterval(id); document.body.style.transform = ''; }
+        }, 40);
+        toast('★ fireball · 8d6 fire damage ★', 'rouge');
+      },
+      criticalrole: () => {
+        const banner = document.createElement('div');
+        banner.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;flex-direction:column;background:rgba(20,20,30,0);animation:fight-pulse 2s ease-out forwards;';
+        banner.innerHTML = `
+          <div style="font-family:Impact,'Arial Black',sans-serif;font-size:clamp(30px,6vw,80px);color:#ffd84a;-webkit-text-stroke:2px #b08a2e;text-shadow:0 4px 0 #3a2a0a,0 0 30px rgba(255,216,74,0.5);animation:fight-zoom 1.4s cubic-bezier(0.2,0.9,0.2,1) forwards;text-align:center;line-height:1.1;">
+            HOW DO YOU WANT<br>TO DO THIS?
+          </div>`;
+        document.body.appendChild(banner);
+        setTimeout(() => banner.remove(), 2100);
+        toast('★ it\'s thursday night ★', 'gold');
+      },
+      dnd: () => codes.d20(),
+      wyll: () => {
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;border:4px solid #b060ff;box-shadow:inset 0 0 60px rgba(176,96,255,0.3);animation:sega-flash 1.8s ease-out forwards;';
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 1900);
+        toast('★ wyll · the blade of frontiers ★', 'violet');
+      },
+      halsin: () => {
+        const ov = document.createElement('div');
+        ov.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;background:radial-gradient(circle,rgba(26,77,58,0.35) 0%,transparent 60%);animation:sega-flash 1.8s ease-out forwards;display:flex;align-items:center;justify-content:center;';
+        ov.innerHTML = `<svg viewBox="0 0 120 100" width="140" height="120" style="filter:drop-shadow(0 0 16px rgba(26,77,58,0.7));animation:sega-bounce 1s cubic-bezier(0.6,-0.2,0.4,1.4) forwards;">
+          <ellipse cx="60" cy="50" rx="40" ry="35" fill="#2a4a30" stroke="#4a8a5a" stroke-width="2"/>
+          <circle cx="45" cy="40" r="6" fill="#1a3020"/><circle cx="75" cy="40" r="6" fill="#1a3020"/>
+          <circle cx="45" cy="40" r="3" fill="#7cf4b8"/><circle cx="75" cy="40" r="3" fill="#7cf4b8"/>
+          <ellipse cx="60" cy="60" rx="12" ry="8" fill="#1a3020"/>
+          <path d="M 20 30 Q 10 10 30 20" fill="none" stroke="#4a8a5a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 100 30 Q 110 10 90 20" fill="none" stroke="#4a8a5a" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+        document.body.appendChild(ov);
+        setTimeout(() => ov.remove(), 1900);
+        toast('★ halsin · nature finds a way ★', 'forest');
+      },
+      jaheira: () => {
+        const fl = document.createElement('div');
+        fl.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;border:3px solid #1a4d3a;box-shadow:inset 0 0 40px rgba(26,77,58,0.25);animation:sega-flash 1.6s ease-out forwards;';
+        document.body.appendChild(fl);
+        setTimeout(() => fl.remove(), 1700);
+        toast('★ jaheira · if a city is saved but no one thanks you ★', 'forest');
+      },
+      minsc: () => {
+        const banner = document.createElement('div');
+        banner.style.cssText = 'position:fixed;inset:0;z-index:9994;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(20,20,30,0);animation:fight-pulse 1.8s ease-out forwards;';
+        banner.innerHTML = `
+          <div style="font-family:Impact,'Arial Black',sans-serif;font-size:clamp(28px,5vw,64px);color:#cc3a2e;text-shadow:0 4px 0 #4a0a0a,0 0 20px rgba(204,58,46,0.5);animation:fight-zoom 1.2s cubic-bezier(0.2,0.9,0.2,1) forwards;text-align:center;line-height:1.15;">
+            GO FOR THE EYES, BOO!<br><span style="font-size:0.5em;color:#ffd84a;">GO FOR THE EYES!</span>
+          </div>`;
+        document.body.appendChild(banner);
+        setTimeout(() => banner.remove(), 1900);
+        toast('★ minsc & boo · evil, meet my sword ★', 'rouge');
+      },
+      boo: () => codes.minsc(),
     };
 
     function triggerKonami() {
@@ -1222,6 +1530,38 @@
         kIdx = (got === KONAMI[0]) ? 1 : 0;
       }
     });
+
+    /* ── Periodic tips — encourage easter egg discovery ── */
+    const TIPS = [
+      { text: '↑↑↓↓←→←→BA · try the konami code', tone: 'gold' },
+      { text: '⌘K · open the command palette', tone: 'rouge' },
+      { text: 'type "pacman" for a retro surprise', tone: 'gold' },
+      { text: 'type "bg3" · baldur\'s gate awaits', tone: 'violet' },
+      { text: 'press G to spawn a ghost · P to pause', tone: 'forest' },
+      { text: 'try "sonic", "mario", or "hadouken"', tone: 'rouge' },
+      { text: '30+ secret codes hidden on this page', tone: 'gold' },
+      { text: 'type "d20" to roll for initiative', tone: 'violet' },
+      { text: 'type "sega" · classic boot screen', tone: 'teal' },
+      { text: 'type "fireball" · 8d6 fire damage', tone: 'rouge' },
+      { text: 'type "nat20" for a critical hit', tone: 'gold' },
+      { text: 'type any BG3 companion name', tone: 'violet' },
+      { text: 'type "fatality" · mortal kombat', tone: 'rouge' },
+      { text: 'click the ♫ button for game music', tone: 'teal' },
+      { text: 'type "eldritch" · i invoke the void', tone: 'forest' },
+      { text: 'type "minsc" · go for the eyes, boo!', tone: 'rouge' },
+    ];
+    let tipIdx = Math.floor(Math.random() * TIPS.length);
+    function showTip() {
+      if (document.hidden) return;
+      const tip = TIPS[tipIdx % TIPS.length];
+      toast('\u{1F4A1} ' + tip.text, tip.tone);
+      tipIdx++;
+    }
+    function scheduleTip() {
+      const wait = 50000 + Math.random() * 40000;
+      setTimeout(() => { showTip(); scheduleTip(); }, wait);
+    }
+    setTimeout(scheduleTip, 25000);
 
     const css = document.createElement('style');
     css.textContent = `
@@ -2017,11 +2357,13 @@
           if (hud) hud.style.display = 'none';
           const mp = document.getElementById('tcaci-music');
           if (mp) mp.style.display = 'none';
+          window.dispatchEvent(new CustomEvent('tcaci:arcade-off'));
         } else {
           game.arcadeOff = false;
           if (hud) hud.style.display = '';
           const mp = document.getElementById('tcaci-music');
           if (mp) mp.style.display = '';
+          window.dispatchEvent(new CustomEvent('tcaci:arcade-on'));
         }
       });
 
