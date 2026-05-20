@@ -976,121 +976,24 @@
       return kills;
     }
 
-    /* ── POKEMON SVG SPRITES ── */
+    /* ── POKEMON — real sprites from PokeAPI ── */
+    const POKE_SPRITE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+    function pokeImg(id) {
+      return `<img src="${POKE_SPRITE}/${id}.png" width="100%" height="100%" style="image-rendering:pixelated;" draggable="false" alt="" />`;
+    }
     const POKEMON = {
-      pikachu: {
-        name: 'Pikachu', color: '#ffd84a', hp: 5, speed: 2.2, size: 42,
-        svg: `<svg viewBox="0 0 42 42" width="100%" height="100%">
-          <path d="M 10 10 L 6 0 L 14 6" fill="#ffd84a"/><path d="M 6 0 L 8 3" stroke="#161514" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M 32 10 L 36 0 L 28 6" fill="#ffd84a"/><path d="M 36 0 L 34 3" stroke="#161514" stroke-width="2.5" stroke-linecap="round"/>
-          <ellipse cx="21" cy="16" rx="11" ry="10" fill="#ffd84a"/>
-          <ellipse cx="21" cy="28" rx="10" ry="9" fill="#ffd84a"/>
-          <circle cx="16" cy="14" r="2.2" fill="#161514"/><circle cx="26" cy="14" r="2.2" fill="#161514"/>
-          <circle cx="16.6" cy="13.4" r="0.8" fill="#fff"/><circle cx="26.6" cy="13.4" r="0.8" fill="#fff"/>
-          <circle cx="12" cy="19" r="3.5" fill="#cc3a2e" opacity="0.5"/><circle cx="30" cy="19" r="3.5" fill="#cc3a2e" opacity="0.5"/>
-          <path d="M 18 20 Q 21 22 24 20" fill="none" stroke="#161514" stroke-width="0.8"/>
-          <path d="M 33 24 L 40 18 L 38 12 L 36 18 L 33 22" fill="#ffd84a" stroke="#b08a2e" stroke-width="0.6"/>
-        </svg>`,
-      },
-      charizard: {
-        name: 'Charizard', color: '#ff6040', hp: 6, speed: 2.0, size: 48,
-        svg: `<svg viewBox="0 0 48 48" width="100%" height="100%">
-          <path d="M 10 16 L 2 8 L 6 16 L 0 20 L 8 20" fill="#ff8c40" opacity="0.7"/>
-          <path d="M 38 16 L 46 8 L 42 16 L 48 20 L 40 20" fill="#ff8c40" opacity="0.7"/>
-          <ellipse cx="24" cy="26" rx="13" ry="14" fill="#ff6040"/>
-          <ellipse cx="24" cy="32" rx="11" ry="8" fill="#ffd84a" opacity="0.3"/>
-          <ellipse cx="24" cy="16" rx="8" ry="7" fill="#ff6040"/>
-          <circle cx="20" cy="14" r="2" fill="#fff"/><circle cx="28" cy="14" r="2" fill="#fff"/>
-          <circle cx="20.5" cy="14.5" r="1" fill="#161514"/><circle cx="28.5" cy="14.5" r="1" fill="#161514"/>
-          <path d="M 22 19 L 24 21 L 26 19" fill="none" stroke="#cc3a2e" stroke-width="1"/>
-          <path d="M 4 14 Q 2 10 6 6 Q 4 10 8 14" fill="#ffd84a"/><path d="M 4 12 Q 3 9 5 7" fill="#ff6040" opacity="0.6"/>
-          <path d="M 36 36 Q 40 34 42 38 Q 44 42 40 40 L 38 38" fill="#ff6040"/>
-          <path d="M 42 38 Q 44 36 43 34" fill="#ffd84a" opacity="0.8"/><path d="M 43 36 Q 44 35 43.5 34" fill="#ff2030" opacity="0.6"/>
-        </svg>`,
-      },
-      bulbasaur: {
-        name: 'Bulbasaur', color: '#4a9e6a', hp: 5, speed: 1.6, size: 40,
-        svg: `<svg viewBox="0 0 40 40" width="100%" height="100%">
-          <ellipse cx="20" cy="28" rx="14" ry="10" fill="#4a9e6a"/>
-          <ellipse cx="20" cy="14" rx="10" ry="9" fill="#4a9e6a"/>
-          <circle cx="15" cy="12" r="2.5" fill="#cc3a2e"/><circle cx="25" cy="12" r="2.5" fill="#cc3a2e"/>
-          <circle cx="15.5" cy="11.5" r="1" fill="#fff"/><circle cx="25.5" cy="11.5" r="1" fill="#fff"/>
-          <path d="M 17 17 Q 20 19 23 17" fill="none" stroke="#1a4d3a" stroke-width="1"/>
-          <ellipse cx="20" cy="22" rx="7" ry="6" fill="#2a7a4a"/>
-          <path d="M 16 18 Q 20 14 24 18 Q 20 16 16 18" fill="#1a6038"/>
-          <path d="M 20 16 L 20 24" stroke="#1a4d3a" stroke-width="0.6" opacity="0.5"/>
-          <ellipse cx="10" cy="32" rx="3" ry="2" fill="#3a8a5a"/><ellipse cx="30" cy="32" rx="3" ry="2" fill="#3a8a5a"/>
-        </svg>`,
-      },
-      squirtle: {
-        name: 'Squirtle', color: '#3a9ee0', hp: 5, speed: 1.8, size: 40,
-        svg: `<svg viewBox="0 0 40 40" width="100%" height="100%">
-          <ellipse cx="20" cy="26" rx="11" ry="10" fill="#b08a2e" opacity="0.6"/>
-          <ellipse cx="20" cy="28" rx="12" ry="9" fill="#3a9ee0"/>
-          <ellipse cx="20" cy="14" rx="9" ry="9" fill="#3a9ee0"/>
-          <circle cx="15" cy="12" r="2.5" fill="#fff"/><circle cx="25" cy="12" r="2.5" fill="#fff"/>
-          <circle cx="15.5" cy="12.5" r="1.2" fill="#161514"/><circle cx="25.5" cy="12.5" r="1.2" fill="#161514"/>
-          <path d="M 17 17 Q 20 20 23 17" fill="none" stroke="#1a5a8e" stroke-width="1"/>
-          <ellipse cx="20" cy="28" rx="8" ry="6" fill="#ffd84a" opacity="0.3"/>
-          <path d="M 30 28 Q 34 24 32 20 Q 36 24 34 28" fill="#3a9ee0"/>
-          <ellipse cx="10" cy="34" rx="3" ry="2" fill="#3a9ee0"/><ellipse cx="30" cy="34" rx="3" ry="2" fill="#3a9ee0"/>
-        </svg>`,
-      },
-      gengar: {
-        name: 'Gengar', color: '#8b3df0', hp: 4, speed: 2.5, size: 44,
-        svg: `<svg viewBox="0 0 44 44" width="100%" height="100%">
-          <ellipse cx="22" cy="24" rx="18" ry="16" fill="#5a2a8a"/>
-          <path d="M 6 16 L 10 6 L 16 14" fill="#5a2a8a"/><path d="M 38 16 L 34 6 L 28 14" fill="#5a2a8a"/>
-          <circle cx="14" cy="18" r="5" fill="#fff"/><circle cx="30" cy="18" r="5" fill="#fff"/>
-          <circle cx="15" cy="18" r="3" fill="#cc3a2e"/><circle cx="31" cy="18" r="3" fill="#cc3a2e"/>
-          <path d="M 12 28 L 16 24 L 19 28 L 22 24 L 25 28 L 28 24 L 32 28" fill="#fff" stroke="#5a2a8a" stroke-width="0.5"/>
-          <path d="M 4 20 L 2 28 L 6 24" fill="#5a2a8a" opacity="0.6"/>
-          <path d="M 40 20 L 42 28 L 38 24" fill="#5a2a8a" opacity="0.6"/>
-        </svg>`,
-      },
-      mewtwo: {
-        name: 'Mewtwo', color: '#b060ff', hp: 7, speed: 2.4, size: 46,
-        svg: `<svg viewBox="0 0 46 46" width="100%" height="100%">
-          <ellipse cx="23" cy="30" rx="10" ry="12" fill="#d0b0e8"/>
-          <ellipse cx="23" cy="16" rx="8" ry="10" fill="#d0b0e8"/>
-          <path d="M 18 8 Q 16 2 20 6" fill="#d0b0e8"/><path d="M 28 8 Q 30 2 26 6" fill="#d0b0e8"/>
-          <circle cx="19" cy="14" r="3" fill="#b060ff"/><circle cx="27" cy="14" r="3" fill="#b060ff"/>
-          <circle cx="19.5" cy="13.5" r="1.5" fill="#fff" opacity="0.8"/><circle cx="27.5" cy="13.5" r="1.5" fill="#fff" opacity="0.8"/>
-          <path d="M 21 19 Q 23 21 25 19" fill="none" stroke="#8040a0" stroke-width="0.8"/>
-          <path d="M 30 30 Q 34 28 36 34 Q 38 40 34 38 Q 30 36 28 32" fill="#b060ff" opacity="0.7"/>
-          <ellipse cx="23" cy="30" rx="6" ry="8" fill="#d8c0f0" opacity="0.3"/>
-        </svg>`,
-      },
-      eevee: {
-        name: 'Eevee', color: '#c49a6c', hp: 4, speed: 2.3, size: 38,
-        svg: `<svg viewBox="0 0 38 38" width="100%" height="100%">
-          <ellipse cx="19" cy="24" rx="10" ry="9" fill="#c49a6c"/>
-          <ellipse cx="19" cy="14" rx="9" ry="9" fill="#c49a6c"/>
-          <path d="M 10 10 L 4 2 L 12 8" fill="#c49a6c"/><path d="M 28 10 L 34 2 L 26 8" fill="#c49a6c"/>
-          <path d="M 5 3 L 8 6" fill="#8a5a3a" opacity="0.5"/>
-          <path d="M 33 3 L 30 6" fill="#8a5a3a" opacity="0.5"/>
-          <circle cx="15" cy="13" r="2.2" fill="#161514"/><circle cx="23" cy="13" r="2.2" fill="#161514"/>
-          <circle cx="15.5" cy="12.5" r="0.8" fill="#fff"/><circle cx="23.5" cy="12.5" r="0.8" fill="#fff"/>
-          <ellipse cx="19" cy="17" rx="2" ry="1.2" fill="#161514"/>
-          <ellipse cx="19" cy="18" rx="5" ry="3" fill="#f4e8d8"/>
-          <path d="M 10 26 Q 6 30 8 34 Q 6 28 10 26" fill="#c49a6c"/>
-          <path d="M 28 26 Q 32 30 30 34 Q 32 28 28 26" fill="#c49a6c"/>
-        </svg>`,
-      },
-      snorlax: {
-        name: 'Snorlax', color: '#2a5a6a', hp: 10, speed: 0.8, size: 52,
-        svg: `<svg viewBox="0 0 52 52" width="100%" height="100%">
-          <ellipse cx="26" cy="30" rx="20" ry="18" fill="#2a5a6a"/>
-          <ellipse cx="26" cy="30" rx="14" ry="14" fill="#d8d0c0"/>
-          <ellipse cx="26" cy="16" rx="12" ry="10" fill="#2a5a6a"/>
-          <path d="M 18 14 L 22 14" stroke="#161514" stroke-width="2" stroke-linecap="round"/>
-          <path d="M 30 14 L 34 14" stroke="#161514" stroke-width="2" stroke-linecap="round"/>
-          <ellipse cx="26" cy="19" rx="3" ry="2" fill="#161514" opacity="0.6"/>
-          <path d="M 22 22 Q 26 24 30 22" fill="none" stroke="#161514" stroke-width="0.8"/>
-          <ellipse cx="12" cy="36" rx="5" ry="4" fill="#2a5a6a"/><ellipse cx="40" cy="36" rx="5" ry="4" fill="#2a5a6a"/>
-          <circle cx="14" cy="18" r="2" fill="#2a5a6a"/><circle cx="38" cy="18" r="2" fill="#2a5a6a"/>
-        </svg>`,
-      },
+      pikachu:   { name: 'Pikachu',   color: '#ffd84a', hp: 5,  speed: 2.2, size: 48, svg: pokeImg(25)  },
+      charizard: { name: 'Charizard', color: '#ff6040', hp: 6,  speed: 2.0, size: 56, svg: pokeImg(6)   },
+      bulbasaur: { name: 'Bulbasaur', color: '#4a9e6a', hp: 5,  speed: 1.6, size: 48, svg: pokeImg(1)   },
+      squirtle:  { name: 'Squirtle',  color: '#3a9ee0', hp: 5,  speed: 1.8, size: 48, svg: pokeImg(7)   },
+      gengar:    { name: 'Gengar',    color: '#8b3df0', hp: 4,  speed: 2.5, size: 52, svg: pokeImg(94)  },
+      mewtwo:    { name: 'Mewtwo',    color: '#b060ff', hp: 7,  speed: 2.4, size: 56, svg: pokeImg(150) },
+      eevee:     { name: 'Eevee',     color: '#c49a6c', hp: 4,  speed: 2.3, size: 48, svg: pokeImg(133) },
+      snorlax:   { name: 'Snorlax',   color: '#2a5a6a', hp: 10, speed: 0.8, size: 60, svg: pokeImg(143) },
+      jigglypuff:{ name: 'Jigglypuff',color: '#ffaacc', hp: 4,  speed: 1.9, size: 48, svg: pokeImg(39)  },
+      gyarados:  { name: 'Gyarados',  color: '#3a9ee0', hp: 8,  speed: 2.1, size: 64, svg: pokeImg(130) },
+      dragonite: { name: 'Dragonite', color: '#ff9040', hp: 8,  speed: 2.3, size: 60, svg: pokeImg(149) },
+      lucario:   { name: 'Lucario',   color: '#4488cc', hp: 6,  speed: 2.4, size: 52, svg: pokeImg(448) },
     };
 
     function summonPokemon(key) {
