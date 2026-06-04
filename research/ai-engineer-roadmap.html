@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>AI Engineer Roadmap — Skills, Projects & Career Research (2025–2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-primary:#0a0a0a; --bg-secondary:#0f0f0f; --bg-tertiary:#1a1a1a;
+  --accent-electric:#00ff88; --accent-neon-blue:#00b4d8; --accent-purple:#7209b7;
+  --accent-pink:#f72585; --accent-gold:#ffd60a;
+  --gradient-hero:linear-gradient(135deg,#0a0a0a 0%,#1a0033 50%,#330066 100%);
+  --gradient-electric:linear-gradient(135deg,#00ff88 0%,#00b4d8 100%);
+  --gradient-cosmic:linear-gradient(135deg,#7209b7 0%,#f72585 50%,#ffd60a 100%);
+  --text-primary:#ffffff; --text-secondary:#e0e0e0; --text-muted:#888888;
+  --glass-white:rgba(255,255,255,0.05); --glass-border:rgba(255,255,255,0.1);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--bg-primary); color:var(--text-secondary);
+  line-height:1.65; font-size:16px; padding-bottom:6rem;
+  background-image:radial-gradient(circle at 15% 8%,rgba(114,9,183,.14),transparent 42%),radial-gradient(circle at 85% 22%,rgba(0,180,216,.10),transparent 45%);
+  background-attachment:fixed;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;color:var(--text-primary);line-height:1.25}
+a{color:var(--accent-neon-blue);text-decoration:none;border-bottom:1px solid transparent;transition:.2s}
+a:hover{border-bottom-color:var(--accent-neon-blue)}
+code{font-family:var(--mono);font-size:.86em;background:rgba(0,255,136,.08);color:var(--accent-electric);padding:.1em .42em;border-radius:5px;border:1px solid rgba(0,255,136,.15)}
+strong{color:var(--text-primary);font-weight:600}
+em{color:var(--accent-gold);font-style:normal;font-weight:500}
+
+/* ── Header ── */
+header.hero{
+  background:var(--gradient-hero); border-bottom:1px solid var(--glass-border);
+  padding:3.4rem 0 2.6rem; position:relative; overflow:hidden;
+}
+header.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(0,255,136,.10),transparent 50%);pointer-events:none}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-electric);margin-bottom:.9rem}
+header.hero h1{font-size:clamp(1.9rem,5vw,3rem);background:var(--gradient-electric);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.7rem}
+header.hero p.lede{font-size:1.06rem;color:var(--text-secondary);max-width:74ch}
+.meta-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.pill{font-family:var(--mono);font-size:.72rem;padding:.32rem .7rem;border-radius:999px;background:var(--glass-white);border:1px solid var(--glass-border);color:var(--text-muted)}
+
+/* ── Toolbar ── */
+.toolbar{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--glass-border);padding:.7rem 0}
+.toolbar .wrap{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.search{flex:1;min-width:180px;display:flex;align-items:center;gap:.5rem;background:var(--bg-tertiary);border:1px solid var(--glass-border);border-radius:9px;padding:.45rem .8rem}
+.search input{flex:1;background:none;border:none;outline:none;color:var(--text-primary);font-family:inherit;font-size:.9rem}
+.search input::placeholder{color:var(--text-muted)}
+.btn{font-family:var(--mono);font-size:.76rem;cursor:pointer;background:var(--glass-white);border:1px solid var(--glass-border);color:var(--text-secondary);padding:.5rem .8rem;border-radius:9px;transition:.2s;white-space:nowrap}
+.btn:hover{border-color:var(--accent-electric);color:var(--accent-electric);box-shadow:0 0 18px rgba(0,255,136,.18)}
+.progress-wrap{display:flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.74rem;color:var(--text-muted)}
+.progress-bar{width:90px;height:7px;border-radius:99px;background:var(--bg-tertiary);overflow:hidden;border:1px solid var(--glass-border)}
+.progress-bar i{display:block;height:100%;width:0;background:var(--gradient-electric);transition:width .35s}
+
+/* ── Sections ── */
+section{padding:2.6rem 0 1rem}
+.section-head{margin-bottom:1.4rem}
+.section-head .num{font-family:var(--mono);color:var(--accent-purple);font-size:.8rem;letter-spacing:.1em}
+.section-head h2{font-size:clamp(1.4rem,3.5vw,2rem);margin-top:.2rem}
+.section-head p.sub{color:var(--text-muted);margin-top:.4rem;max-width:78ch}
+.hr{height:1px;background:linear-gradient(90deg,transparent,var(--glass-border),transparent);margin:1.2rem 0}
+
+/* ── Detail cards ── */
+details{background:var(--glass-white);border:1px solid var(--glass-border);border-left:3px solid var(--accent-purple);border-radius:12px;margin:.75rem 0;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+details[open]{border-left-color:var(--accent-electric);box-shadow:0 10px 40px rgba(0,0,0,.3)}
+details:hover{border-left-color:var(--accent-neon-blue)}
+summary{cursor:pointer;list-style:none;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem;font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text-primary);font-size:1.04rem;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸";color:var(--accent-electric);font-size:.85rem;transition:transform .2s;flex-shrink:0}
+details[open] summary::before{transform:rotate(90deg)}
+summary .tag{margin-left:auto;flex-shrink:0}
+.body{padding:0 1.25rem 1.35rem 1.25rem;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.body p{margin:.7rem 0}
+.body ul,.body ol{margin:.6rem 0 .6rem 1.3rem}
+.body li{margin:.4rem 0}
+.body h4{color:var(--accent-neon-blue);margin:1.1rem 0 .4rem;font-size:1rem}
+
+/* nested details */
+details details{border-left-width:2px;margin:.5rem 0;background:rgba(255,255,255,.02)}
+details details summary{font-size:.95rem;padding:.7rem 1rem}
+
+/* ── Badges ── */
+.tag{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;padding:.22rem .55rem;border-radius:999px;border:1px solid;white-space:nowrap;font-weight:500}
+.tag.verified{color:var(--accent-electric);border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.08)}
+.tag.consensus{color:var(--accent-neon-blue);border-color:rgba(0,180,216,.4);background:rgba(0,180,216,.08)}
+.tag.caveat{color:var(--accent-gold);border-color:rgba(255,214,10,.4);background:rgba(255,214,10,.08)}
+.tag.avoid{color:var(--accent-pink);border-color:rgba(247,37,133,.45);background:rgba(247,37,133,.08)}
+.tag.note{color:var(--text-muted);border-color:var(--glass-border);background:var(--glass-white)}
+.tag.core{color:#fff;border-color:var(--accent-purple);background:rgba(114,9,183,.25)}
+
+/* ── Inline boxes ── */
+.box{border-radius:10px;padding:.9rem 1.1rem;margin:1rem 0;border:1px solid var(--glass-border);background:var(--bg-secondary)}
+.box.tip{border-left:3px solid var(--accent-electric)}
+.box.warn{border-left:3px solid var(--accent-pink);background:rgba(247,37,133,.05)}
+.box.gold{border-left:3px solid var(--accent-gold);background:rgba(255,214,10,.04)}
+.box .label{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);display:block;margin-bottom:.35rem}
+
+/* ── Tables ── */
+.tbl{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
+.tbl th,.tbl td{text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--glass-border);vertical-align:top}
+.tbl th{font-family:'Space Grotesk',sans-serif;color:var(--accent-neon-blue);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em}
+.tbl tr:hover td{background:rgba(255,255,255,.02)}
+.tbl code{font-size:.82em}
+.tbl-scroll{overflow-x:auto}
+
+/* ── Checklist ── */
+.chk{display:flex;gap:.7rem;align-items:flex-start;padding:.6rem .8rem;border-radius:9px;background:rgba(255,255,255,.02);border:1px solid var(--glass-border);margin:.45rem 0;transition:.2s}
+.chk:hover{border-color:rgba(0,255,136,.3)}
+.chk input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:2px solid var(--text-muted);border-radius:6px;cursor:pointer;flex-shrink:0;margin-top:.15rem;position:relative;transition:.2s}
+.chk input:checked{background:var(--gradient-electric);border-color:var(--accent-electric)}
+.chk input:checked::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#001b0e;font-size:.8rem;font-weight:800}
+.chk label{cursor:pointer;flex:1}
+.chk input:checked + label{color:var(--text-muted);text-decoration:line-through;text-decoration-color:rgba(0,255,136,.4)}
+.chk .why{display:block;font-size:.82rem;color:var(--text-muted);margin-top:.15rem}
+.chk input:checked + label .why{text-decoration:none}
+
+/* priority dots */
+.prio{font-family:var(--mono);font-size:.62rem;padding:.15rem .45rem;border-radius:5px;margin-right:.4rem;font-weight:600}
+.prio.p0{background:rgba(247,37,133,.2);color:var(--accent-pink);border:1px solid rgba(247,37,133,.4)}
+.prio.p1{background:rgba(255,214,10,.15);color:var(--accent-gold);border:1px solid rgba(255,214,10,.35)}
+.prio.p2{background:rgba(0,180,216,.12);color:var(--accent-neon-blue);border:1px solid rgba(0,180,216,.3)}
+
+/* TOC */
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.6rem;margin:1.2rem 0}
+.toc a{display:block;padding:.75rem .9rem;border-radius:10px;background:var(--glass-white);border:1px solid var(--glass-border);color:var(--text-secondary);font-size:.9rem;border-left:3px solid var(--accent-purple);transition:.2s}
+.toc a:hover{border-left-color:var(--accent-electric);transform:translateX(3px);color:var(--text-primary)}
+.toc a .t-num{font-family:var(--mono);font-size:.72rem;color:var(--accent-purple);display:block}
+
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin:.8rem 0;font-size:.8rem;color:var(--text-muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+
+.kicker{font-family:var(--mono);color:var(--accent-electric);font-size:.78rem}
+.no-results{display:none;text-align:center;color:var(--text-muted);padding:2rem;font-family:var(--mono)}
+footer{margin-top:3rem;padding:2rem 0;border-top:1px solid var(--glass-border);color:var(--text-muted);font-size:.85rem}
+.src-list{font-size:.84rem}
+.src-list li{margin:.5rem 0}
+.q{font-size:.8rem;color:var(--accent-gold);font-family:var(--mono)}
+mark{background:rgba(255,214,10,.32);color:#fff;border-radius:3px;padding:0 .1em}
+@media(max-width:640px){body{font-size:15px}.toolbar .wrap{gap:.4rem}.progress-wrap{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Deep Research · Career Intelligence Brief</div>
+    <h1>The Production AI Engineer Roadmap</h1>
+    <p class="lede">A vast, fact-checked map of the skills, tools, projects, and career moves that make you competitive for senior <strong>production AI/LLM engineering</strong> roles — the kind built around shipping agents, RAG, evals, model routing, and observability. Reverse-engineered from a real <em>Senior AI Engineer ($170K–$200K)</em> job spec, then expanded across the field.</p>
+    <div class="meta-row">
+      <span class="pill">Compiled 2026-06-04</span>
+      <span class="pill">23 sources · 109 claims · 25 fact-checked</span>
+      <span class="pill">19 verified · 6 refuted</span>
+      <span class="pill">Adversarially verified (3-vote)</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="search">
+      <span style="color:var(--accent-electric)">⌕</span>
+      <input id="q" type="search" placeholder="Filter sections — try 'RAG', 'eval', 'LangGraph', 'salary'…" aria-label="Search">
+    </div>
+    <button class="btn" id="expand">Expand all</button>
+    <button class="btn" id="collapse">Collapse all</button>
+    <div class="progress-wrap">
+      <span id="ptext">0 / 0</span>
+      <span class="progress-bar"><i id="pbar"></i></span>
+    </div>
+    <button class="btn" id="reset" title="Clear saved checklist progress">Reset ✓</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ───────────────────── HOW TO READ ───────────────────── -->
+<section id="intro">
+  <div class="section-head">
+    <span class="num">// START HERE</span>
+    <h2>How to read this brief</h2>
+    <p class="sub">Everything below carries a confidence badge. The whole point of the research pass was to separate what's <em>actually true</em> from what blogs assert without evidence — six claims were caught and killed, and they're listed honestly at the bottom so you never repeat a fabricated stat in an interview.</p>
+  </div>
+
+  <div class="legend">
+    <span><span class="tag verified">Verified</span> Confirmed against primary sources (GitHub, official docs, arXiv, leaderboards)</span>
+    <span><span class="tag consensus">Consensus</span> Multiple independent sources agree; opinionated but mainstream</span>
+    <span><span class="tag caveat">Caveat</span> Time-sensitive or single-source; directionally right, treat numbers loosely</span>
+    <span><span class="tag note">Added</span> My own general-knowledge addition beyond the verified research (clearly flagged)</span>
+    <span><span class="tag avoid">Avoid</span> Refuted or a known trap</span>
+  </div>
+
+  <div class="box tip">
+    <span class="label">The 10-second summary</span>
+    The modern <strong>AI Engineer</strong> is a <em>software engineer who ships LLM-powered systems</em> — not someone who trains models. The job is RAG + agents + tool-use + evaluation + cost control + observability, glued onto solid backend engineering. The seven domains below map 1:1 onto the ACQ Vantage spec you pasted. Master them in order, build the five portfolio projects, and you're the candidate.
+  </div>
+
+  <div class="toc">
+    <a href="#role"><span class="t-num">01</span>The Role — what "AI Engineer" means now</a>
+    <a href="#domains"><span class="t-num">02</span>The 7 Core Competency Domains</a>
+    <a href="#tools"><span class="t-num">03</span>The Master Tooling Cheat-Sheet</a>
+    <a href="#projects"><span class="t-num">04</span>Portfolio Projects That Get You Hired</a>
+    <a href="#roadmap"><span class="t-num">05</span>The Staged Learning Roadmap</a>
+    <a href="#comp"><span class="t-num">06</span>Compensation &amp; Market Reality</a>
+    <a href="#next"><span class="t-num">07</span>Your Prioritized "Do This Next" List</a>
+    <a href="#portfolio-tie"><span class="t-num">08</span>Bring It Into <em>Your</em> Portfolio</a>
+    <a href="#gaps"><span class="t-num">09</span>Gaps, Myths &amp; Honest Caveats</a>
+    <a href="#sources"><span class="t-num">10</span>Sources &amp; Methodology</a>
+  </div>
+</section>
+
+<!-- ───────────────────── 01 THE ROLE ───────────────────── -->
+<section id="role">
+  <div class="section-head">
+    <span class="num">// 01</span>
+    <h2>The Role — what "AI Engineer" actually means in 2025–26</h2>
+    <p class="sub">Before chasing skills, understand the job. The title crystallized over the last two years into something distinct from ML Engineer and Data Scientist.</p>
+  </div>
+
+  <details open>
+    <summary>The one-sentence definition <span class="tag verified">Verified</span></summary>
+    <div class="body">
+      <p>An AI Engineer <strong>deploys and integrates pretrained LLMs into production products</strong> — prompt engineering, RAG, agents, tool-use, LLM APIs — <em>rather than training models from scratch</em>. It is fundamentally a <strong>software-engineering discipline</strong> applied to LLM-based systems.</p>
+      <p>This is corroborated unanimously across a recruiter salary guide, a 2026 roadmap, and academic/industry sources (U. Manchester, TechTarget, Nucamp). The nuance: AI Engineers <em>do</em> fine-tune (LoRA etc.) — but that <em>adapts</em> a pretrained model, it doesn't train one from zero.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>AI Engineer vs ML Engineer vs Data Scientist vs MLOps <span class="tag verified">Verified</span></summary>
+    <div class="body">
+      <div class="tbl-scroll">
+      <table class="tbl">
+        <tr><th>Role</th><th>Core job</th><th>Works with</th><th>Ships</th></tr>
+        <tr><td><strong>AI Engineer</strong></td><td>Ship AI <em>features</em> — integrate LLMs into products</td><td>LLM APIs, RAG, agents, vector DBs, prompts</td><td>User-facing AI systems</td></tr>
+        <tr><td><strong>ML Engineer</strong></td><td>Build/train/optimize models &amp; the training infra</td><td>PyTorch/TF, GPUs, pipelines, MLOps</td><td>Models &amp; serving infra</td></tr>
+        <tr><td><strong>Data Scientist</strong></td><td>Insight &amp; analysis from data</td><td>Notebooks, stats, experimentation</td><td>Insights &amp; reports</td></tr>
+        <tr><td><strong>MLOps / LLMOps</strong></td><td>Reliability, deployment, monitoring of ML/LLM systems</td><td>CI/CD, observability, infra</td><td>Operational reliability</td></tr>
+      </table>
+      </div>
+      <div class="box tip"><span class="label">Why this matters for you</span>You already <em>are</em> a software engineer. The shortest path is to bolt LLM-system skills onto that foundation — you do <strong>not</strong> need a deep-learning PhD or to learn to train transformers. That's the whole reason this role is accessible to web/backend devs.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>What 2026 hiring managers actually screen for <span class="tag verified">Verified</span></summary>
+    <div class="body">
+      <p>Hiring in 2026 screens for <strong>production signals over notebook demos</strong>. The specific signals:</p>
+      <ul>
+        <li><strong>Failure handling</strong> — what happens when the LLM returns garbage, times out, or hallucinates a tool call?</li>
+        <li><strong>System integration</strong> — does it talk to real APIs, databases, queues?</li>
+        <li><strong>Eval literacy</strong> — described as <em>"the single biggest signal."</em> Can you prove your system works and catch regressions?</li>
+        <li><strong>Shipping working software</strong> — deployed, callable, observable.</li>
+        <li><strong>Data structuring</strong> — turning messy inputs into reliable structured outputs.</li>
+      </ul>
+      <div class="box warn"><span class="label">Rejection pattern</span><strong>"Notebook-only experience presented as production is a rejection pattern."</strong> A Jupyter notebook with a LangChain demo reads as a red flag if you frame it as production work. Deploy it behind an API, add evals, add a cost dashboard — or don't claim it's production.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Decoding the ACQ Vantage spec → competency map <span class="tag note">Added</span></summary>
+    <div class="body">
+      <p>Here's the exact job you pasted, translated into the seven domains this brief teaches. Every bullet on that posting maps to a section below:</p>
+      <div class="tbl-scroll">
+      <table class="tbl">
+        <tr><th>Job-spec phrase</th><th>→ Domain</th></tr>
+        <tr><td>"production-grade AI agents and end-to-end agentic workflows… tool use, orchestration"</td><td>→ <a href="#d1">D1 · Agents</a></td></tr>
+        <tr><td>"RAG pipelines across multiple Pinecone namespaces… chunking, embedding, hybrid retrieval, reranking"</td><td>→ <a href="#d2">D2 · RAG</a></td></tr>
+        <tr><td>"evaluation framework… golden datasets, quality scoring, retrieval metrics, latency benchmarks, regression detection"</td><td>→ <a href="#d3">D3 · Evals</a></td></tr>
+        <tr><td>"model routing and tiering to improve unit economics"</td><td>→ <a href="#d4">D4 · Routing &amp; Cost</a></td></tr>
+        <tr><td>"instrument the AI layer for observability… cost-per-request, token usage, anomaly detection"</td><td>→ <a href="#d5">D5 · Observability</a></td></tr>
+        <tr><td>"worked across multiple LLM providers (OpenAI, Anthropic…)"</td><td>→ <a href="#d6">D6 · Multi-provider</a></td></tr>
+        <tr><td>"7+ years shipping production software… distributed backends, APIs, pipelines, monitoring" + "TypeScript and Python"</td><td>→ <a href="#d7">D7 · Production foundation</a></td></tr>
+      </table>
+      </div>
+      <p class="kicker">Translation: the "7+ years" requirement is the software-engineering base. The <em>differentiator</em> — what separates you from every other senior dev applying — is domains 1–6. That's where to invest.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 02 DOMAINS ───────────────────── -->
+<section id="domains">
+  <div class="section-head">
+    <span class="num">// 02</span>
+    <h2>The 7 Core Competency Domains</h2>
+    <p class="sub">The heart of the brief. Each domain: what it is, the skills to build, the tools to learn (with verified status), and <strong>how to prove it</strong> in a portfolio. Expand the ones you want to go deep on.</p>
+  </div>
+
+  <!-- D1 -->
+  <details id="d1">
+    <summary>D1 · Production AI Agents &amp; Agentic Workflows <span class="tag core">Core</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> Giving an LLM <em>tools</em> (web search, retrieval, calculators, code execution, your internal APIs) and letting it plan and act in multiple steps to accomplish a goal — reliably, with guardrails, error handling, and the ability to resume/replay.</p>
+
+      <h4>Skills to build</h4>
+      <ul>
+        <li>Tool/function calling — schemas, argument validation, handling malformed tool calls</li>
+        <li>Orchestration patterns — single-agent loops, multi-agent handoffs, supervisor/worker, graphs/state machines</li>
+        <li>State &amp; memory — short-term (conversation) vs long-term (persistent), checkpointing, replay</li>
+        <li>Control &amp; safety — max-step limits, human-in-the-loop approval gates, timeouts, retries, fallbacks</li>
+        <li>The hard part: <em>reliability</em>. Agents fail in compounding ways; production work is mostly about constraining and recovering from failure.</li>
+      </ul>
+
+      <details>
+        <summary>Frameworks — what to learn &amp; what to avoid <span class="tag verified">Verified</span></summary>
+        <div class="body">
+          <ul>
+            <li><strong>LangGraph</strong> <span class="tag verified">Verified</span> — the production standard. Graph-based: <em>nodes</em> = operations, <em>edges</em> = transitions. Gives explicit typed state, auditability, and built-in <strong>checkpointing with time-travel replay</strong> (confirmed in official LangChain docs). Reached v1.0 GA Oct 2025. <strong>Learn this first.</strong></li>
+            <li><strong>CrewAI</strong> <span class="tag consensus">Consensus</span> — role-based multi-agent; popular for rapid prototyping. <em>(Note: the widely-repeated "CrewAI uses 18% more tokens than LangGraph" stat was <a href="#myths">refuted</a> — ignore it.)</em></li>
+            <li><strong>PydanticAI</strong> <span class="tag consensus">Consensus</span> — type-safe, Pythonic, great DX for structured agents. Strong rising pick.</li>
+            <li><strong>OpenAI Agents SDK</strong> <span class="tag note">Added</span> — lightweight, handoffs-based, good if you're OpenAI-centric. <em>(Specific per-framework feature claims about it were refuted in research — verify against current docs before quoting specifics.)</em></li>
+            <li><strong class="q">AutoGen → AVOID for new projects</strong> <span class="tag avoid">Avoid</span> — Microsoft moved it to <strong>maintenance mode</strong> and superseded it with the <strong>Microsoft Agent Framework</strong> (public preview Oct 2025, GA ~April 2026). Don't start a 2026 portfolio project on AutoGen.</li>
+          </ul>
+          <div class="box gold"><span class="label">Anthropic-native option</span>Since you'll be quizzed on Anthropic: the <strong>Claude Agent SDK</strong> and native <strong>MCP (Model Context Protocol)</strong> tool integration are worth a project. MCP is the emerging standard for connecting agents to tools/data — high signal in 2026.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>How to prove it (portfolio)</summary>
+        <div class="body"><p>Build a <strong>Tool-Calling Agent</strong> that uses ≥3 real tools, handles a tool failure gracefully, enforces a step limit, and exposes a trace of its reasoning. Bonus: a human approval gate before any "write" action. See <a href="#projects">Project 3</a>.</p></div>
+      </details>
+    </div>
+  </details>
+
+  <!-- D2 -->
+  <details id="d2">
+    <summary>D2 · RAG &amp; Retrieval Engineering <span class="tag core">Core</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> Connecting an LLM to your own data so it answers from facts, not just its training. The ACQ spec literally says "own and improve RAG pipelines across multiple Pinecone namespaces" — RAG is the load-bearing skill for that role.</p>
+
+      <h4>The RAG pipeline, stage by stage</h4>
+      <ol>
+        <li><strong>Ingest &amp; chunk</strong> — split documents into retrievable pieces (fixed-size, recursive, semantic, hierarchical, or "contextual" chunking).</li>
+        <li><strong>Embed</strong> — turn chunks into vectors with an embedding model.</li>
+        <li><strong>Index &amp; store</strong> — put vectors in a vector DB (namespaces, metadata filters, index params).</li>
+        <li><strong>Retrieve</strong> — dense (vector) search, sparse (BM25/keyword), or <em>hybrid</em> (both); then filter by metadata.</li>
+        <li><strong>Rerank</strong> — a cross-encoder reorders the top-k for relevance before it hits the prompt.</li>
+        <li><strong>Generate</strong> — stuff retrieved context into the prompt; cite sources; handle "I don't know."</li>
+      </ol>
+
+      <details>
+        <summary>The verified RAG tool stack <span class="tag verified">Verified</span></summary>
+        <div class="body">
+          <div class="tbl-scroll">
+          <table class="tbl">
+            <tr><th>Layer</th><th>Learn first</th><th>Also valid</th></tr>
+            <tr><td>Vector DB</td><td><strong>Qdrant</strong>, then <strong>Pinecone</strong> · <strong>Chroma</strong> for local dev</td><td>FAISS, Weaviate, Milvus, pgvector</td></tr>
+            <tr><td>Embeddings</td><td><strong>text-embedding-3-large</strong> (OpenAI) · <strong>BGE-M3</strong> (open)</td><td>Voyage, Cohere embed, Nomic, E5</td></tr>
+            <tr><td>Reranking</td><td><strong>Cohere Rerank</strong> (API) · <strong>BGE Reranker</strong> (self-host)</td><td>Jina reranker, cross-encoders</td></tr>
+          </table>
+          </div>
+          <p class="kicker">Embedding picks are grounded in the MTEB leaderboard (text-embedding-3-large ≈64.6, BGE-M3 ≈63.0). Cohere Rerank + BGE-reranker-v2-m3 are the standard API/self-host pair. "Qdrant first" is an opinionated-but-mainstream pick — Pinecone is what the ACQ job uses, so learn both.</p>
+          <div class="box gold"><span class="label">Interview gold</span>The ACQ role names <strong>Pinecone namespaces</strong>. Build at least one project on Pinecone with multiple namespaces (e.g. per-tenant or per-document-type isolation) so you can speak to it directly.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Advanced retrieval techniques to learn <span class="tag caveat">Caveat</span></summary>
+        <div class="body">
+          <p>These techniques are real and worth learning — but be careful: the specific "X% recall improvement" numbers floating around blogs were <a href="#myths">refuted in this research</a>. Learn the <em>techniques</em>; measure the gains <em>yourself</em> with evals.</p>
+          <ul>
+            <li><strong>Hybrid search</strong> — combine dense + sparse (BM25). Generally improves recall, especially for keyword/jargon-heavy queries. Magnitude is data-dependent — measure it.</li>
+            <li><strong>Reranking</strong> — cross-encoder over top-k. Usually the highest-ROI single addition to a naive RAG.</li>
+            <li><strong>Chunking strategy</strong> — fixed vs recursive vs semantic vs hierarchical. Matters, but the exact F1 deltas in blog posts were unverified/fabricated-seeming. Test on <em>your</em> corpus.</li>
+            <li><strong>Contextual retrieval</strong> <span class="tag note">Added</span> — Anthropic's technique: prepend chunk-level context before embedding. Worth reading Anthropic's own write-up.</li>
+            <li><strong>Query transformation</strong> — HyDE, multi-query, query decomposition for complex questions.</li>
+            <li><strong>Metadata filtering &amp; namespaces</strong> — scope retrieval to the right subset before vector search.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>How to prove it (portfolio)</summary>
+        <div class="body"><p>A <strong>Document Q&amp;A RAG</strong> that ingests real docs, retrieves with citations, says "I don't know" when it should, and — crucially — has an <strong>eval harness</strong> proving retrieval quality. See <a href="#projects">Project 1</a>.</p></div>
+      </details>
+    </div>
+  </details>
+
+  <!-- D3 -->
+  <details id="d3">
+    <summary>D3 · LLM Evaluation Frameworks <span class="tag core">Core</span> <span class="tag verified">Highest hiring signal</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> Proving — with data, not vibes — that your LLM system works, and catching it when a prompt/model/retrieval change makes it worse. Research flagged eval literacy as <em>"the single biggest signal"</em> hiring managers look for. This is your highest-leverage skill to differentiate.</p>
+
+      <h4>What a real eval framework contains</h4>
+      <ul>
+        <li><strong>Golden dataset</strong> — a curated set of inputs with known-good outputs (start ~100 examples). Your ground truth.</li>
+        <li><strong>Automated quality scoring</strong> — LLM-as-judge, semantic similarity, rule checks, structured-output validation.</li>
+        <li><strong>Retrieval metrics</strong> — recall@k, precision@k, MRR, nDCG, context relevance, faithfulness/groundedness.</li>
+        <li><strong>Latency &amp; cost benchmarks</strong> — p50/p95 latency, tokens-per-request, $/request, tracked over time.</li>
+        <li><strong>Regression detection</strong> — run evals in CI; gate merges; A/B two prompts/models and compare on the golden set.</li>
+      </ul>
+
+      <details>
+        <summary>Eval tooling <span class="tag verified">Verified</span></summary>
+        <div class="body">
+          <ul>
+            <li><strong>RAGAS</strong> <span class="tag verified">Verified</span> — the standard for RAG-specific metrics (faithfulness, answer relevancy, context precision/recall). Learn this.</li>
+            <li><strong>DeepEval</strong> <span class="tag verified">Verified</span> — pytest-style LLM unit testing; great for CI regression gates.</li>
+            <li><strong>LangSmith</strong> <span class="tag consensus">Consensus</span> — eval + tracing + datasets, tight LangChain/LangGraph integration.</li>
+            <li><strong>Braintrust</strong> <span class="tag note">Added</span> — eval platform popular at well-funded startups; named as a valid alternative (not independently evaluated here).</li>
+            <li><strong>Arize Phoenix</strong> <span class="tag note">Added</span> — open-source observability + eval; OpenTelemetry-based. Strong for tracing+eval combined.</li>
+            <li><strong>TruLens</strong> <span class="tag note">Added</span> — open-source eval/feedback functions; another valid option.</li>
+          </ul>
+          <div class="box tip"><span class="label">Minimum viable eval stack</span><code>RAGAS</code> for RAG metrics + <code>DeepEval</code> for CI assertions + a golden dataset in version control + a dashboard. That combination alone puts you ahead of most candidates.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>How to prove it (portfolio)</summary>
+        <div class="body"><p>An <strong>LLM Evaluation Pipeline</strong>: golden dataset → automated scoring → metrics dashboard → CI gate that fails the build on regression. This is <a href="#projects">Project 4</a> and arguably the single most impressive thing in your portfolio.</p></div>
+      </details>
+    </div>
+  </details>
+
+  <!-- D4 -->
+  <details id="d4">
+    <summary>D4 · Model Routing &amp; Cost / Unit Economics <span class="tag core">Core</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> Spending less per request without losing quality — by sending easy queries to cheap models and hard ones to expensive models, plus caching, token management, and architectural tricks. The ACQ spec: "optimize model routing and tiering to improve unit economics." Production teams care about this <em>a lot</em>.</p>
+
+      <details>
+        <summary>RouteLLM — the canonical routing technique <span class="tag verified">Verified</span></summary>
+        <div class="body">
+          <p><strong>RouteLLM</strong> (open-source, by LMSYS) is a framework for serving and evaluating LLM routers. Key facts (confirmed against the GitHub repo, LMSYS blog, and the ICLR 2025 arXiv paper):</p>
+          <ul>
+            <li><strong>Drop-in replacement for OpenAI's client</strong> — minimal code change.</li>
+            <li>Routes simple queries to a cheaper <code>weak_model</code>, complex ones to a stronger <code>strong_model</code>, via a cost-threshold parameter.</li>
+            <li>Advertised: <strong>up to 85% cost reduction on MT-Bench while keeping ~95% of GPT-4 performance.</strong> (The "85%" is the project's own benchmark-specific number — quote it as "up to … on MT-Bench," not as a universal guarantee.)</li>
+          </ul>
+          <p>This is the <em>strongest-evidenced</em> finding in the whole research pass. Building a routing demo with RouteLLM is a high-signal portfolio move.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>The full cost-optimization toolkit <span class="tag note">Added</span></summary>
+        <div class="body">
+          <ul>
+            <li><strong>Model tiering / routing</strong> — RouteLLM, or your own classifier (cheap model decides difficulty).</li>
+            <li><strong>Prompt caching</strong> — Anthropic &amp; OpenAI both offer it; huge savings on repeated system prompts/context. (Highly relevant if you're building on Claude.)</li>
+            <li><strong>Semantic caching</strong> — cache by meaning, not exact string (GPTCache-style).</li>
+            <li><strong>Token management</strong> — trim context, compress history, summarize, cap output tokens.</li>
+            <li><strong>Batching</strong> — batch APIs for non-realtime workloads (often ~50% cheaper).</li>
+            <li><strong>Right-sizing</strong> — use the smallest model that passes your evals (this is why evals + cost are joined at the hip).</li>
+          </ul>
+          <div class="box gold"><span class="label">The senior framing</span>Cost work is where engineering meets business. "I reduced our LLM spend 60% while holding quality on the golden set" is the exact sentence that gets a senior offer. It requires evals (D3) + observability (D5) to prove. These three domains compound.</div>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- D5 -->
+  <details id="d5">
+    <summary>D5 · Observability &amp; Instrumentation <span class="tag core">Core</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> Seeing inside your AI layer in production — every request's tokens, cost, latency, prompt, retrieval, and quality — so you can debug, detect anomalies, and report. The ACQ spec: "instrument the AI layer for observability — cost-per-request, token usage, quality signals, anomaly detection."</p>
+
+      <h4>What to instrument</h4>
+      <ul>
+        <li><strong>Tracing</strong> — full request trace: prompt → retrieval → tool calls → completion (spans, like distributed tracing for LLMs).</li>
+        <li><strong>Cost &amp; tokens</strong> — $/request, input/output tokens, per-feature and per-user rollups.</li>
+        <li><strong>Latency</strong> — p50/p95/p99, time-to-first-token for streaming.</li>
+        <li><strong>Quality signals</strong> — online evals, user feedback (thumbs), error/refusal rates.</li>
+        <li><strong>Anomaly detection</strong> — alert on cost spikes, latency regressions, quality drops.</li>
+      </ul>
+
+      <details>
+        <summary>Observability tooling <span class="tag verified">Verified</span></summary>
+        <div class="body">
+          <ul>
+            <li><strong>LangSmith</strong> <span class="tag verified">Verified</span> — tracing + evals + datasets, deep LangChain/LangGraph integration.</li>
+            <li><strong>Langfuse</strong> <span class="tag verified">Verified</span> — open-source LLM observability; tracing, metrics, prompt management. Self-hostable.</li>
+            <li><strong>Helicone</strong> <span class="tag verified">Verified</span> — proxy-based observability; drop-in, cost &amp; usage analytics.</li>
+            <li><strong>Arize Phoenix</strong> <span class="tag note">Added</span> — OpenTelemetry-native tracing + eval, open-source.</li>
+            <li><strong>LiteLLM callbacks</strong> <span class="tag verified">Verified</span> — emits to Lunary, MLflow, Langfuse (see D6).</li>
+          </ul>
+          <div class="box tip"><span class="label">Standards angle</span>Learn <strong>OpenTelemetry for LLMs</strong> (OpenLLMetry / OTel GenAI semantic conventions). Vendor-neutral instrumentation is a senior signal and future-proofs your work.</div>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- D6 -->
+  <details id="d6">
+    <summary>D6 · Multi-Provider LLM Integration <span class="tag core">Core</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> Working fluidly across OpenAI, Anthropic, Google, open models, etc. — swapping providers without rewrites, understanding each one's prompt quirks, token economics, and failure modes. The ACQ spec asks for exactly this.</p>
+
+      <details>
+        <summary>LiteLLM — the canonical integration layer <span class="tag verified">Verified</span></summary>
+        <div class="body">
+          <p><strong>LiteLLM</strong> (open-source, BerriAI, 47k+ stars) — confirmed against the repo and official docs:</p>
+          <ul>
+            <li>A single <strong>unified OpenAI-format interface to 100+ providers</strong> (OpenAI, Anthropic, Azure, Bedrock, Vertex, Cohere, HuggingFace…). Swap providers without code rewrites.</li>
+            <li>Its proxy/gateway adds production features: <strong>spend/cost tracking, load balancing, routing &amp; fallbacks, caching, virtual keys, guardrails, admin dashboard.</strong></li>
+            <li><strong>Observability callbacks</strong> to Lunary, MLflow, Langfuse — so it doubles as your instrumentation hook (ties into D5).</li>
+          </ul>
+          <p>This single tool covers multi-provider <em>and</em> observability <em>and</em> cost — extremely high ROI to learn.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What to actually understand (the senior part) <span class="tag note">Added</span></summary>
+        <div class="body">
+          <ul>
+            <li><strong>Prompt-behavior differences</strong> — the same prompt behaves differently on Claude vs GPT vs Gemini (system-prompt handling, JSON/tool reliability, refusal styles).</li>
+            <li><strong>Token economics</strong> — per-provider input/output pricing, context windows, prompt-caching discounts.</li>
+            <li><strong>Failure modes</strong> — rate limits, timeouts, content filters, malformed tool calls, truncation — and how to retry/fallback across providers.</li>
+            <li><strong>Structured output</strong> — JSON mode, function/tool calling, and constrained decoding differ by provider.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- D7 -->
+  <details id="d7">
+    <summary>D7 · The Production Software Foundation (TS + Python, APIs, deploy) <span class="tag core">Core</span></summary>
+    <div class="body">
+      <p><strong>What it is:</strong> The "7+ years shipping production software" base — distributed backends, APIs, deployment pipelines, monitoring. This is table stakes; the AI domains sit on top of it. The ACQ stack is explicitly <strong>TypeScript + Python</strong>.</p>
+
+      <h4>Python side (the AI-native ecosystem)</h4>
+      <ul>
+        <li><strong>Async Python</strong> — <code>asyncio</code>, <code>async/await</code>, concurrency for I/O-bound LLM calls.</li>
+        <li><strong>Type hints + Pydantic</strong> — structured I/O, validation; the backbone of reliable LLM apps.</li>
+        <li><strong>FastAPI</strong> — the default for serving AI features behind an API.</li>
+        <li>Provider SDKs: <code>openai</code>, <code>anthropic</code>.</li>
+      </ul>
+
+      <details>
+        <summary>TypeScript side of the AI stack <span class="tag note">Added · research gap</span></summary>
+        <div class="body">
+          <p>The research pass was Python-heavy and didn't surface verified TS tooling — but the ACQ job uses both, so here's the well-known TS/JS AI stack (general knowledge, verify current versions yourself):</p>
+          <ul>
+            <li><strong>Vercel AI SDK</strong> — the dominant TS toolkit for streaming, tool-calling, and provider-agnostic LLM calls in JS/TS apps.</li>
+            <li><strong>LangChain.js</strong> &amp; <strong>LangGraph.js</strong> — JS ports of the Python frameworks.</li>
+            <li><strong>LlamaIndex.TS</strong> — RAG framework for TS.</li>
+            <li><strong>Mastra</strong> — TS-native agent framework, rising fast.</li>
+            <li><strong>Genkit</strong> (Google) — TS-first GenAI framework.</li>
+          </ul>
+          <div class="box gold"><span class="label">Your edge</span>You're already a strong <strong>JavaScript</strong> developer (this very portfolio is hand-rolled vanilla JS). The <strong>Vercel AI SDK</strong> is your fastest on-ramp — you can build a real, streaming, tool-calling AI feature in the language you already know, today.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Deployment &amp; ops <span class="tag note">Added</span></summary>
+        <div class="body">
+          <ul>
+            <li><strong>Containerization</strong> — Docker; basic Kubernetes literacy.</li>
+            <li><strong>Serverless / edge</strong> — Vercel, Cloudflare Workers, AWS Lambda for AI endpoints.</li>
+            <li><strong>CI/CD</strong> — GitHub Actions running your eval suite as a gate.</li>
+            <li><strong>Streaming</strong> — SSE/WebSockets for token streaming to the UI.</li>
+            <li><strong>Secrets &amp; rate limiting</strong> — API key management, per-user quotas, queue/backpressure.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 03 TOOLING CHEAT SHEET ───────────────────── -->
+<section id="tools">
+  <div class="section-head">
+    <span class="num">// 03</span>
+    <h2>The Master Tooling Cheat-Sheet</h2>
+    <p class="sub">Every tool in one place, by category, with verified status. <span class="tag verified">Verified</span> = confirmed in research; <span class="tag note">Added</span> = my general-knowledge addition; <span class="tag avoid">Avoid</span> = don't start here.</p>
+  </div>
+
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <tr><th>Category</th><th>Learn first</th><th>Also worth knowing</th><th>Status note</th></tr>
+    <tr><td><strong>Agent frameworks</strong></td><td>LangGraph</td><td>CrewAI, PydanticAI, OpenAI Agents SDK, Claude Agent SDK + MCP</td><td><span class="tag avoid">Avoid AutoGen (new projects)</span></td></tr>
+    <tr><td><strong>Vector DBs</strong></td><td>Qdrant, Pinecone</td><td>Chroma (local), FAISS, Weaviate, Milvus, pgvector</td><td><span class="tag verified">Verified</span></td></tr>
+    <tr><td><strong>Embeddings</strong></td><td>text-embedding-3-large, BGE-M3</td><td>Voyage, Cohere embed, Nomic, E5</td><td><span class="tag verified">Verified (MTEB)</span></td></tr>
+    <tr><td><strong>Reranking</strong></td><td>Cohere Rerank, BGE Reranker</td><td>Jina reranker, cross-encoders</td><td><span class="tag verified">Verified</span></td></tr>
+    <tr><td><strong>RAG frameworks</strong></td><td>LlamaIndex, LangChain</td><td>Haystack, DSPy, LlamaIndex.TS</td><td><span class="tag consensus">Consensus</span></td></tr>
+    <tr><td><strong>Evaluation</strong></td><td>RAGAS, DeepEval</td><td>LangSmith, Braintrust, Arize Phoenix, TruLens</td><td><span class="tag verified">Verified</span></td></tr>
+    <tr><td><strong>Observability</strong></td><td>LangSmith, Langfuse, Helicone</td><td>Arize Phoenix, OpenLLMetry/OTel, Lunary</td><td><span class="tag verified">Verified</span></td></tr>
+    <tr><td><strong>Routing / cost</strong></td><td>RouteLLM, LiteLLM</td><td>Prompt caching, semantic cache, batch APIs</td><td><span class="tag verified">Verified</span></td></tr>
+    <tr><td><strong>Multi-provider gateway</strong></td><td>LiteLLM</td><td>OpenRouter, Portkey, Cloudflare AI Gateway</td><td><span class="tag verified">Verified</span></td></tr>
+    <tr><td><strong>Python core</strong></td><td>FastAPI, Pydantic, asyncio</td><td>uv, ruff, pytest</td><td><span class="tag note">Added</span></td></tr>
+    <tr><td><strong>TypeScript AI</strong></td><td>Vercel AI SDK</td><td>LangChain.js, LlamaIndex.TS, Mastra, Genkit</td><td><span class="tag note">Added (research gap)</span></td></tr>
+    <tr><td><strong>Fine-tuning</strong></td><td>LoRA via <code>trl</code> / PEFT</td><td>Unsloth, Axolotl, OpenAI fine-tuning API</td><td><span class="tag consensus">Consensus</span></td></tr>
+    <tr><td><strong>Deploy / infra</strong></td><td>Docker, GitHub Actions</td><td>Kubernetes, Vercel, Modal, Cloudflare Workers</td><td><span class="tag note">Added</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ───────────────────── 04 PROJECTS ───────────────────── -->
+<section id="projects">
+  <div class="section-head">
+    <span class="num">// 04</span>
+    <h2>Portfolio Projects That Get You Hired</h2>
+    <p class="sub">The verified 5-project sequence (each maps to a competency), plus extension ideas to push toward <em>senior</em>. Check them off as you build — progress saves to your browser.</p>
+  </div>
+
+  <div class="box tip"><span class="label">The principle</span>Each project must be <strong>deployed, integrated with something real, and evaluated.</strong> A deployed app with a cost dashboard and an eval suite beats ten notebooks. Quality over quantity.</div>
+
+  <details open>
+    <summary>The verified 5-project sequence <span class="tag verified">Verified</span></summary>
+    <div class="body">
+      <div class="chk"><input type="checkbox" id="pj1"><label for="pj1"><strong>1 · Document Q&amp;A with RAG</strong> — ingest real docs, retrieve with citations, handle "I don't know." <span class="why">Proves: D2 RAG, embeddings, vector DB, grounding.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj2"><label for="pj2"><strong>2 · Structured Data Extraction</strong> — turn messy unstructured input into validated structured output (Pydantic/JSON schema). <span class="why">Proves: reliability, structured output, data structuring — a top hiring signal.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj3"><label for="pj3"><strong>3 · Tool-Calling AI Agent</strong> — an agent using ≥3 real tools with failure handling + step limits. <span class="why">Proves: D1 agents, orchestration, system integration.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj4"><label for="pj4"><strong>4 · LLM Evaluation Pipeline</strong> — golden dataset → automated scoring → dashboard → CI regression gate. <span class="why">Proves: D3 evals — "the single biggest signal." Build this.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj5"><label for="pj5"><strong>5 · Deploy Everything Behind an API</strong> — wrap it all in a real API with auth, rate limits, monitoring. <span class="why">Proves: D7 production foundation, shipping.</span></label></div>
+      <div class="box gold"><span class="label">Honest caveat</span>The source for this list targets developers <em>breaking into</em> AI engineering. For a <strong>senior</strong> ($170K+) role, treat these as the floor and add the senior extensions below.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Senior-level extensions (what pushes you above mid) <span class="tag note">Added</span></summary>
+    <div class="body">
+      <div class="chk"><input type="checkbox" id="pj6"><label for="pj6"><strong>6 · Model Router demo</strong> — RouteLLM (or a custom difficulty classifier) routing cheap↔strong, with a $/request before/after chart. <span class="why">Proves: D4 unit economics — the senior business-impact story.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj7"><label for="pj7"><strong>7 · Multi-provider gateway</strong> — LiteLLM in front of OpenAI + Anthropic with fallback, spend tracking, caching. <span class="why">Proves: D6 multi-provider + D5 observability in one.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj8"><label for="pj8"><strong>8 · Observability dashboard</strong> — Langfuse/LangSmith tracing every request: tokens, cost, latency, quality, with anomaly alerts. <span class="why">Proves: D5 observability end-to-end.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj9"><label for="pj9"><strong>9 · Advanced RAG</strong> — hybrid search + reranking + Pinecone namespaces, with an eval harness measuring the lift <em>you</em> get. <span class="why">Proves: D2 depth + D3, mirrors the exact ACQ Pinecone-namespace requirement.</span></label></div>
+      <div class="chk"><input type="checkbox" id="pj10"><label for="pj10"><strong>10 · Multi-agent system</strong> — LangGraph supervisor + workers with checkpointing, time-travel replay, human-in-the-loop. <span class="why">Proves: D1 at senior depth.</span></label></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>How to package each project for maximum signal <span class="tag note">Added</span></summary>
+    <div class="body">
+      <ul>
+        <li><strong>Live demo link</strong> + a short Loom/GIF in the README.</li>
+        <li><strong>README that leads with the problem &amp; the metrics</strong> — "reduced cost 60%," "92% faithfulness on 120-example golden set."</li>
+        <li><strong>An eval section</strong> in every repo — even a small one. It signals you think in measurements.</li>
+        <li><strong>An architecture diagram</strong> — shows you think in systems.</li>
+        <li><strong>A "failure modes &amp; mitigations" section</strong> — the single most senior thing you can write.</li>
+        <li><strong>Cost notes</strong> — $/request, tokens, model choices and why.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 05 ROADMAP ───────────────────── -->
+<section id="roadmap">
+  <div class="section-head">
+    <span class="num">// 05</span>
+    <h2>The Staged Learning Roadmap</h2>
+    <p class="sub">A verified 6-month month-by-month path from "general software engineer" to "AI engineer." Adjust pace to taste; the <em>order</em> is the valuable part. Check off months as you go.</p>
+  </div>
+
+  <details open>
+    <summary>The verified 6-month roadmap <span class="tag verified">Verified</span></summary>
+    <div class="body">
+      <div class="chk"><input type="checkbox" id="m1"><label for="m1"><strong>Month 1 — Foundations</strong> — Async Python + type hints; call 2+ LLM APIs (OpenAI + Anthropic); prompt engineering fundamentals. <span class="why">Output: a small CLI/app that calls two providers.</span></label></div>
+      <div class="chk"><input type="checkbox" id="m2"><label for="m2"><strong>Month 2 — RAG + Vector DBs</strong> — Build a RAG pipeline from scratch: embedding API + vector DB + retrieval + generation. <span class="why">Output: Project 1 (Document Q&amp;A).</span></label></div>
+      <div class="chk"><input type="checkbox" id="m3"><label for="m3"><strong>Month 3 — Agents</strong> — Give the model tools: web search, retrieval, calculator, code executor; add orchestration + failure handling. <span class="why">Output: Project 3 (Tool-Calling Agent).</span></label></div>
+      <div class="chk"><input type="checkbox" id="m4"><label for="m4"><strong>Month 4 — Fine-tuning</strong> — Curate ~1,000 instruction-response pairs; LoRA fine-tune Llama 3.3 8B with <code>trl</code>. <span class="why">Output: a fine-tuned model + a "when to fine-tune vs RAG" writeup.</span></label></div>
+      <div class="chk"><input type="checkbox" id="m5"><label for="m5"><strong>Month 5 — LLMOps + Evaluation</strong> — Langfuse/LangSmith tracing; golden set of 100 examples; RAGAS metrics; cost-per-request dashboard. <span class="why">Output: Project 4 (Eval Pipeline) + Project 8 (Observability).</span></label></div>
+      <div class="chk"><input type="checkbox" id="m6"><label for="m6"><strong>Month 6 — Production Deployment</strong> — Live A/B test two prompts; track cost-per-1,000-requests; debug real-world failures. <span class="why">Output: Project 5 (Deploy) + a real running system.</span></label></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>A faster track tailored to you (already a strong JS dev) <span class="tag note">Added</span></summary>
+    <div class="body">
+      <p>You already have the "7+ years software" base most of the roadmap is building toward. A compressed path:</p>
+      <ol>
+        <li><strong>Weeks 1–2:</strong> Vercel AI SDK — ship a streaming, tool-calling AI feature <em>in TypeScript</em> (your home turf). Add it to this portfolio.</li>
+        <li><strong>Weeks 3–4:</strong> RAG over your own CV/docs (Project 1) — pick Pinecone to match the ACQ stack.</li>
+        <li><strong>Weeks 5–6:</strong> Add an eval harness (RAGAS + golden set). This is your differentiator — don't skip.</li>
+        <li><strong>Weeks 7–8:</strong> LiteLLM gateway + Langfuse observability + a cost dashboard. Now you can tell a unit-economics story.</li>
+        <li><strong>Weeks 9–12:</strong> A LangGraph agent with real tools + the Python/FastAPI muscle (the one stack you don't use daily).</li>
+      </ol>
+      <p class="kicker">By the end you've touched all 7 domains, with deployed artifacts and metrics — exactly what the ACQ "Results" section asks for ("concept to production in weeks").</p>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 06 COMP ───────────────────── -->
+<section id="comp">
+  <div class="section-head">
+    <span class="num">// 06</span>
+    <h2>Compensation &amp; Market Reality</h2>
+    <p class="sub">Numbers are <span class="tag caveat">Caveat</span>-grade — recruiter/crowdsourced sources, time-sensitive (comp shifts quarterly), mid-2026 snapshot. Directionally reliable, cross-checked against Glassdoor/Levels.fyi, but don't treat any single figure as gospel.</p>
+  </div>
+
+  <details open>
+    <summary>US compensation ranges <span class="tag caveat">Caveat · medium confidence</span></summary>
+    <div class="body">
+      <div class="tbl-scroll">
+      <table class="tbl">
+        <tr><th>Level</th><th>Base</th><th>Total comp</th></tr>
+        <tr><td>AI Engineer (median)</td><td>~$175K</td><td>~$245K (major tech)</td></tr>
+        <tr><td><strong>Senior</strong> (~6–9 yrs)</td><td>$180K–$280K</td><td>$220K–$350K+</td></tr>
+        <tr><td>Staff / Principal (10+ yrs)</td><td>$250K–$400K+</td><td>$350K–$600K+</td></tr>
+        <tr><td>Senior @ Google/Meta/OpenAI</td><td>—</td><td>$350K–$550K+</td></tr>
+      </table>
+      </div>
+      <p>For context vs adjacent roles: AI Engineer median base ~$175K &gt; ML Engineer ~$155K &gt; Data Scientist ~$130K. The pasted ACQ role at <strong>$170K–$200K base</strong> sits right at the <em>entry of the senior band</em> — reasonable for a remote, lean-team role, with upside in the "may be inclusive of several levels" language.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>LLM/GenAI specialization = the highest premium <span class="tag caveat">Caveat</span></summary>
+    <div class="body">
+      <p>LLM/Generative-AI specialization carries the <strong>highest pay premium among AI subfields — roughly 40–60% above baseline ML salaries</strong> (mid-level base $165K–$230K; senior base $240K–$350K+; average ~$175K; top performers $300K+). Translation: the exact specialization this whole brief is about is the <em>highest-leverage</em> direction in AI engineering. You're aiming at the right target.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Frontier-lab ceiling (for perspective) <span class="tag caveat">Caveat</span></summary>
+    <div class="body">
+      <p>Top of the ladder, per Levels.fyi (crowdsourced, as of 2026-06-04): OpenAI software-engineer total comp ranges <strong>$249K–$1.22M+, median ~$590K</strong>. L4 ~$612K total ($263K base + $349K stock); L5 ~$819K total. These are outliers above the broad senior market — useful as a north star, not a baseline.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 07 DO THIS NEXT ───────────────────── -->
+<section id="next">
+  <div class="section-head">
+    <span class="num">// 07</span>
+    <h2>Your Prioritized "Do This Next" List</h2>
+    <p class="sub">If you only act on one section, make it this one. Ordered by leverage. <span class="prio p0">P0</span> highest impact · <span class="prio p1">P1</span> high · <span class="prio p2">P2</span> compounding. Saves to your browser.</p>
+  </div>
+
+  <details open>
+    <summary>P0 — Do these first (highest leverage)</summary>
+    <div class="body">
+      <div class="chk"><input type="checkbox" id="n1"><label for="n1"><span class="prio p0">P0</span><strong>Build an eval harness for one project</strong> (RAGAS + a 100-example golden set + a CI gate). <span class="why">Eval literacy is "the single biggest hiring signal." Almost nobody in your applicant pool has this. Do it first.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n2"><label for="n2"><span class="prio p0">P0</span><strong>Ship one RAG app on Pinecone with namespaces</strong>, deployed behind an API. <span class="why">Matches the ACQ spec word-for-word and proves D2 + D7.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n3"><label for="n3"><span class="prio p0">P0</span><strong>Learn LangGraph + build one tool-calling agent</strong> with failure handling and checkpointing. <span class="why">LangGraph is the production standard; agents are the headline of the role.</span></label></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>P1 — Do these next (high impact)</summary>
+    <div class="body">
+      <div class="chk"><input type="checkbox" id="n4"><label for="n4"><span class="prio p1">P1</span><strong>Stand up LiteLLM</strong> in front of OpenAI + Anthropic with fallback + spend tracking. <span class="why">Covers D6 + D5 + D4 in one tool. Huge ROI.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n5"><label for="n5"><span class="prio p1">P1</span><strong>Build a RouteLLM cost-routing demo</strong> with a before/after $/request chart. <span class="why">The unit-economics story that earns the "senior" title.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n6"><label for="n6"><span class="prio p1">P1</span><strong>Add Langfuse observability</strong> to every project — tokens, cost, latency, traces. <span class="why">Proves D5; makes every other project look production-grade.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n7"><label for="n7"><span class="prio p1">P1</span><strong>Get fluent in FastAPI + async + Pydantic</strong>. <span class="why">The one part of the Python stack you don't already use daily. Closes your biggest gap.</span></label></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>P2 — Compounding / ongoing</summary>
+    <div class="body">
+      <div class="chk"><input type="checkbox" id="n8"><label for="n8"><span class="prio p2">P2</span><strong>Use the Vercel AI SDK</strong> to add a real AI feature in TypeScript. <span class="why">Plays to your JS strength; covers the TS half of the stack fast.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n9"><label for="n9"><span class="prio p2">P2</span><strong>Read primary sources</strong>: LangGraph docs, RouteLLM repo/paper, LiteLLM docs, Anthropic's contextual-retrieval &amp; prompt-caching guides. <span class="why">Speak from primary knowledge, not blog summaries.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n10"><label for="n10"><span class="prio p2">P2</span><strong>Do one LoRA fine-tune</strong> so you can speak credibly to "fine-tune vs RAG vs prompt." <span class="why">Rounds out the picture; common interview question.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n11"><label for="n11"><span class="prio p2">P2</span><strong>Write up each project with metrics &amp; failure modes</strong>. <span class="why">Turns code into hireable evidence.</span></label></div>
+      <div class="chk"><input type="checkbox" id="n12"><label for="n12"><span class="prio p2">P2</span><strong>Learn MCP + the Claude Agent SDK</strong>. <span class="why">Emerging standard; high signal for Anthropic-aligned shops.</span></label></div>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 08 PORTFOLIO TIE-IN ───────────────────── -->
+<section id="portfolio-tie">
+  <div class="section-head">
+    <span class="num">// 08</span>
+    <h2>Bring It Into <em>Your</em> Portfolio</h2>
+    <p class="sub">You already have a polished portfolio site (this very repo). The single highest-ROI move is to make it <em>demonstrate</em> these skills, not just list them.</p>
+  </div>
+
+  <details open>
+    <summary>The killer move: an AI feature that lives on your site <span class="tag note">Added</span></summary>
+    <div class="body">
+      <p>Build a <strong>"Ask my CV" RAG assistant</strong> right into your portfolio — a chat widget that answers recruiter questions about your experience, grounded in your actual CV/project docs. In one artifact it demonstrates:</p>
+      <ul>
+        <li><strong>RAG</strong> (D2) — retrieval over your CV/project content with citations</li>
+        <li><strong>Agents/tools</strong> (D1) — let it "open" a project page or pull a specific metric</li>
+        <li><strong>Multi-provider</strong> (D6) — front it with LiteLLM; show a model toggle</li>
+        <li><strong>Evals</strong> (D3) — a golden set of recruiter questions with expected answers</li>
+        <li><strong>Observability + cost</strong> (D5/D4) — a tiny public "cost &amp; latency" stat in the footer</li>
+        <li><strong>Deployment</strong> (D7) — serverless function (Vercel/Cloudflare) behind your static site</li>
+      </ul>
+      <div class="box gold"><span class="label">Why this wins</span>A recruiter visiting your portfolio can <em>literally use</em> a production AI system you built, about you. That's the most persuasive possible demonstration of every domain at once — and it doubles as a real, deployed, evaluated project.</div>
+      <div class="box warn"><span class="label">Guardrails (do this right)</span>Never ship API keys to the client — proxy through a serverless function. Add rate limiting + a spend cap. Keep the grounding corpus to public CV content. Handle "I don't know" gracefully (and keep it factually accurate — same rule as your CV content).</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Smaller additions that still signal a lot <span class="tag note">Added</span></summary>
+    <div class="body">
+      <ul>
+        <li>Add an <strong>"AI Engineering" skills section</strong> to your portfolio/CV listing the verified stack (LangGraph, RAG, RAGAS, LiteLLM, RouteLLM, Pinecone…) — but only after you've built with each, since your CV rule is strict factual accuracy.</li>
+        <li>Publish each project as a case-study page (you already have the <code>projects/</code> pattern) leading with <strong>metrics and failure modes</strong>.</li>
+        <li>Write 2–3 short technical posts ("How I cut LLM cost 60% with routing", "Building an eval harness in CI") — content is a senior signal and SEO for your name.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 09 GAPS & MYTHS ───────────────────── -->
+<section id="gaps">
+  <div class="section-head">
+    <span class="num">// 09</span>
+    <h2>Gaps, Myths &amp; Honest Caveats</h2>
+    <p class="sub">The integrity section. What the research couldn't confirm, and the specific claims it <em>caught and killed</em> — so you never repeat a fabricated number.</p>
+  </div>
+
+  <details id="myths" open>
+    <summary>⚠ Refuted claims — do NOT cite these <span class="tag avoid">Avoid</span></summary>
+    <div class="body">
+      <p>These appeared in blogs and were <strong>killed by adversarial verification (0–3 or 1–2 votes)</strong>. The underlying <em>techniques</em> are real and worth learning — but the <em>numbers</em> are unsupported. Don't quote them in interviews or your README:</p>
+      <ul>
+        <li><span class="tag avoid">Killed 0-3</span> "Vector DB p50 latency: Qdrant 6ms / Pinecone 8ms / Weaviate 12ms / Chroma 18ms." <em>Don't use for DB selection — benchmark yourself.</em></li>
+        <li><span class="tag avoid">Killed 0-3</span> "Semantic chunking improves F1 by 36%; hierarchical gives 3–5×." <em>Chunking matters; these exact deltas were fabricated-seeming.</em></li>
+        <li><span class="tag avoid">Killed 1-2</span> "Hybrid search lifts recall@10 from 78% → 91%." <em>Hybrid helps; the specific numbers are unverified.</em></li>
+        <li><span class="tag avoid">Killed 0-3</span> "CrewAI uses ~18% more tokens than LangGraph." <em>Ignore this comparison.</em></li>
+        <li><span class="tag avoid">Killed 0-3</span> Specific OpenAI/Anthropic Agents-SDK feature claims (handoffs, "model-locked", "most robust error handling"). <em>Verify against current docs.</em></li>
+        <li><span class="tag avoid">Killed 0-3</span> "RAG is THE #1 most in-demand AI skill for 2026." <em>RAG is core but not provably ranked first.</em></li>
+      </ul>
+      <p class="kicker">Lesson: the AI-content ecosystem is full of confident, unsourced benchmark numbers. Treat every "X% improvement" as a hypothesis to test on your own data — which is itself the eval mindset that gets you hired.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Open questions the research didn't resolve <span class="tag caveat">Caveat</span></summary>
+    <div class="body">
+      <ul>
+        <li><strong>TypeScript AI stack</strong> — surviving evidence was Python-centric. The TS tools listed (Vercel AI SDK, LangChain.js, LlamaIndex.TS, Mastra, Genkit) are general knowledge, not verified here — confirm current state yourself.</li>
+        <li><strong>Empirical RAG numbers</strong> — real, primary benchmarks for chunking and hybrid-vs-dense retrieval (try official Anthropic contextual-retrieval, Qdrant, Pinecone studies).</li>
+        <li><strong>Vector DB / eval-tool head-to-heads</strong> — FAISS, Weaviate, Milvus, Braintrust, Arize Phoenix were named as valid but not directly compared.</li>
+        <li><strong>Eval implementation depth</strong> — exact metrics (recall@k, MRR, nDCG) and CI-gating patterns are named at a high level; go to RAGAS/DeepEval docs for the details.</li>
+        <li><strong>Comp precision</strong> — firm up with Levels.fyi raw filings / H1B data; figures are mid-2026 and shift quarterly.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Soft signals: the ACQ "Core Values" decoded <span class="tag note">Added</span></summary>
+    <div class="body">
+      <p>That posting weighted culture heavily. If you apply there (or anywhere similar), prep stories for:</p>
+      <ul>
+        <li><strong>Competitive Greatness</strong> — a time you turned incremental improvements into a compounding win (e.g. eval-driven iteration that kept improving a system).</li>
+        <li><strong>Sincere Candor</strong> — giving/receiving hard feedback well. The eval mindset ("let the data tell hard truths") maps perfectly here.</li>
+        <li><strong>Unimpeachable Character</strong> — alignment of words and actions; reliability under pressure (their "support critical launches" line).</li>
+      </ul>
+      <p class="kicker">Tie your technical story to these: "I instrument and evaluate everything because I'd rather the data deliver candid feedback than ship on vibes" hits two of their three values at once.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ───────────────────── 10 SOURCES ───────────────────── -->
+<section id="sources">
+  <div class="section-head">
+    <span class="num">// 10</span>
+    <h2>Sources &amp; Methodology</h2>
+    <p class="sub">23 sources fetched → 109 claims extracted → 25 fact-checked with 3-vote adversarial verification → 19 confirmed, 6 killed → synthesized. Primary sources (★) carry the most weight.</p>
+  </div>
+
+  <details>
+    <summary>Primary &amp; high-value sources ★ <span class="tag verified">Verified</span></summary>
+    <div class="body">
+      <ul class="src-list">
+        <li>★ <a href="https://github.com/lm-sys/routellm" target="_blank" rel="noopener">RouteLLM — GitHub (lm-sys)</a> · routing &amp; cost claims</li>
+        <li>★ <a href="https://lmsys.org/blog/2024-07-01-routellm/" target="_blank" rel="noopener">RouteLLM — LMSYS blog</a> · 85% / 95% benchmark</li>
+        <li>★ <a href="https://arxiv.org/abs/2406.18665" target="_blank" rel="noopener">RouteLLM — arXiv (ICLR 2025)</a></li>
+        <li>★ <a href="https://github.com/BerriAI/litellm" target="_blank" rel="noopener">LiteLLM — GitHub (BerriAI)</a> · multi-provider gateway</li>
+        <li>★ <a href="https://docs.litellm.ai/docs/observability/callbacks" target="_blank" rel="noopener">LiteLLM — observability callbacks docs</a></li>
+        <li>★ <a href="https://docs.langchain.com/oss/python/langgraph/persistence" target="_blank" rel="noopener">LangGraph — persistence/checkpointing docs</a> · time-travel replay</li>
+        <li>★ <a href="https://huggingface.co/spaces/mteb/leaderboard" target="_blank" rel="noopener">MTEB Leaderboard</a> · embedding rankings</li>
+        <li>★ <a href="https://www.levels.fyi/companies/openai/salaries/software-engineer" target="_blank" rel="noopener">Levels.fyi — OpenAI comp</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Secondary &amp; blog sources <span class="tag consensus">Consensus</span></summary>
+    <div class="body">
+      <ul class="src-list">
+        <li><a href="https://letsdatascience.com/blog/ai-engineer-roadmap-2026-skills-tools-and-career-path" target="_blank" rel="noopener">AI Engineer Roadmap 2026 — letsdatascience</a> · the richest roadmap/tooling source</li>
+        <li><a href="https://www.kore1.com/ai-engineer-salary-guide/" target="_blank" rel="noopener">Kore1 — AI Engineer Salary Guide</a> · "signed offers, not surveys"</li>
+        <li><a href="https://research-it.manchester.ac.uk/news/2025/10/14/ml-engineer-vs-ai-engineer" target="_blank" rel="noopener">U. Manchester — ML vs AI Engineer</a></li>
+        <li><a href="https://dev.to/klement_gunndu/5-ai-portfolio-projects-that-actually-get-you-hired-in-2026-5bpl" target="_blank" rel="noopener">5 AI Portfolio Projects — dev.to</a></li>
+        <li><a href="https://www.digitalapplied.com/blog/ai-developer-hiring-skills-that-matter-2026" target="_blank" rel="noopener">AI Developer Hiring Signals 2026 — digitalapplied</a></li>
+        <li><a href="https://dev.to/ultraduneai/eval-006-llm-evaluation-tools-ragas-vs-deepeval-vs-braintrust-vs-langsmith-vs-arize-phoenix-3p11" target="_blank" rel="noopener">LLM Eval Tools compared — dev.to</a></li>
+        <li><a href="https://medium.com/@atnoforgenai/10-ai-agent-frameworks-you-should-know-in-2026-langgraph-crewai-autogen-more-2e0be4055556" target="_blank" rel="noopener">10 AI Agent Frameworks 2026 — Medium</a> (treat per-framework numbers skeptically)</li>
+        <li><a href="https://agenticcareers.co/blog/ai-agent-portfolio-projects-get-hired-2026" target="_blank" rel="noopener">Agent Portfolio Projects 2026 — agenticcareers</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Methodology &amp; confidence notes</summary>
+    <div class="body">
+      <p><strong>Pipeline:</strong> the question was decomposed into 5 search angles → 5 parallel web searches → 23 sources fetched (2 URL dupes, 5 budget-dropped) → 109 falsifiable claims extracted → top 25 verified by 3 independent skeptic agents each (needs 2/3 to refute a claim) → survivors merged &amp; ranked → synthesized here.</p>
+      <p><strong>Confidence honesty:</strong> Tool/technical/role-definition claims that I could anchor to primary sources are <span class="tag verified">Verified</span>. Tool-<em>selection</em> recommendations ("Qdrant first", exact 6-month structure, the 5-project list) are opinionated single-source <span class="tag consensus">Consensus</span> picks — valid, not the only path. Compensation is the weakest area: recruiter/crowdsourced, several split votes, time-sensitive → <span class="tag caveat">Caveat</span>. Anything marked <span class="tag note">Added</span> is my general knowledge filling gaps the verified research left open.</p>
+    </div>
+  </details>
+</section>
+
+<p id="noResults" class="no-results">No sections match — clear the filter.</p>
+
+<footer>
+  <p>Generated by a deep-research workflow (105 agents · 23 sources · adversarial 3-vote verification) on <strong>2026-06-04</strong>, then synthesized for Cristian Tcaci. Confidence badges are load-bearing — trust the <span class="tag verified" style="font-size:.6rem">Verified</span> ones most, treat <span class="tag caveat" style="font-size:.6rem">Caveat</span> numbers as directional, and never cite the <a href="#myths">refuted claims</a>. Checklist progress is saved locally in your browser only.</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+(function(){
+  // ---- Checklist persistence ----
+  var KEY='ai-roadmap-progress-v1';
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('.chk input[type=checkbox]'));
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+  function updateProgress(){
+    var done=boxes.filter(function(b){return b.checked}).length;
+    var total=boxes.length;
+    var pt=document.getElementById('ptext'); if(pt)pt.textContent=done+' / '+total;
+    var pb=document.getElementById('pbar'); if(pb)pb.style.width=(total?(done/total*100):0)+'%';
+  }
+  boxes.forEach(function(b){
+    if(saved[b.id])b.checked=true;
+    b.addEventListener('change',function(){
+      saved[b.id]=b.checked;
+      try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+      updateProgress();
+    });
+  });
+  updateProgress();
+  var reset=document.getElementById('reset');
+  if(reset)reset.addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false});
+    saved={};try{localStorage.removeItem(KEY)}catch(e){}
+    updateProgress();
+  });
+
+  // ---- Expand / collapse all ----
+  var allDetails=Array.prototype.slice.call(document.querySelectorAll('details'));
+  var ex=document.getElementById('expand'),co=document.getElementById('collapse');
+  if(ex)ex.addEventListener('click',function(){allDetails.forEach(function(d){d.open=true})});
+  if(co)co.addEventListener('click',function(){allDetails.forEach(function(d){d.open=false})});
+
+  // ---- Search filter (top-level details only) ----
+  var topDetails=allDetails.filter(function(d){return !d.parentElement.closest('details')});
+  var q=document.getElementById('q'), noRes=document.getElementById('noResults');
+  if(q)q.addEventListener('input',function(){
+    var term=q.value.trim().toLowerCase();
+    var anyVisible=false;
+    topDetails.forEach(function(d){
+      var match=!term||d.textContent.toLowerCase().indexOf(term)>-1;
+      d.style.display=match?'':'none';
+      if(match){anyVisible=true;if(term)d.open=true;}
+    });
+    // hide section headers with no visible cards
+    document.querySelectorAll('section').forEach(function(s){
+      var cards=s.querySelectorAll(':scope > details');
+      if(!cards.length)return;
+      var vis=Array.prototype.slice.call(cards).some(function(c){return c.style.display!=='none'});
+      s.style.display=(term&&!vis)?'none':'';
+    });
+    if(noRes)noRes.style.display=anyVisible?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>
