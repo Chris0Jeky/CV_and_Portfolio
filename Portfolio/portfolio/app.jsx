@@ -91,3 +91,11 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+// Same-origin, vendored adapter. No reporting until separately activated.
+(() => {
+  const observerScript = document.createElement('script');
+  observerScript.src = './observatory.js';
+  observerScript.defer = true;
+  document.head.append(observerScript);
+})();
