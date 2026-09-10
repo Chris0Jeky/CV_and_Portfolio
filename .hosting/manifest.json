@@ -1,6 +1,6 @@
 {
   "schema_version":1,"reviewed_on":"2026-09-10","repository":"Chris0Jeky/CV_and_Portfolio","stable_id":"cv-and-portfolio","runtime_class":"static",
-  "public_origin":"https://chris0jeky.github.io/CV_and_Portfolio/Portfolio/portfolio.html","origin_evidence":"repository-reported",
+  "public_origin":"https://chris0jeky.github.io/CV_and_Portfolio/","origin_evidence":"repository-reported",
   "target":"Retain current static site; candidate umbrella entrypoint",
   "source_paths":["AGENTS.md","Portfolio/portfolio.html"],
   "persistent_state":["Static public content only"],
