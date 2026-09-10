@@ -1,7 +1,10 @@
 {
   "version": "0.1.0",
-  "project": "portfolio",
-  "target": "Portfolio/observatory.js",
-  "sha256": "0ac6f659c5d7cbb666be728d9a12ca8c0f8002ee939576323b2437e579d888f4",
-  "source": "Chris0Jeky/Pulseboard:observatory"
+  "source": "Chris0Jeky/Pulseboard:observatory",
+  "installs": {
+    "Portfolio/observatory.js": {
+      "project": "portfolio",
+      "sha256": "bbc26242e17c9fbfb91801d540a3e9b9ec865a542d17bc51aa07eb1f2820e486"
+    }
+  }
 }
