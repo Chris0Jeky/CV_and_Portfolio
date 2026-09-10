@@ -1,0 +1,15 @@
+{
+  "schema_version":1,"reviewed_on":"2026-09-10","repository":"Chris0Jeky/CV_and_Portfolio","stable_id":"cv-and-portfolio","runtime_class":"static",
+  "public_origin":"https://chris0jeky.github.io/CV_and_Portfolio/Portfolio/portfolio.html","origin_evidence":"repository-reported",
+  "target":"Retain current static site; candidate umbrella entrypoint",
+  "source_paths":["AGENTS.md","Portfolio/portfolio.html"],
+  "persistent_state":["Static public content only"],
+  "invariants":["No private HQ documents or personal contact ledgers in public assets","Preserve approved CV facts and protected imagery","Existing main pushes may publish immediately"],
+  "gates":["Owned umbrella domain","Relative-link/base-path and mobile acceptance","Review existing main-push deployment before merge"],
+  "tasks":[
+    {"id":"CV1","goal":"Prepare an umbrella product directory","acceptance":"Links distinguish live products, synthetic demos, local downloads and planned work"},
+    {"id":"CV2","goal":"Verify root-domain path migration","acceptance":"Portfolio, CV, images and case-study deep links pass at the selected base"},
+    {"id":"CV3","goal":"Keep public publication scope explicit","acceptance":"No private dossiers, account metadata or unregistered naming shortlist is copied"}
+  ],
+  "activation_authorized":false
+}
