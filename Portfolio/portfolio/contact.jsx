@@ -124,7 +124,7 @@ window.Colophon = function Colophon() {
     // Initial boot sequence
     push('boot', 'tcaci.io v5 mounted · paper: ok · ink: ok');
     push('ok',   'fonts loaded (newsreader, ibm plex, caveat)');
-    push('ok',   'no ad trackers · beta usage stats: see the Beta pill');
+    push('ok',   'no ad trackers · first-party beta usage stats: see the Beta pill');
     push('ok',   'wealthlens data pipeline: 10/10 datasets fresh');
     push('info', 'visitor: anonymous · respect: assumed');
 
@@ -195,14 +195,16 @@ window.Colophon = function Colophon() {
               written, and quietly second-guessed by the editor.
             </p>
             <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--ink-dim)' }}>
-              No ads, no third-party trackers, no autoplay. This site is in beta and counts how it is
-              used to improve it: page views, which project or contact link was opened, load times and
-              script errors. No names, emails or IPs. The Beta bar at the top (later the Beta button,
-              bottom left) chooses what is sent: usage counts, diagnostics, and journeys. Outside the
-              EEA all three start on; in the EEA only counts do, until you press OK. Global Privacy
-              Control or Do Not Track turns everything off. Detailed events are kept 90 days, daily
-              counts currently 14 days. The audit log on the right is local-only — it lives in your
-              tab and dies with it. If something is annoying, that's on me.
+              No ads, no autoplay. This site is in beta and measures its own use, first-party, to
+              improve it; nothing goes to an ad or analytics vendor. The Beta bar at the top (later the
+              Beta button, bottom left) chooses what is sent. Usage counts: daily totals of page views,
+              nothing else. Diagnostics: load timings, script error summaries, visible time and scroll
+              depth. Journeys: a random id that lives in this tab only, with the order of pages and of
+              the project and contact links opened. No names, emails or IPs. Outside the EEA all three
+              start on; in the EEA only counts do, until you press OK. Global Privacy Control or Do Not
+              Track turns everything off. Detailed events are kept 90 days, daily counts currently 14
+              days. The audit log on the right is local-only — it lives in your tab and dies with it.
+              If something is annoying, that's on me.
             </p>
           </div>
 
