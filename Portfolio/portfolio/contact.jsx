@@ -24,18 +24,18 @@ window.Contact = function Contact() {
             </p>
 
             <div style={{ marginTop: 32 }}>
-              <a className="btn btn-rouge" onClick={copyEmail} style={{ cursor: 'pointer' }}>
+              <a className="btn btn-rouge" onClick={copyEmail} data-pb-contact="email" style={{ cursor: 'pointer' }}>
                 ✉ {copied ? 'Copied to clipboard' : 'Jeky.tck@gmail.com'}
               </a>
             </div>
 
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <ContactRow label="GitHub" value="github.com/Chris0Jeky" href="https://github.com/Chris0Jeky"/>
-              <ContactRow label="LinkedIn" value="linkedin.com/in/cristian-tcaci" href="#"/>
-              <ContactRow label="Repo · WealthLens" value="github.com/Chris0Jeky/wealthlens-hq" href="https://github.com/Chris0Jeky/wealthlens-hq"/>
-              <ContactRow label="Repo · Taskdeck" value="github.com/Chris0Jeky/Taskdeck" href="https://github.com/Chris0Jeky/Taskdeck"/>
-              <ContactRow label="Repo · NPDL" value="github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" href="https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation"/>
-              <ContactRow label="Repo · NavSentinel" value="github.com/Chris0Jeky/NavSentinel" href="https://github.com/Chris0Jeky/NavSentinel"/>
+              <ContactRow label="GitHub" value="github.com/Chris0Jeky" href="https://github.com/Chris0Jeky" pb={{ contact: 'github' }}/>
+              <ContactRow label="LinkedIn" value="linkedin.com/in/cristian-tcaci" href="#" pb={{ contact: 'linkedin' }}/>
+              <ContactRow label="Repo · WealthLens" value="github.com/Chris0Jeky/wealthlens-hq" href="https://github.com/Chris0Jeky/wealthlens-hq" pb={{ project: 'wealthlens' }}/>
+              <ContactRow label="Repo · Taskdeck" value="github.com/Chris0Jeky/Taskdeck" href="https://github.com/Chris0Jeky/Taskdeck" pb={{ project: 'taskdeck' }}/>
+              <ContactRow label="Repo · NPDL" value="github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" href="https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" pb={{ project: 'npdl' }}/>
+              <ContactRow label="Repo · NavSentinel" value="github.com/Chris0Jeky/NavSentinel" href="https://github.com/Chris0Jeky/NavSentinel" pb={{ project: 'navsentinel' }}/>
             </div>
 
             <div className="hand" style={{
@@ -95,9 +95,10 @@ window.Contact = function Contact() {
   );
 };
 
-function ContactRow({ label, value, href }) {
+function ContactRow({ label, value, href, pb = {} }) {
   return (
-    <a href={href} target="_blank" rel="noopener" style={{
+    <a href={href} target="_blank" rel="noopener"
+      data-pb-contact={pb.contact} data-pb-project={pb.project} data-pb-link={pb.project ? 'repo' : undefined} style={{
       display: 'grid', gridTemplateColumns: '120px 1fr 30px', gap: 16,
       padding: '12px 0', borderTop: '1px solid var(--rule)',
       alignItems: 'baseline', textDecoration: 'none',
@@ -123,7 +124,7 @@ window.Colophon = function Colophon() {
     // Initial boot sequence
     push('boot', 'tcaci.io v5 mounted · paper: ok · ink: ok');
     push('ok',   'fonts loaded (newsreader, ibm plex, caveat)');
-    push('ok',   'no third-party trackers detected');
+    push('ok',   'no ad trackers · beta usage stats: see the Beta pill');
     push('ok',   'wealthlens data pipeline: 10/10 datasets fresh');
     push('info', 'visitor: anonymous · respect: assumed');
 
@@ -194,8 +195,14 @@ window.Colophon = function Colophon() {
               written, and quietly second-guessed by the editor.
             </p>
             <p style={{ fontSize: 14, lineHeight: 1.65, color: 'var(--ink-dim)' }}>
-              No tracking. No autoplay. No popups. The audit log on the right is local-only —
-              it lives in your tab and dies with it. If something is annoying, that's on me.
+              No ads, no third-party trackers, no autoplay. This site is in beta and counts how it is
+              used to improve it: page views, which project or contact link was opened, load times and
+              script errors. No names, emails or IPs. The Beta bar at the top (later the Beta button,
+              bottom left) chooses what is sent: usage counts, diagnostics, and journeys. Outside the
+              EEA all three start on; in the EEA only counts do, until you press OK. Global Privacy
+              Control or Do Not Track turns everything off. Detailed events are kept 90 days, daily
+              counts currently 14 days. The audit log on the right is local-only — it lives in your
+              tab and dies with it. If something is annoying, that's on me.
             </p>
           </div>
 
