@@ -1,23 +1,180 @@
+// Verifies the vendored Pulseboard SDK v3 artifact and how the live portfolio page loads it.
+// Run: node observatory/check.mjs (no dependencies). Browser behaviour still needs a real page check.
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import vm from 'node:vm';
+
 const root = new URL('../', import.meta.url);
-const lock = JSON.parse(readFileSync(new URL('observatory.lock.json', root), 'utf8'));
-// The lock is keyed by target since Pulseboard#15; the original single-entry shape still reads.
-const installs = lock.installs ?? { [lock.target]: { project: lock.project, sha256: lock.sha256 } };
-const entries = Object.entries(installs);
-assert.ok(entries.length > 0, 'The lock records no installed artifact');
-for (const [target, entry] of entries) {
-  // This repository checks out CRLF by default; the builder hashes the LF bytes it generated.
-  const code = readFileSync(new URL(target, root), 'utf8').replaceAll('\r\n', '\n');
-  assert.equal(createHash('sha256').update(code).digest('hex'), entry.sha256, target);
-  assert.ok(code.includes('"endpoint":""'), 'Activation requires a separate reviewed change');
-  assert.ok(!/MAX_BYTES|MAX_BATCH/.test(code), 'Server-only constants must not be published');
-  const leaked = code.split('\n').find(line => /^(?:import|export)\b/.test(line));
-  assert.equal(leaked, undefined, 'The artifact must stay a plain script, not a module');
-  const context = { document: { readyState: 'complete' }, fetch() { throw new Error('Unexpected network'); }, setTimeout() { throw new Error('Unexpected timer'); } };
-  vm.runInNewContext(code, context);
-  assert.equal(context.PulseboardUsage, null);
+const read = path => readFileSync(new URL(path, root), 'utf8').replaceAll('\r\n', '\n');
+const COLLECTOR = 'https://pulseboard-observatory.commit-atlas.workers.dev';
+const ORIGIN = 'https://chris0jeky.github.io';
+const ARTIFACT = 'Portfolio/pulseboard.js';
+const PAGE = 'Portfolio/portfolio.html';
+
+// ---- 1. Lock and artifact shape ------------------------------------------------------------------
+const lock = JSON.parse(read('observatory.lock.json'));
+assert.equal(lock.sdk, '3.0.0', 'The lock must record the SDK version');
+assert.deepEqual(Object.keys(lock.installs), [ARTIFACT], 'Exactly one SDK artifact is installed');
+const entry = lock.installs[ARTIFACT];
+assert.equal(entry.project, 'portfolio');
+// Git may check this file out with CRLF; the builder hashes the LF bytes it generated.
+const code = read(ARTIFACT);
+assert.equal(createHash('sha256').update(code).digest('hex'), entry.sha256, 'Artifact hash must match the lock');
+assert.match(code, /^\/\* SPDX-License-Identifier: GPL-3\.0-only\n \* pulseboard-sdk 3\.0\.0 for portfolio\./, 'Header must name pulseboard-sdk 3.0.0');
+assert.ok(code.includes(`"collector":"${COLLECTOR}"`), 'Collector origin must be the Pulseboard Worker');
+assert.ok(code.includes(`"origin":"${ORIGIN}"`), 'Registered origin must be the GitHub Pages origin');
+assert.ok(!/MAX_BYTES|MAX_BATCH/.test(code), 'Server-only constants must not be published');
+assert.equal(code.split('\n').find(line => /^(?:import|export)\b/.test(line)), undefined, 'The artifact must stay a classic script');
+
+// ---- 2. The artifact in a fake browser -----------------------------------------------------------
+function fakeElement(tag) {
+  const node = {
+    tagName: String(tag).toUpperCase(), children: [], attributes: {}, style: {}, listeners: {}, parent: null,
+    className: '', textContent: '', type: '', id: '', checked: false, disabled: false, hidden: false,
+    setAttribute(name, value) { node.attributes[name] = String(value); },
+    getAttribute(name) { return node.attributes[name] ?? null; },
+    append(...nodes) { for (const n of nodes) { n.parent = node; node.children.push(n); } },
+    prepend(...nodes) { for (const n of [...nodes].reverse()) { n.parent = node; node.children.unshift(n); } },
+    insertBefore(n) { node.prepend(n); },
+    remove() { if (node.parent) node.parent.children.splice(node.parent.children.indexOf(node), 1); node.parent = null; },
+    focus() {},
+    addEventListener(type, fn) { (node.listeners[type] ||= []).push(fn); },
+    removeEventListener(type, fn) { node.listeners[type] = (node.listeners[type] || []).filter(f => f !== fn); },
+    emit(type, event = {}) { for (const fn of [...(node.listeners[type] || [])]) fn({ type, ...event }); },
+  };
+  Object.defineProperty(node, 'innerHTML', { get: () => '', set() { throw new Error('innerHTML is forbidden'); } });
+  return node;
 }
-console.log('Observer hash and inactive runtime passed. Full host browser checks remain required.');
+const walk = (node, out = []) => { out.push(node); for (const child of node.children) walk(child, out); return out; };
+const memoryStorage = () => { const m = new Map(); return { getItem: k => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)), removeItem: k => m.delete(k) }; };
+
+function browser({ origin = ORIGIN, nav = {} } = {}) {
+  const calls = [];
+  const document = fakeElement('#document');
+  const body = fakeElement('body');
+  const holder = fakeElement('div');
+  holder.setAttribute('data-pulseboard-bar', '');
+  body.append(holder);
+  Object.assign(document, {
+    body, referrer: '', readyState: 'loading', visibilityState: 'visible',
+    documentElement: { scrollHeight: 2000, clientHeight: 800, scrollTop: 0 },
+    createElement: tag => fakeElement(tag),
+    querySelector: selector => (selector === '[data-pulseboard-bar]' ? holder : null),
+  });
+  const window = Object.assign(fakeElement('window'), {
+    document, navigator: { ...nav }, localStorage: memoryStorage(), sessionStorage: memoryStorage(),
+    innerWidth: 1280, innerHeight: 800, scrollY: 0,
+    location: { origin, protocol: new URL(origin).protocol, href: origin + '/CV_and_Portfolio/Portfolio/portfolio.html', search: '', hash: '' },
+    AbortController, TextEncoder, URL, Date, JSON, Math, Promise,
+    crypto: { randomUUID: () => '00000000-0000-4000-8000-000000000001' },
+    performance: { now: () => 0, getEntriesByType: () => [] },
+    matchMedia: () => ({ matches: false }),
+    setTimeout: () => 0, clearTimeout: () => {},
+    fetch: (url, init = {}) => { calls.push({ url, method: init.method ?? 'GET' }); return new Promise(() => {}); },
+  });
+  window.window = window;
+  vm.createContext(window);
+  return { window, document, body, holder, calls };
+}
+
+{
+  const b = browser();
+  vm.runInContext(code, b.window);
+  const api = b.window.Pulseboard;
+  assert.ok(api, 'Loading the artifact defines window.Pulseboard');
+  assert.equal(api.version, '3.0.0');
+  assert.ok(Object.isFrozen(api));
+  for (const name of ['route', 'count', 'track']) assert.equal(typeof api[name], 'function', name);
+  assert.equal(b.calls.length, 0, 'No network call before the notice is mounted');
+  assert.equal(b.holder.children.length, 0, 'Nothing renders before DOMContentLoaded');
+  b.document.emit('DOMContentLoaded');
+  const bar = b.holder.children[0];
+  assert.ok(bar && bar.className.split(' ').includes('pb-bar'), 'The Beta bar renders into the placeholder');
+  assert.match(walk(bar).map(n => n.textContent).join(''), /Beta.*Portfolio.*no names, emails or IPs/s);
+  assert.ok(b.calls.length >= 1 && b.calls.every(c => c.url.startsWith(COLLECTOR + '/')), 'Requests go to the collector only, after mount');
+  assert.equal(b.calls[0].url, COLLECTOR + '/v1/consent/portfolio', 'The first request is the region hint');
+  assert.equal(api.track('project.opened', { project: 'wealthlens' }), false, 'Journeys wait for the region answer (treated as EEA)');
+}
+{
+  const b = browser({ nav: { globalPrivacyControl: true } });
+  vm.runInContext(code, b.window);
+  b.document.emit('DOMContentLoaded');
+  assert.equal(b.calls.length, 0, 'Global Privacy Control: no request of any kind');
+}
+{
+  const b = browser({ origin: 'https://example.com' });
+  vm.runInContext(code, b.window);
+  b.document.emit('DOMContentLoaded');
+  assert.equal(b.window.Pulseboard.track('project.opened', { project: 'npdl' }), false);
+  assert.equal(b.calls.length + b.holder.children.length, 0, 'Off the registered origin the SDK is inert');
+}
+
+// ---- 3. The live page loads it; no other page does -----------------------------------------------
+const page = read(PAGE);
+assert.match(page, /<script defer src="pulseboard\.js"><\/script>/, 'The portfolio loads the artifact with defer');
+assert.match(page, /<body>\n<div data-pulseboard-bar style="height:2\.5rem"><\/div>\n/, 'The bar placeholder is the first child of body');
+assert.match(page, /<script src="portfolio\/pulseboard-events\.js"><\/script>/, 'The page loads its event wiring');
+assert.ok(!/Content-Security-Policy/i.test(page), 'A CSP meta tag would need connect-src ' + COLLECTOR);
+const htmlFiles = [];
+(function collect(dir) {
+  for (const name of readdirSync(new URL(dir, root))) {
+    if (name === 'node_modules' || name.startsWith('.')) continue;
+    const rel = dir + name;
+    if (statSync(new URL(rel, root)).isDirectory()) collect(rel + '/');
+    else if (name.endsWith('.html') && rel !== PAGE) htmlFiles.push(rel);
+  }
+})('');
+for (const file of htmlFiles) assert.ok(!/pulseboard/i.test(read(file)), file + ' must not load the SDK (archive, CV and case-study pages stay out)');
+assert.ok(!/observatory\.js/.test(read('Portfolio/portfolio/app.jsx')), 'The old observatory loader is gone');
+
+// ---- 4. Product code survives a missing SDK; events carry enums only ----------------------------
+const events = read('Portfolio/portfolio/pulseboard-events.js');
+function pageRuntime(sdk) {
+  const doc = fakeElement('#document');
+  doc.readyState = 'complete';
+  const win = Object.assign(fakeElement('window'), { document: doc, location: { hash: '' } });
+  win.window = win;
+  if (sdk !== undefined) win.Pulseboard = sdk;
+  vm.createContext(win);
+  vm.runInContext(events, win);
+  const link = attrs => ({ getAttribute: name => attrs[name] ?? null });
+  const click = attrs => doc.emit('click', { target: { closest: () => (attrs ? link(attrs) : null) } });
+  const hash = value => { win.location.hash = value; win.emit('hashchange'); };
+  return { win, click, hash };
+}
+for (const sdk of [undefined, null, {}, { track() { throw new Error('boom'); }, route() { throw new Error('boom'); } }]) {
+  const p = pageRuntime(sdk);
+  assert.doesNotThrow(() => {
+    p.click({ 'data-pb-project': 'wealthlens', 'data-pb-link': 'site' });
+    p.click({ 'data-pb-contact': 'email' });
+    p.click(null);
+    p.hash('#projects');
+    p.hash('#about');
+  });
+  assert.equal(p.win.PortfolioPulse.project('taskdeck', 'repo'), false);
+  assert.equal(p.win.PortfolioPulse.contact('github'), false);
+}
+{
+  const log = [];
+  const sdk = { track: (name, props) => { log.push(['track', name, props]); return true; }, route: name => { log.push(['route', name]); return true; } };
+  const p = pageRuntime(sdk);
+  p.click({ 'data-pb-project': 'wealthlens', 'data-pb-link': 'site' });
+  p.click({ 'data-pb-project': 'npdl', 'data-pb-link': 'repo' });
+  p.click({ 'data-pb-project': 'someone-typed-this' });
+  p.click({ 'data-pb-contact': 'email' });
+  p.click({ 'data-pb-contact': 'fax' });
+  p.hash('#about');
+  p.hash('#projects');
+  p.hash('#projects');
+  p.hash('#contact');
+  assert.deepEqual(JSON.parse(JSON.stringify(log)), [
+    ['track', 'project.opened', { project: 'wealthlens', link: 'site' }],
+    ['track', 'project.opened', { project: 'npdl', link: 'repo' }],
+    ['track', 'contact.requested', { channel: 'email' }],
+    ['route', 'project'],
+    ['route', 'home'],
+  ]);
+}
+
+console.log('Pulseboard SDK v3 artifact, page wiring and SDK-absent fallbacks passed. Real-browser checks remain separate.');

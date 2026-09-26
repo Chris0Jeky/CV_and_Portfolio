@@ -1,9 +1,58 @@
-# Observatory integration
+# Pulseboard SDK v3
 
-Shared collector/dashboard: [Pulseboard #15](https://github.com/Chris0Jeky/Pulseboard/pull/15), source commit `8d92fff11f581d600c357e402cd521426665f318`.
+The live portfolio (`Portfolio/portfolio.html`) loads `Portfolio/pulseboard.js`, the Pulseboard SDK 3.0.0
+built for project id `portfolio` by Pulseboard's `observatory/adapters/build-sdk.mjs` (Chris0Jeky/Pulseboard#105).
+Do not edit the artifact: rebuild it from a Pulseboard checkout and update the sha256 in `observatory.lock.json`.
 
-The portfolio entry loads a same-origin, vendored adapter after mounting the application. Its endpoint is empty, so collection and consent storage remain off. Biography, CVs, archive pages, images and existing interactions are unchanged. There is no new CDN dependency.
+```sh
+cd <Pulseboard>/observatory
+node adapters/build-sdk.mjs portfolio <this repo> Portfolio/pulseboard.js
+```
 
-Run `node observatory/check.mjs`, then the portfolio's existing browser checks, including the published subpath and mobile layout. The shared kit has 58 passing local tests, but this host's full browser checks have not been executed here.
+Only the live portfolio page loads it. Archive copies, the CV pages and the case-study pages do not, and
+`observatory/check.mjs` fails if any other HTML file mentions it.
 
-Before activation, deploy the collector, review the site notice and regenerate the locked script with the exact project endpoint. Verify explicit consent and withdrawal. Baseline active signals are page views and content-free error occurrence counts. Project/contact names are reserved for later semantic hooks; a contact-link request is not a confirmed lead, email, interview or hire. Never send form text or visitor identities.
+## What the page sends
+
+The SDK shows a one-line **Beta** bar (rendered into the reserved `data-pulseboard-bar` placeholder at the top
+of `<body>`), then a small Beta button bottom left that reopens the choices. Three categories:
+
+| Category | Sends | Outside the EEA | In the EEA or unknown |
+|---|---|---|---|
+| Usage counts | daily aggregate counts per event, route and release | on | on |
+| Diagnostics | load timings, script error summaries, visible time and scroll depth | on | off until OK |
+| Journeys and product data | a per-tab random session id and the product events below | on | off until OK |
+
+Global Privacy Control or Do Not Track turns everything off with no request at all. Detailed events are kept
+90 days; daily counts are currently kept 14 days. No names, emails, IP addresses or page URLs are stored.
+
+`Portfolio/portfolio/pulseboard-events.js` adds the product events, all guarded so the page works when the SDK
+is absent, blocked or inert:
+
+- `route('project')` when the hash is `#projects`, `route('home')` otherwise (the registered `cv` route is unused:
+  this page has no CV view).
+- `project.opened` `{ project, link }`: `project` is one of `wealthlens`, `taskdeck`, `navsentinel`, `npdl`
+  (the site's own project names), `link` is `repo` or `site`. Fired from the project buttons, the contact
+  repository rows and the command palette.
+- `contact.requested` `{ channel }`: `email` (copy address), `github`, `linkedin`. A request is a click, not a
+  confirmed message.
+
+There is no CV download on the live page, so `cv.downloaded` is not wired.
+
+## Origin
+
+The collector admits `https://chris0jeky.github.io`, which this site shares with other GitHub Pages projects
+(Developer Lens showcase, IdleHarbor, WealthLens). The SDK keys its storage by project id
+(`pulseboard:*:portfolio`), so their choices and markers do not mix. Collection starts only when Pulseboard adds
+`portfolio` to its admission lists; until then the collector refuses the requests and the SDK stops after three
+failures per endpoint.
+
+GitHub Pages cannot set response headers and the page has no CSP meta tag. If one is added, `connect-src` must
+include `https://pulseboard-observatory.commit-atlas.workers.dev`.
+
+## Check
+
+`npm test` (or `node observatory/check.mjs`): the lock hash, the 3.0.0 header and collector origin, no
+server-only constants, a fake-browser run (the API is defined, nothing is sent before the bar mounts, GPC sends
+nothing, another origin is inert), the page wiring, and the SDK-absent fallbacks of the event wiring. A real
+browser check on the published page remains separate.
