@@ -95,6 +95,7 @@ function browser({ origin = ORIGIN, nav = {}, readyState = 'loading' } = {}) {
   b.document.emit('DOMContentLoaded');
   const bar = b.holder.children[0];
   assert.ok(bar && bar.className.split(' ').includes('pb-bar'), 'The Beta bar renders into the placeholder');
+  assert.equal(b.holder.style.height, 'auto', 'A wrapped bar grows the placeholder instead of overflowing it');
   assert.match(walk(bar).map(n => n.textContent).join(''), /Beta.*Portfolio.*no names, emails or IPs/s);
   assert.ok(b.calls.length >= 1 && b.calls.every(c => c.url.startsWith(COLLECTOR + '/')), 'Requests go to the collector only, after mount');
   assert.equal(b.calls[0].url, COLLECTOR + '/v1/consent/portfolio', 'The first request is the region hint');
