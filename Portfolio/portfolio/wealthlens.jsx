@@ -48,9 +48,9 @@ window.WealthLensFeature = function WealthLensFeature() {
             ))}
           </div>
           <div style={{ marginTop: 24, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <a className="btn" href="https://chris0jeky.github.io/wealthlens-hq/" target="_blank" rel="noopener"
+            <a className="btn" href="https://chris0jeky.github.io/wealthlens-hq/" target="_blank" rel="noopener" data-pb-project="wealthlens" data-pb-link="site"
               style={{ borderColor: 'var(--teal)', color: 'var(--teal)' }}>▷ Live site</a>
-            <a className="btn" href="https://github.com/Chris0Jeky/wealthlens-hq" target="_blank" rel="noopener"
+            <a className="btn" href="https://github.com/Chris0Jeky/wealthlens-hq" target="_blank" rel="noopener" data-pb-project="wealthlens" data-pb-link="repo"
               style={{ borderColor: 'var(--teal)', color: 'var(--teal)' }}>↗ Repo</a>
           </div>
           <div style={{ marginTop: 16, fontFamily: 'var(--sans)', fontSize: 11,
