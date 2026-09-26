@@ -1,0 +1,17 @@
+{
+  "tier": 2,
+  "name": "daily-driver",
+  "authority": {
+    "push": "free",
+    "merge": "free"
+  },
+  "flags": {
+    "sensitive_data": false,
+    "wave_mode": false,
+    "dormant_production": false,
+    "relaxed_work_loss_guards": false
+  },
+  "human_todo": "HUMAN_TODO.md",
+  "last_reviewed": "2026-09-27",
+  "notes": "Ratified T2 by the owner on 2026-09-27. Public static CV and portfolio on GitHub Pages: every push to main is live, with no staging, accounts, payments or server-side data. The site loads the Pulseboard SDK (usage plan v2), which sends consented aggregate counts and product events to Pulseboard's collector; the collector, not this repository, holds that data. Push and merge are free within the global proving, review and aging gates; verify the rendered page before merging because main deploys directly. Reassess before adding accounts, forms that store personal data, or any server-side component."
+}
