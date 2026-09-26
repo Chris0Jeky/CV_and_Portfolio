@@ -51,7 +51,18 @@
 
   document.addEventListener('click', onClick, true);
   window.addEventListener('hashchange', syncRoute);
-  // A deep link such as #projects: the SDK has mounted with "home" by DOMContentLoaded (it loads with defer).
+  // A deep link such as #projects. This script runs before the deferred SDK, so it names the landing route on
+  // <html data-pulseboard-route> and the SDK records one first view for it. If the SDK already ran, the
+  // DOMContentLoaded sync below records the change instead.
+  try {
+    const root = document.documentElement;
+    if (!window.Pulseboard && root && root.dataset) {
+      current = routeFor(window.location.hash);
+      root.dataset.pulseboardRoute = current;
+    }
+  } catch (_) {
+    // Keep the static landing route.
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncRoute, { once: true });
   else syncRoute();
 

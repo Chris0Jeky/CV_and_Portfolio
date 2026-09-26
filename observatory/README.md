@@ -1,6 +1,6 @@
 # Pulseboard SDK v3
 
-The live portfolio (`Portfolio/portfolio.html`) loads `Portfolio/pulseboard.js`, the Pulseboard SDK 3.0.0
+The live portfolio (`Portfolio/portfolio.html`) loads `Portfolio/pulseboard.js`, the Pulseboard SDK 3.1.0
 built for project id `portfolio` by Pulseboard's `observatory/adapters/build-sdk.mjs` (Chris0Jeky/Pulseboard#105).
 Do not edit the artifact: rebuild it from a Pulseboard checkout and update the sha256 in `observatory.lock.json`.
 
@@ -30,7 +30,9 @@ Global Privacy Control or Do Not Track turns everything off with no request at a
 is absent, blocked or inert:
 
 - `route('project')` when the hash is `#projects`, `route('home')` otherwise (the registered `cv` route is unused:
-  this page has no CV view).
+  this page has no CV view). The page declares `<html data-pulseboard-route="home">`; on a `#projects` deep link
+  the event script, which runs before the deferred SDK, sets it to `project` so the first view is recorded once
+  for the right route.
 - `project.opened` `{ project, link }`: `project` is one of `wealthlens`, `taskdeck`, `navsentinel`, `npdl`
   (the site's own project names), `link` is `repo` or `site`. Fired from the project buttons, the contact
   repository rows and the command palette.
@@ -52,7 +54,7 @@ include `https://pulseboard-observatory.commit-atlas.workers.dev`.
 
 ## Check
 
-`npm test` (or `node observatory/check.mjs`): the lock hash, the 3.0.0 header and collector origin, no
+`npm test` (or `node observatory/check.mjs`): the lock hash, the 3.1.0 header and collector origin, no
 server-only constants, a fake-browser run (the API is defined, nothing is sent before the bar mounts, GPC sends
 nothing, another origin is inert), the page wiring, and the SDK-absent fallbacks of the event wiring. A real
 browser check on the published page remains separate.
