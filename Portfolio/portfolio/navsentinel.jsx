@@ -42,7 +42,7 @@ window.NavSentinelFeature = function NavSentinelFeature() {
             ))}
           </div>
           <div style={{ marginTop: 20, display: 'flex', gap: 10 }}>
-            <a className="btn" href="https://github.com/Chris0Jeky/NavSentinel" target="_blank" rel="noopener"
+            <a className="btn" href="https://github.com/Chris0Jeky/NavSentinel" target="_blank" rel="noopener" data-pb-project="navsentinel" data-pb-link="repo"
               style={{ borderColor: 'var(--rouge)', color: 'var(--rouge)' }}>↗ Repo</a>
           </div>
         </div>

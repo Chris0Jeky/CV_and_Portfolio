@@ -26,12 +26,12 @@ window.CommandPalette = function CommandPalette() {
     { kind: 'nav', label: 'go to · contact',     hint: '§05',   action: () => location.hash = '#contact' },
 
     // ── Projects ──
-    { kind: 'open', label: 'open · wealthlens repo',      hint: 'github', action: () => window.open('https://github.com/Chris0Jeky/wealthlens-hq', '_blank') },
-    { kind: 'open', label: 'open · wealthlens live site',  hint: 'pages',  action: () => window.open('https://chris0jeky.github.io/wealthlens-hq/', '_blank') },
-    { kind: 'open', label: 'open · taskdeck repo',         hint: 'github', action: () => window.open('https://github.com/Chris0Jeky/Taskdeck', '_blank') },
-    { kind: 'open', label: 'open · NPDL repo',             hint: 'github', action: () => window.open('https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation', '_blank') },
-    { kind: 'open', label: 'open · navsentinel repo',      hint: 'github', action: () => window.open('https://github.com/Chris0Jeky/NavSentinel', '_blank') },
-    { kind: 'open', label: 'open · github profile',        hint: 'github', action: () => window.open('https://github.com/Chris0Jeky', '_blank') },
+    { kind: 'open', label: 'open · wealthlens repo',      hint: 'github', action: () => { window.PortfolioPulse?.project('wealthlens', 'repo'); window.open('https://github.com/Chris0Jeky/wealthlens-hq', '_blank'); } },
+    { kind: 'open', label: 'open · wealthlens live site',  hint: 'pages',  action: () => { window.PortfolioPulse?.project('wealthlens', 'site'); window.open('https://chris0jeky.github.io/wealthlens-hq/', '_blank'); } },
+    { kind: 'open', label: 'open · taskdeck repo',         hint: 'github', action: () => { window.PortfolioPulse?.project('taskdeck', 'repo'); window.open('https://github.com/Chris0Jeky/Taskdeck', '_blank'); } },
+    { kind: 'open', label: 'open · NPDL repo',             hint: 'github', action: () => { window.PortfolioPulse?.project('npdl', 'repo'); window.open('https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation', '_blank'); } },
+    { kind: 'open', label: 'open · navsentinel repo',      hint: 'github', action: () => { window.PortfolioPulse?.project('navsentinel', 'repo'); window.open('https://github.com/Chris0Jeky/NavSentinel', '_blank'); } },
+    { kind: 'open', label: 'open · github profile',        hint: 'github', action: () => { window.PortfolioPulse?.contact('github'); window.open('https://github.com/Chris0Jeky', '_blank'); } },
 
     // ── Shell Commands ──
     { kind: 'cmd', label: 'whoami',                      hint: '$ identity',      action: () => location.hash = '#about' },

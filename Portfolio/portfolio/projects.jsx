@@ -298,7 +298,7 @@ function TaskdeckFeature() {
             )}
           </div>
           <div style={{ marginTop: 20, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <a className="btn" href="https://github.com/Chris0Jeky/Taskdeck" target="_blank" rel="noopener"
+            <a className="btn" href="https://github.com/Chris0Jeky/Taskdeck" target="_blank" rel="noopener" data-pb-project="taskdeck" data-pb-link="repo"
             style={{ borderColor: 'var(--forest)', color: 'var(--forest)' }}>↗ Repo</a>
             <a className="btn" href="#contact">▷ Beta interest</a>
           </div>
@@ -605,7 +605,7 @@ function IPDFeature() {
             )}
           </div>
           <div style={{ marginTop: 16 }}>
-            <a className="btn" href="https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" target="_blank" rel="noopener"
+            <a className="btn" href="https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" target="_blank" rel="noopener" data-pb-project="npdl" data-pb-link="repo"
             style={{ borderColor: 'var(--gold)', color: 'var(--gold)' }}>↗ NPDL repo</a>
           </div>
         </div>
