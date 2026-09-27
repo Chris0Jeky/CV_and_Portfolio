@@ -1,7 +1,7 @@
 {
   "version": "0.2.0",
   "sdk": "3.3.0",
-  "source": "Chris0Jeky/Pulseboard:observatory@3a882cc",
+  "source": "Chris0Jeky/Pulseboard:observatory@f1495c3",
   "installs": {
     "Portfolio/pulseboard.js": {
       "project": "portfolio",
