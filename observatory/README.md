@@ -1,6 +1,6 @@
 # Pulseboard SDK v3
 
-The live portfolio (`Portfolio/portfolio.html`) loads `Portfolio/pulseboard.js`, the Pulseboard SDK 3.2.0
+The live portfolio (`Portfolio/portfolio.html`) loads `Portfolio/pulseboard.js`, the Pulseboard SDK 3.3.0
 built for project id `portfolio` by Pulseboard's `observatory/adapters/build-sdk.mjs` (Chris0Jeky/Pulseboard#105).
 Do not edit the artifact: rebuild it from a Pulseboard checkout and update the sha256 in `observatory.lock.json`.
 
@@ -54,7 +54,7 @@ include `https://pulseboard-observatory.commit-atlas.workers.dev`.
 
 ## Check
 
-`npm test` (or `node observatory/check.mjs`): the lock hash, the 3.2.0 header and collector origin, no
+`npm test` (or `node observatory/check.mjs`): the lock hash, the header's SDK version against the lock and collector origin, no
 server-only constants, a fake-browser run (the API is defined, nothing is sent before the bar mounts, GPC sends
 nothing, another origin is inert), the page wiring, and the SDK-absent fallbacks of the event wiring. A real
 browser check on the published page remains separate.
