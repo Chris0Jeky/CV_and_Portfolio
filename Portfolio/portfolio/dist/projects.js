@@ -247,11 +247,11 @@ function WorkshopFeature() {
       lineHeight: 1.65,
       marginTop: 0
     }
-  }, "Most of what I build for myself now is plumbing for one question: when a coding agent (or I) changes something, how do we know it was right?", ' ', /*#__PURE__*/React.createElement("em", {
+  }, "I run coding agents across a few dozen repositories, so one question comes up every day: when an agent (or I) changes something, how do we know it was right?", ' ', /*#__PURE__*/React.createElement("em", {
     style: {
       color: 'var(--teal)'
     }
-  }, "The workshop"), " is four public tools, each answering a piece of it. ", /*#__PURE__*/React.createElement("strong", null, "agent-harness"), " sets the rules, so a sandbox runs free and a production repository earns extra checks.", ' ', /*#__PURE__*/React.createElement("strong", null, "estate-atlas"), " keeps the architecture map honest by proving it against git. ", /*#__PURE__*/React.createElement("strong", null, "Pulseboard"), " watches what actually ships, and", ' ', /*#__PURE__*/React.createElement("strong", null, "CommitAtlas"), " shows the public side."), /*#__PURE__*/React.createElement("p", {
+  }, "The workshop"), " is the public half of my answer: four tools, each covering one part of it. ", /*#__PURE__*/React.createElement("strong", null, "agent-harness"), " sets the rules, so a sandbox runs free and a production repository earns extra checks.", ' ', /*#__PURE__*/React.createElement("strong", null, "estate-atlas"), " keeps the architecture map honest by proving it against git. ", /*#__PURE__*/React.createElement("strong", null, "Pulseboard"), " watches what actually ships, and", ' ', /*#__PURE__*/React.createElement("strong", null, "CommitAtlas"), " shows the public side."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 16,
       lineHeight: 1.7,

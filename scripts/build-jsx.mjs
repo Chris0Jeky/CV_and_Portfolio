@@ -5,7 +5,7 @@
 // loader's three default plugins.
 // Run: node scripts/build-jsx.mjs           writes Portfolio/portfolio/dist/*.js
 //      node scripts/build-jsx.mjs --check   exits 1 if dist/ is missing, stale or has extra files
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -53,5 +53,7 @@ if (check) {
 } else {
   mkdirSync(outDir, { recursive: true });
   for (const [name, text] of expected) writeFileSync(join(outDir, name), text);
+  // A deleted or renamed .jsx leaves its old output behind; remove generated files with no source.
+  for (const name of readdirSync(outDir).filter(n => n.endsWith('.js') && !expected.has(n))) rmSync(join(outDir, name));
   console.log(`wrote ${expected.size} files to Portfolio/portfolio/dist/`);
 }
