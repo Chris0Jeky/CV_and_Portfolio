@@ -111,10 +111,10 @@ function WorkshopFeature() {
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
         <div>
           <p className="dropcap" style={{ fontSize: 18, lineHeight: 1.65, marginTop: 0 }}>
-            Most of what I build for myself now is plumbing for one question: when a
-            coding agent (or I) changes something, how do we know it was right?{' '}
-            <em style={{ color: 'var(--teal)' }}>The workshop</em> is four public tools,
-            each answering a piece of it. <strong>agent-harness</strong> sets the rules, so a
+            I run coding agents across a few dozen repositories, so one question comes up
+            every day: when an agent (or I) changes something, how do we know it was right?{' '}
+            <em style={{ color: 'var(--teal)' }}>The workshop</em> is the public half of my
+            answer: four tools, each covering one part of it. <strong>agent-harness</strong> sets the rules, so a
             sandbox runs free and a production repository earns extra checks.{' '}
             <strong>estate-atlas</strong> keeps the architecture map honest by proving it
             against git. <strong>Pulseboard</strong> watches what actually ships, and{' '}
