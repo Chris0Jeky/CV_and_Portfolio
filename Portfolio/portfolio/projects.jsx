@@ -61,6 +61,15 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
+<<<<<<< HEAD
+=======
+{ num: '046', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
+  desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, lays real traffic over the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
+  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
+{ num: '045', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
+  desc: 'The workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, an experimental replay lab for policy changes, and benchmarks with their limits written down.',
+  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
+>>>>>>> feat/portfolio-refresh-catalogue
 { num: '044', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
   links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
@@ -72,6 +81,12 @@ const CATALOG = [
   desc: 'Companion to Metrix — a suite of statistical tools that crunches historical options data and feeds Metrix\'s backtests with inputs that have already been argued about, validated, and cited.' },
 { num: '034', name: 'AgentForge', cat: 'devtool · agent orchestration', stack: 'Python 3.11 · git worktrees · MCP · GitHub CLI',
   desc: 'A local-first "agent farm" for running multiple coding agents without them stepping on each other. Each task gets its own git worktree, the orchestrator handles spawning, harness checks, PR comment commands, MCP toolkit sync, and policy-as-code. Trust-first automation for the case where the automation itself is plural.' },
+<<<<<<< HEAD
+=======
+{ num: '033', name: 'Pulseboard', cat: 'observability · product signals · live', stack: 'JavaScript · Cloudflare Workers · D1',
+  desc: 'A small operations desk for everything I ship: product signals, synthetic probes and release context in one place, producing an evidence-backed next check rather than a score. This page reports to it: the Beta bar at the top says what is sent, and no names, emails or IP addresses are stored.',
+  links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
+>>>>>>> feat/portfolio-refresh-catalogue
 { num: '030', name: 'SwarmingLilMen', cat: 'systems · simulation · performance', stack: 'C# · .NET 8 · Raylib · SIMD',
   desc: 'A 2D swarm simulation targeting 50k–100k interactive agents at 60 FPS via Structure-of-Arrays data layout and an allocation-free hot path. Deterministic, seeded, reproducible. Ships with four browser demos: Boids, Vicsek phase transitions, ant-colony optimisation, and particle-swarm optimisation. The bridge between NPDL theory and watching it happen at 60 frames per second.' },
 { num: '029', name: 'EduHub', cat: 'edtech · fullstack · realtime', stack: 'Vue · Node · MongoDB · JWT',
@@ -89,13 +104,13 @@ const CATALOG = [
 /* ============ WORKSHOP FEATURE ============ */
 const WORKSHOP_TOOLS = [
 { name: 'agent-harness', role: 'the rules',
-  line: 'A tier ladder that scales review with blast radius, guarded worktree tooling, and a replay lab that checks a policy change against recorded agent decisions.',
+  line: 'A tier ladder that scales review with blast radius, guarded worktree tooling, and an experimental replay lab for checking policy changes.',
   links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
 { name: 'estate-atlas', role: 'the map',
-  line: 'Components, contracts and flows in one JSON file, each claim proven against git, real traffic projected onto the flows, drawn as an offline HTML atlas.',
+  line: 'Components, contracts and flows in one JSON file, each claim proven against git, real traffic laid over the flows, drawn as an offline HTML atlas.',
   links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
 { name: 'Pulseboard', role: 'the pulse',
-  line: 'Bounded product signals, synthetic checks and release context in one desk, producing an evidence-backed next check instead of a score. Runs on Cloudflare Workers and D1.',
+  line: 'Product signals, synthetic probes and release context in one desk, producing an evidence-backed next check instead of a score. Runs on Cloudflare Workers and D1.',
   links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
 { name: 'CommitAtlas', role: 'the public view',
   line: 'GitHub analytics and a portfolio Studio where every reading names its source, window and freshness, and stale data is marked stale.',
@@ -121,9 +136,9 @@ function WorkshopFeature() {
             <strong>CommitAtlas</strong> shows the public side.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)' }}>
-            None of them hands out a score. Each one produces evidence and says plainly what
-            it does not know, which turns out to be the hard part. They are small, mostly
-            standard-library or edge-hosted, and built alongside the agents they keep in line.
+            Each one produces evidence and says plainly what it does not know, which turns out
+            to be the hard part. They are small (standard-library Python or a few edge
+            services) and built alongside the agents they keep in line.
           </p>
         </div>
 
@@ -147,7 +162,8 @@ function WorkshopFeature() {
             <div style={{ fontFamily: 'var(--mono)', fontSize: 11, marginTop: 10, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
               {t.links.map((l) =>
             <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
-            aria-label={`${t.name}: ${l.label} (opens in a new tab)`}>→ {l.label}</a>
+            aria-label={`${t.name}: ${l.label} (opens in a new tab)`}
+            style={{ color: 'var(--teal)' }}>→ {l.label}</a>
             )}
             </div>
           </div>
@@ -810,7 +826,7 @@ function CatalogRow({ num, name, cat, stack, desc, links }) {
             {links.map((l) =>
           <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
           aria-label={`${name}: ${l.label} (opens in a new tab)`}
-          style={{ color: hover ? 'var(--rouge)' : 'var(--ink-dim)' }}>→ {l.label}</a>
+          style={{ color: hover ? 'var(--teal)' : 'var(--ink-dim)' }}>→ {l.label}</a>
           )}
           </div> :
         <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: hover ? 'var(--rouge)' : 'var(--ink-mute)', marginTop: 4 }}>
