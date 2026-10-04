@@ -56,16 +56,16 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
-{ num: '046', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
+{ num: '047', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
   desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, lays real traffic over the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
   links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
-{ num: '045', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
+{ num: '046', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
   desc: 'The workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, an experimental replay lab for policy changes, and benchmarks with their limits written down.',
   links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
-{ num: '044', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
+{ num: '045', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
   links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
-{ num: '043', name: 'CommitAtlas', cat: 'devtool · github analytics · live', stack: 'TypeScript · Cloudflare Workers',
+{ num: '044', name: 'CommitAtlas', cat: 'devtool · github analytics · live', stack: 'TypeScript · Cloudflare Workers',
   desc: 'Source-backed GitHub analytics: README graphics, project-health views and a live portfolio Studio. Every reading says where it came from, what window it covers and how fresh it is; stale data is marked stale, and nothing invents a ranking.',
   links: [{ label: 'studio', href: 'https://commit-atlas.commit-atlas.workers.dev/studio' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/CommitAtlas' }] },
 { num: '038', name: 'RepoScope', cat: 'devtool · offline · 100% local', stack: 'C# / .NET 8 · LibGit2Sharp · Vue 3',
