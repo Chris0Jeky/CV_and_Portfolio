@@ -12,7 +12,6 @@
 <script defer src="pulseboard.js"></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..700;1,6..72,200..700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
@@ -213,21 +212,23 @@
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
 </div>
 
-<script type="text/babel" src="portfolio/utils.jsx"></script>
-<script type="text/babel" src="portfolio/hero.jsx"></script>
-<script type="text/babel" src="portfolio/about.jsx"></script>
-<script type="text/babel" src="portfolio/experience.jsx"></script>
-<script type="text/babel" src="portfolio/numbers.jsx"></script>
-<script type="text/babel" src="portfolio/credentials.jsx"></script>
-<script type="text/babel" src="portfolio/wealthlens.jsx"></script>
-<script type="text/babel" src="portfolio/navsentinel.jsx"></script>
-<script type="text/babel" src="portfolio/projects.jsx"></script>
-<script type="text/babel" src="portfolio/skills.jsx"></script>
-<script type="text/babel" src="portfolio/contact.jsx"></script>
-<script type="text/babel" src="portfolio/command-palette.jsx"></script>
-<script type="text/babel" src="portfolio/doom.jsx"></script>
-<script type="text/babel" src="portfolio/survivors.jsx"></script>
-<script type="text/babel" src="portfolio/app.jsx"></script>
+<!-- Precompiled from portfolio/*.jsx by `npm run build` (scripts/build-jsx.mjs). Deferred, so they run after
+     the plain scripts below, in this order, as the in-browser Babel loader ran them. -->
+<script defer src="portfolio/dist/utils.js"></script>
+<script defer src="portfolio/dist/hero.js"></script>
+<script defer src="portfolio/dist/about.js"></script>
+<script defer src="portfolio/dist/experience.js"></script>
+<script defer src="portfolio/dist/numbers.js"></script>
+<script defer src="portfolio/dist/credentials.js"></script>
+<script defer src="portfolio/dist/wealthlens.js"></script>
+<script defer src="portfolio/dist/navsentinel.js"></script>
+<script defer src="portfolio/dist/projects.js"></script>
+<script defer src="portfolio/dist/skills.js"></script>
+<script defer src="portfolio/dist/contact.js"></script>
+<script defer src="portfolio/dist/command-palette.js"></script>
+<script defer src="portfolio/dist/doom.js"></script>
+<script defer src="portfolio/dist/survivors.js"></script>
+<script defer src="portfolio/dist/app.js"></script>
 <script src="portfolio/pulseboard-events.js"></script>
 <script src="portfolio/effects.js"></script>
 <script src="portfolio/effects-extra.js"></script>

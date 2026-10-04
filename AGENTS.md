@@ -26,6 +26,9 @@ Key files by area:
 
 PORTFOLIO (main interactive site):
   Portfolio/portfolio.html          ← Main SPA, all sections
+  Portfolio/portfolio/*.jsx         ← Section components (React); edit these, then `npm install` once and
+                                      `npm run build` to regenerate Portfolio/portfolio/dist/*.js (commit both;
+                                      `npm test` fails if dist/ is stale)
   Portfolio/portfolio-style.css     ← Design system, all styles
   Portfolio/portfolio-script.js     ← Interactions, animations
   Portfolio/images/headshot.jpg     ← Profile photo (protected)
