@@ -132,7 +132,7 @@ function WorkshopFeature() {
           <div><span className="prompt">▸</span> checks scale with <span className="ok">blast radius</span>; a sandbox runs free.</div>
           <div><span className="prompt">▸</span> a map nobody can prove against git is a <span className="warn">rumour</span>.</div>
           <div><span className="prompt">▸</span> stale data is labelled <span className="warn">stale</span>, never painted healthy.</div>
-          <div><span className="prompt">▸</span> the output is a <span className="cyan">next check</span>, not a score.</div>
+          <div><span className="prompt">▸</span> evidence first; the <span className="cyan">verdict</span> stays with a person.</div>
         </div>
       </div>
 
