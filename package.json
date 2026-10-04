@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node observatory/check.mjs"
+    "test": "node observatory/check.mjs",
+    "check:links": "node scripts/check-links.mjs"
   },
   "private": true,
   "dependencies": {
