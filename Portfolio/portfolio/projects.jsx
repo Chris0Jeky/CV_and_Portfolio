@@ -57,10 +57,10 @@ const TASKDECK_GPS = [
 
 const CATALOG = [
 { num: '046', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
-  desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, projects real traffic onto the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
+  desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, lays real traffic over the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
   links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
 { num: '045', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
-  desc: 'The policy, measurement and operations workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, a replay lab for policy changes, and benchmarks with their limits written down.',
+  desc: 'The workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, an experimental replay lab for policy changes, and benchmarks with their limits written down.',
   links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
 { num: '044', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
@@ -77,7 +77,7 @@ const CATALOG = [
 { num: '034', name: 'AgentForge', cat: 'devtool · agent orchestration', stack: 'Python 3.11 · git worktrees · MCP · GitHub CLI',
   desc: 'A local-first "agent farm" for running multiple coding agents without them stepping on each other. Each task gets its own git worktree, the orchestrator handles spawning, harness checks, PR comment commands, MCP toolkit sync, and policy-as-code. Trust-first automation for the case where the automation itself is plural.' },
 { num: '033', name: 'Pulseboard', cat: 'observability · product signals · live', stack: 'JavaScript · Cloudflare Workers · D1',
-  desc: 'A small operations desk for everything I ship: bounded product signals, synthetic checks and release context in one place, producing an evidence-backed next check rather than a score. This page reports to it: the Beta bar at the top says what is sent, and no names, emails or IP addresses are stored.',
+  desc: 'A small operations desk for everything I ship: product signals, synthetic probes and release context in one place, producing an evidence-backed next check rather than a score. This page reports to it: the Beta bar at the top says what is sent, and no names, emails or IP addresses are stored.',
   links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
 { num: '030', name: 'SwarmingLilMen', cat: 'systems · simulation · performance', stack: 'C# · .NET 8 · Raylib · SIMD',
   desc: 'A 2D swarm simulation targeting 50k–100k interactive agents at 60 FPS via Structure-of-Arrays data layout and an allocation-free hot path. Deterministic, seeded, reproducible. Ships with four browser demos: Boids, Vicsek phase transitions, ant-colony optimisation, and particle-swarm optimisation. The bridge between NPDL theory and watching it happen at 60 frames per second.' },
@@ -746,7 +746,7 @@ function CatalogRow({ num, name, cat, stack, desc, links }) {
             {links.map((l) =>
           <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
           aria-label={`${name}: ${l.label} (opens in a new tab)`}
-          style={{ color: hover ? 'var(--rouge)' : 'var(--ink-dim)' }}>→ {l.label}</a>
+          style={{ color: hover ? 'var(--teal)' : 'var(--ink-dim)' }}>→ {l.label}</a>
           )}
           </div> :
         <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: hover ? 'var(--rouge)' : 'var(--ink-mute)', marginTop: 4 }}>
