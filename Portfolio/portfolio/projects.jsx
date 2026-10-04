@@ -621,7 +621,7 @@ function IPDFeature() {
             <span>round <span style={{ color: 'var(--term-fg)' }}>{round.toString().padStart(3, '0')}</span></span>
           </div>
 
-          <div style={{
+          <div data-keep-grid style={{
             display: 'grid', gridTemplateColumns: `repeat(${n}, 1fr)`,
             gap: 2, marginBottom: 12,
             aspectRatio: '1 / 1'

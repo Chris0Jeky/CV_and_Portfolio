@@ -144,7 +144,7 @@ function PipelineVisualization({ scanned }) {
       </div>
 
       {/* Grid of pipelines */}
-      <div style={{
+      <div data-keep-grid style={{
         display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 6, marginBottom: 16,
       }}>
         {Array.from({ length: total }).map((_, i) => {
