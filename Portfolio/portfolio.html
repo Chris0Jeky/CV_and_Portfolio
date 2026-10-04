@@ -180,9 +180,10 @@
     .nav-links { display: none; }
     .mobile-menu-btn { display: block; }
     body { font-size: 16px; }
-    /* Stack grids to single column. React writes inline styles as CSS (grid-template-columns), so the
-       selector must use that spelling. minmax(0, 1fr) lets a track shrink below a wide child (a <pre>). */
-    section [style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; }
+    /* Stack layout grids to single column. React writes inline styles as CSS (grid-template-columns), so the
+       selector must use that spelling. minmax(0, 1fr) lets a track shrink below a wide child (a <pre>).
+       Visualisation grids whose columns carry meaning (simulation boards) opt out with data-keep-grid. */
+    section [style*="grid-template-columns"]:not([data-keep-grid]) { grid-template-columns: minmax(0, 1fr) !important; }
     section pre { max-width: 100%; overflow-x: auto; }
     .hero-grid { grid-template-columns: 1fr !important; }
   }
