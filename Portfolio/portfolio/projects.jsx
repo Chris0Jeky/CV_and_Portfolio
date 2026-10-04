@@ -20,6 +20,11 @@ window.Projects = function Projects() {
           <TaskdeckFeature />
         </div>
 
+        {/* Featured: the workshop (public agent-operations tools) */}
+        <div style={{ marginTop: 64 }}>
+          <WorkshopFeature />
+        </div>
+
         {/* Featured: NavSentinel with CDS demo */}
         <div style={{ marginTop: 64 }}>
           <NavSentinelFeature />
@@ -56,18 +61,9 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
-{ num: '046', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
-  desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, projects real traffic onto the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
-  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
-{ num: '045', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
-  desc: 'The policy, measurement and operations workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, a replay lab for policy changes, and benchmarks with their limits written down.',
-  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
 { num: '044', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
   links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
-{ num: '043', name: 'CommitAtlas', cat: 'devtool · github analytics · live', stack: 'TypeScript · Cloudflare Workers',
-  desc: 'Source-backed GitHub analytics: README graphics, project-health views and a live portfolio Studio. Every reading says where it came from, what window it covers and how fresh it is; stale data is marked stale, and nothing invents a ranking.',
-  links: [{ label: 'studio', href: 'https://commit-atlas.commit-atlas.workers.dev/studio' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/CommitAtlas' }] },
 { num: '038', name: 'RepoScope', cat: 'devtool · offline · 100% local', stack: 'C# / .NET 8 · LibGit2Sharp · Vue 3',
   desc: 'Git repository analyzer that runs on your machine and stays there. CLI + Vue dashboard + static HTML reports. File-level hotspots, code churn over time, contributor patterns. The kind of insight you used to need a SaaS dashboard and a credit card for.' },
 { num: '036', name: 'DevFoundry', cat: 'toolbox · cli + ui · offline', stack: 'C# · .NET 8 · Vue 3',
@@ -76,9 +72,6 @@ const CATALOG = [
   desc: 'Companion to Metrix — a suite of statistical tools that crunches historical options data and feeds Metrix\'s backtests with inputs that have already been argued about, validated, and cited.' },
 { num: '034', name: 'AgentForge', cat: 'devtool · agent orchestration', stack: 'Python 3.11 · git worktrees · MCP · GitHub CLI',
   desc: 'A local-first "agent farm" for running multiple coding agents without them stepping on each other. Each task gets its own git worktree, the orchestrator handles spawning, harness checks, PR comment commands, MCP toolkit sync, and policy-as-code. Trust-first automation for the case where the automation itself is plural.' },
-{ num: '033', name: 'Pulseboard', cat: 'observability · product signals · live', stack: 'JavaScript · Cloudflare Workers · D1',
-  desc: 'A small operations desk for everything I ship: bounded product signals, synthetic checks and release context in one place, producing an evidence-backed next check rather than a score. This page reports to it: the Beta bar at the top says what is sent, and no names, emails or IP addresses are stored.',
-  links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
 { num: '030', name: 'SwarmingLilMen', cat: 'systems · simulation · performance', stack: 'C# · .NET 8 · Raylib · SIMD',
   desc: 'A 2D swarm simulation targeting 50k–100k interactive agents at 60 FPS via Structure-of-Arrays data layout and an allocation-free hot path. Deterministic, seeded, reproducible. Ships with four browser demos: Boids, Vicsek phase transitions, ant-colony optimisation, and particle-swarm optimisation. The bridge between NPDL theory and watching it happen at 60 frames per second.' },
 { num: '029', name: 'EduHub', cat: 'edtech · fullstack · realtime', stack: 'Vue · Node · MongoDB · JWT',
@@ -92,6 +85,77 @@ const CATALOG = [
 { num: '022', name: 'Thread-safe C++ Music Library', cat: 'systems · c++17', stack: 'C++17 · std::thread',
   desc: 'High-performance, thread-safe music library with fuzzy and regex search, full metadata support, and the kind of locking discipline that means the readme is shorter than the locks themselves.' }];
 
+
+/* ============ WORKSHOP FEATURE ============ */
+const WORKSHOP_TOOLS = [
+{ name: 'agent-harness', role: 'the rules',
+  line: 'A tier ladder that scales review with blast radius, guarded worktree tooling, and a replay lab that checks a policy change against recorded agent decisions.',
+  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
+{ name: 'estate-atlas', role: 'the map',
+  line: 'Components, contracts and flows in one JSON file, each claim proven against git, real traffic projected onto the flows, drawn as an offline HTML atlas.',
+  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
+{ name: 'Pulseboard', role: 'the pulse',
+  line: 'Bounded product signals, synthetic checks and release context in one desk, producing an evidence-backed next check instead of a score. Runs on Cloudflare Workers and D1.',
+  links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
+{ name: 'CommitAtlas', role: 'the public view',
+  line: 'GitHub analytics and a portfolio Studio where every reading names its source, window and freshness, and stale data is marked stale.',
+  links: [{ label: 'studio', href: 'https://commit-atlas.commit-atlas.workers.dev/studio' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/CommitAtlas' }] }];
+
+
+function WorkshopFeature() {
+  return (
+    <article style={{ borderTop: '1px solid var(--rule)', paddingTop: 32 }}>
+      <FeatureHeader num="045" name="The Workshop" cat="Open source · Agent operations · Evidence"
+      years="2026 — active" team="four public repositories" tone="teal" />
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
+        <div>
+          <p className="dropcap" style={{ fontSize: 18, lineHeight: 1.65, marginTop: 0 }}>
+            Most of what I build for myself now is plumbing for one question: when a
+            coding agent (or I) changes something, how do we know it was right?{' '}
+            <em style={{ color: 'var(--teal)' }}>The workshop</em> is four public tools,
+            each answering a piece of it. <strong>agent-harness</strong> sets the rules, so a
+            sandbox runs free and a production repository earns extra checks.{' '}
+            <strong>estate-atlas</strong> keeps the architecture map honest by proving it
+            against git. <strong>Pulseboard</strong> watches what actually ships, and{' '}
+            <strong>CommitAtlas</strong> shows the public side.
+          </p>
+          <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)' }}>
+            None of them hands out a score. Each one produces evidence and says plainly what
+            it does not know, which turns out to be the hard part. They are small, mostly
+            standard-library or edge-hosted, and built alongside the agents they keep in line.
+          </p>
+        </div>
+
+        <div className="term">
+          <span className="term-label">$ cat workshop.rules</span>
+          <div><span className="prompt">▸</span> checks scale with <span className="ok">blast radius</span>; a sandbox runs free.</div>
+          <div><span className="prompt">▸</span> a map nobody can prove against git is a <span className="warn">rumour</span>.</div>
+          <div><span className="prompt">▸</span> stale data is labelled <span className="warn">stale</span>, never painted healthy.</div>
+          <div><span className="prompt">▸</span> the output is a <span className="cyan">next check</span>, not a score.</div>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, marginTop: 32 }}>
+        {WORKSHOP_TOOLS.map((t) =>
+        <div key={t.name} style={{ border: '1px solid var(--rule)', padding: '16px 18px', background: 'var(--paper-2)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+              <div style={{ fontFamily: 'var(--serif)', fontSize: 24, letterSpacing: '-0.01em' }}>{t.name}</div>
+              <div className="label" style={{ color: 'var(--teal)' }}>{t.role}</div>
+            </div>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: 13.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginTop: 8 }}>{t.line}</div>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 11, marginTop: 10, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              {t.links.map((l) =>
+            <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
+            aria-label={`${t.name}: ${l.label} (opens in a new tab)`}>→ {l.label}</a>
+            )}
+            </div>
+          </div>
+        )}
+      </div>
+    </article>);
+
+}
 
 /* ============ METRIX FEATURE ============ */
 function MetrixFeature() {
