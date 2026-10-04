@@ -11,3 +11,5 @@ CV3 reviews only approved public inputs. Never copy private HQ plans, contact le
 Follow `AGENTS.md` and the existing relevant skills. The referenced root `CLAUDE.md` returned 404 during this pass; record that orientation drift rather than inventing its content or replacing the agent system. Syntax: `python -m json.tool .hosting/manifest.json`. Full page/link/mobile and hosted acceptance remain separate checks. No browser behavior is proven by JSON validation.
 
 Rollback keeps the previous public build and functioning old links. Domain purchase, canonical hostname and any display-name changes remain explicit owner actions.
+
+Custom domain (2026-10-04): `CUSTOM_DOMAIN.md` holds the owner steps and `CNAME.inactive` the file to copy to the root at cutover; `npm run check:links` proves the relative-link base-path independence that CV2 needs.
