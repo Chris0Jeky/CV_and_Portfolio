@@ -184,3 +184,26 @@ test('root CNAME is reported when present', () => {
   withSite(site({ 'index.html': page('') }), result => assert.equal(result.cname, false));
   withSite(site({ 'index.html': page(''), CNAME: 'example.com\n' }), result => assert.equal(result.cname, true));
 });
+
+test('script and style bodies are not scanned for attributes, but the script tag itself is', () => {
+  const html = page('<script src="app.js">const src = buildAssetUrl(); const href = "x";</script>'
+    + '<script>var o = { src=other(), href = nowhere };</script><style>a[href=foo] { color: red }</style>'
+    + '<script src="missing.js"></script>');
+  withSite(site({ 'index.html': html, 'app.js': '' }), ({ broken, checked }) => {
+    assert.equal(checked, 2);
+    assert.equal(broken.length, 1);
+    assert.match(broken[0], /"missing\.js"/);
+  });
+});
+
+test('only real traversal escapes the root: names that merely start with two dots are inside it', () => {
+  withSite(site({
+    'index.html': page('<a href="..notes.html">a</a><a href="..dir/page.html">b</a><a href="..">c</a><a href="../x.html">d</a>'),
+    '..notes.html': '',
+    '..dir/page.html': '',
+  }), ({ broken }) => {
+    assert.equal(broken.length, 2);
+    assert.match(broken[0], /"\.\."/);
+    assert.match(broken[1], /"\.\.\/x\.html"/);
+  });
+});

@@ -22,7 +22,9 @@ const SELF_FILES = new Set(['scripts/check-links.mjs', 'scripts/check-links.test
 const COMMENT_OR_RAW = /<!--[\s\S]*?(?:-->|$)|<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi;
 const ATTRIBUTE = /\b(?:href|src)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/gi;
 
-const stripComments = text => text.replace(COMMENT_OR_RAW, (whole, tag) => (tag ? whole : ''));
+// Comments go; a script or style keeps only its opening tag (its own src is a real link) and loses its body, which is
+// code or CSS, where `const src = f()` or `a[href=x]` is not an attribute.
+const stripComments = text => text.replace(COMMENT_OR_RAW, (whole, tag) => (tag ? whole.match(/^<[^>]*>/)[0] : ''));
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
@@ -57,7 +59,7 @@ function decodeComponents(path) {
 // locally and 404s live. Compare each component's spelling with its parent's listing; a directory needs an index.html.
 function resolvesExactly(root, resolved) {
   const where = relative(root, resolved);
-  if (where.startsWith('..') || isAbsolute(where)) return false;
+  if (where === '..' || where.startsWith(`..${sep}`) || isAbsolute(where)) return false;
   let current = root;
   for (const part of where ? where.split(sep) : []) {
     let listing;
