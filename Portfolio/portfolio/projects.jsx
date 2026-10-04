@@ -61,15 +61,6 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
-<<<<<<< HEAD
-=======
-{ num: '046', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
-  desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, lays real traffic over the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
-  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
-{ num: '045', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
-  desc: 'The workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, an experimental replay lab for policy changes, and benchmarks with their limits written down.',
-  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
->>>>>>> feat/portfolio-refresh-catalogue
 { num: '044', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
   links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
@@ -81,12 +72,6 @@ const CATALOG = [
   desc: 'Companion to Metrix — a suite of statistical tools that crunches historical options data and feeds Metrix\'s backtests with inputs that have already been argued about, validated, and cited.' },
 { num: '034', name: 'AgentForge', cat: 'devtool · agent orchestration', stack: 'Python 3.11 · git worktrees · MCP · GitHub CLI',
   desc: 'A local-first "agent farm" for running multiple coding agents without them stepping on each other. Each task gets its own git worktree, the orchestrator handles spawning, harness checks, PR comment commands, MCP toolkit sync, and policy-as-code. Trust-first automation for the case where the automation itself is plural.' },
-<<<<<<< HEAD
-=======
-{ num: '033', name: 'Pulseboard', cat: 'observability · product signals · live', stack: 'JavaScript · Cloudflare Workers · D1',
-  desc: 'A small operations desk for everything I ship: product signals, synthetic probes and release context in one place, producing an evidence-backed next check rather than a score. This page reports to it: the Beta bar at the top says what is sent, and no names, emails or IP addresses are stored.',
-  links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
->>>>>>> feat/portfolio-refresh-catalogue
 { num: '030', name: 'SwarmingLilMen', cat: 'systems · simulation · performance', stack: 'C# · .NET 8 · Raylib · SIMD',
   desc: 'A 2D swarm simulation targeting 50k–100k interactive agents at 60 FPS via Structure-of-Arrays data layout and an allocation-free hot path. Deterministic, seeded, reproducible. Ships with four browser demos: Boids, Vicsek phase transitions, ant-colony optimisation, and particle-swarm optimisation. The bridge between NPDL theory and watching it happen at 60 frames per second.' },
 { num: '029', name: 'EduHub', cat: 'edtech · fullstack · realtime', stack: 'Vue · Node · MongoDB · JWT',
