@@ -8,3 +8,7 @@ Captured from local builds of the PR branches in a 1024px desktop pane and a 375
 3. `3-optionA-catalogue-desktop.jpg`: option A, four new catalogue rows with links (#16).
 4. `4-optionB-workshop-desktop-1.jpg`, `5-optionB-workshop-desktop-2.jpg`: option B, the featured Workshop spread (#17).
 5. `6-optionB-workshop-mobile-1.jpg`, `7-optionB-workshop-mobile-2.jpg`: option B on a phone, with the mobile fix.
+
+Updated after review (Sol, Grok): 3, 4 and 6 show the current wording. 5 and 7 (the cards) predate two small copy edits
+(the agent-harness card now says "an experimental replay lab for checking policy changes"; estate-atlas says
+"laid over" instead of "projected onto"); layout is unchanged.
