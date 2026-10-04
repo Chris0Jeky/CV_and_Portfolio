@@ -56,6 +56,18 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
+{ num: '047', name: 'estate-atlas', cat: 'devtool · architecture · open source', stack: 'Python 3.11 · standard library only',
+  desc: 'Architecture as checked data. You describe components, contracts and flows in one JSON file; it proves each claim against your git repositories, lays real traffic over the flows, and draws an offline HTML atlas with plain-English explanations. The map is not allowed to quietly drift from the code.',
+  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/estate-atlas' }] },
+{ num: '046', name: 'agent-harness', cat: 'devtool · agent operations · open source', stack: 'Python · GitHub Actions',
+  desc: 'The workbench behind how I run Codex and Claude coding agents across a few dozen repositories: a tier ladder that scales checks with blast radius, guarded worktree tooling, an experimental replay lab for policy changes, and benchmarks with their limits written down.',
+  links: [{ label: 'repo', href: 'https://github.com/Chris0Jeky/agent-harness' }] },
+{ num: '045', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
+  desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
+  links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
+{ num: '044', name: 'CommitAtlas', cat: 'devtool · github analytics · live', stack: 'TypeScript · Cloudflare Workers',
+  desc: 'Source-backed GitHub analytics: README graphics, project-health views and a live portfolio Studio. Every reading says where it came from, what window it covers and how fresh it is; stale data is marked stale, and nothing invents a ranking.',
+  links: [{ label: 'studio', href: 'https://commit-atlas.commit-atlas.workers.dev/studio' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/CommitAtlas' }] },
 { num: '038', name: 'RepoScope', cat: 'devtool · offline · 100% local', stack: 'C# / .NET 8 · LibGit2Sharp · Vue 3',
   desc: 'Git repository analyzer that runs on your machine and stays there. CLI + Vue dashboard + static HTML reports. File-level hotspots, code churn over time, contributor patterns. The kind of insight you used to need a SaaS dashboard and a credit card for.' },
 { num: '036', name: 'DevFoundry', cat: 'toolbox · cli + ui · offline', stack: 'C# · .NET 8 · Vue 3',
@@ -64,8 +76,9 @@ const CATALOG = [
   desc: 'Companion to Metrix — a suite of statistical tools that crunches historical options data and feeds Metrix\'s backtests with inputs that have already been argued about, validated, and cited.' },
 { num: '034', name: 'AgentForge', cat: 'devtool · agent orchestration', stack: 'Python 3.11 · git worktrees · MCP · GitHub CLI',
   desc: 'A local-first "agent farm" for running multiple coding agents without them stepping on each other. Each task gets its own git worktree, the orchestrator handles spawning, harness checks, PR comment commands, MCP toolkit sync, and policy-as-code. Trust-first automation for the case where the automation itself is plural.' },
-{ num: '033', name: 'Pulseboard', cat: 'realtime · pluggable · PWA', stack: 'Python · FastAPI · Vue 3 · ECharts',
-  desc: 'Real-time, pluggable dashboard platform. WebSocket streaming with auto-reconnect, three built-in feeds (system metrics via psutil, HTTP-JSON poller, crypto via CoinGecko), drag-and-drop panels with grid snapping. 85% backend coverage, 56 frontend tests, dockerised, PWA-ready. The dashboard I wanted instead of the third Grafana spin-up.' },
+{ num: '033', name: 'Pulseboard', cat: 'observability · product signals · live', stack: 'JavaScript · Cloudflare Workers · D1',
+  desc: 'A small operations desk for everything I ship: product signals, synthetic probes and release context in one place, producing an evidence-backed next check rather than a score. This page reports to it: the Beta bar at the top says what is sent, and no names, emails or IP addresses are stored.',
+  links: [{ label: 'desk', href: 'https://pulseboard-observatory.commit-atlas.workers.dev' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Pulseboard' }] },
 { num: '030', name: 'SwarmingLilMen', cat: 'systems · simulation · performance', stack: 'C# · .NET 8 · Raylib · SIMD',
   desc: 'A 2D swarm simulation targeting 50k–100k interactive agents at 60 FPS via Structure-of-Arrays data layout and an allocation-free hot path. Deterministic, seeded, reproducible. Ships with four browser demos: Boids, Vicsek phase transitions, ant-colony optimisation, and particle-swarm optimisation. The bridge between NPDL theory and watching it happen at 60 frames per second.' },
 { num: '029', name: 'EduHub', cat: 'edtech · fullstack · realtime', stack: 'Vue · Node · MongoDB · JWT',
@@ -704,7 +717,7 @@ function FeatureHeader({ num, name, cat, years, team, tone }) {
 
 }
 
-function CatalogRow({ num, name, cat, stack, desc }) {
+function CatalogRow({ num, name, cat, stack, desc, links }) {
   const [hover, setHover] = useState(false);
   return (
     <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
@@ -728,9 +741,18 @@ function CatalogRow({ num, name, cat, stack, desc }) {
       </div>
       <div style={{ textAlign: 'right' }}>
         <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-dim)' }}>{stack}</div>
+        {links ?
+        <div style={{ fontFamily: 'var(--mono)', fontSize: 10, marginTop: 4, display: 'flex', gap: 10, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+            {links.map((l) =>
+          <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
+          aria-label={`${name}: ${l.label} (opens in a new tab)`}
+          style={{ color: hover ? 'var(--teal)' : 'var(--ink-dim)' }}>→ {l.label}</a>
+          )}
+          </div> :
         <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: hover ? 'var(--rouge)' : 'var(--ink-mute)', marginTop: 4 }}>
-          {hover ? '→ open' : 'idle'}
-        </div>
+            {hover ? '→ open' : 'idle'}
+          </div>
+        }
       </div>
     </div>);
 
