@@ -61,7 +61,7 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
-{ num: '044', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
+{ num: '045', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
   links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
 { num: '038', name: 'RepoScope', cat: 'devtool · offline · 100% local', stack: 'C# / .NET 8 · LibGit2Sharp · Vue 3',
@@ -105,7 +105,7 @@ const WORKSHOP_TOOLS = [
 function WorkshopFeature() {
   return (
     <article style={{ borderTop: '1px solid var(--rule)', paddingTop: 32 }}>
-      <FeatureHeader num="045" name="The Workshop" cat="Open source · Agent operations · Evidence"
+      <FeatureHeader num="048" name="The Workshop" cat="Open source · Agent operations · Evidence"
       years="2026 — active" team="four public repositories" tone="teal" />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
@@ -140,7 +140,7 @@ function WorkshopFeature() {
         {WORKSHOP_TOOLS.map((t) =>
         <div key={t.name} style={{ border: '1px solid var(--rule)', padding: '16px 18px', background: 'var(--paper-2)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
-              <div style={{ fontFamily: 'var(--serif)', fontSize: 24, letterSpacing: '-0.01em' }}>{t.name}</div>
+              <h4 style={{ fontFamily: 'var(--serif)', fontSize: 24, fontWeight: 400, letterSpacing: '-0.01em', margin: 0 }}>{t.name}</h4>
               <div className="label" style={{ color: 'var(--teal)' }}>{t.role}</div>
             </div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: 13.5, color: 'var(--ink-dim)', lineHeight: 1.55, marginTop: 8 }}>{t.line}</div>
