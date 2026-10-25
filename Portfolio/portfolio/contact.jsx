@@ -2,12 +2,20 @@
 const { useState, useEffect } = React;
 
 window.Contact = function Contact() {
-  const [copied, setCopied] = useState(false);
+  const [copying, setCopying] = useState(false);
+  const [copyStatus, setCopyStatus] = useState('');
 
-  function copyEmail() {
-    navigator.clipboard?.writeText('Jeky.tck@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1600);
+  async function copyEmail() {
+    setCopying(true);
+    setCopyStatus('');
+    try {
+      await navigator.clipboard.writeText('Jeky.tck@gmail.com');
+      setCopyStatus('Email address copied to clipboard.');
+    } catch {
+      setCopyStatus('Could not copy. Select and copy this address: Jeky.tck@gmail.com');
+    } finally {
+      setCopying(false);
+    }
   }
 
   return (
@@ -24,9 +32,13 @@ window.Contact = function Contact() {
             </p>
 
             <div style={{ marginTop: 32 }}>
-              <a className="btn btn-rouge" onClick={copyEmail} data-pb-contact="email" style={{ cursor: 'pointer' }}>
-                ✉ {copied ? 'Copied to clipboard' : 'Jeky.tck@gmail.com'}
-              </a>
+              <button type="button" className="btn btn-rouge" onClick={copyEmail}
+                disabled={copying} aria-label="Copy email address: Jeky.tck@gmail.com" data-pb-contact="email">
+                ✉ Jeky.tck@gmail.com
+              </button>
+              <p role="status" style={{ margin: '8px 0 0', fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink-dim)' }}>
+                {copyStatus}
+              </p>
             </div>
 
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
