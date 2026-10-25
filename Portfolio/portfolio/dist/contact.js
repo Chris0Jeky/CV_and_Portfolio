@@ -79,7 +79,7 @@ window.Contact = function Contact() {
   }), /*#__PURE__*/React.createElement(ContactRow, {
     label: "LinkedIn",
     value: "linkedin.com/in/cristian-tcaci",
-    href: "#",
+    href: "https://www.linkedin.com/in/cristian-tcaci/",
     pb: {
       contact: 'linkedin'
     }
@@ -211,7 +211,7 @@ function ContactRow(_ref) {
   return /*#__PURE__*/React.createElement("a", {
     href: href,
     target: "_blank",
-    rel: "noopener",
+    rel: "noopener noreferrer",
     "data-pb-contact": pb.contact,
     "data-pb-project": pb.project,
     "data-pb-link": pb.project ? 'repo' : undefined,

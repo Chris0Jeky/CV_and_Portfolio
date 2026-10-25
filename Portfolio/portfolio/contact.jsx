@@ -31,7 +31,7 @@ window.Contact = function Contact() {
 
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <ContactRow label="GitHub" value="github.com/Chris0Jeky" href="https://github.com/Chris0Jeky" pb={{ contact: 'github' }}/>
-              <ContactRow label="LinkedIn" value="linkedin.com/in/cristian-tcaci" href="#" pb={{ contact: 'linkedin' }}/>
+              <ContactRow label="LinkedIn" value="linkedin.com/in/cristian-tcaci" href="https://www.linkedin.com/in/cristian-tcaci/" pb={{ contact: 'linkedin' }}/>
               <ContactRow label="Repo · WealthLens" value="github.com/Chris0Jeky/wealthlens-hq" href="https://github.com/Chris0Jeky/wealthlens-hq" pb={{ project: 'wealthlens' }}/>
               <ContactRow label="Repo · Taskdeck" value="github.com/Chris0Jeky/Taskdeck" href="https://github.com/Chris0Jeky/Taskdeck" pb={{ project: 'taskdeck' }}/>
               <ContactRow label="Repo · NPDL" value="github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" href="https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" pb={{ project: 'npdl' }}/>
@@ -97,7 +97,7 @@ window.Contact = function Contact() {
 
 function ContactRow({ label, value, href, pb = {} }) {
   return (
-    <a href={href} target="_blank" rel="noopener"
+    <a href={href} target="_blank" rel="noopener noreferrer"
       data-pb-contact={pb.contact} data-pb-project={pb.project} data-pb-link={pb.project ? 'repo' : undefined} style={{
       display: 'grid', gridTemplateColumns: '120px 1fr 30px', gap: 16,
       padding: '12px 0', borderTop: '1px solid var(--rule)',
