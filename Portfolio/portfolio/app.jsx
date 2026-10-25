@@ -3,7 +3,8 @@ const { useState, useEffect, useRef } = React;
 
 function Nav() {
   function openMobileNav() {
-    document.getElementById('mobile-nav').classList.add('is-open');
+    const menu = document.getElementById('mobile-nav');
+    if (menu && !menu.open) menu.showModal();
   }
   return (
     <div className="navbar">
@@ -22,7 +23,8 @@ function Nav() {
         <span style={{ color: 'var(--ink-dim)' }}>
           <span style={{ color: 'var(--forest)' }} className="pulse">●</span> open to work
         </span>
-        <button className="mobile-menu-btn" onClick={openMobileNav} aria-label="Menu">☰</button>
+        <button type="button" className="mobile-menu-btn" onClick={openMobileNav}
+          aria-label="Menu" aria-controls="mobile-nav" aria-haspopup="dialog">☰</button>
       </div>
     </div>
   );

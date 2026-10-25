@@ -14,7 +14,8 @@ var _React = React,
   useRef = _React.useRef;
 function Nav() {
   function openMobileNav() {
-    document.getElementById('mobile-nav').classList.add('is-open');
+    var menu = document.getElementById('mobile-nav');
+    if (menu && !menu.open) menu.showModal();
   }
   return /*#__PURE__*/React.createElement("div", {
     className: "navbar"
@@ -57,9 +58,12 @@ function Nav() {
     },
     className: "pulse"
   }, "\u25CF"), " open to work"), /*#__PURE__*/React.createElement("button", {
+    type: "button",
     className: "mobile-menu-btn",
     onClick: openMobileNav,
-    "aria-label": "Menu"
+    "aria-label": "Menu",
+    "aria-controls": "mobile-nav",
+    "aria-haspopup": "dialog"
   }, "\u2630")));
 }
 
