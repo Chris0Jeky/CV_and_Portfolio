@@ -159,10 +159,12 @@
   }
   .mobile-nav-overlay {
     display: none; position: fixed; inset: 0; z-index: 100;
+    width: 100%; height: 100%; max-width: none; max-height: none;
+    margin: 0; padding: 0; border: none;
     background: rgba(244, 241, 234, 0.98);
     flex-direction: column; align-items: center; justify-content: center; gap: 32px;
   }
-  .mobile-nav-overlay.is-open { display: flex; }
+  .mobile-nav-overlay[open] { display: flex; }
   .mobile-nav-overlay a {
     font-family: var(--serif); font-size: 32px; text-decoration: none;
     color: var(--ink); letter-spacing: -0.02em;
@@ -203,14 +205,14 @@
 <body>
 <div data-pulseboard-bar style="min-height:2.5rem"></div>
 <div id="root"></div>
-<div class="mobile-nav-overlay" id="mobile-nav">
-  <button class="mobile-nav-close" id="mobile-nav-close">✕</button>
-  <a href="#about" onclick="closeMobileNav()">About</a>
-  <a href="#experience" onclick="closeMobileNav()">Experience</a>
-  <a href="#projects" onclick="closeMobileNav()">Projects</a>
-  <a href="#skills" onclick="closeMobileNav()">Skills</a>
-  <a href="#contact" onclick="closeMobileNav()">Contact</a>
-</div>
+<dialog class="mobile-nav-overlay" id="mobile-nav" aria-label="Mobile navigation">
+  <button type="button" class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu" autofocus>✕</button>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</dialog>
 
 <!-- Precompiled from portfolio/*.jsx by `npm run build` (scripts/build-jsx.mjs). Deferred, so they run after
      the plain scripts below, in this order, as the in-browser Babel loader ran them. -->
@@ -235,9 +237,14 @@
 <script src="portfolio/survivors-game.js"></script>
 <script src="portfolio/arcade-plus.js"></script>
 <script>
-function closeMobileNav() {
-  document.getElementById('mobile-nav').classList.remove('is-open');
-}
+(() => {
+  const menu = document.getElementById('mobile-nav');
+  if (menu) {
+    menu.querySelectorAll('button, a').forEach(control => {
+      control.addEventListener('click', () => menu.close());
+    });
+  }
+})();
 </script>
 </body>
 </html>
