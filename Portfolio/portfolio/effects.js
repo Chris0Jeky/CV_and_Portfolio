@@ -242,14 +242,12 @@
       'THE BORING HALF OF SOFTWARE',
       'PROPOSALS OVER COMMITS',
       'CITE YOUR SOURCES',
-      '9,799 TESTS FOR SLEEP AT NIGHT',
+      '50,542 STATES CHECKED',
       '⌘K FOR THE INDEX',
       'TRUST-FIRST AUTOMATION',
       'LOCAL-FIRST BY DEFAULT',
       'IF IT\u2019S NOT IN THE AUDIT LOG IT DIDN\u2019T HAPPEN',
-      '£17 TRILLION · VISUALISED',
-      '△ ○ ✕ ▢  ·  PRESS START',
-      'INSERT COIN · CONTINUE? 9',
+      'SOFTWARE ENGINEER · LONDON',
       '↑↑↓↓←→←→BA · KONAMI CODE',
       'TYPE SECRET WORDS · 30+ HIDDEN CODES',
       'ROLL FOR INITIATIVE · TYPE D20',
@@ -589,7 +587,7 @@
     if (!navInner || sections.length === 0) return;
 
     const NAMES = {
-      about: 'about', experience: 'field reports', credentials: 'credentials',
+      about: 'about', experience: 'experience', credentials: 'credentials',
       projects: 'projects', skills: 'apparatus', contact: 'correspondence',
     };
 
@@ -661,10 +659,10 @@
       if (cl.contains('tx-proj')) {
         const p = target.dataset.proj;
         return ({
-          wealthlens: { k: 'wealthlens', b: "The civic-data one. £17 trillion of UK wealth, 874 tests, ten cited datasets, zero opinions disguised as facts." },
-          taskdeck:   { k: 'taskdeck',   b: "The local-first one. 5,300+ commits and 620+ PRs of stubbornness about who is actually in charge of your board." },
-          metrix:     { k: 'metrix',     b: "The ambitious one. ~3,144 commits of opinions about backtests, plus an AI assistant that knows it is a tool." },
-          navsentinel:{ k: 'navsentinel',b: "The security one. 112 Gym fixtures, zero remote lookups, every decision explainable." },
+          wealthlens: { k: 'wealthlens', b: "The civic-data one. Sourced charts on UK wealth inequality." },
+          taskdeck:   { k: 'taskdeck',   b: "The local-first one. v0.3.0 beta; anything the chat wants to change becomes a proposal you approve." },
+          metricalgo: { k: 'metricalgo', b: "The day job. An options analytics platform in closed beta; I built its AI research assistant." },
+          navsentinel:{ k: 'navsentinel',b: "The security one. Scores clicks for signs of deception before they navigate." },
           npdl:       { k: 'npdl',       b: "The research one. Springer / SGAI-AI 2025. Cooperation emerges, defection spreads in clusters. Same instinct as the day job." },
         }[p]) || { k: 'project', b: "Yes, it's real. The repo is one click away." };
       }
@@ -737,7 +735,7 @@
     const PROJECTS = {
       wealthlens: /WealthLens/g,
       taskdeck:   /Taskdeck/g,
-      metrix:     /Metrix/g,
+      metricalgo: /Metricalgo/g,
       navsentinel:/NavSentinel/g,
       npdl:       /\bNPDL\b/g,
     };
@@ -1885,6 +1883,12 @@
      · BOSS appears when you enter the contact section
      · Section transitions get a brief retro-banner reveal
      ─────────────────────────────────────────────── */
+  // Arcade starts off; a visitor who switched it on keeps that choice.
+  const ARCADE_KEY = 'tcaci-arcade';
+  function arcadeStoredOn() {
+    try { return localStorage.getItem(ARCADE_KEY) === 'on'; } catch (_) { return false; }
+  }
+
   function initArcadeChaos() {
     if (REDUCED) return;
 
@@ -1907,13 +1911,13 @@
       seenSections: new Set(),
       paused: false,
       gameOver: false,
-      arcadeOff: false,
+      arcadeOff: !arcadeStoredOn(),
     };
     window.__tcaciGame = STATE; // dev hook
 
     const SECTION_NAMES = {
       about: 'ABOUT THE EDITOR',
-      experience: 'FIELD REPORTS',
+      experience: 'EXPERIENCE',
       credentials: 'CREDENTIALS',
       projects: 'PROJECTS',
       skills: 'APPARATUS',
@@ -1936,6 +1940,7 @@
       pointer-events: none;
       transition: box-shadow 0.2s, transform 0.2s;
     `;
+    if (STATE.arcadeOff) hud.style.display = 'none';
     document.body.appendChild(hud);
     function renderHUD() {
       const hearts = Array.from({ length: STATE.maxLives }, (_, i) =>
@@ -2412,7 +2417,7 @@
         entries.forEach(en => {
           if (en.isIntersecting && en.intersectionRatio > 0.35) {
             const id = en.target.id;
-            if (STATE.seenSections.has(id)) return;
+            if (STATE.arcadeOff || STATE.seenSections.has(id)) return;
             STATE.seenSections.add(id);
             STATE.stage = STATE.seenSections.size;
             renderHUD();
@@ -2557,7 +2562,7 @@
       const toggle = document.createElement('div');
       toggle.id = 'tcaci-arcade-toggle';
       toggle.innerHTML = `
-        <button id="tcaci-toggle-btn" title="Toggle arcade mini-game">
+        <button type="button" id="tcaci-toggle-btn" aria-label="Arcade mini-game" title="Arcade mini-game: off by default, click to turn on or off">
           <span class="tcaci-toggle-track">
             <span class="tcaci-toggle-thumb"></span>
           </span>
@@ -2576,13 +2581,17 @@
       }
 
       const btn = document.getElementById('tcaci-toggle-btn');
-      let isOn = true;
+      let isOn = !game.arcadeOff;
+      btn.classList.toggle('is-off', !isOn);
+      btn.setAttribute('aria-pressed', String(isOn));
 
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         isOn = !isOn;
         game.arcadeOff = !isOn;
         btn.classList.toggle('is-off', !isOn);
+        btn.setAttribute('aria-pressed', String(isOn));
+        try { localStorage.setItem(ARCADE_KEY, isOn ? 'on' : 'off'); } catch (_) {}
 
         if (!isOn) {
           // Remove all alive ghosts
@@ -2642,8 +2651,7 @@
           background: var(--ink-mute, #8a847a);
         }
         #tcaci-toggle-btn.is-off .tcaci-toggle-thumb { left: 2px; }
-        #tcaci-toggle-btn.is-off .tcaci-toggle-label { opacity: 0.45; }
-        @media print { #tcaci-arcade-toggle { display: none !important; } }
+                @media print { #tcaci-arcade-toggle { display: none !important; } }
         @media (max-width: 900px) {
           #tcaci-arcade-toggle { position: fixed; top: 10px; right: 10px; z-index: 55; }
         }

@@ -617,7 +617,7 @@
     const PROJECT = {
       wealthlens: { color: '#2a6b78', label: 'WEALTHLENS' },
       taskdeck:   { color: '#1a4d3a', label: 'TASKDECK'   },
-      metrix:     { color: '#cc3a2e', label: 'METRIX'     },
+      metricalgo: { color: '#cc3a2e', label: 'METRICALGO' },
       navsentinel:{ color: '#b08a2e', label: 'NAVSENTINEL'},
       npdl:       { color: '#8b3df0', label: 'NPDL'       },
     };
@@ -1047,8 +1047,11 @@
       updateThemeEffects();
     }
 
-    loadYTApi();
-    ytPendingPlay = true;
+    // Music only starts once the visitor turns the arcade on.
+    if (!game.arcadeOff) {
+      loadYTApi();
+      ytPendingPlay = true;
+    }
 
     function removeResumeListeners() {
       ['pointerdown','keydown','click','scroll'].forEach(ev =>
@@ -1068,6 +1071,18 @@
 
     window.addEventListener('tcaci:arcade-off', () => {
       if (ytReady && ytPlayer && ytIsPlaying) ytPlayer.pauseVideo();
+      const cas = document.getElementById('tcaci-cassette');
+      if (cas) cas.style.display = 'none';
+    });
+    window.addEventListener('tcaci:arcade-on', () => {
+      const cas = document.getElementById('tcaci-cassette');
+      if (cas) cas.style.display = '';
+      if (!userPaused && !ytIsPlaying) {
+        loadYTApi();
+        if (ytReady && ytPlayer) ytPlayer.playVideo();
+        ytPendingPlay = true;
+        updateAllUI();
+      }
     });
 
     /* ──────────────────────────────────────────
@@ -1082,6 +1097,7 @@
       <button data-mp="next" title="Next track">▸▸</button>
       <input data-mp="vol" type="range" min="0" max="100" value="30" title="Volume">
     `;
+    if (game.arcadeOff) miniPlayer.style.display = 'none';
     document.body.appendChild(miniPlayer);
 
     function updateMiniPlayer() {
@@ -1113,6 +1129,7 @@
        ────────────────────────────────────────── */
     const cassette = document.createElement('section');
     cassette.id = 'tcaci-cassette';
+    if (game.arcadeOff) cassette.style.display = 'none';
     const track = YT_TRACKS[ytTrackIdx];
     cassette.innerHTML = `
       <div class="cas-inner">
