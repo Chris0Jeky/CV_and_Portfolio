@@ -21,7 +21,7 @@ window.Hero = function Hero({ onAccept }) {
         {/* Top kicker */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
           <div className="label" style={{ color: 'var(--rouge)' }}>
-            ✦ FEATURED — A PRACTITIONER'S NOTEBOOK
+            ✦ SOFTWARE ENGINEER · LONDON
           </div>
           <div className="label">PROPOSED CHANGE · pending review</div>
         </div>
@@ -58,24 +58,18 @@ window.Hero = function Hero({ onAccept }) {
               fontFamily: 'var(--serif)', fontSize: 22, lineHeight: 1.5, maxWidth: 580,
               margin: '0 0 28px', color: 'var(--ink-2)',
             }}>
-              Software engineer who writes <em style={{ color: 'var(--rouge)' }}>the
-              boring half</em>{' '}
-              <Fn n="1">The half where pipelines fail at 3am, where rollbacks are a feature, and where someone has to read the audit log on Monday. Yes — the part nobody puts in the demo video.</Fn>{' '}
-              of software — backends you can reason about, pipelines that fail loudly,
-              and audit logs that don't have gaps. Currently turning
-              {' '}<em style={{ color: 'var(--teal)' }}>£17 trillion of UK wealth data</em>{' '}
-              into something the average person can actually read.
+              Software engineer working on <em style={{ color: 'var(--rouge)' }}>data
+              pipelines, platforms and developer tooling</em>. At{' '}
+              <strong>Metricalgo</strong>, an options analytics platform, I built the{' '}
+              <em style={{ color: 'var(--teal)' }}>AI research assistant</em> for the closed
+              beta. At <strong>Middlesex University</strong> I built the outreach team's
+              reporting and data pipelines.
             </p>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-              <a className="btn btn-rouge" href="#projects">▷ Read the issue</a>
-              <a className="btn" href="#contact">✉ Send a letter</a>
-              <span className="margin-note" style={{
-                marginLeft: 12, alignSelf: 'flex-end',
-                maxWidth: 220, transform: 'rotate(-2deg)',
-              }}>
-                ← the kind of work that<br/>doesn't make good<br/>demo videos
-              </span>
+              <a className="btn btn-rouge" href="#experience">▷ Experience</a>
+              <a className="btn" href="#projects">▷ Selected work</a>
+              <a className="btn" href="#contact">✉ Get in touch</a>
             </div>
           </div>
 
@@ -95,8 +89,8 @@ window.Hero = function Hero({ onAccept }) {
             <span style={{ color: state === 'accepted' ? 'var(--forest)' : 'var(--gold)' }}>●</span>
             {' '}STATUS: {state === 'accepted' ? 'PUBLISHED' : state === 'rejected' ? 'WITHDRAWN' : 'AWAITING REVIEW'}
           </span>
-          <span>BACKEND · PLATFORM · DEVSECOPS · RESEARCH · CIVIC TECH</span>
-          <span>LAST COMMIT · 2H AGO</span>
+          <span>DATA PIPELINES · PLATFORMS · DEVELOPER TOOLING · AI ASSISTANTS</span>
+          <span>LONDON, UK</span>
         </div>
       </div>
     </section>
@@ -123,27 +117,28 @@ function ProposalCard({ state, setState }) {
           <span style={{ color: 'var(--rouge)' }}>●</span> proposal #043
           <span style={{ marginLeft: 12, color: 'var(--ink-mute)' }}>main ← portfolio/v4</span>
         </span>
-        <span style={{ color: 'var(--ink-mute)' }}>+18 −3</span>
+        <span style={{ color: 'var(--ink-mute)' }}>+14 −1</span>
       </div>
 
       {/* Diff body */}
       <div style={{ fontFamily: 'var(--mono)', fontSize: 12.5, lineHeight: 1.7,
         padding: '14px 0', color: 'var(--ink-2)' }}>
         <DiffLine kind="meta">@@ identity.yml @@</DiffLine>
-        <DiffLine kind="del">- title: "Software Engineer · Backend / Platform"</DiffLine>
-        <DiffLine kind="add">+ title: "Backend · Platform · Civic Data"</DiffLine>
+        <DiffLine kind="del">- title: "Backend · Platform · Civic Data"</DiffLine>
+        <DiffLine kind="add">+ title: "Software Engineer"</DiffLine>
         <DiffLine kind="add">+ education: "BSc CS · First Class · Middlesex 2025"</DiffLine>
         <DiffLine kind="add">+ published: "Springer · SGAI-AI 2025 · lead author"</DiffLine>
-        <DiffLine kind="add">+ stance: "trust-first, proposal-not-autopilot"</DiffLine>
-        <DiffLine kind="add">+ default: "local-first, source-cited, audit-friendly"</DiffLine>
+        <DiffLine kind="add">+ focus: "data pipelines · platforms · tooling"</DiffLine>
         <DiffLine> </DiffLine>
         <DiffLine kind="meta">@@ now.yml @@</DiffLine>
+        <DiffLine kind="add">+ work:</DiffLine>
+        <DiffLine kind="add">+   - metricalgo   # AI research assistant</DiffLine>
+        <DiffLine kind="add">+   - middlesex    # reporting pipelines</DiffLine>
+        <DiffLine kind="add">+   - deliverasoft # contract work</DiffLine>
         <DiffLine kind="add">+ building:</DiffLine>
-        <DiffLine kind="add">+   - wealthlens # UK inequality data · 874 tests · 10 pipelines</DiffLine>
-        <DiffLine kind="add">+   - taskdeck   # local-first board · 5,300+ commits · 620+ PRs</DiffLine>
-        <DiffLine kind="add">+   - metrix     # options backtester · ~3.1k commits</DiffLine>
-        <DiffLine kind="add">+ shipping:    "weekly, sometimes daily"</DiffLine>
-        <DiffLine kind="add">+ mission:     "make unequal systems legible"</DiffLine>
+        <DiffLine kind="add">+   - taskdeck     # work platform · v0.3.0</DiffLine>
+        <DiffLine kind="add">+   - navsentinel  # browser security</DiffLine>
+        <DiffLine kind="add">+   - local-asset-studio</DiffLine>
       </div>
 
       {/* Action footer */}

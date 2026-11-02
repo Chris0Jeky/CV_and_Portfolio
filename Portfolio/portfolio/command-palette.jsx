@@ -37,7 +37,7 @@ window.CommandPalette = function CommandPalette() {
     { kind: 'cmd', label: 'whoami',                      hint: '$ identity',      action: () => location.hash = '#about' },
     { kind: 'cmd', label: 'cat hills.md',                hint: 'opinions',        action: () => location.hash = '#about' },
     { kind: 'cmd', label: 'tail -f architecture.notes',  hint: 'engineering log', action: () => location.hash = '#projects' },
-    { kind: 'cmd', label: 'cite metrix',                 hint: 'project',         action: () => location.hash = '#projects' },
+    { kind: 'cmd', label: 'cite metricalgo',              hint: 'project',         action: () => location.hash = '#projects' },
     { kind: 'cmd', label: 'cite wealthlens',             hint: 'project',         action: () => location.hash = '#projects' },
     { kind: 'cmd', label: 'reach-out --form',            hint: 'contact',         action: () => location.hash = '#contact' },
 

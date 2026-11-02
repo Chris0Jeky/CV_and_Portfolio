@@ -82,35 +82,30 @@ window.ByTheNumbers = function ByTheNumbers() {
     };
   }, []);
   var stats = [{
-    v: '£17T',
-    l: 'of UK wealth · visualised'
-  }, {
-    v: '9,799',
-    l: 'tests on Taskdeck',
+    v: '50,542',
+    l: 'merge-model states checked',
     accent: 'forest'
   }, {
-    v: '874',
-    l: 'tests on WealthLens',
-    accent: 'teal'
-  }, {
-    v: '5,300+',
-    l: 'taskdeck commits',
+    v: '16',
+    l: 'seeded defects · all caught',
     accent: 'forest'
-  }, {
-    v: '620+',
-    l: 'taskdeck PRs',
-    accent: 'forest'
-  }, {
-    v: '3,144',
-    l: 'metrix commits',
-    accent: 'rouge'
   }, {
     v: '72',
-    l: 'aws pipelines · ge'
+    l: 'products · nmap port checks · ge'
   }, {
-    v: '112',
-    l: 'gym fixtures · navsentinel',
+    v: '~140',
+    l: 'deploy pipelines · ge'
+  }, {
+    v: '14',
+    l: 'months · ge digital placement'
+  }, {
+    v: '138',
+    l: 'tranco sites · navsentinel run',
     accent: 'rouge'
+  }, {
+    v: '0.2 GB',
+    l: 'gpu spill on decodes · was 3.7 GB',
+    accent: 'teal'
   }, {
     v: '1',
     l: 'paper · springer · SGAI-AI 25',
@@ -151,7 +146,7 @@ window.ByTheNumbers = function ByTheNumbers() {
   }, "the receipts")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(9, 1fr)',
+      gridTemplateColumns: "repeat(".concat(stats.length, ", 1fr)"),
       gap: 0,
       border: '1.5px solid var(--rule)',
       background: 'var(--paper-2)'
@@ -204,5 +199,5 @@ window.ByTheNumbers = function ByTheNumbers() {
       fontSize: 10,
       color: 'var(--ink-mute)'
     }
-  }, "Fig. 7 \u2014 figures verifiable on github \xB7 last reconciled spring 2026"))));
+  }, "Fig. 7 \u2014 figures from the October 2026 CV"))));
 };

@@ -16,13 +16,13 @@ window.Credentials = function Credentials() {
             <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--rouge)', letterSpacing: '0.15em', marginBottom: 4 }}>EDUCATION</div>
             <h3 style={{ fontFamily: 'var(--serif)', fontSize: 28, margin: '0 0 8px',
               fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.05 }}>
-              BSc Computer Science
+              BSc (Hons) Computer Science
             </h3>
             <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 18, color: 'var(--rouge)', marginBottom: 8 }}>
               First Class Honours
             </div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>
-              Middlesex University · 2022 — 2025
+              Middlesex University · with Industrial Placement · 2025
             </div>
             <div style={{ marginTop: 18 }}>
               <span className="stamp" style={{ color: 'var(--forest)' }}>1st Class</span>
@@ -35,10 +35,10 @@ window.Credentials = function Credentials() {
             <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--rouge)', letterSpacing: '0.15em', marginBottom: 4 }}>PUBLICATION</div>
             <h3 style={{ fontFamily: 'var(--serif)', fontSize: 24, margin: '0 0 8px',
               fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1.1 }}>
-              "Navigating the N-Person Prisoners' Dilemma"
+              "Navigating the N-Person Prisoners' Dilemma: From the Tragic Valley to the Collaborative Hill"
             </h3>
             <div style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'var(--ink-dim)', lineHeight: 1.55, marginBottom: 8 }}>
-              <strong>Springer</strong> · SGAI-AI 2025 · Lead author · presented at conference
+              Tcaci and Huyck · <strong>Springer</strong> · Artificial Intelligence XLII (SGAI-AI 2025) · Lead author · presented at the conference
             </div>
             <div style={{ fontFamily: 'var(--serif)', fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.5, fontStyle: 'italic' }}>
               Multi-agent simulation of cooperation emergence in repeated games.
@@ -57,13 +57,13 @@ window.Credentials = function Credentials() {
               GE Spotlight Award
             </h3>
             <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 18, color: 'var(--rouge)', marginBottom: 8 }}>
-              DevSecOps Initiative
+              "Deliver with Focus"
             </div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink-dim)', lineHeight: 1.5 }}>
-              General Electric Digital · 2024
+              GE Digital · 2023 · for my part in the team's December 2023 Smallworld release
             </div>
             <div style={{ marginTop: 18 }}>
-              <span className="stamp">2024 · GE</span>
+              <span className="stamp">2023 · GE</span>
             </div>
           </div>
         </div>

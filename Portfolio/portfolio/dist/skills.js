@@ -228,7 +228,7 @@ function SkillBreakdown() {
     className: "ok"
   }, "\u25B8"), " python, fastapi, sqlalchemy, pydantic ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "// daily driver \xB7 wealthlens + metrix backbone")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "// daily driver")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "ok"
   }, "\u25B8"), " vue 3, typescript, pinia, echarts, d3 ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
@@ -250,9 +250,9 @@ function SkillBreakdown() {
     className: "dim"
   }, "// taskdeck, reposcope, devfoundry")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "cyan"
-  }, "\u25B8"), " react 18 \xB7 tanstack query + table ", /*#__PURE__*/React.createElement("span", {
+  }, "\u25B8"), " react 18 ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "// the front side of metrix")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "// the assistant front end at metricalgo")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "cyan"
   }, "\u25B8"), " websockets, signalr, redis ", /*#__PURE__*/React.createElement("span", {
     className: "dim"

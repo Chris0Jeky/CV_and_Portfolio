@@ -5,15 +5,10 @@ window.Projects = function Projects() {
   return (
     <section id="projects" style={{ padding: '64px 0' }}>
       <div className="container">
-        <SectionHeader num="03" kicker="Catalogue raisonné" title="Projects, in order of trouble caused." />
+        <SectionHeader num="03" kicker="Catalogue raisonné" title="Selected work." />
 
-        {/* Featured: WealthLens — the lead story */}
-        <WealthLensFeature />
-
-        {/* Featured: Metrix with backtest demo */}
-        <div style={{ marginTop: 64 }}>
-          <MetrixFeature />
-        </div>
+        {/* Featured: Metricalgo (employer work) with backtest demo */}
+        <MetricalgoFeature />
 
         {/* Featured: Taskdeck */}
         <div style={{ marginTop: 64 }}>
@@ -28,6 +23,11 @@ window.Projects = function Projects() {
         {/* Featured: NavSentinel with CDS demo */}
         <div style={{ marginTop: 64 }}>
           <NavSentinelFeature />
+        </div>
+
+        {/* Featured: WealthLens */}
+        <div style={{ marginTop: 64 }}>
+          <WealthLensFeature />
         </div>
 
         {/* Featured: NPDL with live sim */}
@@ -61,6 +61,8 @@ const TASKDECK_GPS = [
 
 
 const CATALOG = [
+{ num: '049', name: 'local-asset-studio', cat: 'creative · local GPU pipeline', stack: 'Python · ComfyUI · Windows on ROCm · 16 GB GPU',
+  desc: 'Image, video and 3D generation on one GPU shared with a local LLM. Each graph is checked against the installed node schema and admitted only when measured Windows commit headroom allows it; a GPU lease lets the LLM loader take the card. A measured VRAM reserve took one route from 17.7 s to about 1 s per step, and SDXL decode spill fell from 3.7 GB to under 0.2 GB. Results export to Krita, Godot and Blender.' },
 { num: '045', name: 'Alibi', cat: 'game · offline-first PWA · live', stack: 'JavaScript · PWA · Cloudflare',
   desc: 'An illustrated puzzle cabinet: hundreds of logic puzzles across thirteen families, mystery casebooks and a small house to wander, with device-local saves. No account, no subscription, no lives and no always-on connection.',
   links: [{ label: 'play', href: 'https://alibi-after-hours-preview.commit-atlas.workers.dev/' }, { label: 'repo', href: 'https://github.com/Chris0Jeky/Alibi' }] },
@@ -69,7 +71,7 @@ const CATALOG = [
 { num: '036', name: 'DevFoundry', cat: 'toolbox · cli + ui · offline', stack: 'C# · .NET 8 · Vue 3',
   desc: 'An offline Swiss-army knife: JSON formatter, JSON⇄YAML, Base64, URL encoder, UUID, MD5/SHA, JWT decoder, timestamp converter, case converter, text diff, colour converter — 11 tools sharing one core, none of them sending your data to a random website that has "free" in the title.' },
 { num: '035', name: 'Historical Stats Tools', cat: 'finance · analytics', stack: 'Python · MySQL',
-  desc: 'Companion to Metrix — a suite of statistical tools that crunches historical options data and feeds Metrix\'s backtests with inputs that have already been argued about, validated, and cited.' },
+  desc: 'A suite of statistical tools that crunches historical options data into validated inputs for backtests.' },
 { num: '034', name: 'AgentForge', cat: 'devtool · agent orchestration', stack: 'Python 3.11 · git worktrees · MCP · GitHub CLI',
   desc: 'A local-first "agent farm" for running multiple coding agents without them stepping on each other. Each task gets its own git worktree, the orchestrator handles spawning, harness checks, PR comment commands, MCP toolkit sync, and policy-as-code. Trust-first automation for the case where the automation itself is plural.' },
 { num: '030', name: 'SwarmingLilMen', cat: 'systems · simulation · performance', stack: 'C# · .NET 8 · Raylib · SIMD',
@@ -158,42 +160,38 @@ function WorkshopFeature() {
 
 }
 
-/* ============ METRIX FEATURE ============ */
-function MetrixFeature() {
+/* ============ METRICALGO FEATURE ============ */
+function MetricalgoFeature() {
   return (
     <article>
-      <FeatureHeader num="042" name="Metrix" cat="Finance · SaaS Platform"
-      years="2025 — building" team="~5 contributors · ~3,144 commits"
+      <FeatureHeader num="042" name="Metricalgo" cat="Options analytics · closed beta · employer work"
+      years="Jul 2025 — present" team="software engineer"
       tone="rouge" />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
         <div>
           <p className="dropcap" style={{ fontSize: 18, lineHeight: 1.65, marginTop: 0 }}>
-            <em style={{ color: 'var(--rouge)' }}>Metrix</em> is the ambitious one. A
-            full-stack SaaS where users define options-trading strategies, run backtests
-            against historical data, get live signals, and subscribe to other people's
-            published "systems" — each a first-class object combining a strategy, a
-            backtest, and an audit trail you can subscribe to. Roughly the most opinionated
-            backtester I've ever helped build.
+            <em style={{ color: 'var(--rouge)' }}>Metricalgo</em> is an options analytics
+            platform in closed beta, and my day job. I built its <strong>AI research
+            assistant</strong>. The model sees only a summary of backtests the user can see,
+            tied to a content hash, so a changed result returns a conflict instead of a stale
+            answer. Tool output is stripped of provider role markers, escaped and wrapped before
+            it re-enters the model.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)' }}>
-            The architecture is dual-database by design: a legacy, read-only{' '}
-            <code style={{ fontFamily: 'var(--mono)', fontSize: 14, background: 'var(--paper-3)', padding: '0 4px' }}>staticprofit</code>{' '}
-            holds the historical options universe and is treated as immutable scripture;
-            a fresh, read/write{' '}
-            <code style={{ fontFamily: 'var(--mono)', fontSize: 14, background: 'var(--paper-3)', padding: '0 4px' }}>options_backtest_platform</code>{' '}
-            owns everything we ship. Backend is FastAPI / SQLAlchemy 2.0 / Pydantic.
-            Frontend is React 18 / TypeScript / TanStack Query + Table / Apache ECharts /
-            Tailwind. The server is allowed to be wrong, briefly — the client is not.
+            Each tool call's arguments are schema-checked and every call is recorded by a
+            policy layer. Admin tools re-check the user's role in the database at execution
+            time, in case it was revoked mid-conversation. Credit is reserved before any
+            provider call and released even if the client drops the stream.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)' }}>
-            Phase 10 added a full AI assistant chat: <strong>LLM tool orchestration</strong>,
-            prompt management, conversation persistence, and live WebSocket status updates
-            while the assistant is actually doing work. Multi-provider, config-gated, and
-            — importantly — a tool, not a co-worker.
+            On the backtest side, profiling showed row loading dominated, so I built an indexed
+            in-memory options store with normalised strikes, an optional Parquet and DuckDB
+            reader that produces identical state, and an atomic warm cache, over a legacy MySQL
+            store kept read-only. Every run is stamped with the engine version and input hashes.
           </p>
           <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-            {['Python 3.11', 'FastAPI', 'SQLAlchemy 2.0', 'Pydantic', 'MySQL ×2', 'React 18', 'TypeScript', 'TanStack Query', 'TanStack Table', 'ECharts', 'Tailwind', 'Vite', 'WebSocket', 'LLM tools'].map((s) =>
+            {['React', 'SSE', 'Tool calling', 'Policy layer', 'MySQL', 'Parquet', 'DuckDB', 'QuantLib', 'Decimal', 'Mutation tests'].map((s) =>
             <span key={s} style={{
               fontFamily: 'var(--mono)', fontSize: 11, padding: '3px 8px',
               border: '1px solid var(--rule)', color: 'var(--ink-2)'
@@ -208,11 +206,11 @@ function MetrixFeature() {
       {/* Field note */}
       <div className="term" style={{ marginTop: 32 }}>
         <span className="term-label">$ tail -f architecture.notes</span>
-        <div><span className="prompt">▸</span> dual-db keeps legacy data <span className="ok">immutable</span> and platform state <span className="ok">portable</span>.</div>
-        <div><span className="prompt">▸</span> tanstack-query is the system of record on the client; the server is allowed to be wrong, briefly.</div>
-        <div><span className="prompt">▸</span> systems are first-class objects: a strategy + a backtest + an audit trail you can subscribe to.</div>
-        <div><span className="prompt">▸</span> phase 10: full <span className="cyan">AI assistant chat</span> — LLM-powered, tool orchestration, prompt mgmt, conversation persistence, WebSocket status during tool runs.</div>
-        <div><span className="prompt">▸</span> next: collaborative strategy editing without merging headaches. (TBD: hopeful.)</div>
+        <div><span className="prompt">▸</span> the assistant only sees what the user can see; a <span className="ok">content hash</span> catches a changed result.</div>
+        <div><span className="prompt">▸</span> tool arguments are <span className="ok">schema-checked</span>; every call is recorded by a policy layer.</div>
+        <div><span className="prompt">▸</span> admin tools re-check the role in the database <span className="cyan">at execution time</span>.</div>
+        <div><span className="prompt">▸</span> a written calculation spec is the authority for P&amp;L and fees, checked by an independent Decimal reference calculator.</div>
+        <div><span className="prompt">▸</span> golden cases, QuantLib cross-checks and mutation tests guard the engine.</div>
       </div>
     </article>);
 
@@ -295,7 +293,7 @@ function BacktestDemo() {
         fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-mute)',
         letterSpacing: '0.1em', textTransform: 'uppercase'
       }}>
-        Fig. 3 — toy demo of the real thing. Drag the sliders.
+        Fig. 3 — a toy moving-average demo, not the product. Drag the sliders.
       </div>
     </div>);
 
@@ -318,7 +316,7 @@ function TaskdeckFeature() {
   return (
     <article style={{ borderTop: '1px solid var(--rule)', paddingTop: 32 }}>
       <FeatureHeader num="041" name="Taskdeck" cat="Local-first Devtool · Clean Architecture"
-      years="2025 — active" team="solo · 5,300+ commits · 620+ PRs · 9,799 tests · 21 ADRs" tone="forest" />
+      years="2025 — active · v0.3.0 beta" team="solo · .NET 8 · Vue 3 · SQLite · MCP" tone="forest" />
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 48 }}>
         <div>

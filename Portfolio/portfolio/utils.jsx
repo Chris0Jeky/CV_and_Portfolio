@@ -11,7 +11,7 @@ window.Masthead = function Masthead({ issue = "VOL. IV · NO. 043" }) {
         borderBottom: '2px solid var(--rule)', paddingBottom: 10, marginBottom: 6,
       }}>
         <div className="label" style={{ fontSize: 12 }}>The Tcaci Quarterly</div>
-        <div className="label" style={{ fontSize: 10 }}>{issue} · Spring MMXXVI</div>
+        <div className="label" style={{ fontSize: 10 }}>{issue} · Autumn MMXXVI</div>
       </div>
       <div style={{
         display: 'flex', justifyContent: 'space-between',
@@ -19,7 +19,7 @@ window.Masthead = function Masthead({ issue = "VOL. IV · NO. 043" }) {
         fontFamily: 'var(--sans)', fontSize: 9, color: 'var(--ink-dim)',
         letterSpacing: '0.18em', textTransform: 'uppercase',
       }}>
-        <span>Software · Research · Infrastructure · Civic Data · Occasional Sermons</span>
+        <span>Software · Data pipelines · Platforms · Developer tooling · Research</span>
         <span>London, UK · est. 2023</span>
       </div>
     </div>

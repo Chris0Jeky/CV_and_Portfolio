@@ -22,18 +22,116 @@ window.Experience = function Experience() {
     className: "container"
   }, /*#__PURE__*/React.createElement(SectionHeader, {
     num: "02",
-    kicker: "Field reports",
+    kicker: "Experience",
     title: "Where the time went."
-  }), /*#__PURE__*/React.createElement(GEDigitalReport, null), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement(MetricalgoReport, null), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 64
     }
-  }, /*#__PURE__*/React.createElement(UniversityOutreach, null)), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(MiddlesexReport, null)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 64
+    }
+  }, /*#__PURE__*/React.createElement(GEDigitalReport, null)), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 64
     }
   }, /*#__PURE__*/React.createElement(Timeline, null))));
 };
+
+/* ============ METRICALGO ============ */
+function MetricalgoReport() {
+  return /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '180px 1fr 220px',
+      gap: 32,
+      borderBottom: '1px solid var(--rule)',
+      paddingBottom: 12,
+      marginBottom: 24,
+      alignItems: 'baseline'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "label"
+  }, "Current \xB7 software engineer"), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontSize: 44,
+      fontWeight: 400,
+      letterSpacing: '-0.02em',
+      margin: 0,
+      lineHeight: 1
+    }
+  }, "Metricalgo ", /*#__PURE__*/React.createElement("em", {
+    style: {
+      color: 'var(--rouge)'
+    }
+  }, "\u2014 options analytics.")), /*#__PURE__*/React.createElement("div", {
+    className: "label",
+    style: {
+      textAlign: 'right'
+    }
+  }, "Jul 2025 \u2014 present")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1.4fr 1fr',
+      gap: 48
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+    className: "dropcap",
+    style: {
+      fontSize: 18,
+      lineHeight: 1.65,
+      marginTop: 0
+    }
+  }, "Software engineer on an options analytics platform in closed beta. I built its", ' ', /*#__PURE__*/React.createElement("strong", null, "AI research assistant"), ". The model sees only a summary of the backtests the user can see, tied to a content hash, so a changed result returns a conflict. Each tool call's arguments are schema-checked and every call is recorded by a policy layer; admin tools re-check the user's role in the database at execution time. Credit is reserved before any provider call and released even if the client drops the stream."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 16,
+      lineHeight: 1.7,
+      color: 'var(--ink-2)'
+    }
+  }, "I also work on the backtest data path. Profiling showed row loading dominated, so I built an indexed in-memory options store, an optional Parquet and DuckDB reader that produces identical state, and an atomic warm cache, all over a legacy MySQL store kept read-only. A written calculation spec is the authority for P&L and fees, checked by an independent Decimal reference calculator, golden cases, QuantLib cross-checks and mutation tests.")), /*#__PURE__*/React.createElement("aside", {
+    style: {
+      borderLeft: '1px solid var(--rule)',
+      paddingLeft: 32
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Stack & disciplines"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 6,
+      marginBottom: 20
+    }
+  }, ['React', 'SSE', 'MySQL', 'Parquet', 'DuckDB', 'QuantLib'].map(function (s) {
+    return /*#__PURE__*/React.createElement("span", {
+      key: s,
+      style: {
+        fontFamily: 'var(--mono)',
+        fontSize: 11,
+        padding: '3px 8px',
+        border: '1px solid var(--rule)',
+        color: 'var(--ink-2)'
+      }
+    }, s);
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "label",
+    style: {
+      marginBottom: 8
+    }
+  }, "Tags"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--serif)',
+      fontStyle: 'italic',
+      color: 'var(--ink-dim)',
+      fontSize: 14
+    }
+  }, "AI assistant \xB7 tool calling \xB7 policy layer \xB7 data path \xB7 correctness"))));
+}
 
 /* ============ GE DIGITAL FEATURE — Pipeline Viz ============ */
 function GEDigitalReport() {
@@ -90,7 +188,7 @@ function GEDigitalReport() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "label"
-  }, "Feature \xB7 case study"), /*#__PURE__*/React.createElement("h3", {
+  }, "Placement \xB7 case study"), /*#__PURE__*/React.createElement("h3", {
     style: {
       fontFamily: 'var(--serif)',
       fontSize: 44,
@@ -103,12 +201,12 @@ function GEDigitalReport() {
     style: {
       color: 'var(--rouge)'
     }
-  }, "\u2014 15 mo.")), /*#__PURE__*/React.createElement("div", {
+  }, "\u2014 14 mo.")), /*#__PURE__*/React.createElement("div", {
     className: "label",
     style: {
       textAlign: 'right'
     }
-  }, "2023 \u2014 2024 \xB7 DevSecOps Intern")), /*#__PURE__*/React.createElement("div", {
+  }, "Jun 2023 \u2014 Sep 2024 \xB7 Software Engineer Intern")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: '1.4fr 1fr',
@@ -121,29 +219,22 @@ function GEDigitalReport() {
       lineHeight: 1.65,
       marginTop: 0
     }
-  }, "Spent fifteen months embedded in a security-engineering team responsible for the deployment hygiene of a large legacy estate. The headline: I integrated automated ", /*#__PURE__*/React.createElement("strong", null, "Nmap"), " scanning into seventy-two AWS CI/CD pipelines, written across Jenkins, Bash, and just enough Groovy to keep things interesting."), /*#__PURE__*/React.createElement("p", {
+  }, "A fourteen-month software engineering placement in Cambridge. I started on the", ' ', /*#__PURE__*/React.createElement("strong", null, "Smallworld"), " product: fixed hard-to-reproduce bugs in a large legacy Magik codebase, improved database access to make upgrades smoother, added MUnit tests and wrote up known pitfalls for new developers."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 16,
       lineHeight: 1.7,
       color: 'var(--ink-2)'
     }
-  }, "The result was a unified, audit-friendly scan stage that ran on every deploy: shorter feedback loops, fewer hand-rolled config files, and a measurable drop in the number of changes that bypassed review. Also, fewer 3am emails. Mostly."), /*#__PURE__*/React.createElement("div", {
+  }, "Then I took over a security automation project. I extended ", /*#__PURE__*/React.createElement("strong", null, "Nmap"), ' ', "port scanning from internal builds to the Jenkins pipelines that deploy to AWS, across 72 products and about 140 pipelines, using Bash and Groovy. Each fresh deployment's open ports are checked against a per-product allow-list, and an unexpected port fails the build. Telling ephemeral-port noise from real exposure was most of the work, done with DevOps engineers and security architects."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 20
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "stamp",
     style: {
-      color: 'var(--forest)'
+      color: 'var(--gold)'
     }
-  }, "\u221215% deploy friction"), /*#__PURE__*/React.createElement("span", {
-    className: "stamp",
-    style: {
-      color: 'var(--rouge)',
-      marginLeft: 12,
-      transform: 'rotate(2deg)'
-    }
-  }, "\u221250% config time"))), /*#__PURE__*/React.createElement("aside", {
+  }, "GE Spotlight Award \xB7 Deliver with Focus"))), /*#__PURE__*/React.createElement("aside", {
     style: {
       borderLeft: '1px solid var(--rule)',
       paddingLeft: 32
@@ -160,7 +251,7 @@ function GEDigitalReport() {
       gap: 6,
       marginBottom: 20
     }
-  }, ['AWS', 'Jenkins', 'Bash', 'Groovy', 'Python', 'Nmap', 'Terraform', 'IAM'].map(function (s) {
+  }, ['Magik', 'Smallworld', 'MUnit', 'Jenkins', 'Bash', 'Groovy', 'Nmap', 'AWS'].map(function (s) {
     return /*#__PURE__*/React.createElement("span", {
       key: s,
       style: {
@@ -183,7 +274,7 @@ function GEDigitalReport() {
       color: 'var(--ink-dim)',
       fontSize: 14
     }
-  }, "DevSecOps \xB7 cloud deployment \xB7 legacy backend \xB7 auditability \xB7 CI/CD \xB7 governance"))), /*#__PURE__*/React.createElement("div", {
+  }, "legacy codebase \xB7 security automation \xB7 CI/CD \xB7 cloud deployment"))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 40
     }
@@ -196,13 +287,13 @@ function GEDigitalReport() {
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "label"
-  }, "Fig. 2 \u2014 pipeline scan rollout \xB7 72 deployments"), /*#__PURE__*/React.createElement("span", {
+  }, "Fig. 2 \u2014 port-check rollout \xB7 72 products"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: 'var(--mono)',
       fontSize: 12,
       color: 'var(--forest)'
     }
-  }, "\u25CF ", scanned, "/72 instrumented")), /*#__PURE__*/React.createElement(PipelineVisualization, {
+  }, "\u25CF ", scanned, "/72 checked")), /*#__PURE__*/React.createElement(PipelineVisualization, {
     scanned: scanned
   })), /*#__PURE__*/React.createElement("div", {
     className: "term",
@@ -213,19 +304,15 @@ function GEDigitalReport() {
     className: "term-label"
   }, "$ cat lessons.md"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "# 1."), " the legacy estate is the org's actual API. respect it before you refactor it."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "# 1."), " a legacy codebase is the product customers run. understand it before you refactor it."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "# 2."), " a scan that runs once is theatre. a scan that runs on every deploy is policy."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "# 2."), " a scan that runs once is a report. a scan that fails the build is a control."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "# 3."), " Groovy will hurt you. plan accordingly."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "dim"
-  }, "# 4."), " if it's not in the audit log, it didn't happen ", /*#__PURE__*/React.createElement("span", {
+  }, "# 3."), " most of the work is telling noise from real exposure ", /*#__PURE__*/React.createElement("span", {
     className: "warn"
   }, "\u26A0")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "# 5."), " dashboards are nice; alerts that page the right person at the right time are the job."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "dim"
-  }, "# 6."), " the security team is not your enemy. the calendar is.")));
+  }, "# 4."), " a per-product allow-list beats one rule for everyone.")));
 }
 function PipelineVisualization(_ref) {
   var scanned = _ref.scanned;
@@ -250,7 +337,7 @@ function PipelineVisualization(_ref) {
       justifyContent: 'space-between',
       letterSpacing: '0.1em'
     }
-  }, /*#__PURE__*/React.createElement("span", null, "JENKINS \xB7 72 PIPELINES \xB7 CONTINUOUS SCAN INTEGRATION"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", null, "JENKINS \xB7 72 PRODUCTS \xB7 ~140 PIPELINES \xB7 NMAP PORT CHECKS"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--term-green)'
     },
@@ -293,7 +380,7 @@ function PipelineVisualization(_ref) {
       fontSize: 10,
       color: 'var(--term-fg)'
     }
-  }, ['checkout', 'build', 'unit-test', 'nmap-scan', 'deploy', 'audit-log'].map(function (s, i) {
+  }, ['checkout', 'build', 'deploy-aws', 'nmap-scan', 'allow-list', 'pass/fail'].map(function (s, i) {
     return /*#__PURE__*/React.createElement("div", {
       key: s,
       style: {
@@ -340,31 +427,19 @@ function PipelineVisualization(_ref) {
     style: {
       color: 'var(--term-amber)'
     }
-  }, "\u23F1"), " avg cycle ", /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--term-fg)'
-    }
-  }, "\u221215%")), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+  }, "\u25C9"), " fresh deployment scanned"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--term-amber)'
     }
-  }, "\u2699"), " config time ", /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--term-fg)'
-    }
-  }, "\u221250%")), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+  }, "\u2699"), " per-product allow-list"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--term-amber)'
     }
-  }, "\u2713"), " findings routed to ticketing"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--term-amber)'
-    }
-  }, "\u25C9"), " 0 audit gaps")));
+  }, "\u2717"), " unexpected port fails the build")));
 }
 
-/* ============ University Outreach ============ */
-function UniversityOutreach() {
+/* ============ Middlesex University ============ */
+function MiddlesexReport() {
   return /*#__PURE__*/React.createElement("article", {
     style: {
       display: 'grid',
@@ -375,7 +450,7 @@ function UniversityOutreach() {
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "label"
-  }, "Ongoing \xB7 field work"), /*#__PURE__*/React.createElement("h3", {
+  }, "Current \xB7 Jun 2025 \u2014 present \xB7 London"), /*#__PURE__*/React.createElement("h3", {
     style: {
       fontFamily: 'var(--serif)',
       fontSize: 38,
@@ -384,17 +459,17 @@ function UniversityOutreach() {
       margin: '6px 0 16px',
       lineHeight: 1.05
     }
-  }, "Widening Participation ", /*#__PURE__*/React.createElement("em", {
+  }, "Middlesex University ", /*#__PURE__*/React.createElement("em", {
     style: {
       color: 'var(--rouge)'
     }
-  }, "\u2014 delivery & data.")), /*#__PURE__*/React.createElement("p", {
+  }, "\u2014 recruitment & outreach.")), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 16,
       lineHeight: 1.65,
       color: 'var(--ink-2)'
     }
-  }, "I work with ", /*#__PURE__*/React.createElement("strong", null, "Middlesex University"), "'s Widening Participation team on two things at once: the ", /*#__PURE__*/React.createElement("em", null, "data"), " side (cleaning and analysing the team's records to see what actually moves the needle), and the ", /*#__PURE__*/React.createElement("em", null, "delivery"), " side (showing up at schools, on campus, and to whichever audience will tolerate a 9am session about computer science). The headline pitch \u2014 \"a degree is one path, not the only one\" \u2014 is, somehow, still controversial in some rooms."), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("strong", null, "UK Recruitment & Outreach Coordinator"), ", full-time since April 2026. I joined in June 2025 as Outreach Contractor and Workshop Lead. I build the team's reporting and data pipelines and its custom tools, and I plan and deliver talks, workshops and campus events."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 20,
       display: 'flex',
@@ -403,13 +478,13 @@ function UniversityOutreach() {
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "stamp"
-  }, "Public Speaking"), /*#__PURE__*/React.createElement("span", {
+  }, "Reporting"), /*#__PURE__*/React.createElement("span", {
     className: "stamp",
     style: {
       color: 'var(--forest)',
       transform: 'rotate(1deg)'
     }
-  }, "Data Analysis"), /*#__PURE__*/React.createElement("span", {
+  }, "Data pipelines"), /*#__PURE__*/React.createElement("span", {
     className: "stamp",
     style: {
       color: 'var(--rouge)',
@@ -426,108 +501,91 @@ function UniversityOutreach() {
     style: {
       marginBottom: 12
     }
-  }, "Dispatches \xB7 selected"), /*#__PURE__*/React.createElement("div", {
+  }, "What I built"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
       gap: 16
     }
   }, [{
-    date: '26.03',
-    loc: 'Year 12 visit',
-    n: '~ 80 students',
-    topic: 'Why software bites back'
+    title: 'Reporting chain',
+    body: 'Raw exports are found by config, and every data problem gets a finding code that appears in the pack. One set of canonical tables feeds the deck, offline dashboard, staging workbook and quarterly Word draft.'
   }, {
-    date: '26.02',
-    loc: 'On-campus session',
-    n: '~ 35 attendees',
-    topic: 'CI/CD without tears'
+    title: 'Provenance',
+    body: 'Each bundle carries a manifest of input, output and code hashes, and a doctor command names any file changed since the build.'
   }, {
-    date: '26.01',
-    loc: 'Sixth-form workshop',
-    n: '~ 60 students',
-    topic: 'Hello, terminal'
+    title: 'SharePoint List + Graph sync',
+    body: 'Replacing the hand-typed activity workbook with a SharePoint List and a Python sync engine over Microsoft Graph. Computed fields are written back under a per-item ETag, so a colleague\'s newer edit is skipped and reported.'
   }, {
-    date: '25.11',
-    loc: 'Open day talk',
-    n: '~ 120 prospects',
-    topic: 'A day in the life'
+    title: 'Safe cutover',
+    body: 'The old workbook format is exported exactly, so the reporting chain and rota dashboard keep running. CI compares a synthetic golden build cell by cell; a mutation script re-inserts real past bugs and expects a red test.'
   }].map(function (d) {
     return /*#__PURE__*/React.createElement("div", {
-      key: d.date,
+      key: d.title,
       style: {
         borderTop: '1px dashed var(--rule)',
         paddingTop: 10
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        fontFamily: 'var(--mono)',
-        fontSize: 11,
-        color: 'var(--ink-mute)'
-      }
-    }, d.date, "/26"), /*#__PURE__*/React.createElement("div", {
-      style: {
         fontFamily: 'var(--serif)',
         fontSize: 17,
         marginTop: 2
       }
-    }, "\"", d.topic, "\""), /*#__PURE__*/React.createElement("div", {
+    }, d.title), /*#__PURE__*/React.createElement("div", {
       style: {
         fontFamily: 'var(--sans)',
-        fontSize: 11,
+        fontSize: 12,
         color: 'var(--ink-dim)',
-        marginTop: 2
+        marginTop: 4,
+        lineHeight: 1.5
       }
-    }, d.loc, " \xB7 ", d.n));
+    }, d.body));
   }))));
 }
 
 /* ============ Timeline ============ */
 function Timeline() {
   var items = [{
-    year: '2026',
-    title: 'WealthLens · sole architect',
-    body: 'Open-source UK wealth/inequality data platform. Ten datasets, ten cited chart pages, weekly refresh.'
+    year: 'Nov 2025 —',
+    title: 'Independent R&D · development pipeline',
+    body: 'Evenings and weekends. A pipeline that takes a task from an issue, a review finding or my phone to a merged pull request: a git worktree per task, test results tied to the commit SHA, and a plain-Python merge gate. An exhaustive checker walks all 50,542 reachable states of the merge model. Also Taskdeck v0.3.0, NavSentinel and local-asset-studio; also shipped developer-lens, Alibi, WealthLens, estate-atlas and charter-replay.'
   }, {
-    year: '2026',
-    title: 'Metrix · co-development',
-    body: 'Options-backtesting + signal platform with a small team. ~3.1k commits in.'
+    year: 'Jul 2025 —',
+    title: 'Metricalgo · Software Engineer',
+    body: 'Options analytics platform (closed beta). Built the AI research assistant; backtest data path and correctness.'
   }, {
-    year: '2026',
-    title: 'Taskdeck · principal author',
-    body: 'Local-first execution workspace · proposal-first automation.'
+    year: 'Jun 2025 —',
+    title: 'Middlesex University · UK Recruitment & Outreach Coordinator',
+    body: 'Full-time since April 2026; joined as Outreach Contractor and Workshop Lead. Reporting and data pipelines, SharePoint List + Microsoft Graph sync.'
+  }, {
+    year: 'Mar 2025 —',
+    title: 'DeliveraSoft · Software Engineer (Contract)',
+    body: 'Remote, two-person team. Automation, data cleaning, landing pages and fixes for small-business clients, usually starting from a loose brief.'
   }, {
     year: '2025',
-    title: 'BSc CS · First Class · Middlesex',
-    body: 'Graduated. Started staying for the Widening Participation work.'
+    title: 'BSc (Hons) Computer Science · First Class · Middlesex',
+    body: 'With Industrial Placement.'
   }, {
     year: '2025',
     title: 'SGAI-AI 2025 · Springer publication',
-    body: 'Lead author on the N-person Prisoner\'s Dilemma paper.'
+    body: 'Lead author on the N-Person Prisoners\' Dilemma paper; presented it at the conference.'
   }, {
-    year: '2025',
-    title: 'Widening Participation · ongoing',
-    body: 'Data + delivery. Schools, campus, workshops.'
-  }, {
-    year: '2024',
-    title: 'GE Digital · DevSecOps intern (15 mo)',
-    body: '~72 AWS CI/CD pipelines. Cloud deployment + legacy backend. Spotlight Award.'
-  }, {
-    year: '2023',
-    title: 'N-Person IPD · research begins',
-    body: 'Multi-agent simulation of cooperation emergence in repeated games.'
+    year: '2023 — 24',
+    title: 'GE Digital · Software Engineer Intern (14 months)',
+    body: 'Jun 2023 – Sep 2024, Cambridge. Smallworld and Magik, then Nmap port checks on the Jenkins pipelines that deploy to AWS, across 72 products and about 140 pipelines. GE Spotlight Award, "Deliver with Focus".'
   }];
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "label",
     style: {
       marginBottom: 16
     }
-  }, "Timeline \xB7 the rest"), items.map(function (it, i) {
+  }, "Timeline \xB7 all roles"), items.map(function (it, i) {
     return /*#__PURE__*/React.createElement("div", {
       key: i,
       style: {
         display: 'grid',
-        gridTemplateColumns: '90px 1fr 1.5fr',
+        gridTemplateColumns: '110px 1fr 1.5fr',
         gap: 24,
         padding: '14px 0',
         borderTop: '1px solid var(--rule)',

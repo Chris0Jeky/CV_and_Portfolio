@@ -165,7 +165,7 @@ window.CommandPalette = function CommandPalette() {
       }
     }, {
       kind: 'cmd',
-      label: 'cite metrix',
+      label: 'cite metricalgo',
       hint: 'project',
       action: function action() {
         return location.hash = '#projects';

@@ -5,14 +5,19 @@ window.Experience = function Experience() {
   return (
     <section id="experience" style={{ padding: '64px 0' }}>
       <div className="container">
-        <SectionHeader num="02" kicker="Field reports" title="Where the time went."/>
+        <SectionHeader num="02" kicker="Experience" title="Where the time went."/>
+
+        {/* Metricalgo — current role */}
+        <MetricalgoReport/>
+
+        {/* Middlesex University */}
+        <div style={{ marginTop: 64 }}>
+          <MiddlesexReport/>
+        </div>
 
         {/* GE Digital — full feature with pipeline visualization */}
-        <GEDigitalReport/>
-
-        {/* University Outreach */}
         <div style={{ marginTop: 64 }}>
-          <UniversityOutreach/>
+          <GEDigitalReport/>
         </div>
 
         {/* Timeline of other engagements */}
@@ -23,6 +28,60 @@ window.Experience = function Experience() {
     </section>
   );
 };
+
+/* ============ METRICALGO ============ */
+function MetricalgoReport() {
+  return (
+    <article>
+      <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 220px', gap: 32,
+        borderBottom: '1px solid var(--rule)', paddingBottom: 12, marginBottom: 24, alignItems: 'baseline' }}>
+        <div className="label">Current · software engineer</div>
+        <h3 style={{ fontFamily: 'var(--serif)', fontSize: 44, fontWeight: 400,
+          letterSpacing: '-0.02em', margin: 0, lineHeight: 1 }}>
+          Metricalgo <em style={{color:'var(--rouge)'}}>— options analytics.</em>
+        </h3>
+        <div className="label" style={{ textAlign: 'right' }}>Jul 2025 — present</div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
+        <div>
+          <p className="dropcap" style={{ fontSize: 18, lineHeight: 1.65, marginTop: 0 }}>
+            Software engineer on an options analytics platform in closed beta. I built its{' '}
+            <strong>AI research assistant</strong>. The model sees only a summary of the backtests
+            the user can see, tied to a content hash, so a changed result returns a conflict.
+            Each tool call's arguments are schema-checked and every call is recorded by a policy
+            layer; admin tools re-check the user's role in the database at execution time. Credit
+            is reserved before any provider call and released even if the client drops the stream.
+          </p>
+          <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)' }}>
+            I also work on the backtest data path. Profiling showed row loading dominated, so I
+            built an indexed in-memory options store, an optional Parquet and DuckDB reader that
+            produces identical state, and an atomic warm cache, all over a legacy MySQL store
+            kept read-only. A written calculation spec is the authority for P&amp;L and fees,
+            checked by an independent Decimal reference calculator, golden cases, QuantLib
+            cross-checks and mutation tests.
+          </p>
+        </div>
+
+        <aside style={{ borderLeft: '1px solid var(--rule)', paddingLeft: 32 }}>
+          <div className="label" style={{ marginBottom: 8 }}>Stack &amp; disciplines</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+            {['React','SSE','MySQL','Parquet','DuckDB','QuantLib'].map(s => (
+              <span key={s} style={{
+                fontFamily: 'var(--mono)', fontSize: 11, padding: '3px 8px',
+                border: '1px solid var(--rule)', color: 'var(--ink-2)',
+              }}>{s}</span>
+            ))}
+          </div>
+          <div className="label" style={{ marginBottom: 8 }}>Tags</div>
+          <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--ink-dim)', fontSize: 14 }}>
+            AI assistant · tool calling · policy layer · data path · correctness
+          </div>
+        </aside>
+      </div>
+    </article>
+  );
+}
 
 /* ============ GE DIGITAL FEATURE — Pipeline Viz ============ */
 function GEDigitalReport() {
@@ -59,37 +118,39 @@ function GEDigitalReport() {
       {/* Two-column header */}
       <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 220px', gap: 32,
         borderBottom: '1px solid var(--rule)', paddingBottom: 12, marginBottom: 24, alignItems: 'baseline' }}>
-        <div className="label">Feature · case study</div>
+        <div className="label">Placement · case study</div>
         <h3 style={{ fontFamily: 'var(--serif)', fontSize: 44, fontWeight: 400,
           letterSpacing: '-0.02em', margin: 0, lineHeight: 1 }}>
-          GE Digital <em style={{color:'var(--rouge)'}}>— 15 mo.</em>
+          GE Digital <em style={{color:'var(--rouge)'}}>— 14 mo.</em>
         </h3>
-        <div className="label" style={{ textAlign: 'right' }}>2023 — 2024 · DevSecOps Intern</div>
+        <div className="label" style={{ textAlign: 'right' }}>Jun 2023 — Sep 2024 · Software Engineer Intern</div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48 }}>
         <div>
           <p className="dropcap" style={{ fontSize: 18, lineHeight: 1.65, marginTop: 0 }}>
-            Spent fifteen months embedded in a security-engineering team responsible for
-            the deployment hygiene of a large legacy estate. The headline: I integrated
-            automated <strong>Nmap</strong> scanning into seventy-two AWS CI/CD pipelines,
-            written across Jenkins, Bash, and just enough Groovy to keep things interesting.
+            A fourteen-month software engineering placement in Cambridge. I started on the{' '}
+            <strong>Smallworld</strong> product: fixed hard-to-reproduce bugs in a large legacy
+            Magik codebase, improved database access to make upgrades smoother, added MUnit
+            tests and wrote up known pitfalls for new developers.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--ink-2)' }}>
-            The result was a unified, audit-friendly scan stage that ran on every deploy:
-            shorter feedback loops, fewer hand-rolled config files, and a measurable drop
-            in the number of changes that bypassed review. Also, fewer 3am emails. Mostly.
+            Then I took over a security automation project. I extended <strong>Nmap</strong>{' '}
+            port scanning from internal builds to the Jenkins pipelines that deploy to AWS,
+            across 72 products and about 140 pipelines, using Bash and Groovy. Each fresh
+            deployment's open ports are checked against a per-product allow-list, and an
+            unexpected port fails the build. Telling ephemeral-port noise from real exposure
+            was most of the work, done with DevOps engineers and security architects.
           </p>
           <div style={{ marginTop: 20 }}>
-            <span className="stamp" style={{ color: 'var(--forest)' }}>−15% deploy friction</span>
-            <span className="stamp" style={{ color: 'var(--rouge)', marginLeft: 12, transform: 'rotate(2deg)' }}>−50% config time</span>
+            <span className="stamp" style={{ color: 'var(--gold)' }}>GE Spotlight Award · Deliver with Focus</span>
           </div>
         </div>
 
         <aside style={{ borderLeft: '1px solid var(--rule)', paddingLeft: 32 }}>
           <div className="label" style={{ marginBottom: 8 }}>Stack & disciplines</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
-            {['AWS','Jenkins','Bash','Groovy','Python','Nmap','Terraform','IAM'].map(s => (
+            {['Magik','Smallworld','MUnit','Jenkins','Bash','Groovy','Nmap','AWS'].map(s => (
               <span key={s} style={{
                 fontFamily: 'var(--mono)', fontSize: 11, padding: '3px 8px',
                 border: '1px solid var(--rule)', color: 'var(--ink-2)',
@@ -98,7 +159,7 @@ function GEDigitalReport() {
           </div>
           <div className="label" style={{ marginBottom: 8 }}>Tags</div>
           <div style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--ink-dim)', fontSize: 14 }}>
-            DevSecOps · cloud deployment · legacy backend · auditability · CI/CD · governance
+            legacy codebase · security automation · CI/CD · cloud deployment
           </div>
         </aside>
       </div>
@@ -106,9 +167,9 @@ function GEDigitalReport() {
       {/* Pipeline visualization */}
       <div style={{ marginTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
-          <span className="label">Fig. 2 — pipeline scan rollout · 72 deployments</span>
+          <span className="label">Fig. 2 — port-check rollout · 72 products</span>
           <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--forest)' }}>
-            ● {scanned}/72 instrumented
+            ● {scanned}/72 checked
           </span>
         </div>
         <PipelineVisualization scanned={scanned}/>
@@ -117,12 +178,10 @@ function GEDigitalReport() {
       {/* Lessons in terminal style */}
       <div className="term" style={{ marginTop: 32 }}>
         <span className="term-label">$ cat lessons.md</span>
-        <div><span className="dim"># 1.</span> the legacy estate is the org's actual API. respect it before you refactor it.</div>
-        <div><span className="dim"># 2.</span> a scan that runs once is theatre. a scan that runs on every deploy is policy.</div>
-        <div><span className="dim"># 3.</span> Groovy will hurt you. plan accordingly.</div>
-        <div><span className="dim"># 4.</span> if it's not in the audit log, it didn't happen <span className="warn">⚠</span></div>
-        <div><span className="dim"># 5.</span> dashboards are nice; alerts that page the right person at the right time are the job.</div>
-        <div><span className="dim"># 6.</span> the security team is not your enemy. the calendar is.</div>
+        <div><span className="dim"># 1.</span> a legacy codebase is the product customers run. understand it before you refactor it.</div>
+        <div><span className="dim"># 2.</span> a scan that runs once is a report. a scan that fails the build is a control.</div>
+        <div><span className="dim"># 3.</span> most of the work is telling noise from real exposure <span className="warn">⚠</span></div>
+        <div><span className="dim"># 4.</span> a per-product allow-list beats one rule for everyone.</div>
       </div>
     </article>
   );
@@ -139,7 +198,7 @@ function PipelineVisualization({ scanned }) {
     }}>
       <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--term-dim)',
         marginBottom: 14, display: 'flex', justifyContent: 'space-between', letterSpacing: '0.1em' }}>
-        <span>JENKINS · 72 PIPELINES · CONTINUOUS SCAN INTEGRATION</span>
+        <span>JENKINS · 72 PRODUCTS · ~140 PIPELINES · NMAP PORT CHECKS</span>
         <span><span style={{color: 'var(--term-green)'}} className="pulse">●</span> RUNNING</span>
       </div>
 
@@ -170,7 +229,7 @@ function PipelineVisualization({ scanned }) {
         display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 4,
         fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--term-fg)',
       }}>
-        {['checkout','build','unit-test','nmap-scan','deploy','audit-log'].map((s, i) => (
+        {['checkout','build','deploy-aws','nmap-scan','allow-list','pass/fail'].map((s, i) => (
           <div key={s} style={{
             padding: '8px 10px',
             background: i === 3 ? 'rgba(124,244,184,0.12)' : '#1a2329',
@@ -196,39 +255,36 @@ function PipelineVisualization({ scanned }) {
         fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--term-fg)',
         display: 'flex', justifyContent: 'space-between',
       }}>
-        <span><span style={{color:'var(--term-amber)'}}>⏱</span> avg cycle <span style={{color: 'var(--term-fg)'}}>−15%</span></span>
-        <span><span style={{color:'var(--term-amber)'}}>⚙</span> config time <span style={{color: 'var(--term-fg)'}}>−50%</span></span>
-        <span><span style={{color:'var(--term-amber)'}}>✓</span> findings routed to ticketing</span>
-        <span><span style={{color:'var(--term-amber)'}}>◉</span> 0 audit gaps</span>
+        <span><span style={{color:'var(--term-amber)'}}>◉</span> fresh deployment scanned</span>
+        <span><span style={{color:'var(--term-amber)'}}>⚙</span> per-product allow-list</span>
+        <span><span style={{color:'var(--term-amber)'}}>✗</span> unexpected port fails the build</span>
       </div>
     </div>
   );
 }
 
-/* ============ University Outreach ============ */
-function UniversityOutreach() {
+/* ============ Middlesex University ============ */
+function MiddlesexReport() {
   return (
     <article style={{
       display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 48,
       paddingTop: 24, borderTop: '1px solid var(--rule)',
     }}>
       <div>
-        <div className="label">Ongoing · field work</div>
+        <div className="label">Current · Jun 2025 — present · London</div>
         <h3 style={{ fontFamily: 'var(--serif)', fontSize: 38, fontWeight: 400,
           letterSpacing: '-0.02em', margin: '6px 0 16px', lineHeight: 1.05 }}>
-          Widening Participation <em style={{color:'var(--rouge)'}}>— delivery & data.</em>
+          Middlesex University <em style={{color:'var(--rouge)'}}>— recruitment &amp; outreach.</em>
         </h3>
         <p style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--ink-2)' }}>
-          I work with <strong>Middlesex University</strong>'s Widening Participation team on
-          two things at once: the <em>data</em> side (cleaning and analysing the team's
-          records to see what actually moves the needle), and the <em>delivery</em> side
-          (showing up at schools, on campus, and to whichever audience will tolerate a 9am
-          session about computer science). The headline pitch — "a degree is one path,
-          not the only one" — is, somehow, still controversial in some rooms.
+          <strong>UK Recruitment &amp; Outreach Coordinator</strong>, full-time since April 2026.
+          I joined in June 2025 as Outreach Contractor and Workshop Lead. I build the team's
+          reporting and data pipelines and its custom tools, and I plan and deliver talks,
+          workshops and campus events.
         </p>
         <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          <span className="stamp">Public Speaking</span>
-          <span className="stamp" style={{ color: 'var(--forest)', transform: 'rotate(1deg)' }}>Data Analysis</span>
+          <span className="stamp">Reporting</span>
+          <span className="stamp" style={{ color: 'var(--forest)', transform: 'rotate(1deg)' }}>Data pipelines</span>
           <span className="stamp" style={{ color: 'var(--rouge)', transform: 'rotate(-1deg)' }}>Workshops</span>
         </div>
       </div>
@@ -236,19 +292,18 @@ function UniversityOutreach() {
       <div style={{
         border: '1px solid var(--rule)', padding: 24, background: 'var(--paper-2)',
       }}>
-        <div className="label" style={{ marginBottom: 12 }}>Dispatches · selected</div>
+        <div className="label" style={{ marginBottom: 12 }}>What I built</div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           {[
-            { date: '26.03', loc: 'Year 12 visit', n: '~ 80 students', topic: 'Why software bites back' },
-            { date: '26.02', loc: 'On-campus session', n: '~ 35 attendees', topic: 'CI/CD without tears' },
-            { date: '26.01', loc: 'Sixth-form workshop', n: '~ 60 students', topic: 'Hello, terminal' },
-            { date: '25.11', loc: 'Open day talk', n: '~ 120 prospects', topic: 'A day in the life' },
+            { title: 'Reporting chain', body: 'Raw exports are found by config, and every data problem gets a finding code that appears in the pack. One set of canonical tables feeds the deck, offline dashboard, staging workbook and quarterly Word draft.' },
+            { title: 'Provenance', body: 'Each bundle carries a manifest of input, output and code hashes, and a doctor command names any file changed since the build.' },
+            { title: 'SharePoint List + Graph sync', body: 'Replacing the hand-typed activity workbook with a SharePoint List and a Python sync engine over Microsoft Graph. Computed fields are written back under a per-item ETag, so a colleague\'s newer edit is skipped and reported.' },
+            { title: 'Safe cutover', body: 'The old workbook format is exported exactly, so the reporting chain and rota dashboard keep running. CI compares a synthetic golden build cell by cell; a mutation script re-inserts real past bugs and expects a red test.' },
           ].map(d => (
-            <div key={d.date} style={{ borderTop: '1px dashed var(--rule)', paddingTop: 10 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--ink-mute)' }}>{d.date}/26</div>
-              <div style={{ fontFamily: 'var(--serif)', fontSize: 17, marginTop: 2 }}>"{d.topic}"</div>
-              <div style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--ink-dim)', marginTop: 2 }}>
-                {d.loc} · {d.n}
+            <div key={d.title} style={{ borderTop: '1px dashed var(--rule)', paddingTop: 10 }}>
+              <div style={{ fontFamily: 'var(--serif)', fontSize: 17, marginTop: 2 }}>{d.title}</div>
+              <div style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'var(--ink-dim)', marginTop: 4, lineHeight: 1.5 }}>
+                {d.body}
               </div>
             </div>
           ))}
@@ -261,21 +316,20 @@ function UniversityOutreach() {
 /* ============ Timeline ============ */
 function Timeline() {
   const items = [
-    { year: '2026', title: 'WealthLens · sole architect', body: 'Open-source UK wealth/inequality data platform. Ten datasets, ten cited chart pages, weekly refresh.' },
-    { year: '2026', title: 'Metrix · co-development', body: 'Options-backtesting + signal platform with a small team. ~3.1k commits in.' },
-    { year: '2026', title: 'Taskdeck · principal author', body: 'Local-first execution workspace · proposal-first automation.' },
-    { year: '2025', title: 'BSc CS · First Class · Middlesex', body: 'Graduated. Started staying for the Widening Participation work.' },
-    { year: '2025', title: 'SGAI-AI 2025 · Springer publication', body: 'Lead author on the N-person Prisoner\'s Dilemma paper.' },
-    { year: '2025', title: 'Widening Participation · ongoing', body: 'Data + delivery. Schools, campus, workshops.' },
-    { year: '2024', title: 'GE Digital · DevSecOps intern (15 mo)', body: '~72 AWS CI/CD pipelines. Cloud deployment + legacy backend. Spotlight Award.' },
-    { year: '2023', title: 'N-Person IPD · research begins', body: 'Multi-agent simulation of cooperation emergence in repeated games.' },
+    { year: 'Nov 2025 —', title: 'Independent R&D · development pipeline', body: 'Evenings and weekends. A pipeline that takes a task from an issue, a review finding or my phone to a merged pull request: a git worktree per task, test results tied to the commit SHA, and a plain-Python merge gate. An exhaustive checker walks all 50,542 reachable states of the merge model. Also Taskdeck v0.3.0, NavSentinel and local-asset-studio; also shipped developer-lens, Alibi, WealthLens, estate-atlas and charter-replay.' },
+    { year: 'Jul 2025 —', title: 'Metricalgo · Software Engineer', body: 'Options analytics platform (closed beta). Built the AI research assistant; backtest data path and correctness.' },
+    { year: 'Jun 2025 —', title: 'Middlesex University · UK Recruitment & Outreach Coordinator', body: 'Full-time since April 2026; joined as Outreach Contractor and Workshop Lead. Reporting and data pipelines, SharePoint List + Microsoft Graph sync.' },
+    { year: 'Mar 2025 —', title: 'DeliveraSoft · Software Engineer (Contract)', body: 'Remote, two-person team. Automation, data cleaning, landing pages and fixes for small-business clients, usually starting from a loose brief.' },
+    { year: '2025', title: 'BSc (Hons) Computer Science · First Class · Middlesex', body: 'With Industrial Placement.' },
+    { year: '2025', title: 'SGAI-AI 2025 · Springer publication', body: 'Lead author on the N-Person Prisoners\' Dilemma paper; presented it at the conference.' },
+    { year: '2023 — 24', title: 'GE Digital · Software Engineer Intern (14 months)', body: 'Jun 2023 – Sep 2024, Cambridge. Smallworld and Magik, then Nmap port checks on the Jenkins pipelines that deploy to AWS, across 72 products and about 140 pipelines. GE Spotlight Award, "Deliver with Focus".' },
   ];
   return (
     <div>
-      <div className="label" style={{ marginBottom: 16 }}>Timeline · the rest</div>
+      <div className="label" style={{ marginBottom: 16 }}>Timeline · all roles</div>
       {items.map((it, i) => (
         <div key={i} style={{
-          display: 'grid', gridTemplateColumns: '90px 1fr 1.5fr', gap: 24,
+          display: 'grid', gridTemplateColumns: '110px 1fr 1.5fr', gap: 24,
           padding: '14px 0', borderTop: '1px solid var(--rule)', alignItems: 'baseline',
         }}>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--rouge)' }}>{it.year}</div>

@@ -84,7 +84,7 @@ window.Contact = function Contact() {
       lineHeight: 1.6,
       marginTop: 0
     }
-  }, "The fastest way to reach me is email. I read everything; I reply to most. Hiring managers, collaborators, journalists curious about WealthLens, and fellow lurkers in the audit log \u2014 all welcome."), /*#__PURE__*/React.createElement("div", {
+  }, "The fastest way to reach me is email. Recruiters, hiring managers and collaborators are all welcome."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 32
     }
@@ -120,7 +120,7 @@ window.Contact = function Contact() {
   }), /*#__PURE__*/React.createElement(ContactRow, {
     label: "LinkedIn",
     value: "linkedin.com/in/cristian-tcaci",
-    href: "#",
+    href: "https://linkedin.com/in/cristian-tcaci",
     pb: {
       contact: 'linkedin'
     }
@@ -152,15 +152,7 @@ window.Contact = function Contact() {
     pb: {
       project: 'navsentinel'
     }
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "hand",
-    style: {
-      marginTop: 40,
-      fontSize: 28,
-      lineHeight: 1.2,
-      maxWidth: 360
-    }
-  }, "p.s. \u2014 if you've read this far, mention \"audit log\" in your subject line.", /*#__PURE__*/React.createElement("br", null), "it'll make my week.")), /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement("div", {
     style: {
       border: '1.5px solid var(--rule)',
       padding: 22,
@@ -197,7 +189,7 @@ window.Contact = function Contact() {
     style: {
       margin: '0 0 10px'
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Backend / platform roles"), " where reliability, security, and architecture are the deliverable, not the afterthought. Bonus points for legacy systems with adults in the room."), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Software engineering roles"), " in AI systems, data pipelines and platforms, where reliability, security and correctness are part of the deliverable, not the afterthought."), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: '0 0 10px'
     }
@@ -229,11 +221,7 @@ window.Contact = function Contact() {
     className: "prompt"
   }, "\u25B8"), " if you are a ", /*#__PURE__*/React.createElement("span", {
     className: "cyan"
-  }, "student"), ": yes you can ask. yes i'll reply."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "prompt"
-  }, "\u25B8"), " if you are an ", /*#__PURE__*/React.createElement("span", {
-    className: "warn"
-  }, "autopilot"), ": please disclose. human reviewers go first."), /*#__PURE__*/React.createElement("div", {
+  }, "student"), ": yes you can ask. yes i'll reply."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 14,
       paddingTop: 14,
@@ -241,7 +229,7 @@ window.Contact = function Contact() {
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "// expected reply: 24-48h on weekdays. faster if you mention an audit log.")))))));
+  }, "// expected reply: 24-48h on weekdays.")))))));
 };
 function ContactRow(_ref) {
   var label = _ref.label,

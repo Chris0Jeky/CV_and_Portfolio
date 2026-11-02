@@ -26,9 +26,8 @@ window.Contact = function Contact() {
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 56 }}>
           <div>
             <p style={{ fontSize: 19, lineHeight: 1.6, marginTop: 0 }}>
-              The fastest way to reach me is email. I read everything; I reply to most.
-              Hiring managers, collaborators, journalists curious about WealthLens, and
-              fellow lurkers in the audit log — all welcome.
+              The fastest way to reach me is email. Recruiters, hiring managers and
+              collaborators are all welcome.
             </p>
 
             <div style={{ marginTop: 32 }}>
@@ -43,18 +42,13 @@ window.Contact = function Contact() {
 
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <ContactRow label="GitHub" value="github.com/Chris0Jeky" href="https://github.com/Chris0Jeky" pb={{ contact: 'github' }}/>
-              <ContactRow label="LinkedIn" value="linkedin.com/in/cristian-tcaci" href="#" pb={{ contact: 'linkedin' }}/>
+              <ContactRow label="LinkedIn" value="linkedin.com/in/cristian-tcaci" href="https://linkedin.com/in/cristian-tcaci" pb={{ contact: 'linkedin' }}/>
               <ContactRow label="Repo · WealthLens" value="github.com/Chris0Jeky/wealthlens-hq" href="https://github.com/Chris0Jeky/wealthlens-hq" pb={{ project: 'wealthlens' }}/>
               <ContactRow label="Repo · Taskdeck" value="github.com/Chris0Jeky/Taskdeck" href="https://github.com/Chris0Jeky/Taskdeck" pb={{ project: 'taskdeck' }}/>
               <ContactRow label="Repo · NPDL" value="github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" href="https://github.com/Chris0Jeky/N-person-prisoners-dilemma-simulation" pb={{ project: 'npdl' }}/>
               <ContactRow label="Repo · NavSentinel" value="github.com/Chris0Jeky/NavSentinel" href="https://github.com/Chris0Jeky/NavSentinel" pb={{ project: 'navsentinel' }}/>
             </div>
 
-            <div className="hand" style={{
-              marginTop: 40, fontSize: 28, lineHeight: 1.2, maxWidth: 360,
-            }}>
-              p.s. — if you've read this far, mention "audit log" in your subject line.<br/>it'll make my week.
-            </div>
           </div>
 
           <aside>
@@ -72,9 +66,9 @@ window.Contact = function Contact() {
               </h3>
               <div style={{ fontFamily: 'var(--serif)', fontSize: 15.5, lineHeight: 1.6, color: 'var(--ink-2)' }}>
                 <p style={{ margin: '0 0 10px' }}>
-                  <strong>Backend / platform roles</strong> where reliability, security,
-                  and architecture are the deliverable, not the afterthought. Bonus points
-                  for legacy systems with adults in the room.
+                  <strong>Software engineering roles</strong> in AI systems, data pipelines
+                  and platforms, where reliability, security and correctness are part of the
+                  deliverable, not the afterthought.
                 </p>
                 <p style={{ margin: '0 0 10px' }}>
                   <strong>Civic-tech collaborators</strong> on inequality, housing, public
@@ -95,9 +89,8 @@ window.Contact = function Contact() {
               <div><span className="prompt">▸</span> if you are a <span className="cyan">journalist or researcher</span>: the data is open, the charts are embeddable, tell me what's missing.</div>
               <div><span className="prompt">▸</span> if you care about <span className="cyan">inequality data</span>: collaborators, not followers.</div>
               <div><span className="prompt">▸</span> if you are a <span className="cyan">student</span>: yes you can ask. yes i'll reply.</div>
-              <div><span className="prompt">▸</span> if you are an <span className="warn">autopilot</span>: please disclose. human reviewers go first.</div>
               <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px dashed var(--term-mute)' }}>
-                <span className="dim">// expected reply: 24-48h on weekdays. faster if you mention an audit log.</span>
+                <span className="dim">// expected reply: 24-48h on weekdays.</span>
               </div>
             </div>
           </aside>

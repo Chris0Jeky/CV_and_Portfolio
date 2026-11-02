@@ -29,12 +29,8 @@ window.Projects = function Projects() {
   }, /*#__PURE__*/React.createElement(SectionHeader, {
     num: "03",
     kicker: "Catalogue raisonn\xE9",
-    title: "Projects, in order of trouble caused."
-  }), /*#__PURE__*/React.createElement(WealthLensFeature, null), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 64
-    }
-  }, /*#__PURE__*/React.createElement(MetrixFeature, null)), /*#__PURE__*/React.createElement("div", {
+    title: "Selected work."
+  }), /*#__PURE__*/React.createElement(MetricalgoFeature, null), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 64
     }
@@ -47,6 +43,10 @@ window.Projects = function Projects() {
       marginTop: 64
     }
   }, /*#__PURE__*/React.createElement(NavSentinelFeature, null)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 64
+    }
+  }, /*#__PURE__*/React.createElement(WealthLensFeature, null)), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 64
     }
@@ -107,6 +107,12 @@ var TASKDECK_GPS = [{
   body: 'Every external destination disclosed. Local telemetry rejects user content by default.'
 }];
 var CATALOG = [{
+  num: '049',
+  name: 'local-asset-studio',
+  cat: 'creative · local GPU pipeline',
+  stack: 'Python · ComfyUI · Windows on ROCm · 16 GB GPU',
+  desc: 'Image, video and 3D generation on one GPU shared with a local LLM. Each graph is checked against the installed node schema and admitted only when measured Windows commit headroom allows it; a GPU lease lets the LLM loader take the card. A measured VRAM reserve took one route from 17.7 s to about 1 s per step, and SDXL decode spill fell from 3.7 GB to under 0.2 GB. Results export to Krita, Godot and Blender.'
+}, {
   num: '045',
   name: 'Alibi',
   cat: 'game · offline-first PWA · live',
@@ -136,7 +142,7 @@ var CATALOG = [{
   name: 'Historical Stats Tools',
   cat: 'finance · analytics',
   stack: 'Python · MySQL',
-  desc: 'Companion to Metrix — a suite of statistical tools that crunches historical options data and feeds Metrix\'s backtests with inputs that have already been argued about, validated, and cited.'
+  desc: 'A suite of statistical tools that crunches historical options data into validated inputs for backtests.'
 }, {
   num: '034',
   name: 'AgentForge',
@@ -344,14 +350,14 @@ function WorkshopFeature() {
   })));
 }
 
-/* ============ METRIX FEATURE ============ */
-function MetrixFeature() {
+/* ============ METRICALGO FEATURE ============ */
+function MetricalgoFeature() {
   return /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement(FeatureHeader, {
     num: "042",
-    name: "Metrix",
-    cat: "Finance \xB7 SaaS Platform",
-    years: "2025 \u2014 building",
-    team: "~5 contributors \xB7 ~3,144 commits",
+    name: "Metricalgo",
+    cat: "Options analytics \xB7 closed beta \xB7 employer work",
+    years: "Jul 2025 \u2014 present",
+    team: "software engineer",
     tone: "rouge"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -370,40 +376,26 @@ function MetrixFeature() {
     style: {
       color: 'var(--rouge)'
     }
-  }, "Metrix"), " is the ambitious one. A full-stack SaaS where users define options-trading strategies, run backtests against historical data, get live signals, and subscribe to other people's published \"systems\" \u2014 each a first-class object combining a strategy, a backtest, and an audit trail you can\xA0subscribe\xA0to. Roughly the most opinionated backtester I've ever helped build."), /*#__PURE__*/React.createElement("p", {
+  }, "Metricalgo"), " is an options analytics platform in closed beta, and my day job. I built its ", /*#__PURE__*/React.createElement("strong", null, "AI research assistant"), ". The model sees only a summary of backtests the user can see, tied to a content hash, so a changed result returns a conflict instead of a stale answer. Tool output is stripped of provider role markers, escaped and wrapped before it re-enters the model."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 16,
       lineHeight: 1.7,
       color: 'var(--ink-2)'
     }
-  }, "The architecture is dual-database by design: a legacy, read-only", ' ', /*#__PURE__*/React.createElement("code", {
-    style: {
-      fontFamily: 'var(--mono)',
-      fontSize: 14,
-      background: 'var(--paper-3)',
-      padding: '0 4px'
-    }
-  }, "staticprofit"), ' ', "holds the historical options universe and is treated as immutable scripture; a fresh, read/write", ' ', /*#__PURE__*/React.createElement("code", {
-    style: {
-      fontFamily: 'var(--mono)',
-      fontSize: 14,
-      background: 'var(--paper-3)',
-      padding: '0 4px'
-    }
-  }, "options_backtest_platform"), ' ', "owns everything we ship. Backend is FastAPI / SQLAlchemy 2.0 / Pydantic. Frontend is React 18 / TypeScript / TanStack Query + Table / Apache ECharts / Tailwind. The server is allowed to be wrong, briefly \u2014 the client\xA0is\xA0not."), /*#__PURE__*/React.createElement("p", {
+  }, "Each tool call's arguments are schema-checked and every call is recorded by a policy layer. Admin tools re-check the user's role in the database at execution time, in case it was revoked mid-conversation. Credit is reserved before any provider call and released even if the client drops the stream."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 16,
       lineHeight: 1.7,
       color: 'var(--ink-2)'
     }
-  }, "Phase 10 added a full AI assistant chat: ", /*#__PURE__*/React.createElement("strong", null, "LLM tool orchestration"), ", prompt management, conversation persistence, and live WebSocket status updates while the assistant is actually doing work. Multi-provider, config-gated, and \u2014 importantly \u2014 a tool, not a co-worker."), /*#__PURE__*/React.createElement("div", {
+  }, "On the backtest side, profiling showed row loading dominated, so I built an indexed in-memory options store with normalised strikes, an optional Parquet and DuckDB reader that produces identical state, and an atomic warm cache, over a legacy MySQL store kept read-only. Every run is stamped with the engine version and input hashes."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 20,
       display: 'flex',
       flexWrap: 'wrap',
       gap: 6
     }
-  }, ['Python 3.11', 'FastAPI', 'SQLAlchemy 2.0', 'Pydantic', 'MySQL ×2', 'React 18', 'TypeScript', 'TanStack Query', 'TanStack Table', 'ECharts', 'Tailwind', 'Vite', 'WebSocket', 'LLM tools'].map(function (s) {
+  }, ['React', 'SSE', 'Tool calling', 'Policy layer', 'MySQL', 'Parquet', 'DuckDB', 'QuantLib', 'Decimal', 'Mutation tests'].map(function (s) {
     return /*#__PURE__*/React.createElement("span", {
       key: s,
       style: {
@@ -423,21 +415,21 @@ function MetrixFeature() {
     className: "term-label"
   }, "$ tail -f architecture.notes"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
-  }, "\u25B8"), " dual-db keeps legacy data ", /*#__PURE__*/React.createElement("span", {
+  }, "\u25B8"), " the assistant only sees what the user can see; a ", /*#__PURE__*/React.createElement("span", {
     className: "ok"
-  }, "immutable"), " and platform state ", /*#__PURE__*/React.createElement("span", {
+  }, "content hash"), " catches a changed result."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "prompt"
+  }, "\u25B8"), " tool arguments are ", /*#__PURE__*/React.createElement("span", {
     className: "ok"
-  }, "portable"), "."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "schema-checked"), "; every call is recorded by a policy layer."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
-  }, "\u25B8"), " tanstack-query is the system of record on the client; the server is allowed to be wrong, briefly."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "prompt"
-  }, "\u25B8"), " systems are first-class objects: a strategy + a backtest + an audit trail you can subscribe to."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "prompt"
-  }, "\u25B8"), " phase 10: full ", /*#__PURE__*/React.createElement("span", {
+  }, "\u25B8"), " admin tools re-check the role in the database ", /*#__PURE__*/React.createElement("span", {
     className: "cyan"
-  }, "AI assistant chat"), " \u2014 LLM-powered, tool orchestration, prompt mgmt, conversation persistence, WebSocket status during tool runs."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "at execution time"), "."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
-  }, "\u25B8"), " next: collaborative strategy editing without merging headaches. (TBD: hopeful.)")));
+  }, "\u25B8"), " a written calculation spec is the authority for P&L and fees, checked by an independent Decimal reference calculator."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "prompt"
+  }, "\u25B8"), " golden cases, QuantLib cross-checks and mutation tests guard the engine.")));
 }
 function BacktestDemo() {
   var _useState = useState(10),
@@ -580,7 +572,7 @@ function BacktestDemo() {
       letterSpacing: '0.1em',
       textTransform: 'uppercase'
     }
-  }, "Fig. 3 \u2014 toy demo of the real thing. Drag the sliders."));
+  }, "Fig. 3 \u2014 a toy moving-average demo, not the product. Drag the sliders."));
 }
 function ParamRow(_ref) {
   var label = _ref.label,
@@ -628,8 +620,8 @@ function TaskdeckFeature() {
     num: "041",
     name: "Taskdeck",
     cat: "Local-first Devtool \xB7 Clean Architecture",
-    years: "2025 \u2014 active",
-    team: "solo \xB7 5,300+ commits \xB7 620+ PRs \xB7 9,799 tests \xB7 21 ADRs",
+    years: "2025 \u2014 active \xB7 v0.3.0 beta",
+    team: "solo \xB7 .NET 8 \xB7 Vue 3 \xB7 SQLite \xB7 MCP",
     tone: "forest"
   }), /*#__PURE__*/React.createElement("div", {
     style: {
