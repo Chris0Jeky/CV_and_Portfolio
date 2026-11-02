@@ -301,7 +301,7 @@
     };
 
     function spawnPickup(type = 'coin', opts = {}) {
-      const def = TYPES[type]; if (!def) return;
+      const def = TYPES[type]; if (!def || game.arcadeOff) return;
       const fromTop = opts.fromTop !== false;
       const x = opts.x != null ? opts.x : Math.random() * (innerWidth - 100) + 50;
       const y = opts.y != null ? opts.y : (fromTop ? -30 : innerHeight * 0.3 + Math.random() * 200);
@@ -782,8 +782,8 @@
        FIRST-TIME HINT + welcome coins
        ────────────────────────────────────────── */
     if (!sessionStorage.getItem('tcaci_plus_hint')) {
-      sessionStorage.setItem('tcaci_plus_hint', '1');
       if (!game.arcadeOff) {
+        sessionStorage.setItem('tcaci_plus_hint', '1');
         setTimeout(() => toast('catch coins · grab power-ups · click ghosts', 'gold', '¢'), 4200);
         setTimeout(() => {
           for (let i = 0; i < 5; i++) {
@@ -986,7 +986,7 @@
             ytPlayer = ev.target;
             ytReady = true;
             ytPlayer.setVolume(ytVolume);
-            ytPlayer.playVideo();
+            if (!game.arcadeOff) ytPlayer.playVideo();
           },
           onStateChange: function (ev) {
             if (ev.data === YT.PlayerState.ENDED) {
@@ -1059,6 +1059,7 @@
       );
     }
     function tryResumeOnInteraction() {
+      if (game.arcadeOff) return;
       if (userPaused) { removeResumeListeners(); return; }
       if (ytReady && ytPlayer && !ytIsPlaying && ytPendingPlay) {
         try { ytPlayer.playVideo(); } catch (_) {}
@@ -1070,7 +1071,8 @@
     );
 
     window.addEventListener('tcaci:arcade-off', () => {
-      if (ytReady && ytPlayer && ytIsPlaying) ytPlayer.pauseVideo();
+      ytPendingPlay = false;
+      if (ytReady && ytPlayer) ytPlayer.pauseVideo();
       const cas = document.getElementById('tcaci-cassette');
       if (cas) cas.style.display = 'none';
     });

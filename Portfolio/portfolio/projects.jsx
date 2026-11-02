@@ -164,7 +164,7 @@ function WorkshopFeature() {
 function MetricalgoFeature() {
   return (
     <article>
-      <FeatureHeader num="042" name="Metricalgo" cat="Options analytics · closed beta · employer work"
+      <FeatureHeader num="042" name="Metricalgo" cat="Options analytics · closed beta"
       years="Jul 2025 — present" team="software engineer"
       tone="rouge" />
 
@@ -172,7 +172,7 @@ function MetricalgoFeature() {
         <div>
           <p className="dropcap" style={{ fontSize: 18, lineHeight: 1.65, marginTop: 0 }}>
             <em style={{ color: 'var(--rouge)' }}>Metricalgo</em> is an options analytics
-            platform in closed beta, and my day job. I built its <strong>AI research
+            platform in closed beta, where I work as a software engineer. I built its <strong>AI research
             assistant</strong>. The model sees only a summary of backtests the user can see,
             tied to a content hash, so a changed result returns a conflict instead of a stale
             answer. Tool output is stripped of provider role markers, escaped and wrapped before

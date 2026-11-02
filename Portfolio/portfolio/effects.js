@@ -661,9 +661,9 @@
         return ({
           wealthlens: { k: 'wealthlens', b: "The civic-data one. Sourced charts on UK wealth inequality." },
           taskdeck:   { k: 'taskdeck',   b: "The local-first one. v0.3.0 beta; anything the chat wants to change becomes a proposal you approve." },
-          metricalgo: { k: 'metricalgo', b: "The day job. An options analytics platform in closed beta; I built its AI research assistant." },
+          metricalgo: { k: 'metricalgo', b: "An options analytics platform in closed beta, where I'm a software engineer; I built its AI research assistant." },
           navsentinel:{ k: 'navsentinel',b: "The security one. Scores clicks for signs of deception before they navigate." },
-          npdl:       { k: 'npdl',       b: "The research one. Springer / SGAI-AI 2025. Cooperation emerges, defection spreads in clusters. Same instinct as the day job." },
+          npdl:       { k: 'npdl',       b: "The research one. Springer / SGAI-AI 2025. Cooperation emerges, defection spreads in clusters. Same instinct as the rest of my work." },
         }[p]) || { k: 'project', b: "Yes, it's real. The repo is one click away." };
       }
 
@@ -2464,6 +2464,7 @@
 
     // ── Sparse "shooting PS shape" every 28–48s — gentle ambient chaos ──
     function shoot() {
+      if (STATE.arcadeOff) return;
       const shapes = [
         { c: '#2a9d4f', s: `<polygon points="14,4 26,24 2,24" fill="none" stroke="#2a9d4f" stroke-width="2"/>` },
         { c: '#e44b56', s: `<circle cx="14" cy="14" r="11" fill="none" stroke="#e44b56" stroke-width="2"/>` },
@@ -2651,7 +2652,7 @@
           background: var(--ink-mute, #8a847a);
         }
         #tcaci-toggle-btn.is-off .tcaci-toggle-thumb { left: 2px; }
-                @media print { #tcaci-arcade-toggle { display: none !important; } }
+        @media print { #tcaci-arcade-toggle { display: none !important; } }
         @media (max-width: 900px) {
           #tcaci-arcade-toggle { position: fixed; top: 10px; right: 10px; z-index: 55; }
         }

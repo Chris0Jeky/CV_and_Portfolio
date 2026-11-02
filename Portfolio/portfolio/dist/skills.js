@@ -236,7 +236,7 @@ function SkillBreakdown() {
     className: "ok"
   }, "\u25B8"), " ci/cd \xB7 jenkins, github actions, groovy ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "// 72 pipelines at ge + 30 workflows at home")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "// 72 products, ~140 pipelines at ge")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "ok"
   }, "\u25B8"), " backend architecture ", /*#__PURE__*/React.createElement("span", {
     className: "dim"

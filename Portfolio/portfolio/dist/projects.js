@@ -355,7 +355,7 @@ function MetricalgoFeature() {
   return /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement(FeatureHeader, {
     num: "042",
     name: "Metricalgo",
-    cat: "Options analytics \xB7 closed beta \xB7 employer work",
+    cat: "Options analytics \xB7 closed beta",
     years: "Jul 2025 \u2014 present",
     team: "software engineer",
     tone: "rouge"
@@ -376,7 +376,7 @@ function MetricalgoFeature() {
     style: {
       color: 'var(--rouge)'
     }
-  }, "Metricalgo"), " is an options analytics platform in closed beta, and my day job. I built its ", /*#__PURE__*/React.createElement("strong", null, "AI research assistant"), ". The model sees only a summary of backtests the user can see, tied to a content hash, so a changed result returns a conflict instead of a stale answer. Tool output is stripped of provider role markers, escaped and wrapped before it re-enters the model."), /*#__PURE__*/React.createElement("p", {
+  }, "Metricalgo"), " is an options analytics platform in closed beta, where I work as a software engineer. I built its ", /*#__PURE__*/React.createElement("strong", null, "AI research assistant"), ". The model sees only a summary of backtests the user can see, tied to a content hash, so a changed result returns a conflict instead of a stale answer. Tool output is stripped of provider role markers, escaped and wrapped before it re-enters the model."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 16,
       lineHeight: 1.7,
