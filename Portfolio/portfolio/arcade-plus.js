@@ -301,7 +301,7 @@
     };
 
     function spawnPickup(type = 'coin', opts = {}) {
-      const def = TYPES[type]; if (!def) return;
+      const def = TYPES[type]; if (!def || game.arcadeOff) return;
       const fromTop = opts.fromTop !== false;
       const x = opts.x != null ? opts.x : Math.random() * (innerWidth - 100) + 50;
       const y = opts.y != null ? opts.y : (fromTop ? -30 : innerHeight * 0.3 + Math.random() * 200);
@@ -617,7 +617,7 @@
     const PROJECT = {
       wealthlens: { color: '#2a6b78', label: 'WEALTHLENS' },
       taskdeck:   { color: '#1a4d3a', label: 'TASKDECK'   },
-      metrix:     { color: '#cc3a2e', label: 'METRIX'     },
+      metricalgo: { color: '#cc3a2e', label: 'METRICALGO' },
       navsentinel:{ color: '#b08a2e', label: 'NAVSENTINEL'},
       npdl:       { color: '#8b3df0', label: 'NPDL'       },
     };
@@ -782,8 +782,8 @@
        FIRST-TIME HINT + welcome coins
        ────────────────────────────────────────── */
     if (!sessionStorage.getItem('tcaci_plus_hint')) {
-      sessionStorage.setItem('tcaci_plus_hint', '1');
       if (!game.arcadeOff) {
+        sessionStorage.setItem('tcaci_plus_hint', '1');
         setTimeout(() => toast('catch coins · grab power-ups · click ghosts', 'gold', '¢'), 4200);
         setTimeout(() => {
           for (let i = 0; i < 5; i++) {
@@ -986,7 +986,7 @@
             ytPlayer = ev.target;
             ytReady = true;
             ytPlayer.setVolume(ytVolume);
-            ytPlayer.playVideo();
+            if (!game.arcadeOff) ytPlayer.playVideo();
           },
           onStateChange: function (ev) {
             if (ev.data === YT.PlayerState.ENDED) {
@@ -1047,8 +1047,11 @@
       updateThemeEffects();
     }
 
-    loadYTApi();
-    ytPendingPlay = true;
+    // Music only starts once the visitor turns the arcade on.
+    if (!game.arcadeOff) {
+      loadYTApi();
+      ytPendingPlay = true;
+    }
 
     function removeResumeListeners() {
       ['pointerdown','keydown','click','scroll'].forEach(ev =>
@@ -1056,6 +1059,7 @@
       );
     }
     function tryResumeOnInteraction() {
+      if (game.arcadeOff) return;
       if (userPaused) { removeResumeListeners(); return; }
       if (ytReady && ytPlayer && !ytIsPlaying && ytPendingPlay) {
         try { ytPlayer.playVideo(); } catch (_) {}
@@ -1067,7 +1071,20 @@
     );
 
     window.addEventListener('tcaci:arcade-off', () => {
-      if (ytReady && ytPlayer && ytIsPlaying) ytPlayer.pauseVideo();
+      ytPendingPlay = false;
+      if (ytReady && ytPlayer) ytPlayer.pauseVideo();
+      const cas = document.getElementById('tcaci-cassette');
+      if (cas) cas.style.display = 'none';
+    });
+    window.addEventListener('tcaci:arcade-on', () => {
+      const cas = document.getElementById('tcaci-cassette');
+      if (cas) cas.style.display = '';
+      if (!userPaused && !ytIsPlaying) {
+        loadYTApi();
+        if (ytReady && ytPlayer) ytPlayer.playVideo();
+        ytPendingPlay = true;
+        updateAllUI();
+      }
     });
 
     /* ──────────────────────────────────────────
@@ -1082,6 +1099,7 @@
       <button data-mp="next" title="Next track">▸▸</button>
       <input data-mp="vol" type="range" min="0" max="100" value="30" title="Volume">
     `;
+    if (game.arcadeOff) miniPlayer.style.display = 'none';
     document.body.appendChild(miniPlayer);
 
     function updateMiniPlayer() {
@@ -1113,6 +1131,7 @@
        ────────────────────────────────────────── */
     const cassette = document.createElement('section');
     cassette.id = 'tcaci-cassette';
+    if (game.arcadeOff) cassette.style.display = 'none';
     const track = YT_TRACKS[ytTrackIdx];
     cassette.innerHTML = `
       <div class="cas-inner">

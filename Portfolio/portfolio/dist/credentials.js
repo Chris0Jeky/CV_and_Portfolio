@@ -51,7 +51,7 @@ window.Credentials = function Credentials() {
       letterSpacing: '-0.02em',
       lineHeight: 1.05
     }
-  }, "BSc Computer Science"), /*#__PURE__*/React.createElement("div", {
+  }, "BSc (Hons) Computer Science"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--serif)',
       fontStyle: 'italic',
@@ -66,7 +66,7 @@ window.Credentials = function Credentials() {
       color: 'var(--ink-dim)',
       lineHeight: 1.5
     }
-  }, "Middlesex University \xB7 2022 \u2014 2025"), /*#__PURE__*/React.createElement("div", {
+  }, "Middlesex University \xB7 with Industrial Placement \xB7 2025"), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 18
     }
@@ -103,7 +103,7 @@ window.Credentials = function Credentials() {
       letterSpacing: '-0.02em',
       lineHeight: 1.1
     }
-  }, "\"Navigating the N-Person Prisoners' Dilemma\""), /*#__PURE__*/React.createElement("div", {
+  }, "\"Navigating the N-Person Prisoners' Dilemma: From the Tragic Valley to the Collaborative Hill\""), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--sans)',
       fontSize: 12,
@@ -111,7 +111,7 @@ window.Credentials = function Credentials() {
       lineHeight: 1.55,
       marginBottom: 8
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Springer"), " \xB7 SGAI-AI 2025 \xB7 Lead author \xB7 presented at conference"), /*#__PURE__*/React.createElement("div", {
+  }, "Tcaci and Huyck \xB7 ", /*#__PURE__*/React.createElement("strong", null, "Springer"), " \xB7 Artificial Intelligence XLII (SGAI-AI 2025) \xB7 Lead author \xB7 presented at the conference"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--serif)',
       fontSize: 14,
@@ -162,18 +162,18 @@ window.Credentials = function Credentials() {
       color: 'var(--rouge)',
       marginBottom: 8
     }
-  }, "DevSecOps Initiative"), /*#__PURE__*/React.createElement("div", {
+  }, "\"Deliver with Focus\""), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--sans)',
       fontSize: 13,
       color: 'var(--ink-dim)',
       lineHeight: 1.5
     }
-  }, "General Electric Digital \xB7 2024"), /*#__PURE__*/React.createElement("div", {
+  }, "GE Digital \xB7 2023 \xB7 for my part in the team's December 2023 Smallworld release"), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 18
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "stamp"
-  }, "2024 \xB7 GE"))))));
+  }, "2023 \xB7 GE"))))));
 };

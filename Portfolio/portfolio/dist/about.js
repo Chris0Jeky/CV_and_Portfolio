@@ -16,7 +16,7 @@ window.About = function About() {
     className: "container"
   }, /*#__PURE__*/React.createElement(SectionHeader, {
     num: "01",
-    kicker: "Letter from the Editor",
+    kicker: "About",
     title: "A note from Chris."
   }), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -32,15 +32,13 @@ window.About = function About() {
       lineHeight: 1.65,
       marginTop: 0
     }
-  }, "Hello. I'm Chris. I write software for a living and a bit too much for fun. I prefer backends you can reason about, pipelines that fail loudly, and tools that do ", /*#__PURE__*/React.createElement("em", null, "nothing"), " until you tell them to. If a system surprises you, it's probably broken. If it's quiet, it's probably working", /*#__PURE__*/React.createElement(Fn, {
-    n: "2"
-  }, "Or it's deadlocked. Both look identical from the outside, which is roughly the entire job."), "."), /*#__PURE__*/React.createElement("p", {
+  }, "Hello. I'm Chris, a software engineer in London. I prefer backends you can reason about, pipelines that fail loudly, and tools that do ", /*#__PURE__*/React.createElement("em", null, "nothing"), ' ', "until you tell them to. If a system surprises you, it's probably broken."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 17,
       lineHeight: 1.7,
       color: 'var(--ink-2)'
     }
-  }, "For the past stretch I've been building three things, each of which picks a different fight:"), /*#__PURE__*/React.createElement("ul", {
+  }, "Right now my work splits three ways:"), /*#__PURE__*/React.createElement("ul", {
     style: {
       fontSize: 16.5,
       lineHeight: 1.7,
@@ -53,9 +51,9 @@ window.About = function About() {
     }
   }, /*#__PURE__*/React.createElement("strong", {
     style: {
-      color: 'var(--teal)'
+      color: 'var(--rouge)'
     }
-  }, "WealthLens"), " \u2014 an open-source platform that pulls UK wealth and inequality data from ONS, HMRC, the Bank of England, DWP and the World Inequality Database, and turns it into cited, embeddable chart pages. Ten datasets, ten automated pipelines, ", /*#__PURE__*/React.createElement("strong", null, "874 passing tests"), ", and a stubborn refusal to publish a number without a URL next to it."), /*#__PURE__*/React.createElement("li", {
+  }, "Metricalgo"), " \u2014 software engineer on an options analytics platform in closed beta. I built the", ' ', /*#__PURE__*/React.createElement("strong", null, "AI research assistant"), ": the model sees only a summary of backtests the user can see, every tool call is schema-checked and recorded, and credit is reserved before any provider call. I also work on the backtest engine's data path and its correctness checks."), /*#__PURE__*/React.createElement("li", {
     style: {
       marginBottom: 8
     }
@@ -63,31 +61,29 @@ window.About = function About() {
     style: {
       color: 'var(--forest)'
     }
-  }, "Taskdeck"), " \u2014 a local-first task board where every automation lands as a", /*#__PURE__*/React.createElement("em", null, " proposal"), " you accept or reject. No silent mutations. No surprise cards. Roughly", /*#__PURE__*/React.createElement("strong", null, " 5,300+ commits"), ", ", /*#__PURE__*/React.createElement("strong", null, "620+ PRs"), " and 30 CI workflows of stubbornness about who's actually in charge of your board."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
+  }, "Middlesex University"), " \u2014 UK Recruitment & Outreach Coordinator, full-time since April 2026. I built the reporting chain behind the team's regular reporting pack, and I'm replacing a hand-typed workbook with a SharePoint List and a Python sync engine over Microsoft Graph. I also plan and deliver talks, workshops and campus events."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
     style: {
-      color: 'var(--rouge)'
+      color: 'var(--teal)'
     }
-  }, "Metrix"), " \u2014 a much larger options-backtesting and signal platform built with a small team. About ", /*#__PURE__*/React.createElement("strong", null, "3,144 commits"), " of opinions about how backtests should actually work, plus a Phase-10 LLM assistant that does tool orchestration without pretending it's a person.")), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: 17,
-      lineHeight: 1.7,
-      color: 'var(--ink-2)'
-    }
-  }, "Before all that, I spent fifteen months at ", /*#__PURE__*/React.createElement("strong", null, "GE Digital"), ' ', "integrating automated security scanning into about", ' ', /*#__PURE__*/React.createElement("strong", null, "seventy-two AWS CI/CD pipelines"), ". Those numbers sound dry on paper", /*#__PURE__*/React.createElement(Fn, {
-    n: "3"
-  }, "\"Cut deploy friction by 15%\" reads better on a CV than in person, where it usually translates to \"stopped Jenkins from yelling at us at 3am.\""), ' ', "\u2014 but they were the kind of work I most enjoy: legacy systems, real consequences, and a measurable thing you can point at when it's done. They gave me a Spotlight Award. I gave them their evenings back."), /*#__PURE__*/React.createElement("p", {
+  }, "Independent R&D"), " \u2014 evenings and weekends: a development pipeline that takes a task from an issue to a merged pull request behind a plain-Python merge gate, plus", ' ', /*#__PURE__*/React.createElement("strong", null, "Taskdeck"), ", ", /*#__PURE__*/React.createElement("strong", null, "NavSentinel"), " and local-asset-studio. I also take contract work through", ' ', /*#__PURE__*/React.createElement("strong", null, "DeliveraSoft"), " for small-business clients.")), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 17,
       lineHeight: 1.7,
       color: 'var(--ink-2)'
     }
-  }, "I also do research. My paper on the N-person Prisoner's Dilemma \u2014", /*#__PURE__*/React.createElement("em", null, " published in Springer proceedings at SGAI-AI 2025"), ", lead author, presented at conference \u2014 is a multi-agent simulation framework with", /*#__PURE__*/React.createElement("strong", null, " twelve-plus strategies"), " across five network topologies and an evolutionary scenario generator that ranks results by an", /*#__PURE__*/React.createElement("em", null, " \"interestingness score.\""), " It asks the same question I keep asking software: under what conditions does cooperation emerge, and what happens when one agent goes rogue? It's also the question behind WealthLens: make the cost of defection visible to everyone."), /*#__PURE__*/React.createElement("p", {
+  }, "Before that, I spent fourteen months at ", /*#__PURE__*/React.createElement("strong", null, "GE Digital"), " as a software engineer intern. On the Smallworld product I fixed hard-to-reproduce bugs in a large legacy Magik codebase, and received a GE Spotlight Award, \"Deliver with Focus\", for my part in the team's December 2023 release. I then took over a security automation project: Nmap port checks on the Jenkins pipelines that deploy to AWS, across ", /*#__PURE__*/React.createElement("strong", null, "72 products"), " and about 140 pipelines."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 17,
       lineHeight: 1.7,
       color: 'var(--ink-2)'
     }
-  }, "On the side: I work with ", /*#__PURE__*/React.createElement("strong", null, "Middlesex University"), "'s Widening Participation team on outreach delivery and data analysis \u2014 schools, on-campus sessions, open days, and whichever audience will tolerate a 9am talk about computer science. I have a First Class BSc in Computer Science from Middlesex (2025), an irrational fondness for keyboard-first workflows, and strong opinions about the word \"agent.\""), /*#__PURE__*/React.createElement("div", {
+  }, "I also do research. My paper on the N-Person Prisoners' Dilemma,", ' ', /*#__PURE__*/React.createElement("em", null, "\"Navigating the N-Person Prisoners' Dilemma: From the Tragic Valley to the Collaborative Hill\""), ", was published by Springer in the SGAI-AI 2025 proceedings. I'm the lead author and presented it at the conference. It asks a question I keep asking of software: under what conditions does cooperation emerge, and what happens when one agent defects?"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 17,
+      lineHeight: 1.7,
+      color: 'var(--ink-2)'
+    }
+  }, "I have a First Class BSc (Hons) in Computer Science with Industrial Placement from Middlesex University (2025). I speak English and Italian fluently, and Romanian is my native language."), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 32,
       fontFamily: 'var(--hand)',
@@ -100,10 +96,10 @@ window.About = function About() {
     style: {
       marginTop: 4
     }
-  }, "filed from London")), /*#__PURE__*/React.createElement(Sidebar, null))));
+  }, "London")), /*#__PURE__*/React.createElement(Sidebar, null))));
 };
 function Sidebar() {
-  var opinions = ["AI assistance should be a proposal, not a commit.", "If you can't roll it back, you didn't ship it — you launched it.", "Local-first beats cloud-first whenever latency, privacy, or your own dignity is on the line.", "The best CI pipeline is the one that fails before lunch, with a useful error message.", "Most \"microservices\" are a distributed monolith with a worse on-call rota.", "Tests are documentation that yells at you. Write the documentation.", "If your audit log has gaps, you don't have an audit log. You have a diary.", "If your data doesn't cite its source, it's not data. It's a guess in a nice font.", "\"Agent\" is doing a lot of marketing work for software that is mostly a for-loop."];
+  var opinions = ["AI assistance should be a proposal, not a commit.", "If you can't roll it back, you didn't ship it — you launched it.", "Local-first beats cloud-first whenever latency or privacy is on the line.", "The best CI pipeline fails early, with a useful error message.", "Tests are documentation that fails when it goes stale.", "If your audit log has gaps, you don't have an audit log.", "If a number doesn't cite its source, it's a guess in a nice font."];
   return /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement("div", {
     style: {
       border: '1.5px solid var(--rule)',
@@ -117,7 +113,7 @@ function Sidebar() {
     style: {
       marginBottom: 4
     }
-  }, "Sidebar \xB7 op-ed"), /*#__PURE__*/React.createElement("h3", {
+  }, "Sidebar \xB7 principles"), /*#__PURE__*/React.createElement("h3", {
     style: {
       fontFamily: 'var(--serif)',
       fontSize: 28,
@@ -126,11 +122,11 @@ function Sidebar() {
       letterSpacing: '-0.02em',
       lineHeight: 1.05
     }
-  }, "Hills I will ", /*#__PURE__*/React.createElement("em", {
+  }, "How I ", /*#__PURE__*/React.createElement("em", {
     style: {
       color: 'var(--rouge)'
     }
-  }, "die on"), "."), /*#__PURE__*/React.createElement("ol", {
+  }, "work"), "."), /*#__PURE__*/React.createElement("ol", {
     style: {
       margin: 0,
       paddingLeft: 20,
@@ -146,63 +142,8 @@ function Sidebar() {
         marginBottom: 8
       }
     }, o);
-  })), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 16,
-      paddingTop: 12,
-      borderTop: '1px dashed var(--rule)',
-      fontFamily: 'var(--sans)',
-      fontSize: 10,
-      letterSpacing: '0.1em',
-      textTransform: 'uppercase',
-      color: 'var(--ink-mute)'
-    }
-  }, "The editor reserves the right to retract any of these by Q3.")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      border: '1px solid var(--rule)',
-      padding: 20
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "label",
-    style: {
-      marginBottom: 12
-    }
-  }, "Errata \xB7 prior issues"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: 'var(--mono)',
-      fontSize: 12,
-      lineHeight: 1.7,
-      color: 'var(--ink-dim)'
-    }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--rouge)'
-    }
-  }, "2021:"), " believed in \"clean code\" as a moral system. retracted."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--rouge)'
-    }
-  }, "2022:"), " claimed microservices were inevitable. apologised to a monolith."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--rouge)'
-    }
-  }, "2023:"), " shipped without a rollback path. would not recommend."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--rouge)'
-    }
-  }, "2024:"), " said \"we'll add tests later.\" tests were not added later."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--forest)'
-    }
-  }, "2025:"), " finally added the tests. 874 of them."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: 'var(--teal)'
-    }
-  }, "2026:"), " started an inequality dashboard. accidentally made it a mission."))), /*#__PURE__*/React.createElement("div", {
-    className: "term",
-    style: {
-      marginTop: 32
-    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "term"
   }, /*#__PURE__*/React.createElement("span", {
     className: "term-label"
   }, "$ whoami --verbose"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
@@ -217,45 +158,31 @@ function Sidebar() {
     className: "prompt"
   }, "\u25B8"), " role ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
-  }, "="), " \"backend / platform / civic data\""), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "="), " \"software engineer\""), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "prompt"
+  }, "\u25B8"), " focus ", /*#__PURE__*/React.createElement("span", {
+    className: "dim"
+  }, "="), " \"data pipelines \xB7 platforms \xB7 developer tooling\""), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
   }, "\u25B8"), " region ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
   }, "="), " \"GB-LDN\""), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
-  }, "\u25B8"), " stance ", /*#__PURE__*/React.createElement("span", {
+  }, "\u25B8"), " languages ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
   }, "="), " ", /*#__PURE__*/React.createElement("span", {
     className: "ok"
-  }, "\"local-first\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "\"en, it (fluent) \xB7 ro (native)\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
   }, "\u25B8"), " automation ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
   }, "="), " ", /*#__PURE__*/React.createElement("span", {
     className: "ok"
-  }, "\"trust-first\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+  }, "\"proposal-first\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
     className: "prompt"
-  }, "\u25B8"), " mission ", /*#__PURE__*/React.createElement("span", {
+  }, "\u25B8"), " stance ", /*#__PURE__*/React.createElement("span", {
     className: "dim"
   }, "="), " ", /*#__PURE__*/React.createElement("span", {
     className: "cyan"
-  }, "\"civic-data\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "prompt"
-  }, "\u25B8"), " editor ", /*#__PURE__*/React.createElement("span", {
-    className: "dim"
-  }, "="), " ", /*#__PURE__*/React.createElement("span", {
-    className: "warn"
-  }, "\"jetbrains \xB7 vim bindings, obviously\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "prompt"
-  }, "\u25B8"), " mood ", /*#__PURE__*/React.createElement("span", {
-    className: "dim"
-  }, "="), " ", /*#__PURE__*/React.createElement("span", {
-    className: "warn"
-  }, "\"shipping\"")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "prompt"
-  }, "\u25B8"), " coffee ", /*#__PURE__*/React.createElement("span", {
-    className: "dim"
-  }, "="), " ", /*#__PURE__*/React.createElement("span", {
-    className: "err"
-  }, "\"depleted\""))));
+  }, "\"local-first\""))));
 }

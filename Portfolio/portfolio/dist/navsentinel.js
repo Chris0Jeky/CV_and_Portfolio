@@ -21,7 +21,7 @@ window.NavSentinelFeature = function NavSentinelFeature() {
     num: "037",
     name: "NavSentinel",
     cat: "Browser Security \xB7 MV3 \xB7 Local-only",
-    years: "2025 \u2014 shipping",
+    years: "2025 \u2014 pre-alpha",
     team: "solo \xB7 112 Gym fixtures \xB7 48 test suites",
     tone: "rouge"
   }), /*#__PURE__*/React.createElement("div", {

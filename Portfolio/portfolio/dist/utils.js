@@ -47,7 +47,7 @@ window.Masthead = function Masthead(_ref) {
     style: {
       fontSize: 10
     }
-  }, issue, " \xB7 Spring MMXXVI")), /*#__PURE__*/React.createElement("div", {
+  }, issue, " \xB7 Autumn MMXXVI")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -59,7 +59,7 @@ window.Masthead = function Masthead(_ref) {
       letterSpacing: '0.18em',
       textTransform: 'uppercase'
     }
-  }, /*#__PURE__*/React.createElement("span", null, "Software \xB7 Research \xB7 Infrastructure \xB7 Civic Data \xB7 Occasional Sermons"), /*#__PURE__*/React.createElement("span", null, "London, UK \xB7 est. 2023")));
+  }, /*#__PURE__*/React.createElement("span", null, "Software \xB7 Data pipelines \xB7 Platforms \xB7 Developer tooling \xB7 Research"), /*#__PURE__*/React.createElement("span", null, "London, UK \xB7 est. 2023")));
 };
 window.SectionHeader = function SectionHeader(_ref2) {
   var num = _ref2.num,

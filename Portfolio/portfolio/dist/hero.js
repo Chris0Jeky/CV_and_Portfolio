@@ -56,7 +56,7 @@ window.Hero = function Hero(_ref) {
     style: {
       color: 'var(--rouge)'
     }
-  }, "\u2726 FEATURED \u2014 A PRACTITIONER'S NOTEBOOK"), /*#__PURE__*/React.createElement("div", {
+  }, "\u2726 SOFTWARE ENGINEER \xB7 LONDON"), /*#__PURE__*/React.createElement("div", {
     className: "label"
   }, "PROPOSED CHANGE \xB7 pending review")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -117,17 +117,15 @@ window.Hero = function Hero(_ref) {
       margin: '0 0 28px',
       color: 'var(--ink-2)'
     }
-  }, "Software engineer who writes ", /*#__PURE__*/React.createElement("em", {
+  }, "Software engineer working on ", /*#__PURE__*/React.createElement("em", {
     style: {
       color: 'var(--rouge)'
     }
-  }, "the boring half"), ' ', /*#__PURE__*/React.createElement(Fn, {
-    n: "1"
-  }, "The half where pipelines fail at 3am, where rollbacks are a feature, and where someone has to read the audit log on Monday. Yes \u2014 the part nobody puts in the demo video."), ' ', "of software \u2014 backends you can reason about, pipelines that fail loudly, and audit logs that don't have gaps. Currently turning", ' ', /*#__PURE__*/React.createElement("em", {
+  }, "data pipelines, platforms and developer tooling"), ". At", ' ', /*#__PURE__*/React.createElement("strong", null, "Metricalgo"), ", an options analytics platform, I built the", ' ', /*#__PURE__*/React.createElement("em", {
     style: {
       color: 'var(--teal)'
     }
-  }, "\xA317 trillion of UK wealth data"), ' ', "into something the average person can actually read."), /*#__PURE__*/React.createElement("div", {
+  }, "AI research assistant"), " for the closed beta. At ", /*#__PURE__*/React.createElement("strong", null, "Middlesex University"), " I built the outreach team's reporting and data pipelines."), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       gap: 12,
@@ -136,19 +134,14 @@ window.Hero = function Hero(_ref) {
     }
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn btn-rouge",
+    href: "#experience"
+  }, "\u25B7 Experience"), /*#__PURE__*/React.createElement("a", {
+    className: "btn",
     href: "#projects"
-  }, "\u25B7 Read the issue"), /*#__PURE__*/React.createElement("a", {
+  }, "\u25B7 Selected work"), /*#__PURE__*/React.createElement("a", {
     className: "btn",
     href: "#contact"
-  }, "\u2709 Send a letter"), /*#__PURE__*/React.createElement("span", {
-    className: "margin-note",
-    style: {
-      marginLeft: 12,
-      alignSelf: 'flex-end',
-      maxWidth: 220,
-      transform: 'rotate(-2deg)'
-    }
-  }, "\u2190 the kind of work that", /*#__PURE__*/React.createElement("br", null), "doesn't make good", /*#__PURE__*/React.createElement("br", null), "demo videos"))), /*#__PURE__*/React.createElement(ProposalCard, {
+  }, "\u2709 Get in touch"))), /*#__PURE__*/React.createElement(ProposalCard, {
     state: state,
     setState: setState
   })), /*#__PURE__*/React.createElement("div", {
@@ -169,7 +162,7 @@ window.Hero = function Hero(_ref) {
     style: {
       color: state === 'accepted' ? 'var(--forest)' : 'var(--gold)'
     }
-  }, "\u25CF"), ' ', "STATUS: ", state === 'accepted' ? 'PUBLISHED' : state === 'rejected' ? 'WITHDRAWN' : 'AWAITING REVIEW'), /*#__PURE__*/React.createElement("span", null, "BACKEND \xB7 PLATFORM \xB7 DEVSECOPS \xB7 RESEARCH \xB7 CIVIC TECH"), /*#__PURE__*/React.createElement("span", null, "LAST COMMIT \xB7 2H AGO"))));
+  }, "\u25CF"), ' ', "STATUS: ", state === 'accepted' ? 'PUBLISHED' : state === 'rejected' ? 'WITHDRAWN' : 'AWAITING REVIEW'), /*#__PURE__*/React.createElement("span", null, "DATA PIPELINES \xB7 PLATFORMS \xB7 DEVELOPER TOOLING \xB7 AI ASSISTANTS"), /*#__PURE__*/React.createElement("span", null, "LONDON, UK"))));
 };
 function ProposalCard(_ref2) {
   var state = _ref2.state,
@@ -208,7 +201,7 @@ function ProposalCard(_ref2) {
     style: {
       color: 'var(--ink-mute)'
     }
-  }, "+18 \u22123")), /*#__PURE__*/React.createElement("div", {
+  }, "+14 \u22121")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: 'var(--mono)',
       fontSize: 12.5,
@@ -220,31 +213,33 @@ function ProposalCard(_ref2) {
     kind: "meta"
   }, "@@ identity.yml @@"), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "del"
-  }, "- title: \"Software Engineer \xB7 Backend / Platform\""), /*#__PURE__*/React.createElement(DiffLine, {
+  }, "- title: \"Backend \xB7 Platform \xB7 Civic Data\""), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
-  }, "+ title: \"Backend \xB7 Platform \xB7 Civic Data\""), /*#__PURE__*/React.createElement(DiffLine, {
+  }, "+ title: \"Software Engineer\""), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
   }, "+ education: \"BSc CS \xB7 First Class \xB7 Middlesex 2025\""), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
   }, "+ published: \"Springer \xB7 SGAI-AI 2025 \xB7 lead author\""), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
-  }, "+ stance: \"trust-first, proposal-not-autopilot\""), /*#__PURE__*/React.createElement(DiffLine, {
-    kind: "add"
-  }, "+ default: \"local-first, source-cited, audit-friendly\""), /*#__PURE__*/React.createElement(DiffLine, null, " "), /*#__PURE__*/React.createElement(DiffLine, {
+  }, "+ focus: \"data pipelines \xB7 platforms \xB7 tooling\""), /*#__PURE__*/React.createElement(DiffLine, null, " "), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "meta"
   }, "@@ now.yml @@"), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
+  }, "+ work:"), /*#__PURE__*/React.createElement(DiffLine, {
+    kind: "add"
+  }, "+   - metricalgo   # AI research assistant"), /*#__PURE__*/React.createElement(DiffLine, {
+    kind: "add"
+  }, "+   - middlesex    # reporting pipelines"), /*#__PURE__*/React.createElement(DiffLine, {
+    kind: "add"
+  }, "+   - deliverasoft # contract work"), /*#__PURE__*/React.createElement(DiffLine, {
+    kind: "add"
   }, "+ building:"), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
-  }, "+   - wealthlens # UK inequality data \xB7 874 tests \xB7 10 pipelines"), /*#__PURE__*/React.createElement(DiffLine, {
+  }, "+   - taskdeck     # work platform \xB7 v0.3.0"), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
-  }, "+   - taskdeck   # local-first board \xB7 5,300+ commits \xB7 620+ PRs"), /*#__PURE__*/React.createElement(DiffLine, {
+  }, "+   - navsentinel  # browser security"), /*#__PURE__*/React.createElement(DiffLine, {
     kind: "add"
-  }, "+   - metrix     # options backtester \xB7 ~3.1k commits"), /*#__PURE__*/React.createElement(DiffLine, {
-    kind: "add"
-  }, "+ shipping:    \"weekly, sometimes daily\""), /*#__PURE__*/React.createElement(DiffLine, {
-    kind: "add"
-  }, "+ mission:     \"make unequal systems legible\"")), /*#__PURE__*/React.createElement("div", {
+  }, "+   - local-asset-studio")), /*#__PURE__*/React.createElement("div", {
     style: {
       borderTop: '1px solid var(--rule)',
       padding: '14px 16px',

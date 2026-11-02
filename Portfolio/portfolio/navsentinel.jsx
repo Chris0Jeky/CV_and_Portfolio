@@ -5,7 +5,7 @@ window.NavSentinelFeature = function NavSentinelFeature() {
   return (
     <article style={{ borderTop: '1px solid var(--rule)', paddingTop: 32 }}>
       <FeatureHeader num="037" name="NavSentinel" cat="Browser Security · MV3 · Local-only"
-        years="2025 — shipping" team="solo · 112 Gym fixtures · 48 test suites" tone="rouge"/>
+        years="2025 — pre-alpha" team="solo · 112 Gym fixtures · 48 test suites" tone="rouge"/>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }}>
         <div>

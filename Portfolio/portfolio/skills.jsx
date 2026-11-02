@@ -114,13 +114,13 @@ function SkillBreakdown() {
 
       <div className="term">
         <span className="term-label">$ skills --by-confidence</span>
-        <div><span className="ok">▸</span> python, fastapi, sqlalchemy, pydantic <span className="dim">// daily driver · wealthlens + metrix backbone</span></div>
+        <div><span className="ok">▸</span> python, fastapi, sqlalchemy, pydantic <span className="dim">// daily driver</span></div>
         <div><span className="ok">▸</span> vue 3, typescript, pinia, echarts, d3 <span className="dim">// wealthlens + taskdeck + pulseboard</span></div>
-        <div><span className="ok">▸</span> ci/cd · jenkins, github actions, groovy <span className="dim">// 72 pipelines at ge + 30 workflows at home</span></div>
+        <div><span className="ok">▸</span> ci/cd · jenkins, github actions, groovy <span className="dim">// 72 products, ~140 pipelines at ge</span></div>
         <div><span className="ok">▸</span> backend architecture <span className="dim">// dual-db, audit-friendly, legacy-tolerant</span></div>
         <div><span className="ok">▸</span> data pipelines · pandas, validation, freshness tracking <span className="dim">// reproducible, cited, scheduled</span></div>
         <div><span className="cyan">▸</span> c# · .net 8, ef core, signalr <span className="dim">// taskdeck, reposcope, devfoundry</span></div>
-        <div><span className="cyan">▸</span> react 18 · tanstack query + table <span className="dim">// the front side of metrix</span></div>
+        <div><span className="cyan">▸</span> react 18 <span className="dim">// the assistant front end at metricalgo</span></div>
         <div><span className="cyan">▸</span> websockets, signalr, redis <span className="dim">// 4 projects, 3 languages, 0 polling</span></div>
         <div><span className="cyan">▸</span> ai/llm integration · mcp, multi-provider <span className="dim">// tools, not co-workers</span></div>
         <div><span className="cyan">▸</span> testing · pytest, vitest, playwright, stryker, hypothesis <span className="dim">// 874 reasons to sleep at night</span></div>
